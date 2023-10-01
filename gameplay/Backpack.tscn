@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://24e0kif4kkdt"]
+[gd_scene load_steps=3 format=3 uid="uid://24e0kif4kkdt"]
 
+[ext_resource type="Script" path="res://gameplay/Backpack.gd" id="1_1wqex"]
 [ext_resource type="Texture2D" uid="uid://brf4h74py8sal" path="res://icon.svg" id="1_hbr8j"]
 
 [node name="Backpack" type="Node2D"]
+script = ExtResource("1_1wqex")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("1_hbr8j")
