@@ -1,3 +1,4 @@
+# Backpack to drag underneath gameplay columns.
 extends Area2D
 
 signal released
