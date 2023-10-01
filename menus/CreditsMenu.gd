@@ -1,3 +1,4 @@
+# Scene to render for the game credits.
 extends Control
 
 func _ready():

@@ -1,3 +1,4 @@
+# Scene to render when the game is finished.
 extends Control
 
 @onready var database = get_node("/root/Database")

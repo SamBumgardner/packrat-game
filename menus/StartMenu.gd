@@ -1,3 +1,4 @@
+# Scene to render menu options when the game is started.
 extends Control
 
 @onready var start_button = $TitleContentContainer/ButtonsContainer/StartButton as Button

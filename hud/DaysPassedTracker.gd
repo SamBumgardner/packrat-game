@@ -1,9 +1,18 @@
+# Shared component to show the current in-game number of days passed.
 extends HBoxContainer
 
 @onready var database = get_node("/root/Database")
 
 func _ready():
-	$NumberOfDays.text = str(database.day_count)
+	_sync_day_count()
+	database.connect("updated_day_count", _on_updated_day_count)
 
+# Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
+	pass
+
+func _on_updated_day_count():
+	_sync_day_count()
+
+func _sync_day_count():
 	$NumberOfDays.text = str(database.day_count)
