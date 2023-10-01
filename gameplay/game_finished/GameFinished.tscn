@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://cly8rrgsjooew"]
+
+[ext_resource type="FontFile" uid="uid://ctwqdy5twnm7q" path="res://fonts/Roboto/Roboto-Black.ttf" id="2_gcbv0"]
+[ext_resource type="PackedScene" uid="uid://e1hatl7xepnb" path="res://hud/DaysPassedTracker.tscn" id="3_edudb"]
+[ext_resource type="PackedScene" uid="uid://c25adoveil6xs" path="res://hud/CurrencySilverCoin.tscn" id="3_gv0k7"]
+[ext_resource type="PackedScene" uid="uid://dm07s06ryg2u" path="res://menus/BackToStartMenuButton.tscn" id="4_d0d6f"]
+
+[node name="GameFinished" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -270.0
+offset_right = 270.0
+offset_bottom = 114.0
+grow_horizontal = 2
+
+[node name="Victory" type="Label" parent="VBoxContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_gcbv0")
+theme_override_font_sizes/font_size = 72
+text = "Congratulations!"
+horizontal_alignment = 1
+
+[node name="Statistics" type="VBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+alignment = 1
+
+[node name="CurrencySilverCoin" parent="VBoxContainer/Statistics" instance=ExtResource("3_gv0k7")]
+layout_mode = 2
+alignment = 1
+
+[node name="DaysPassedTracker" parent="VBoxContainer/Statistics" instance=ExtResource("3_edudb")]
+layout_mode = 2
+alignment = 1
+
+[node name="BackToStartMenuButton" parent="." instance=ExtResource("4_d0d6f")]
+layout_direction = 0
+layout_mode = 1

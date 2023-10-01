@@ -1,0 +1,69 @@
+[gd_scene load_steps=5 format=3 uid="uid://b7nqon34mqhr5"]
+
+[ext_resource type="FontFile" uid="uid://bhww3go5q6ukt" path="res://fonts/Roboto/Roboto-Bold.ttf" id="1"]
+[ext_resource type="FontFile" uid="uid://ctwqdy5twnm7q" path="res://fonts/Roboto/Roboto-Black.ttf" id="3_bmuqt"]
+[ext_resource type="FontFile" uid="uid://bfaytobi4bbyw" path="res://fonts/Roboto/Roboto-Regular.ttf" id="4_co7c5"]
+[ext_resource type="Script" path="res://menus/StartMenu.gd" id="5"]
+
+[node name="StartMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("5")
+
+[node name="Background" type="TextureRect" parent="."]
+visible = false
+layout_mode = 0
+anchor_right = 1.0
+anchor_bottom = 1.0
+expand_mode = 1
+stretch_mode = 1
+
+[node name="TitleContentContainer" type="VBoxContainer" parent="."]
+layout_mode = 0
+anchor_left = 0.33
+anchor_top = 0.25
+anchor_right = 0.66
+anchor_bottom = 0.75
+grow_horizontal = 2
+grow_vertical = 0
+alignment = 1
+
+[node name="Title" type="Label" parent="TitleContentContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1")
+theme_override_font_sizes/font_size = 72
+text = "Packrat Game"
+horizontal_alignment = 1
+
+[node name="SubTitle" type="Label" parent="TitleContentContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_bmuqt")
+theme_override_font_sizes/font_size = 24
+text = "Ludum Dare 54 Game Jam Entry"
+horizontal_alignment = 1
+
+[node name="ButtonsContainer" type="VBoxContainer" parent="TitleContentContainer"]
+layout_mode = 2
+
+[node name="StartButton" type="Button" parent="TitleContentContainer/ButtonsContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_co7c5")
+text = "Start"
+
+[node name="CreditsButton" type="Button" parent="TitleContentContainer/ButtonsContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_co7c5")
+text = "Credits"
+
+[node name="QuitButton" type="Button" parent="TitleContentContainer/ButtonsContainer"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("4_co7c5")
+text = "Quit"
+
+[connection signal="pressed" from="TitleContentContainer/ButtonsContainer/StartButton" to="." method="_on_StartButton_pressed"]
+[connection signal="pressed" from="TitleContentContainer/ButtonsContainer/CreditsButton" to="." method="_on_CreditsButton_pressed"]
+[connection signal="pressed" from="TitleContentContainer/ButtonsContainer/QuitButton" to="." method="_on_QuitButton_pressed"]
