@@ -1,12 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://crk2s578wsl64"]
+[gd_scene load_steps=9 format=3 uid="uid://crk2s578wsl64"]
 
 [ext_resource type="Script" path="res://gameplay/Gameplay.gd" id="1_cv37s"]
 [ext_resource type="PackedScene" uid="uid://c25adoveil6xs" path="res://hud/CurrencySilverCoin.tscn" id="2_a1m00"]
-[ext_resource type="FontFile" uid="uid://d4hul02h7mc5f" path="res://fonts/Roboto/Roboto-Medium.ttf" id="2_ny8ex"]
+[ext_resource type="FontFile" uid="uid://cddebactj84w3" path="res://fonts/Roboto/Roboto-Medium.ttf" id="2_ny8ex"]
 [ext_resource type="PackedScene" uid="uid://dm07s06ryg2u" path="res://menus/BackToStartMenuButton.tscn" id="3_7t8p6"]
 [ext_resource type="Script" path="res://gameplay/NextDayButton.gd" id="4_fxq41"]
-[ext_resource type="FontFile" uid="uid://bfaytobi4bbyw" path="res://fonts/Roboto/Roboto-Regular.ttf" id="5_rf4ff"]
+[ext_resource type="FontFile" uid="uid://c104v5f0ficln" path="res://fonts/Roboto/Roboto-Regular.ttf" id="5_rf4ff"]
 [ext_resource type="PackedScene" uid="uid://e1hatl7xepnb" path="res://hud/DaysPassedTracker.tscn" id="7_6ilhd"]
+[ext_resource type="PackedScene" uid="uid://dklr5kcqww66r" path="res://gameplay/GameplayColumn.tscn" id="8_pe5uu"]
 
 [node name="Gameplay" type="Control"]
 layout_mode = 3
@@ -77,6 +78,39 @@ theme_override_fonts/font = ExtResource("2_ny8ex")
 theme_override_font_sizes/font_size = 18
 text = "Next Day"
 script = ExtResource("4_fxq41")
+
+[node name="Columns" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -409.0
+offset_top = -200.0
+offset_right = 409.0
+offset_bottom = 200.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+
+[node name="GameplayColumn" parent="Columns" instance=ExtResource("8_pe5uu")]
+layout_mode = 2
+
+[node name="GameplayColumn2" parent="Columns" instance=ExtResource("8_pe5uu")]
+layout_mode = 2
+
+[node name="GameplayColumn3" parent="Columns" instance=ExtResource("8_pe5uu")]
+layout_mode = 2
+
+[node name="GameplayColumn4" parent="Columns" instance=ExtResource("8_pe5uu")]
+layout_mode = 2
+
+[node name="GameplayColumn5" parent="Columns" instance=ExtResource("8_pe5uu")]
+layout_mode = 2
+
+[node name="GameplayColumn6" parent="Columns" instance=ExtResource("8_pe5uu")]
+layout_mode = 2
 
 [connection signal="timeout" from="MockExplanation/DelayHidingTitle" to="." method="_on_timer_timeout"]
 [connection signal="pressed" from="NextDay/NextDayButton" to="." method="_on_next_day_button_pressed"]

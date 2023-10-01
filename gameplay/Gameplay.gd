@@ -11,6 +11,12 @@ func _ready():
 	database.reset_values()
 	_set_mock_goal()
 
+func _label_columns():
+	for i in $Columns.get_child_count():
+		var shown_index = i + 1
+		var column = $Columns.get_child(i)
+		column.set_column_header_index(shown_index)
+
 func _increment_number_of_days():
 	database.increment_day_count()
 
