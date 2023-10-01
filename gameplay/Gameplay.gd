@@ -10,6 +10,7 @@ var mock_victory = false
 func _ready():
 	database.reset_values()
 	_set_mock_goal()
+	$Backpack.snap_position_to_column($Columns/GameplayColumn)
 
 func _increment_number_of_days():
 	database.increment_day_count()

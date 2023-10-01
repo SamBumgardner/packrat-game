@@ -22,3 +22,4 @@ grow_vertical = 2
 color = Color(0.686275, 0.686275, 0.686275, 1)
 
 [node name="AnchorPoint" type="Node2D" parent="."]
+position = Vector2(563, 610)
