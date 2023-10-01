@@ -1,9 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://crk2s578wsl64"]
+[gd_scene load_steps=8 format=3 uid="uid://crk2s578wsl64"]
 
-[ext_resource type="Texture2D" uid="uid://bp3ph3aanfjn0" path="res://art/silver_coin.png" id="1_0p58s"]
 [ext_resource type="Script" path="res://gameplay/Gameplay.gd" id="1_cv37s"]
+[ext_resource type="PackedScene" uid="uid://c25adoveil6xs" path="res://hud/CurrencySilverCoin.tscn" id="2_a1m00"]
 [ext_resource type="FontFile" uid="uid://d4hul02h7mc5f" path="res://fonts/Roboto/Roboto-Medium.ttf" id="2_ny8ex"]
-[ext_resource type="Script" path="res://hud/CurrencySilverCoin.gd" id="2_qoona"]
 [ext_resource type="PackedScene" uid="uid://dm07s06ryg2u" path="res://menus/BackToStartMenuButton.tscn" id="3_7t8p6"]
 [ext_resource type="Script" path="res://gameplay/NextDayButton.gd" id="4_fxq41"]
 [ext_resource type="FontFile" uid="uid://bfaytobi4bbyw" path="res://fonts/Roboto/Roboto-Regular.ttf" id="5_rf4ff"]
@@ -18,25 +17,13 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_cv37s")
 
-[node name="CurrencySilverCoin" type="HBoxContainer" parent="."]
+[node name="CurrencySilverCoin" parent="." instance=ExtResource("2_a1m00")]
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
-script = ExtResource("2_qoona")
-
-[node name="SilverCoin" type="TextureRect" parent="CurrencySilverCoin"]
-layout_mode = 2
-texture = ExtResource("1_0p58s")
-
-[node name="SilverCoinXAmount" type="Label" parent="CurrencySilverCoin"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_ny8ex")
-text = "x"
-
-[node name="Amount" type="Label" parent="CurrencySilverCoin"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_ny8ex")
-text = "0"
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+grow_horizontal = 1
+grow_vertical = 1
 
 [node name="BackToStartMenuButton" parent="." instance=ExtResource("3_7t8p6")]
 layout_direction = 0
