@@ -94,6 +94,7 @@ offset_bottom = 200.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 10
+alignment = 1
 
 [node name="GameplayColumn" parent="Columns" instance=ExtResource("8_pe5uu")]
 layout_mode = 2
@@ -105,12 +106,15 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="GameplayColumn4" parent="Columns" instance=ExtResource("8_pe5uu")]
+visible = false
 layout_mode = 2
 
 [node name="GameplayColumn5" parent="Columns" instance=ExtResource("8_pe5uu")]
+visible = false
 layout_mode = 2
 
 [node name="GameplayColumn6" parent="Columns" instance=ExtResource("8_pe5uu")]
+visible = false
 layout_mode = 2
 
 [node name="Backpack" parent="." instance=ExtResource("9_6n0cn")]
