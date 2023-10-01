@@ -1,3 +1,4 @@
+# Column to reserve space for a region or a customer.
 extends Control
 
 var column_index = 1
