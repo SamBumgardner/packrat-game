@@ -6,7 +6,6 @@ extends Control
 var mock_goal = 4
 var mock_victory = false
 
-# Called when the node enters the scene tree for the first time.
 func _ready():
 	database.reset_values()
 	_set_mock_goal()
