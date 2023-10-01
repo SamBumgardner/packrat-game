@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://cl87ap5mgbyxq"]
 
 [ext_resource type="PackedScene" uid="uid://dm07s06ryg2u" path="res://menus/BackToStartMenuButton.tscn" id="1"]
-[ext_resource type="FontFile" uid="uid://cp3dyir5j7cwd" path="res://fonts/Roboto/Roboto-Regular.ttf" id="2_dkh84"]
+[ext_resource type="FontFile" uid="uid://bfaytobi4bbyw" path="res://fonts/Roboto/Roboto-Regular.ttf" id="2_dkh84"]
 [ext_resource type="Script" path="res://menus/CreditsMenu.gd" id="4"]
 
 [node name="CreditsMenu" type="Control"]

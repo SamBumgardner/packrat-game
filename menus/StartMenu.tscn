@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://b7nqon34mqhr5"]
 
-[ext_resource type="FontFile" uid="uid://be13flsmri78s" path="res://fonts/Roboto/Roboto-Bold.ttf" id="1"]
-[ext_resource type="FontFile" uid="uid://i50tjdbwllx5" path="res://fonts/Roboto/Roboto-Black.ttf" id="3_bmuqt"]
-[ext_resource type="FontFile" uid="uid://cp3dyir5j7cwd" path="res://fonts/Roboto/Roboto-Regular.ttf" id="4_co7c5"]
+[ext_resource type="FontFile" uid="uid://bhww3go5q6ukt" path="res://fonts/Roboto/Roboto-Bold.ttf" id="1"]
+[ext_resource type="FontFile" uid="uid://ctwqdy5twnm7q" path="res://fonts/Roboto/Roboto-Black.ttf" id="3_bmuqt"]
+[ext_resource type="FontFile" uid="uid://bfaytobi4bbyw" path="res://fonts/Roboto/Roboto-Regular.ttf" id="4_co7c5"]
 [ext_resource type="Script" path="res://menus/StartMenu.gd" id="5"]
 
 [node name="StartMenu" type="Control"]

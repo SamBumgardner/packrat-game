@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dm07s06ryg2u"]
 
 [ext_resource type="Script" path="res://menus/BackToStartMenuButton.gd" id="1"]
-[ext_resource type="FontFile" uid="uid://pealmap5plgc" path="res://fonts/Roboto/Roboto-Medium.ttf" id="2_hvh6w"]
+[ext_resource type="FontFile" uid="uid://d4hul02h7mc5f" path="res://fonts/Roboto/Roboto-Medium.ttf" id="2_hvh6w"]
 
 [node name="BackToStartMenuButton" type="Control"]
 layout_direction = 3

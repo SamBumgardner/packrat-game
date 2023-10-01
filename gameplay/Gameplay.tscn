@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://crk2s578wsl64"]
 
-[ext_resource type="Texture2D" uid="uid://8uqy2tkahg8p" path="res://art/silver_coin.png" id="1_0p58s"]
-[ext_resource type="FontFile" uid="uid://pealmap5plgc" path="res://fonts/Roboto/Roboto-Medium.ttf" id="2_ny8ex"]
+[ext_resource type="Texture2D" uid="uid://bp3ph3aanfjn0" path="res://art/silver_coin.png" id="1_0p58s"]
+[ext_resource type="FontFile" uid="uid://d4hul02h7mc5f" path="res://fonts/Roboto/Roboto-Medium.ttf" id="2_ny8ex"]
 [ext_resource type="PackedScene" uid="uid://dm07s06ryg2u" path="res://menus/BackToStartMenuButton.tscn" id="3_7t8p6"]
 
 [node name="Gameplay" type="Control"]
