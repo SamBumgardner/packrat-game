@@ -11,10 +11,6 @@ func _ready():
 	database.reset_values()
 	_set_mock_goal()
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
-
 func _increment_number_of_days():
 	database.increment_day_count()
 
