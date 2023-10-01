@@ -6,4 +6,4 @@ func _ready():
 	pass
 
 func get_anchor_point():
-	return $AnchorPoint.position
+	return $AnchorPoint.global_position
