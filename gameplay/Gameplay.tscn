@@ -1,12 +1,13 @@
-[gd_scene load_steps=8 format=3 uid="uid://crk2s578wsl64"]
+[gd_scene load_steps=9 format=3 uid="uid://crk2s578wsl64"]
 
 [ext_resource type="Texture2D" uid="uid://bp3ph3aanfjn0" path="res://art/silver_coin.png" id="1_0p58s"]
 [ext_resource type="Script" path="res://gameplay/Gameplay.gd" id="1_cv37s"]
 [ext_resource type="FontFile" uid="uid://d4hul02h7mc5f" path="res://fonts/Roboto/Roboto-Medium.ttf" id="2_ny8ex"]
+[ext_resource type="Script" path="res://hud/CurrencySilverCoin.gd" id="2_qoona"]
 [ext_resource type="PackedScene" uid="uid://dm07s06ryg2u" path="res://menus/BackToStartMenuButton.tscn" id="3_7t8p6"]
 [ext_resource type="Script" path="res://gameplay/NextDayButton.gd" id="4_fxq41"]
 [ext_resource type="FontFile" uid="uid://bfaytobi4bbyw" path="res://fonts/Roboto/Roboto-Regular.ttf" id="5_rf4ff"]
-[ext_resource type="FontFile" uid="uid://ctwqdy5twnm7q" path="res://fonts/Roboto/Roboto-Black.ttf" id="6_g1wn2"]
+[ext_resource type="PackedScene" uid="uid://e1hatl7xepnb" path="res://hud/DaysPassedTracker.tscn" id="7_6ilhd"]
 
 [node name="Gameplay" type="Control"]
 layout_mode = 3
@@ -17,21 +18,22 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_cv37s")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="CurrencySilverCoin" type="HBoxContainer" parent="."]
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 40.0
+script = ExtResource("2_qoona")
 
-[node name="SilverCoin" type="TextureRect" parent="HBoxContainer"]
+[node name="SilverCoin" type="TextureRect" parent="CurrencySilverCoin"]
 layout_mode = 2
 texture = ExtResource("1_0p58s")
 
-[node name="SilverCoinXAmount" type="Label" parent="HBoxContainer"]
+[node name="SilverCoinXAmount" type="Label" parent="CurrencySilverCoin"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_ny8ex")
 text = "x"
 
-[node name="Amount" type="Label" parent="HBoxContainer"]
+[node name="Amount" type="Label" parent="CurrencySilverCoin"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_ny8ex")
 text = "0"
@@ -67,14 +69,6 @@ horizontal_alignment = 1
 wait_time = 3.0
 autostart = true
 
-[node name="Victory" type="Label" parent="MockExplanation"]
-visible = false
-layout_mode = 2
-theme_override_fonts/font = ExtResource("6_g1wn2")
-theme_override_font_sizes/font_size = 72
-text = "Congratulations!"
-horizontal_alignment = 1
-
 [node name="NextDay" type="VBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 3
@@ -87,18 +81,8 @@ offset_top = -40.0
 grow_horizontal = 0
 grow_vertical = 0
 
-[node name="DaysPassedTracker" type="HBoxContainer" parent="NextDay"]
+[node name="DaysPassedTracker" parent="NextDay" instance=ExtResource("7_6ilhd")]
 layout_mode = 2
-alignment = 2
-
-[node name="UnitDay" type="Label" parent="NextDay/DaysPassedTracker"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_ny8ex")
-text = "Day"
-
-[node name="NumberOfDays" type="Label" parent="NextDay/DaysPassedTracker"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_ny8ex")
 
 [node name="NextDayButton" type="Button" parent="NextDay"]
 layout_mode = 2
