@@ -6,12 +6,23 @@ extends Control
 var mock_goal = 4
 var mock_victory = false
 
+var _backpack_initialized = false
+var _columns_ready_count = 0
+var _expected_columns_initialized_count = 3
+
 func _ready():
 	database.reset_values()
 	_set_mock_goal()
 
-func _process(_delta):
-	$Backpack.snap_position_to_column($Columns/GameplayColumn)
+func _process(delta):
+	if (
+		not _backpack_initialized
+		and _columns_ready_count == _expected_columns_initialized_count
+	):
+		_backpack_initialized = true
+		$Backpack.snap_position_to_column($Columns/GameplayColumn)
+		$Backpack.visible = true
+		
 
 func _increment_number_of_days():
 	database.increment_day_count()
@@ -33,3 +44,12 @@ func _set_mock_goal():
 		str(mock_goal) +
 		" to win!"
 	)
+
+func _on_gameplay_column_ready():
+	_columns_ready_count += 1
+
+func _on_gameplay_column_2_ready():
+	_columns_ready_count += 1
+
+func _on_gameplay_column_3_ready():
+	_columns_ready_count += 1

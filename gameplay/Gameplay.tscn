@@ -118,6 +118,10 @@ visible = false
 layout_mode = 2
 
 [node name="Backpack" parent="." instance=ExtResource("9_6n0cn")]
+visible = false
 
 [connection signal="timeout" from="MockExplanation/DelayHidingTitle" to="." method="_on_timer_timeout"]
 [connection signal="pressed" from="NextDay/NextDayButton" to="." method="_on_next_day_button_pressed"]
+[connection signal="ready" from="Columns/GameplayColumn" to="." method="_on_gameplay_column_ready"]
+[connection signal="ready" from="Columns/GameplayColumn2" to="." method="_on_gameplay_column_2_ready"]
+[connection signal="ready" from="Columns/GameplayColumn3" to="." method="_on_gameplay_column_3_ready"]
