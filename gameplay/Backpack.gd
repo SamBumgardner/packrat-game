@@ -7,6 +7,8 @@ var mouse_overlap = false
 var selected = false
 
 var _frame_rate = 25
+var _scale_down_original = 0.833333333333
+var _scale_up_20_percent = 1.2
 
 func _process(delta):
 	if selected:
@@ -20,20 +22,32 @@ func snap_position_to_column(gameplay_column):
 	var anchor_point = gameplay_column.get_anchor_point()
 	set_position(anchor_point)
 
+func _deselect_and_shrink_backpack():
+	released.emit()
+	selected = false
+	$Sprite2D.apply_scale(
+		Vector2(_scale_down_original, _scale_down_original)
+	)
+
 func _input(event):
 	if not Input.is_action_just_pressed("click"):
 		return
 
 	if selected:
-		released.emit()
-		selected = false
+		_deselect_and_shrink_backpack()
 		return
 
 	if mouse_overlap:
-		selected = true
+		_select_and_enlarge_backpack()
 
 func _on_mouse_entered():
 	mouse_overlap = true
 
 func _on_mouse_exited():
 	mouse_overlap = false
+
+func _select_and_enlarge_backpack():
+	selected = true
+	$Sprite2D.apply_scale(
+		Vector2(_scale_up_20_percent, _scale_up_20_percent)
+	)
