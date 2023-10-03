@@ -6,28 +6,27 @@ extends Control
 var mock_goal = 4
 var mock_victory = false
 
-var _backpack_initialized = false
-var _columns_ready_count = 0
-var _expected_columns_initialized_count = 3
-
 func _ready():
 	database.reset_values()
 	_set_mock_goal()
 
-func _process(delta):
-	if (_are_columns_rendered()):
-		_backpack_initialized = true
-		$Backpack.snap_position_to_column($Columns/GameplayColumn)
-		$Backpack.visible = true
-		
-func _are_columns_rendered():
-	return (
-		not _backpack_initialized
-		and _columns_ready_count == _expected_columns_initialized_count
-	)
+func _attempt_to_hide_last_column():
+	var reversed_columns = $Columns.get_children()
+	reversed_columns.reverse()
+	for column in reversed_columns:
+		if column.visible:
+			column.visible = false
+			return
 
-func _increment_columns_ready_count():
-	_columns_ready_count += 1
+func _attempt_to_reveal_next_column():
+	for column in $Columns.get_children():
+		if not column.visible:
+			column.visible = true
+			return
+
+func _on_columns_sort_children():
+	$Backpack.snap_position_to_column($Columns/GameplayColumn)
+	$Backpack.visible = true
 
 func _increment_number_of_days():
 	database.increment_day_count()
@@ -36,15 +35,6 @@ func _increment_number_of_days():
 		get_tree().change_scene_to_file(
 			"res://gameplay/game_finished/GameFinished.tscn"
 		)
-
-func _on_gameplay_column_ready():
-	_increment_columns_ready_count()
-
-func _on_gameplay_column_2_ready():
-	_increment_columns_ready_count()
-
-func _on_gameplay_column_3_ready():
-	_increment_columns_ready_count()
 
 func _on_next_day_button_pressed():
 	_increment_number_of_days()
@@ -58,3 +48,13 @@ func _set_mock_goal():
 		str(mock_goal) +
 		" to win!"
 	)
+
+# Temp Code to let us experiment with adding / hiding columns
+func _input(event):
+	if event.is_action_pressed("ui_up"):
+		_attempt_to_reveal_next_column()
+		return
+
+	if event.is_action_pressed("ui_down"):
+		_attempt_to_hide_last_column()
+		return
