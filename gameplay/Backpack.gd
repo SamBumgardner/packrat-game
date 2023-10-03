@@ -1,6 +1,8 @@
 # Backpack to drag underneath gameplay columns.
 extends Area2D
 
+class_name Backpack
+
 signal released
 
 var mouse_overlap = false
@@ -18,9 +20,9 @@ func _process(delta):
 			_frame_rate * delta
 		)
 
-func snap_position_to_column(gameplay_column):
-	var anchor_point = gameplay_column.get_anchor_point()
-	set_position(anchor_point)
+func snap_position(new_position:Vector2):
+	set_position(new_position)
+	# emit events, play sounds, wiggle backpack here.
 
 func _deselect_and_shrink_backpack():
 	released.emit()
