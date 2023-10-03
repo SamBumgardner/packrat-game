@@ -10,6 +10,20 @@ func _ready():
 	database.reset_values()
 	_set_mock_goal()
 
+func _attempt_to_hide_last_column():
+	var reversed_columns = $Columns.get_children()
+	reversed_columns.reverse()
+	for column in reversed_columns:
+		if column.visible:
+			column.visible = false
+			return
+
+func _attempt_to_reveal_next_column():
+	for column in $Columns.get_children():
+		if not column.visible:
+			column.visible = true
+			return
+
 func _on_columns_sort_children():
 	$Backpack.snap_position_to_column($Columns/GameplayColumn)
 	$Backpack.visible = true
@@ -38,16 +52,9 @@ func _set_mock_goal():
 # Temp Code to let us experiment with adding / hiding columns
 func _input(event):
 	if event.is_action_pressed("ui_up"):
-		for column in $Columns.get_children():
-			if column.visible == false:
-				column.visible = true
-				return
-	
-	if event.is_action_pressed("ui_down"):
-		var reversed_column = $Columns.get_children()
-		reversed_column.reverse()
-		for column in reversed_column:
-			if column.visible == true:
-				column.visible = false
-				return
+		_attempt_to_reveal_next_column()
+		return
 
+	if event.is_action_pressed("ui_down"):
+		_attempt_to_hide_last_column()
+		return
