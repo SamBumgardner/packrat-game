@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" path="res://gameplay/Gameplay.gd" id="1_cv37s"]
 [ext_resource type="PackedScene" uid="uid://c25adoveil6xs" path="res://hud/CurrencySilverCoin.tscn" id="2_a1m00"]
-[ext_resource type="FontFile" uid="uid://cddebactj84w3" path="res://fonts/Roboto/Roboto-Medium.ttf" id="2_ny8ex"]
+[ext_resource type="FontFile" uid="uid://d1faal3mxcb84" path="res://fonts/Roboto/Roboto-Medium.ttf" id="2_ny8ex"]
 [ext_resource type="PackedScene" uid="uid://dm07s06ryg2u" path="res://menus/BackToStartMenuButton.tscn" id="3_7t8p6"]
 [ext_resource type="Script" path="res://gameplay/NextDayButton.gd" id="4_fxq41"]
-[ext_resource type="FontFile" uid="uid://c104v5f0ficln" path="res://fonts/Roboto/Roboto-Regular.ttf" id="5_rf4ff"]
+[ext_resource type="FontFile" uid="uid://b0t1dk3g11t5r" path="res://fonts/Roboto/Roboto-Regular.ttf" id="5_rf4ff"]
 [ext_resource type="PackedScene" uid="uid://e1hatl7xepnb" path="res://hud/DaysPassedTracker.tscn" id="7_6ilhd"]
 [ext_resource type="PackedScene" uid="uid://dklr5kcqww66r" path="res://gameplay/GameplayColumn.tscn" id="8_pe5uu"]
 [ext_resource type="PackedScene" uid="uid://24e0kif4kkdt" path="res://gameplay/Backpack.tscn" id="9_6n0cn"]
@@ -122,6 +122,4 @@ visible = false
 
 [connection signal="timeout" from="MockExplanation/DelayHidingTitle" to="." method="_on_timer_timeout"]
 [connection signal="pressed" from="NextDay/NextDayButton" to="." method="_on_next_day_button_pressed"]
-[connection signal="ready" from="Columns/GameplayColumn" to="." method="_on_gameplay_column_ready"]
-[connection signal="ready" from="Columns/GameplayColumn2" to="." method="_on_gameplay_column_2_ready"]
-[connection signal="ready" from="Columns/GameplayColumn3" to="." method="_on_gameplay_column_3_ready"]
+[connection signal="sort_children" from="Columns" to="." method="_on_columns_sort_children"]
