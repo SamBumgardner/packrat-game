@@ -14,6 +14,13 @@ signal column_exited
 func get_anchor_point_position():
 	return anchor_point.global_position
 
+# Need during init to make collision check match the columns after auto-resize
+func _on_item_rect_changed():
+	$CenterPoint/Area2D/CollisionShape2D.shape.set_size(size)
+
+####################
+# BACKPACK CONTROL #
+####################
 func set_backpack(newBackpack:Backpack):
 	current_backpack = newBackpack
 	if current_backpack != null:
@@ -29,9 +36,9 @@ func snap_backpack_to_anchor():
 		current_backpack.global_position = anchor_point.global_position
 		current_backpack.stop_movement()
 
-func _on_item_rect_changed():
-	$CenterPoint/Area2D/CollisionShape2D.shape.set_size(size)
-
+##################
+# INPUT HANDLING #
+##################
 func _on_area_2d_mouse_entered():
 	column_entered.emit(column_index)
 

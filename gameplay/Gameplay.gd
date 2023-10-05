@@ -15,6 +15,9 @@ var selected_backpack_home_column:GameplayColumn = null
 
 var backpacks:Array[Backpack] = []
 
+##################
+# INITIALIZATION #
+##################
 func _ready():
 	database.reset_values()
 	_set_mock_goal()
@@ -35,6 +38,15 @@ func _init_columns():
 		column.connect("column_entered", _on_column_entered)
 		column.connect("column_exited", _on_column_exited)
 
+# handles backpack positioning after initial load + after new columns added
+func _on_columns_sort_children():
+	for column in columns:
+		if column.current_backpack != null:
+			column.snap_backpack_to_anchor()
+
+#####################
+# NEXT DAY HANDLING #
+#####################
 func _increment_number_of_days():
 	database.increment_day_count()
 
@@ -42,12 +54,6 @@ func _increment_number_of_days():
 		get_tree().change_scene_to_file(
 			"res://gameplay/game_finished/GameFinished.tscn"
 		)
-
-# handles backpack positioning after initial load + after new columns added
-func _on_columns_sort_children():
-	for column in columns:
-		if column.current_backpack != null:
-			column.snap_backpack_to_anchor()
 
 func _on_next_day_button_pressed():
 	_increment_number_of_days()
@@ -62,15 +68,16 @@ func _set_mock_goal():
 		" to win!"
 	)
 
-# Handle active / inactive columns
+#############################
+# BACKPACK CONTROL HANDLING #
+#############################
 func _on_column_entered(column_index):
 	hovered_column_index = column_index
 
 func _on_column_exited(column_index):
 	if hovered_column_index == column_index:
 		hovered_column_index = NO_COLUMN
-		
-# Handle active / inactive backpacks
+
 func _on_backpack_entered(backpack:Backpack):
 	hovered_backpack = backpack
 
@@ -102,7 +109,9 @@ func _release_backpack():
 		target_column = selected_backpack_home_column
 	swap_column_backpacks(selected_backpack_home_column, target_column)
 
-# Temp Code to let us experiment with adding / hiding columns & moving backpack
+#############
+# TEMP CODE #
+#############
 func _input(event):
 	if Input.is_action_just_pressed("gameplay_select"):
 		_handle_backpack_selection()

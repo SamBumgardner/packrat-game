@@ -21,11 +21,20 @@ var _contained_items:Array[Item] = []
 @onready var collision_shape:Shape2D = $CollisionShape2D.shape
 @onready var shadow:Sprite2D = $ShadowSprite
 
+	###########
+	# GENERAL #
+	###########
 func _ready():
 	shadow.visible = false
 	_contained_elements.resize(GlobalConstants.Elements.size())
 	_contained_elements.fill(0)
 
+func get_shadow():
+	return shadow
+
+	#####################
+	# MOVEMENT HANDLING #
+	#####################
 func _process(delta):
 	if selected:
 		set_target_position(get_viewport().get_mouse_position())
@@ -49,12 +58,9 @@ func stop_movement():
 	_moving_to_target = false
 	_target_global_position = Vector2.ZERO
 
-func get_shadow():
-	return shadow
-
-	##################
-	# INPUT HANDLING #
-	##################
+	######################
+	# SELECTION HANDLING #
+	######################
 func _mouse_overlap_manual_check():
 	var manual_mouse_check_rect = Rect2(collision_shape.get_rect())
 	manual_mouse_check_rect.position += global_position
@@ -87,7 +93,6 @@ func stop_deselect_shrink_backpack():
 		Vector2(_scale_down_original, _scale_down_original)
 	)
 	_mouse_overlap_manual_check()
-	
 
 	#######################
 	# CONTENTS MANAGEMENT #
@@ -113,6 +118,3 @@ func add_item(item:Item):
 
 func change_capacity(new_capacity):
 	_item_capacity = new_capacity
-
-
-
