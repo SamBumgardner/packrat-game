@@ -17,6 +17,9 @@ func get_anchor_point_position():
 func set_backpack(newBackpack:Backpack):
 	current_backpack = newBackpack
 	if current_backpack != null:
+		var new_shadow = current_backpack.get_shadow()
+		new_shadow.reparent(anchor_point)
+		new_shadow.global_position = anchor_point.global_position
 		current_backpack.reparent(anchor_point)
 		current_backpack.set_target_position(anchor_point.global_position)
 	# backpack has potentially changed, re-evaluate column stuff

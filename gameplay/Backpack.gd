@@ -19,8 +19,10 @@ var _contained_elements:Array[int] = []
 var _contained_items:Array[Item] = []
 
 @onready var collision_shape:Shape2D = $CollisionShape2D.shape
+@onready var shadow:Sprite2D = $ShadowSprite
 
 func _ready():
+	shadow.visible = false
 	_contained_elements.resize(GlobalConstants.Elements.size())
 	_contained_elements.fill(0)
 
@@ -47,6 +49,9 @@ func stop_movement():
 	_moving_to_target = false
 	_target_global_position = Vector2.ZERO
 
+func get_shadow():
+	return shadow
+
 	##################
 	# INPUT HANDLING #
 	##################
@@ -69,14 +74,16 @@ func draw_front(in_front:bool):
 
 func select_and_enlarge_backpack():
 	selected = true
-	$Sprite2D.apply_scale(
+	shadow.visible = true
+	$PackSprite.apply_scale(
 		Vector2(_scale_up_20_percent, _scale_up_20_percent)
 	)
 
 func stop_deselect_shrink_backpack():
 	stop_movement()
 	selected = false
-	$Sprite2D.apply_scale(
+	shadow.visible = false
+	$PackSprite.apply_scale(
 		Vector2(_scale_down_original, _scale_down_original)
 	)
 	_mouse_overlap_manual_check()
