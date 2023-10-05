@@ -67,6 +67,7 @@ func _on_column_exited(column_index):
 
 func _on_backpack_selected(backpack:Backpack):
 	selected_backpack = backpack
+	backpack.reparent(self)
 	for column in columns:
 		if column.current_backpack == selected_backpack:
 			selected_backpack_home_column = column
