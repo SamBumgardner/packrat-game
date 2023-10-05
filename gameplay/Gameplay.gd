@@ -43,6 +43,12 @@ func _increment_number_of_days():
 			"res://gameplay/game_finished/GameFinished.tscn"
 		)
 
+# handles backpack positioning after initial load + after new columns added
+func _on_columns_sort_children():
+	for column in columns:
+		if column.current_backpack != null:
+			column.snap_backpack_to_anchor()
+
 func _on_next_day_button_pressed():
 	_increment_number_of_days()
 
@@ -81,14 +87,13 @@ func _handle_backpack_selection():
 
 func _select_backpack(backpack:Backpack):
 	selected_backpack = backpack
-	selected_backpack.reparent(self)
 	selected_backpack.select_and_enlarge_backpack()
 	for column in columns:
 		if column.current_backpack == selected_backpack:
 			selected_backpack_home_column = column
 
 func _release_backpack():
-	selected_backpack.deselect_and_shrink_backpack()
+	selected_backpack.stop_deselect_shrink_backpack()
 	selected_backpack = null
 	var target_column:GameplayColumn
 	if hovered_column_index != NO_COLUMN:
@@ -156,5 +161,6 @@ func _attempt_to_hide_last_column():
 	for column in reversed_columns:
 		if column.visible:
 			column.visible = false
-			break
-	
+			return
+
+

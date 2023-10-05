@@ -9,6 +9,8 @@ signal backpack_exited
 var selected = false
 
 var _frame_rate = 25
+var _moving_to_target = false
+var _target_global_position:Vector2 = Vector2.ZERO
 var _scale_down_original = 0.833333333333
 var _scale_up_20_percent = 1.2
 
@@ -24,11 +26,26 @@ func _ready():
 
 func _process(delta):
 	if selected:
+		set_target_position(get_viewport().get_mouse_position())
+	
+	draw_front(_moving_to_target)
+	if _moving_to_target:
 		global_position = lerp(
 			global_position,
-			get_global_mouse_position(),
+			_target_global_position,
 			_frame_rate * delta
 		)
+	
+	if global_position.is_equal_approx(_target_global_position):
+		stop_movement()
+
+func set_target_position(target:Vector2):
+	_target_global_position = target
+	_moving_to_target = true
+
+func stop_movement():
+	_moving_to_target = false
+	_target_global_position = Vector2.ZERO
 
 	##################
 	# INPUT HANDLING #
@@ -45,13 +62,19 @@ func _on_mouse_entered():
 func _on_mouse_exited():
 	backpack_exited.emit(self)
 
+func draw_front(in_front:bool):
+	var previous_position = global_position
+	top_level = in_front
+	global_position = previous_position
+
 func select_and_enlarge_backpack():
 	selected = true
 	$Sprite2D.apply_scale(
 		Vector2(_scale_up_20_percent, _scale_up_20_percent)
 	)
 
-func deselect_and_shrink_backpack():
+func stop_deselect_shrink_backpack():
+	stop_movement()
 	selected = false
 	$Sprite2D.apply_scale(
 		Vector2(_scale_down_original, _scale_down_original)

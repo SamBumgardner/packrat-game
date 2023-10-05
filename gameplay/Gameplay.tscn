@@ -133,3 +133,4 @@ modulate = Color(0, 1, 0.231373, 1)
 
 [connection signal="timeout" from="MockExplanation/DelayHidingTitle" to="." method="_on_timer_timeout"]
 [connection signal="pressed" from="NextDay/NextDayButton" to="." method="_on_next_day_button_pressed"]
+[connection signal="sort_children" from="Columns" to="." method="_on_columns_sort_children"]

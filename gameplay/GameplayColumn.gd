@@ -18,8 +18,13 @@ func set_backpack(newBackpack:Backpack):
 	current_backpack = newBackpack
 	if current_backpack != null:
 		current_backpack.reparent(anchor_point)
-		current_backpack.position = Vector2.ZERO
+		current_backpack.set_target_position(anchor_point.global_position)
 	# backpack has potentially changed, re-evaluate column stuff
+
+func snap_backpack_to_anchor():
+	if current_backpack != null:
+		current_backpack.global_position = anchor_point.global_position
+		current_backpack.stop_movement()
 
 func _on_item_rect_changed():
 	$CenterPoint/Area2D/CollisionShape2D.shape.set_size(size)
