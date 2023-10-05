@@ -6,13 +6,29 @@ extends Control
 var mock_goal = 4
 var mock_victory = false
 
+@onready var columns = $Columns.get_children() as Array[GameplayColumn]
+const NO_COLUMN:int = -1
+var hovered_column_index:int = NO_COLUMN
+var selected_backpack:Backpack = null
+var selected_backpack_home_column:GameplayColumn = null
+
 func _ready():
 	database.reset_values()
 	_set_mock_goal()
+	_init_backpack()
+	_init_columns()
 
-func _on_columns_sort_children():
-	$Columns/GameplayColumn.set_backpack($Backpack)
-	$Backpack.visible = true
+func _init_columns():
+	for column in columns:
+		if column.current_backpack != null:
+			column.set_backpack(column.current_backpack)
+			column.current_backpack.visible = true
+		column.connect("column_entered", _on_column_entered)
+		column.connect("column_exited", _on_column_exited)
+
+func _init_backpack():
+	$Backpack.connect("backpack_selected", _on_backpack_selected)
+	$Backpack.connect("backpack_released", _on_backpack_released)
 
 func _increment_number_of_days():
 	database.increment_day_count()
@@ -34,6 +50,32 @@ func _set_mock_goal():
 		str(mock_goal) +
 		" to win!"
 	)
+
+# Handle active / inactive columns
+func _on_column_entered(column_index):
+	if hovered_column_index != column_index && hovered_column_index != NO_COLUMN:
+		print("gameplay controller deactivating ", hovered_column_index)
+	hovered_column_index = column_index
+	print("gameplay controller activating ", hovered_column_index)
+
+func _on_column_exited(column_index):
+	if hovered_column_index != column_index:
+		print("gameplay controller found column ", column_index, " already inactive")
+	else:
+		print("gameplay controller deactivating ", column_index)
+		hovered_column_index = NO_COLUMN
+
+func _on_backpack_selected(backpack:Backpack):
+	selected_backpack = backpack
+	for column in columns:
+		if column.current_backpack == selected_backpack:
+			selected_backpack_home_column = column
+
+func _on_backpack_released():
+	if hovered_column_index == NO_COLUMN:
+		pass #snap backpack back to home
+	else:
+		move_backpack_to_column(selected_backpack, selected_backpack_home_column, columns[hovered_column_index])
 
 # Temp Code to let us experiment with adding / hiding columns & moving backpack
 func _input(event):

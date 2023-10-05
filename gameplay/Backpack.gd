@@ -3,7 +3,8 @@ extends Area2D
 
 class_name Backpack
 
-signal released
+signal backpack_selected
+signal backpack_released
 
 var mouse_overlap = false
 var selected = false
@@ -25,7 +26,7 @@ func snap_position(new_position:Vector2):
 	# emit events, play sounds, wiggle backpack here.
 
 func _deselect_and_shrink_backpack():
-	released.emit()
+	backpack_released.emit()
 	selected = false
 	$Sprite2D.apply_scale(
 		Vector2(_scale_down_original, _scale_down_original)
@@ -53,3 +54,4 @@ func _select_and_enlarge_backpack():
 	$Sprite2D.apply_scale(
 		Vector2(_scale_up_20_percent, _scale_up_20_percent)
 	)
+	backpack_selected.emit(self)
