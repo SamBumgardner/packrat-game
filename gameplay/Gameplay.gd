@@ -58,16 +58,10 @@ func _set_mock_goal():
 
 # Handle active / inactive columns
 func _on_column_entered(column_index):
-	if hovered_column_index != column_index && hovered_column_index != NO_COLUMN:
-		print("gameplay controller deactivating ", hovered_column_index)
 	hovered_column_index = column_index
-	print("gameplay controller activating ", hovered_column_index)
 
 func _on_column_exited(column_index):
-	if hovered_column_index != column_index:
-		print("gameplay controller found column ", column_index, " already inactive")
-	else:
-		print("gameplay controller deactivating ", column_index)
+	if hovered_column_index == column_index:
 		hovered_column_index = NO_COLUMN
 		
 # Handle active / inactive backpacks
@@ -79,8 +73,6 @@ func _on_backpack_exited(backpack:Backpack):
 		hovered_backpack = null
 
 func _handle_backpack_selection():
-	print("selected backpack ", selected_backpack)
-	print("hovered backpack ", hovered_backpack)
 	if selected_backpack == null:
 		if hovered_backpack != null:
 			_select_backpack(hovered_backpack)
