@@ -73,10 +73,12 @@ func _on_backpack_selected(backpack:Backpack):
 			selected_backpack_home_column = column
 
 func _on_backpack_released():
-	if hovered_column_index == NO_COLUMN:
-		pass #snap backpack back to home
+	var target_column:GameplayColumn
+	if hovered_column_index != NO_COLUMN:
+		target_column = columns[hovered_column_index]
 	else:
-		move_backpack_to_column(selected_backpack, selected_backpack_home_column, columns[hovered_column_index])
+		target_column = selected_backpack_home_column
+	move_backpack_to_column(selected_backpack, selected_backpack_home_column, target_column)
 
 # Temp Code to let us experiment with adding / hiding columns & moving backpack
 func _input(event):
