@@ -12,12 +12,19 @@ var hovered_column_index:int = NO_COLUMN
 var selected_backpack:Backpack = null
 var selected_backpack_home_column:GameplayColumn = null
 
+var backpacks:Array[Backpack] = []
+
 func _ready():
 	database.reset_values()
 	_set_mock_goal()
-	_init_backpack()
+	_init_backpack($Backpack)
 	_init_columns()
 
+func _init_backpack(backpack:Backpack):
+	backpacks.append(backpack)
+	backpack.connect("backpack_selected", _on_backpack_selected)
+	backpack.connect("backpack_released", _on_backpack_released)
+	
 func _init_columns():
 	for column in columns:
 		if column.current_backpack != null:
@@ -25,10 +32,6 @@ func _init_columns():
 			column.current_backpack.visible = true
 		column.connect("column_entered", _on_column_entered)
 		column.connect("column_exited", _on_column_exited)
-
-func _init_backpack():
-	$Backpack.connect("backpack_selected", _on_backpack_selected)
-	$Backpack.connect("backpack_released", _on_backpack_released)
 
 func _increment_number_of_days():
 	database.increment_day_count()
@@ -83,10 +86,10 @@ func _on_backpack_released():
 # Temp Code to let us experiment with adding / hiding columns & moving backpack
 func _input(event):
 	if event.is_action_pressed("ui_right"):
-		shift_backpack_column($Backpack, 1)
+		shift_backpack_column(backpacks.front(), 1)
 	
 	if event.is_action_pressed("ui_left"):
-		shift_backpack_column($Backpack, -1)
+		shift_backpack_column(backpacks.front(), -1)
 	
 	if event.is_action_pressed("ui_up"):
 		_attempt_to_reveal_next_column()
