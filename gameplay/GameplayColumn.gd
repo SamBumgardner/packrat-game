@@ -21,16 +21,11 @@ func set_backpack(newBackpack:Backpack):
 		current_backpack.position = Vector2.ZERO
 	# backpack has potentially changed, re-evaluate column stuff
 
-func _on_mouse_entered():
-	print("entered at ", column_index)
-
 func _on_item_rect_changed():
 	$CenterPoint/Area2D/CollisionShape2D.shape.set_size(size)
 
 func _on_area_2d_mouse_entered():
-	print("shape entered at ", column_index)
 	column_entered.emit(column_index)
 
 func _on_area_2d_mouse_exited():
-	print("shape exited at ", column_index)
 	column_exited.emit(column_index)

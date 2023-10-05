@@ -3,10 +3,9 @@ extends Area2D
 
 class_name Backpack
 
-signal backpack_selected
-signal backpack_released
+signal backpack_entered
+signal backpack_exited
 
-var mouse_overlap = false
 var selected = false
 
 var _frame_rate = 25
@@ -17,8 +16,9 @@ var _scale_up_20_percent = 1.2
 var _contained_elements:Array[int] = []
 var _contained_items:Array[Item] = []
 
+@onready var collision_shape:Shape2D = $CollisionShape2D.shape
+
 func _ready():
-	Object
 	_contained_elements.resize(GlobalConstants.Elements.size())
 	_contained_elements.fill(0)
 
@@ -30,43 +30,34 @@ func _process(delta):
 			_frame_rate * delta
 		)
 
-func snap_position(new_position:Vector2):
-	set_position(new_position)
-	# emit events, play sounds, wiggle backpack here.
-
 	##################
 	# INPUT HANDLING #
 	##################
-func _input(event):
-	if not Input.is_action_just_pressed("click"):
-		return
-
-	if selected:
-		_deselect_and_shrink_backpack()
-		return
-
-	if mouse_overlap:
-		_select_and_enlarge_backpack()
-
+func _mouse_overlap_manual_check():
+	var manual_mouse_check_rect = Rect2(collision_shape.get_rect())
+	manual_mouse_check_rect.position += global_position
+	if manual_mouse_check_rect.has_point(get_viewport().get_mouse_position()):
+		_on_mouse_entered()
+	
 func _on_mouse_entered():
-	mouse_overlap = true
+	backpack_entered.emit(self)
 
 func _on_mouse_exited():
-	mouse_overlap = false
+	backpack_exited.emit(self)
 
-func _select_and_enlarge_backpack():
+func select_and_enlarge_backpack():
 	selected = true
 	$Sprite2D.apply_scale(
 		Vector2(_scale_up_20_percent, _scale_up_20_percent)
 	)
-	backpack_selected.emit(self)
 
-func _deselect_and_shrink_backpack():
-	backpack_released.emit()
+func deselect_and_shrink_backpack():
 	selected = false
 	$Sprite2D.apply_scale(
 		Vector2(_scale_down_original, _scale_down_original)
 	)
+	_mouse_overlap_manual_check()
+	
 
 	#######################
 	# CONTENTS MANAGEMENT #
