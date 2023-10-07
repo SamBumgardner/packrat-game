@@ -7,8 +7,8 @@ func _ready():
 	_sync_day_count()
 	database.connect("updated_day_count", _on_updated_day_count)
 
-func _on_updated_day_count():
+func _on_updated_day_count() -> void:
 	_sync_day_count()
 
-func _sync_day_count():
+func _sync_day_count() -> void:
 	$NumberOfDays.text = str(database.day_count)
