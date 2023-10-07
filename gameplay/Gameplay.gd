@@ -167,7 +167,7 @@ func _attempt_to_reveal_next_column() -> void:
 			return
 
 func _input(event):
-	if Input.is_action_just_pressed("gameplay_select"):
+	if event.is_action_pressed("gameplay_select"):
 		_handle_backpack_selection()
 	
 	if event.is_action_pressed("ui_right"):
