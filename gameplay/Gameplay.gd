@@ -20,7 +20,7 @@ var backpacks : Array[Backpack] = []
 ##################
 func _ready():
 	database.reset_values()
-	_set_mock_goal()		
+	_set_mock_goal()
 	_init_backpack($Backpack)
 	_init_backpack($Backpack2)
 	_init_columns()
@@ -71,6 +71,13 @@ func _set_mock_goal() -> void:
 #############################
 # BACKPACK CONTROL HANDLING #
 #############################
+func _handle_backpack_selection() -> void:
+	if selected_backpack == null:
+		if hovered_backpack != null:
+			_select_backpack(hovered_backpack)
+	else:
+		_release_backpack()
+
 func _on_column_entered(column_index) -> void:
 	hovered_column_index = column_index
 
@@ -85,20 +92,6 @@ func _on_backpack_exited(backpack : Backpack) -> void:
 	if hovered_backpack == backpack:
 		hovered_backpack = null
 
-func _handle_backpack_selection() -> void:
-	if selected_backpack == null:
-		if hovered_backpack != null:
-			_select_backpack(hovered_backpack)
-	else:
-		_release_backpack()
-
-func _select_backpack(backpack : Backpack) -> void:
-	selected_backpack = backpack
-	selected_backpack.select_and_enlarge_backpack()
-	for column in columns:
-		if column.current_backpack == selected_backpack:
-			selected_backpack_home_column = column
-
 func _release_backpack() -> void:
 	selected_backpack.stop_deselect_shrink_backpack()
 	selected_backpack = null
@@ -109,25 +102,16 @@ func _release_backpack() -> void:
 		target_column = selected_backpack_home_column
 	swap_column_backpacks(selected_backpack_home_column, target_column)
 
+func _select_backpack(backpack : Backpack) -> void:
+	selected_backpack = backpack
+	selected_backpack.select_and_enlarge_backpack()
+	for column in columns:
+		if column.current_backpack == selected_backpack:
+			selected_backpack_home_column = column
+
 #############
 # TEMP CODE #
 #############
-func _input(event):
-	if Input.is_action_just_pressed("gameplay_select"):
-		_handle_backpack_selection()
-	
-	if event.is_action_pressed("ui_right"):
-		shift_backpack_column(backpacks.front(), 1)
-	
-	if event.is_action_pressed("ui_left"):
-		shift_backpack_column(backpacks.front(), -1)
-	
-	if event.is_action_pressed("ui_up"):
-		_attempt_to_reveal_next_column()
-
-	if event.is_action_pressed("ui_down"):
-		_attempt_to_hide_last_column()
-
 func shift_backpack_column(backpack : Backpack, shift_by : int) -> void:
 	var current_backpack_column_index = columns.size()
 	var last_visible_column_index = -1
@@ -166,12 +150,6 @@ func swap_column_backpacks(
 	column1.set_backpack(column2.current_backpack)
 	column2.set_backpack(swap)
 
-func _attempt_to_reveal_next_column() -> void:
-	for column in $Columns.get_children():
-		if not column.visible:
-			column.visible = true
-			return
-
 func _attempt_to_hide_last_column() -> void:
 	var reversed_columns = $Columns.get_children()
 	# Do not hide the last column if there is just one left.
@@ -181,3 +159,25 @@ func _attempt_to_hide_last_column() -> void:
 		if column.visible:
 			column.visible = false
 			return
+
+func _attempt_to_reveal_next_column() -> void:
+	for column in $Columns.get_children():
+		if not column.visible:
+			column.visible = true
+			return
+
+func _input(event):
+	if Input.is_action_just_pressed("gameplay_select"):
+		_handle_backpack_selection()
+	
+	if event.is_action_pressed("ui_right"):
+		shift_backpack_column(backpacks.front(), 1)
+	
+	if event.is_action_pressed("ui_left"):
+		shift_backpack_column(backpacks.front(), -1)
+	
+	if event.is_action_pressed("ui_up"):
+		_attempt_to_reveal_next_column()
+
+	if event.is_action_pressed("ui_down"):
+		_attempt_to_hide_last_column()

@@ -10,10 +10,8 @@ var _initial_silver_coin_count : int = 0
 var day_count : int
 var silver_coin_count : int
 
-
 func _ready():
 	reset_values()
-
 
 func increment_day_count() -> void:
 	day_count += 1

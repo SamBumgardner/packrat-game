@@ -29,13 +29,21 @@ func _ready():
 	_contained_elements.resize(GlobalConstants.Elements.size())
 	_contained_elements.fill(0)
 
-func get_shadow() -> Sprite2D:
-	return shadow
+func _process(delta):
+	_handle_movement(delta)
 
 #####################
 # MOVEMENT HANDLING #
 #####################
-func _process(delta):
+func set_target_position(target : Vector2) -> void:
+	_target_global_position = target
+	_moving_to_target = true
+
+func stop_movement() -> void:
+	_moving_to_target = false
+	_target_global_position = Vector2.ZERO
+
+func _handle_movement(delta) -> void:
 	if selected:
 		set_target_position(get_viewport().get_mouse_position())
 	
@@ -50,29 +58,9 @@ func _process(delta):
 	if global_position.is_equal_approx(_target_global_position):
 		stop_movement()
 
-func set_target_position(target : Vector2) -> void:
-	_target_global_position = target
-	_moving_to_target = true
-
-func stop_movement() -> void:
-	_moving_to_target = false
-	_target_global_position = Vector2.ZERO
-
 ######################
 # SELECTION HANDLING #
 ######################
-func _mouse_overlap_manual_check() -> void:
-	var manual_mouse_check_rect : Rect2 = Rect2(collision_shape.get_rect())
-	manual_mouse_check_rect.position += global_position
-	if manual_mouse_check_rect.has_point(get_viewport().get_mouse_position()):
-		_on_mouse_entered()
-	
-func _on_mouse_entered() -> void:
-	backpack_entered.emit(self)
-
-func _on_mouse_exited() -> void:
-	backpack_exited.emit(self)
-
 func draw_front(in_front : bool) -> void:
 	var previous_position = global_position
 	top_level = in_front
@@ -94,19 +82,21 @@ func stop_deselect_shrink_backpack() -> void:
 	)
 	_mouse_overlap_manual_check()
 
+func _mouse_overlap_manual_check() -> void:
+	var manual_mouse_check_rect : Rect2 = Rect2(collision_shape.get_rect())
+	manual_mouse_check_rect.position += global_position
+	if manual_mouse_check_rect.has_point(get_viewport().get_mouse_position()):
+		_on_mouse_entered()
+	
+func _on_mouse_entered() -> void:
+	backpack_entered.emit(self)
+
+func _on_mouse_exited() -> void:
+	backpack_exited.emit(self)
+
 #######################
 # CONTENTS MANAGEMENT #
 #######################
-func get_elements() -> Array[int]:
-	return _contained_elements.duplicate()
-
-func remove_items() -> Array[Item]:
-	for i in _contained_elements.size():
-		_contained_elements[i] = 0
-	var removed_items : Array[Item] = _contained_items.duplicate()
-	_contained_items.clear()
-	return removed_items
-
 func add_item(item : Item) -> bool:
 	var added_item : bool = false
 	if _contained_items.size() < _item_capacity:
@@ -118,3 +108,16 @@ func add_item(item : Item) -> bool:
 
 func change_capacity(new_capacity : int) -> void:
 	_item_capacity = new_capacity
+
+func get_elements() -> Array[int]:
+	return _contained_elements.duplicate()
+
+func get_shadow() -> Sprite2D:
+	return shadow
+
+func remove_items() -> Array[Item]:
+	for i in _contained_elements.size():
+		_contained_elements[i] = 0
+	var removed_items : Array[Item] = _contained_items.duplicate()
+	_contained_items.clear()
+	return removed_items
