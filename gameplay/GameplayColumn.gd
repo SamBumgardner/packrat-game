@@ -8,8 +8,16 @@ signal column_exited
 
 @export var column_index : int
 @export var current_backpack : Backpack
+@export var column_contents : GlobalConstants.ColumnContents
 
 @onready var anchor_point : Control = $AnchorPoint
+
+const REGION_CONTENTS_SCENE = preload("res://gameplay/region/RegionColumnContents.tscn")
+const COLUMN_CONTENTS_PRELOAD : Array[Resource] = [null, REGION_CONTENTS_SCENE]
+
+func _ready() -> void:
+	if column_contents != GlobalConstants.ColumnContents.NONE:
+		$ColumnContents.add_child(COLUMN_CONTENTS_PRELOAD[column_contents].instantiate())
 
 func get_anchor_point_position() -> Vector2:
 	return anchor_point.global_position
