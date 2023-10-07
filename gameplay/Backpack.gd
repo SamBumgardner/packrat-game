@@ -62,7 +62,7 @@ func _handle_movement(delta) -> void:
 # SELECTION HANDLING #
 ######################
 func draw_front(in_front : bool) -> void:
-	var previous_position = global_position
+	var previous_position : Vector2 = global_position
 	top_level = in_front
 	global_position = previous_position
 

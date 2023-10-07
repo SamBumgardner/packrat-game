@@ -114,21 +114,21 @@ func _select_backpack(backpack : Backpack) -> void:
 #############
 func shift_backpack_column(backpack : Backpack, shift_by : int) -> void:
 	var current_backpack_column_index = columns.size()
-	var last_visible_column_index = -1
+	var last_visible_column_index : int = -1
 	for i in range(columns.size()):
 		if columns[i].current_backpack == backpack:
 			current_backpack_column_index = mini(
 				current_backpack_column_index,
 				i
 			)
-		
-		if columns[i].visible == true:
+
+		if columns[i].visible:
 			last_visible_column_index = i 
 		else:
 			break;
 	
-	var visible_column_count = last_visible_column_index + 1
-	var target_column_index:int
+	var visible_column_count : int = last_visible_column_index + 1
+	var target_column_index : int
 	if current_backpack_column_index > last_visible_column_index:
 		target_column_index = last_visible_column_index
 	else:
@@ -146,7 +146,7 @@ func swap_column_backpacks(
 	column1 : GameplayColumn,
 	column2 : GameplayColumn
 ) -> void:
-	var swap = column1.current_backpack
+	var swap : Backpack = column1.current_backpack
 	column1.set_backpack(column2.current_backpack)
 	column2.set_backpack(swap)
 
