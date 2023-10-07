@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://cbhyrlxjeqv7p"]
 
 [ext_resource type="Texture2D" uid="uid://brf4h74py8sal" path="res://icon.svg" id="1_uqfki"]
-[ext_resource type="Script" path="res://gameplay/item/Item.gd" id="1_ym2qo"]
+[ext_resource type="Script" path="res://gameplay/item/Item.gd" id="2_7ohdm"]
 
 [resource]
-script = ExtResource("1_ym2qo")
+script = ExtResource("2_7ohdm")
 name = "rock"
 graphic = ExtResource("1_uqfki")
 ele_nature = 1
@@ -13,3 +13,4 @@ ele_fire = 0
 ele_water = 0
 ele_air = 0
 ele_wild = 0
+elements = Array[int]([1, 2, 0, 0, 0, 0])

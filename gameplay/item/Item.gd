@@ -12,5 +12,5 @@ class_name Item
 @export var ele_air:int = 0
 @export var ele_wild:int = 0
 
-var elements:Array[int] = [ele_nature, ele_earth, ele_fire, ele_water, ele_air, ele_wild]
+@export var elements:Array[int] = [0, 0, 0, 0, 0, 0]
 # can add other qualities that all items will have here
