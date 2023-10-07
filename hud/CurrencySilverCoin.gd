@@ -7,8 +7,8 @@ func _ready():
 	_sync_silver_coin_count()
 	database.connect("updated_silver_coin_count", _on_updated_silver_coin_count)
 
-func _on_updated_silver_coin_count():
+func _on_updated_silver_coin_count() -> void:
 	$Amount.text = str(database.silver_coin_count)
 
-func _sync_silver_coin_count():
+func _sync_silver_coin_count() -> void:
 	$Amount.text = str(database.silver_coin_count)
