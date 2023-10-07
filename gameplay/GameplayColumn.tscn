@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://dklr5kcqww66r"]
+[gd_scene load_steps=3 format=3 uid="uid://dklr5kcqww66r"]
 
 [ext_resource type="Script" path="res://gameplay/GameplayColumn.gd" id="1_n2apv"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fj0u2"]
 
 [node name="GameplayColumn" type="Control"]
 custom_minimum_size = Vector2(128, 400)
@@ -23,10 +25,30 @@ color = Color(0.686275, 0.686275, 0.686275, 1)
 
 [node name="AnchorPoint" type="Control" parent="."]
 layout_mode = 1
-anchors_preset = 7
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
+offset_bottom = -64.0
 grow_horizontal = 2
 grow_vertical = 0
+
+[node name="CenterPoint" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Area2D" type="Area2D" parent="CenterPoint"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CenterPoint/Area2D"]
+shape = SubResource("RectangleShape2D_fj0u2")
+debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[connection signal="item_rect_changed" from="." to="." method="_on_item_rect_changed"]
+[connection signal="mouse_entered" from="CenterPoint/Area2D" to="." method="_on_area_2d_mouse_entered"]
+[connection signal="mouse_exited" from="CenterPoint/Area2D" to="." method="_on_area_2d_mouse_exited"]
