@@ -23,7 +23,8 @@ func init_element_amounts() -> void:
 			element.visible = false
 
 func next_day(column_backpack : Backpack) -> void:
-	column_backpack.add_item(_item)
+	if column_backpack != null:
+		column_backpack.add_item(_item)
 	var randomized_item : Item = _preloaded_items.pick_random()
 	set_item(randomized_item)
 
