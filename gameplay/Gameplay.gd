@@ -56,6 +56,8 @@ func _increment_number_of_days() -> void:
 		)
 
 func _on_next_day_button_pressed() -> void:
+	for column in columns:
+		column.next_day()
 	_increment_number_of_days()
 
 func _on_timer_timeout() -> void:

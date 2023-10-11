@@ -33,10 +33,12 @@ layout_mode = 2
 [node name="Nature" parent="HBoxContainer" instance=ExtResource("2_lmkjp")]
 layout_mode = 2
 size_flags_horizontal = 6
+color_tint = Color(0.101961, 1, 0, 1)
 
 [node name="Earth" parent="HBoxContainer" instance=ExtResource("2_lmkjp")]
 layout_mode = 2
 size_flags_horizontal = 6
+color_tint = Color(0.380392, 0.133333, 0, 1)
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -44,10 +46,12 @@ layout_mode = 2
 [node name="Fire" parent="HBoxContainer2" instance=ExtResource("2_lmkjp")]
 layout_mode = 2
 size_flags_horizontal = 6
+color_tint = Color(1, 0, 0, 1)
 
 [node name="Water" parent="HBoxContainer2" instance=ExtResource("2_lmkjp")]
 layout_mode = 2
 size_flags_horizontal = 6
+color_tint = Color(0, 0, 1, 1)
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -55,6 +59,7 @@ layout_mode = 2
 [node name="Air" parent="HBoxContainer3" instance=ExtResource("2_lmkjp")]
 layout_mode = 2
 size_flags_horizontal = 6
+color_tint = Color(0, 1, 0.764706, 1)
 
 [node name="Wild" parent="HBoxContainer3" instance=ExtResource("2_lmkjp")]
 layout_mode = 2
