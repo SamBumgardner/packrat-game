@@ -100,7 +100,7 @@ func _on_mouse_exited() -> void:
 func add_item(item : Item) -> bool:
 	var added_item : bool = false
 	if _contained_items.size() < _item_capacity:
-		_contained_elements.append(item)
+		_contained_items.append(item)
 		for i in _contained_elements.size():
 			_contained_elements[i] += item.elements[i]
 		added_item = true

@@ -8,16 +8,19 @@ signal column_exited
 
 @export var column_index : int
 @export var current_backpack : Backpack
-@export var column_contents : GlobalConstants.ColumnContents
+@export var column_type : GlobalConstants.ColumnContents
 
 @onready var anchor_point : Control = $AnchorPoint
 
 const REGION_CONTENTS_SCENE = preload("res://gameplay/region/RegionColumnContents.tscn")
 const COLUMN_CONTENTS_PRELOAD : Array[Resource] = [null, REGION_CONTENTS_SCENE]
 
+var _column_contents : Node = null
+
 func _ready() -> void:
-	if column_contents != GlobalConstants.ColumnContents.NONE:
-		$ColumnContents.add_child(COLUMN_CONTENTS_PRELOAD[column_contents].instantiate())
+	if column_type != GlobalConstants.ColumnContents.NONE:
+		_column_contents = COLUMN_CONTENTS_PRELOAD[column_type].instantiate()
+		$ColumnContents.add_child(_column_contents)
 
 func get_anchor_point_position() -> Vector2:
 	return anchor_point.global_position
@@ -25,6 +28,13 @@ func get_anchor_point_position() -> Vector2:
 # Need during init to make collision check match the columns after auto-resize
 func _on_item_rect_changed() -> void:
 	$CenterPoint/Area2D/CollisionShape2D.shape.set_size(size)
+
+#####################
+# NEXT DAY HANDLING #
+#####################
+func next_day() -> void:
+	if column_type != GlobalConstants.ColumnContents.NONE:
+		_column_contents.next_day(current_backpack)
 
 ####################
 # BACKPACK CONTROL #
