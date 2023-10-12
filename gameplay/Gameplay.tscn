@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" path="res://gameplay/Gameplay.gd" id="1_cv37s"]
 [ext_resource type="PackedScene" uid="uid://c25adoveil6xs" path="res://hud/CurrencySilverCoin.tscn" id="2_a1m00"]
-[ext_resource type="FontFile" uid="uid://d1faal3mxcb84" path="res://fonts/Roboto/Roboto-Medium.ttf" id="2_ny8ex"]
+[ext_resource type="FontFile" uid="uid://cddebactj84w3" path="res://fonts/Roboto/Roboto-Medium.ttf" id="2_ny8ex"]
 [ext_resource type="PackedScene" uid="uid://dm07s06ryg2u" path="res://menus/BackToStartMenuButton.tscn" id="3_7t8p6"]
 [ext_resource type="Script" path="res://gameplay/NextDayButton.gd" id="4_fxq41"]
-[ext_resource type="FontFile" uid="uid://b0t1dk3g11t5r" path="res://fonts/Roboto/Roboto-Regular.ttf" id="5_rf4ff"]
+[ext_resource type="FontFile" uid="uid://c104v5f0ficln" path="res://fonts/Roboto/Roboto-Regular.ttf" id="5_rf4ff"]
 [ext_resource type="PackedScene" uid="uid://e1hatl7xepnb" path="res://hud/DaysPassedTracker.tscn" id="7_6ilhd"]
 [ext_resource type="PackedScene" uid="uid://dklr5kcqww66r" path="res://gameplay/GameplayColumn.tscn" id="8_pe5uu"]
 [ext_resource type="PackedScene" uid="uid://24e0kif4kkdt" path="res://gameplay/Backpack.tscn" id="9_6n0cn"]
@@ -30,33 +30,6 @@ grow_vertical = 1
 [node name="BackToStartMenuButton" parent="." instance=ExtResource("3_7t8p6")]
 layout_direction = 0
 layout_mode = 1
-
-[node name="MockExplanation" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -94.5
-offset_right = 94.5
-offset_bottom = 48.0
-grow_horizontal = 2
-
-[node name="Title" type="Label" parent="MockExplanation"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("5_rf4ff")
-theme_override_font_sizes/font_size = 32
-text = "Welcome to Packrat!"
-horizontal_alignment = 1
-
-[node name="Explanation" type="Label" parent="MockExplanation"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("5_rf4ff")
-theme_override_font_sizes/font_size = 24
-horizontal_alignment = 1
-
-[node name="DelayHidingTitle" type="Timer" parent="MockExplanation"]
-wait_time = 3.0
-autostart = true
 
 [node name="NextDay" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -129,6 +102,37 @@ visible = false
 visible = false
 modulate = Color(0, 1, 0.231373, 1)
 
-[connection signal="timeout" from="MockExplanation/DelayHidingTitle" to="." method="_on_timer_timeout"]
+[node name="MockExplanation" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -146.0
+offset_right = 146.0
+offset_bottom = 74.0
+grow_horizontal = 2
+
+[node name="Title" type="Label" parent="MockExplanation"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("5_rf4ff")
+theme_override_font_sizes/font_size = 32
+text = "Welcome to Packrat!"
+horizontal_alignment = 1
+
+[node name="Explanation" type="Label" parent="MockExplanation"]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 12
+theme_override_fonts/font = ExtResource("5_rf4ff")
+theme_override_font_sizes/font_size = 24
+horizontal_alignment = 1
+
+[node name="DelayHidingTitle" type="Timer" parent="MockExplanation"]
+wait_time = 3.0
+autostart = true
+
 [connection signal="pressed" from="NextDay/NextDayButton" to="." method="_on_next_day_button_pressed"]
 [connection signal="sort_children" from="Columns" to="." method="_on_columns_sort_children"]
+[connection signal="timeout" from="MockExplanation/DelayHidingTitle" to="." method="_on_timer_timeout"]
