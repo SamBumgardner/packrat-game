@@ -12,6 +12,8 @@ signal column_exited
 
 @onready var anchor_point : Control = $AnchorPoint
 @onready var backpack_display : BackpackDisplay = $CenterBottom/BackpackDisplay
+@onready var _header_graphic : Sprite2D = $ColumnContents/Header/Control/Sprite2D
+@onready var _header_label : RichTextLabel = $ColumnContents/Header/Name
 
 const REGION_CONTENTS_SCENE = preload("res://gameplay/region/RegionColumnContents.tscn")
 const COLUMN_CONTENTS_PRELOAD : Array[Resource] = [null, REGION_CONTENTS_SCENE]
@@ -22,6 +24,8 @@ func _ready() -> void:
 	if column_type != GlobalConstants.ColumnContents.NONE:
 		_column_contents = COLUMN_CONTENTS_PRELOAD[column_type].instantiate()
 		$ColumnContents.add_child(_column_contents)
+		_set_header_properties()
+		
 
 func get_anchor_point_position() -> Vector2:
 	return anchor_point.global_position
@@ -29,6 +33,11 @@ func get_anchor_point_position() -> Vector2:
 # Need during init to make collision check match the columns after auto-resize
 func _on_item_rect_changed() -> void:
 	$CenterPoint/Area2D/CollisionShape2D.shape.set_size(size)
+
+func _set_header_properties() -> void:
+	if _column_contents != null:
+		_header_graphic.set_texture(_column_contents.header_graphic)
+		_header_label.text = _column_contents.header_name
 
 #####################
 # NEXT DAY HANDLING #
