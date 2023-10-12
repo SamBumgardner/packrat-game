@@ -1,0 +1,45 @@
+[gd_scene load_steps=3 format=3 uid="uid://b75uw1cnn27ae"]
+
+[ext_resource type="PackedScene" uid="uid://c8wte7nhlq43y" path="res://gameplay/element_display/ElementAmount.tscn" id="1_75klo"]
+[ext_resource type="Script" path="res://gameplay/element_display/SixElementDisplay.gd" id="1_wp5ud"]
+
+[node name="SixElementDisplay" type="VBoxContainer"]
+script = ExtResource("1_wp5ud")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Nature" parent="HBoxContainer" instance=ExtResource("1_75klo")]
+layout_mode = 2
+size_flags_horizontal = 6
+color_tint = Color(0.101961, 1, 0, 1)
+
+[node name="Earth" parent="HBoxContainer" instance=ExtResource("1_75klo")]
+layout_mode = 2
+size_flags_horizontal = 6
+color_tint = Color(0.380392, 0.133333, 0, 1)
+
+[node name="HBoxContainer2" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Fire" parent="HBoxContainer2" instance=ExtResource("1_75klo")]
+layout_mode = 2
+size_flags_horizontal = 6
+color_tint = Color(1, 0, 0, 1)
+
+[node name="Water" parent="HBoxContainer2" instance=ExtResource("1_75klo")]
+layout_mode = 2
+size_flags_horizontal = 6
+color_tint = Color(0, 0, 1, 1)
+
+[node name="HBoxContainer3" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Air" parent="HBoxContainer3" instance=ExtResource("1_75klo")]
+layout_mode = 2
+size_flags_horizontal = 6
+color_tint = Color(0, 1, 0.764706, 1)
+
+[node name="Wild" parent="HBoxContainer3" instance=ExtResource("1_75klo")]
+layout_mode = 2
+size_flags_horizontal = 6

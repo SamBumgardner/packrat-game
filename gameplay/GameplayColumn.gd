@@ -11,6 +11,7 @@ signal column_exited
 @export var column_type : GlobalConstants.ColumnContents
 
 @onready var anchor_point : Control = $AnchorPoint
+@onready var backpack_elements_display : SixElementDisplay = $Control/HBoxContainer/SixElementDisplayMini
 
 const REGION_CONTENTS_SCENE = preload("res://gameplay/region/RegionColumnContents.tscn")
 const COLUMN_CONTENTS_PRELOAD : Array[Resource] = [null, REGION_CONTENTS_SCENE]
@@ -35,6 +36,7 @@ func _on_item_rect_changed() -> void:
 func next_day() -> void:
 	if column_type != GlobalConstants.ColumnContents.NONE:
 		_column_contents.next_day(current_backpack)
+	update_backpack_contents_display()
 
 ####################
 # BACKPACK CONTROL #
@@ -47,7 +49,13 @@ func set_backpack(newBackpack : Backpack) -> void:
 		new_shadow.global_position = anchor_point.global_position
 		current_backpack.reparent(anchor_point)
 		current_backpack.set_target_position(anchor_point.global_position)
-	# backpack has potentially changed, re-evaluate column stuff
+	update_backpack_contents_display()
+
+func update_backpack_contents_display():
+	if current_backpack != null:
+		backpack_elements_display.update_elements(current_backpack.get_elements())
+	else:
+		backpack_elements_display.clear_elements()
 
 func snap_backpack_to_anchor() -> void:
 	if current_backpack != null:

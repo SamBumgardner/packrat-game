@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://c8wte7nhlq43y"]
 
-[ext_resource type="Script" path="res://gameplay/region/ElementAmount.gd" id="1_4px1v"]
+[ext_resource type="Script" path="res://gameplay/element_display/ElementAmount.gd" id="1_4px1v"]
 [ext_resource type="Texture2D" uid="uid://dkew3i6wq7feh" path="res://art/silver_coin.png" id="2_jhss6"]
 [ext_resource type="FontFile" uid="uid://d1faal3mxcb84" path="res://fonts/Roboto/Roboto-Medium.ttf" id="3_ttwix"]
 

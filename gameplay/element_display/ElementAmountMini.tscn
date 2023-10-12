@@ -1,0 +1,32 @@
+[gd_scene load_steps=4 format=3 uid="uid://b612mtbq43632"]
+
+[ext_resource type="Script" path="res://gameplay/element_display/ElementAmount.gd" id="1_xfnpg"]
+[ext_resource type="Texture2D" uid="uid://dkew3i6wq7feh" path="res://art/silver_coin.png" id="2_1pfua"]
+[ext_resource type="FontFile" uid="uid://d1faal3mxcb84" path="res://fonts/Roboto/Roboto-Medium.ttf" id="3_yvmf5"]
+
+[node name="ElementAmount" type="HBoxContainer"]
+offset_right = 66.0
+offset_bottom = 32.0
+script = ExtResource("1_xfnpg")
+
+[node name="ElementIcon" type="TextureRect" parent="."]
+clip_contents = true
+custom_minimum_size = Vector2(24, 24)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+texture = ExtResource("2_1pfua")
+expand_mode = 1
+
+[node name="X" type="Label" parent="."]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_yvmf5")
+theme_override_font_sizes/font_size = 12
+text = "x"
+
+[node name="Amount" type="Label" parent="."]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("3_yvmf5")
+theme_override_font_sizes/font_size = 20
+text = "0"
+vertical_alignment = 1

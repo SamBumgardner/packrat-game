@@ -3,7 +3,7 @@ extends Control
 
 @onready var database = get_node("/root/Database")
 
-var mock_goal : int = 4
+var mock_goal : int = 12
 var mock_victory : bool = false
 
 @onready var columns = $Columns.get_children() as Array[GameplayColumn]
