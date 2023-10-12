@@ -2,7 +2,7 @@
 
 [ext_resource type="Texture2D" uid="uid://brf4h74py8sal" path="res://icon.svg" id="1_24aux"]
 [ext_resource type="Script" path="res://gameplay/region/RegionColumnContents.gd" id="1_u2v88"]
-[ext_resource type="PackedScene" uid="uid://c8wte7nhlq43y" path="res://gameplay/region/ElementAmount.tscn" id="2_lmkjp"]
+[ext_resource type="PackedScene" uid="uid://b75uw1cnn27ae" path="res://gameplay/element_display/SixElementDisplay.tscn" id="3_w1mec"]
 
 [node name="RegionColumnContents" type="VBoxContainer"]
 custom_minimum_size = Vector2(100, 0)
@@ -27,40 +27,5 @@ fit_content = true
 scroll_active = false
 autowrap_mode = 0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="SixElementDisplay" parent="." instance=ExtResource("3_w1mec")]
 layout_mode = 2
-
-[node name="Nature" parent="HBoxContainer" instance=ExtResource("2_lmkjp")]
-layout_mode = 2
-size_flags_horizontal = 6
-color_tint = Color(0.101961, 1, 0, 1)
-
-[node name="Earth" parent="HBoxContainer" instance=ExtResource("2_lmkjp")]
-layout_mode = 2
-size_flags_horizontal = 6
-color_tint = Color(0.380392, 0.133333, 0, 1)
-
-[node name="HBoxContainer2" type="HBoxContainer" parent="."]
-layout_mode = 2
-
-[node name="Fire" parent="HBoxContainer2" instance=ExtResource("2_lmkjp")]
-layout_mode = 2
-size_flags_horizontal = 6
-color_tint = Color(1, 0, 0, 1)
-
-[node name="Water" parent="HBoxContainer2" instance=ExtResource("2_lmkjp")]
-layout_mode = 2
-size_flags_horizontal = 6
-color_tint = Color(0, 0, 1, 1)
-
-[node name="HBoxContainer3" type="HBoxContainer" parent="."]
-layout_mode = 2
-
-[node name="Air" parent="HBoxContainer3" instance=ExtResource("2_lmkjp")]
-layout_mode = 2
-size_flags_horizontal = 6
-color_tint = Color(0, 1, 0.764706, 1)
-
-[node name="Wild" parent="HBoxContainer3" instance=ExtResource("2_lmkjp")]
-layout_mode = 2
-size_flags_horizontal = 6

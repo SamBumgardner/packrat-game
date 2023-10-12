@@ -82,17 +82,14 @@ script = ExtResource("4_fxq41")
 
 [node name="Columns" type="HBoxContainer" parent="."]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
 offset_left = -409.0
-offset_top = -300.0
+offset_top = 25.0
 offset_right = 409.0
-offset_bottom = 300.0
+offset_bottom = 605.0
 grow_horizontal = 2
-grow_vertical = 2
 theme_override_constants/separation = 10
 alignment = 1
 
