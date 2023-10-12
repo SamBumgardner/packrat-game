@@ -106,6 +106,12 @@ func add_item(item : Item) -> bool:
 		added_item = true
 	return added_item
 
+func get_max_capacity() -> int:
+	return _item_capacity
+
+func get_current_item_count() -> int:
+	return _contained_items.size()
+
 func change_capacity(new_capacity : int) -> void:
 	_item_capacity = new_capacity
 

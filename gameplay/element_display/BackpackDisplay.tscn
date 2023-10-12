@@ -1,0 +1,16 @@
+[gd_scene load_steps=3 format=3 uid="uid://d0cn6rkagucs0"]
+
+[ext_resource type="Script" path="res://gameplay/element_display/BackpackDisplay.gd" id="1_xho15"]
+[ext_resource type="PackedScene" uid="uid://b6daeiymon5ei" path="res://gameplay/element_display/SixElementDisplayMini.tscn" id="2_7wr6a"]
+
+[node name="BackpackDisplay" type="HBoxContainer"]
+script = ExtResource("1_xho15")
+
+[node name="BackpackCapacity" type="ProgressBar" parent="."]
+custom_minimum_size = Vector2(25, 85)
+layout_mode = 2
+fill_mode = 3
+show_percentage = false
+
+[node name="SixElementDisplayMini" parent="." instance=ExtResource("2_7wr6a")]
+layout_mode = 2
