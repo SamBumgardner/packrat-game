@@ -4,10 +4,15 @@
 [ext_resource type="PackedScene" uid="uid://b612mtbq43632" path="res://gameplay/element_display/ElementAmountMini.tscn" id="2_qeahf"]
 
 [node name="SixElementDisplayMini" type="VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+offset_right = 106.0
+offset_bottom = 89.0
 script = ExtResource("1_ll034")
 
 [node name="HBoxContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
 
 [node name="Nature" parent="HBoxContainer" instance=ExtResource("2_qeahf")]
 layout_mode = 2
@@ -19,6 +24,9 @@ color_tint = Color(0.38, 0.133, 0, 1)
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="."]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.0
 
 [node name="Fire" parent="HBoxContainer2" instance=ExtResource("2_qeahf")]
 layout_mode = 2
@@ -30,6 +38,8 @@ color_tint = Color(0, 0, 1, 1)
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="."]
 layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
 
 [node name="Air" parent="HBoxContainer3" instance=ExtResource("2_qeahf")]
 layout_mode = 2
