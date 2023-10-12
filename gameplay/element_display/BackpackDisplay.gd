@@ -2,7 +2,8 @@ class_name BackpackDisplay
 
 extends HBoxContainer
 
-@onready var _backpack_capacity : ProgressBar = $BackpackCapacity
+@onready var _backpack_capacity : ProgressBar = $HBoxContainer/BackpackCapacity
+@onready var _capacity_label : Label = $HBoxContainer/Label
 @onready var _element_display : SixElementDisplay = $SixElementDisplayMini
 
 func _ready() -> void:
@@ -17,9 +18,11 @@ func update_display(backpack : Backpack) -> void:
 		hide_capacity()
 
 func update_capacity(max_cap : int, current : int) -> void:
-	_backpack_capacity.show()
+	$HBoxContainer.show()
 	_backpack_capacity.max_value = max_cap
 	_backpack_capacity.value = current
+	_capacity_label.text = str(current) + "/" + str(max_cap)
+	
 
 func hide_capacity() -> void:
-	_backpack_capacity.hide()
+	$HBoxContainer.hide()

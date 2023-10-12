@@ -15,7 +15,7 @@ func _ready() -> void:
 func init_element_amounts() -> void:
 	for element in elements:
 		if element.amount == 0:
-			element.visible = false
+			element.hide()
 
 func update_elements(new_element_values : Array[int]) -> void:
 	for i in GlobalConstants.Elements.size():
