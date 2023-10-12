@@ -40,15 +40,20 @@ layout_mode = 2
 [node name="Control" type="Control" parent="ColumnContents/Header"]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
+size_flags_horizontal = 4
 
 [node name="Sprite2D" type="Sprite2D" parent="ColumnContents/Header/Control"]
 texture = ExtResource("2_jin2m")
 centered = false
 
 [node name="Name" type="RichTextLabel" parent="ColumnContents/Header"]
+clip_contents = false
 layout_mode = 2
+size_flags_horizontal = 4
 text = "Example Name"
 fit_content = true
+scroll_active = false
+autowrap_mode = 0
 
 [node name="TextureRect" type="TextureRect" parent="ColumnContents/Header"]
 layout_mode = 2
