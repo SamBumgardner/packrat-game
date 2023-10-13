@@ -1,0 +1,36 @@
+[gd_scene load_steps=5 format=3 uid="uid://culsm3gpgril1"]
+
+[ext_resource type="PackedScene" uid="uid://bygdha8oc17o7" path="res://gameplay/column/ColumnContents.tscn" id="1_h4lsb"]
+[ext_resource type="Script" path="res://gameplay/column/region/RegionContents.gd" id="2_08dnk"]
+[ext_resource type="Texture2D" uid="uid://brf4h74py8sal" path="res://icon.svg" id="3_rhexc"]
+[ext_resource type="PackedScene" uid="uid://b75uw1cnn27ae" path="res://gameplay/element_display/SixElementDisplay.tscn" id="4_fn1e6"]
+
+[node name="ColumnContentsForRegion" instance=ExtResource("1_h4lsb")]
+script = ExtResource("2_08dnk")
+_region = null
+_item = null
+
+[node name="Contents" type="VBoxContainer" parent="." index="1"]
+layout_mode = 2
+
+[node name="ItemGraphicControl" type="Control" parent="Contents" index="0"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+
+[node name="ItemGraphic" type="Sprite2D" parent="Contents/ItemGraphicControl" index="0"]
+texture = ExtResource("3_rhexc")
+centered = false
+
+[node name="ItemName" type="RichTextLabel" parent="Contents" index="1"]
+clip_contents = false
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Item Name"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+
+[node name="SixElementDisplay" parent="Contents" index="2" instance=ExtResource("4_fn1e6")]
+layout_mode = 2

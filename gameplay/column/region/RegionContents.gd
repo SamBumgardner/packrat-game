@@ -1,20 +1,21 @@
-class_name RegionColumnContents
+class_name RegionContents
 
-extends VBoxContainer
+extends ColumnContents
 
 @export var _region : Region = null
 @export var _item : Item = null
 
-@onready var _element_display : SixElementDisplay = $SixElementDisplay
-@onready var _item_name : RichTextLabel = $ItemName
-@onready var _item_graphic : Sprite2D = $ItemGraphicControl/ItemGraphic
+@onready var _element_display : SixElementDisplay = $Contents/SixElementDisplay
+@onready var _item_name : RichTextLabel = $Contents/ItemName
+@onready var _item_graphic : Sprite2D = $Contents/ItemGraphicControl/ItemGraphic
 
 var header_graphic : Texture = null
 var header_name : String = ""
 
 func _ready() -> void:
-	set_region(load("res://gameplay/region/region_forest.tres"))
-	set_item(load("res://gameplay/item/rock.tres"))
+	set_region(load("res://gameplay/column/region/region_forest.tres"))
+	set_item(_region.possible_items.pick_random())
+	set_header_properties(_region.graphic, _region.name)
 
 func next_day(column_backpack : Backpack) -> void:
 	if column_backpack != null:
