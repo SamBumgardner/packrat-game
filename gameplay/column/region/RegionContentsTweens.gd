@@ -105,13 +105,42 @@ static func init_tween_bonk_off_pack(tween_to_init : Tween, fly_to_pack_graphic 
 ###################
 static func init_tween_reveal_new_item(tween_to_init : Tween, item_graphic : Sprite2D, 
 		item_name : RichTextLabel, element_display : SixElementDisplay) -> Tween:
-
-	tween_to_init.tween_property(item_graphic, "modulate", Color(1,1,1,0), .2).set_trans(Tween.TRANS_EXPO)
-	tween_to_init.parallel().tween_property(item_name, "modulate", Color(1,1,1,0), .2).set_trans(Tween.TRANS_EXPO)
-	tween_to_init.parallel().tween_property(element_display, "modulate", Color(1,1,1,0), .2).set_trans(Tween.TRANS_EXPO)
+	const step_durations = [.2, .5]
 	
-	tween_to_init.tween_property(item_graphic, "modulate", Color(1,1,1,1), .5).set_trans(Tween.TRANS_EXPO)
-	tween_to_init.parallel().tween_property(item_name, "modulate", Color(1,1,1,1), .5).set_trans(Tween.TRANS_EXPO)
-	tween_to_init.parallel().tween_property(element_display, "modulate", Color(1,1,1,1), .5).set_trans(Tween.TRANS_EXPO)
+	const step_0_modulate = Color.TRANSPARENT
+	
+	const step_1_modulate = Color.WHITE
+
+	tween_to_init.tween_property(
+		item_graphic, "modulate", 
+		step_0_modulate, 
+		step_durations[0]
+	).set_trans(Tween.TRANS_EXPO)
+	tween_to_init.parallel().tween_property(
+		item_name, "modulate", 
+		step_0_modulate, 
+		step_durations[0]
+	).set_trans(Tween.TRANS_EXPO)
+	tween_to_init.parallel().tween_property(
+		element_display, "modulate", 
+		step_0_modulate, 
+		step_durations[0]
+	).set_trans(Tween.TRANS_EXPO)
+	
+	tween_to_init.tween_property(
+		item_graphic, "modulate", 
+		step_1_modulate, 
+		step_durations[1]
+	).set_trans(Tween.TRANS_EXPO)
+	tween_to_init.parallel().tween_property(
+		item_name, "modulate", 
+		step_1_modulate, 
+		step_durations[1]
+	).set_trans(Tween.TRANS_EXPO)
+	tween_to_init.parallel().tween_property(
+		element_display, "modulate", 
+		step_1_modulate, 
+		step_durations[1]
+	).set_trans(Tween.TRANS_EXPO)
 	
 	return tween_to_init
