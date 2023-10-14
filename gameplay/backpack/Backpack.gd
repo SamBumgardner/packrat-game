@@ -6,31 +6,35 @@ class_name Backpack
 signal backpack_entered
 signal backpack_exited
 
-var selected : bool = false
-
-var _frame_rate : int = 25
+##############
+# PARAMETERS #
+##############
+# Parameters for movement.
 var _moving_to_target : bool = false
+var selected : bool = false
 var _target_global_position : Vector2 = Vector2.ZERO
-var _scale_down_original : float = 0.833333333333
-var _scale_up_20_percent : float = 1.2
 
+# Parameters for appearance and inventory.
 @export var backpack_graphic : Texture = preload("res://art/pack_1.png")
 @export var _item_capacity : int = 2
 var _contained_elements : Array[int] = []
 var _contained_items : Array[Item] = []
 
+# Parameters for interactions, such as collision checks and visual details.
 @onready var collision_shape : Shape2D = $CollisionShape2D.shape
 @onready var shadow : Sprite2D = $ShadowSprite
 @onready var _item_added_particles : CPUParticles2D = $ItemAddedParticles
 @onready var pack : Sprite2D = $PackSprite
-@onready var _sfx_pickup : AudioStreamPlayer = $SFX_Pickup
+
+# Parameters for sound effects.
 @onready var _sfx_drop : AudioStreamPlayer = $SFX_BagDrop
 @onready var _sfx_item_added : AudioStreamPlayer = $SFX_ItemAdded
 @onready var _sfx_item_rejected : AudioStreamPlayer = $SFX_ItemRejected
+@onready var _sfx_pickup : AudioStreamPlayer = $SFX_Pickup
 
+# Parameters for tween animations.
 var _tween_wiggle : Tween
 var _tween_bounce : Tween
-
 
 ###########
 # GENERAL #
@@ -40,8 +44,12 @@ func _ready():
 	_contained_elements.resize(GlobalConstants.Elements.size())
 	_contained_elements.fill(0)
 	_set_graphic(backpack_graphic)
-	_init_tween_wiggle()
-	_init_tween_bounce()
+
+	_tween_wiggle = create_tween()
+	BackpackTweens.init_tween_wiggle(_tween_wiggle, pack)
+
+	_tween_bounce = create_tween()
+	BackpackTweens.init_tween_bounce(_tween_bounce, pack)
 
 func _set_graphic(texture : Texture) -> void:
 	pack.set_texture(texture)
@@ -49,26 +57,6 @@ func _set_graphic(texture : Texture) -> void:
 
 func _process(delta):
 	_handle_movement(delta)
-
-##################
-# TWEEN HANDLING #
-##################
-func _init_tween_wiggle() -> void:
-	_tween_wiggle = create_tween()
-	_tween_wiggle.tween_property(pack, "rotation", .05, .1).set_trans(Tween.TRANS_CUBIC)
-	_tween_wiggle.tween_property(pack, "rotation", -.05, .1).set_trans(Tween.TRANS_CUBIC)
-	_tween_wiggle.tween_property(pack, "rotation", 0, .1).set_trans(Tween.TRANS_LINEAR)
-	_tween_wiggle.stop()
-	_tween_wiggle.connect("finished", _tween_wiggle.stop)
-
-func _init_tween_bounce() -> void:
-	_tween_bounce = create_tween()
-	_tween_bounce.tween_property(pack, "scale", Vector2(1.3, .9), .2).set_trans(Tween.TRANS_QUART)
-	_tween_bounce.parallel().tween_property(pack, "position", Vector2(0, 20), .2).set_trans(Tween.TRANS_QUART)
-	_tween_bounce.tween_property(pack, "scale", Vector2.ONE, .4).set_trans(Tween.TRANS_LINEAR)
-	_tween_bounce.parallel().tween_property(pack, "position", Vector2(0, 0), .4).set_trans(Tween.TRANS_LINEAR)
-	_tween_bounce.stop()
-	_tween_bounce.connect("finished", _tween_bounce.stop)
 
 #####################
 # MOVEMENT HANDLING #
@@ -82,6 +70,8 @@ func stop_movement() -> void:
 	_target_global_position = Vector2.ZERO
 
 func _handle_movement(delta) -> void:
+	const _frame_rate : int = 25
+
 	if selected:
 		set_target_position(get_viewport().get_mouse_position())
 	
@@ -105,20 +95,20 @@ func draw_front(in_front : bool) -> void:
 	global_position = previous_position
 
 func select_and_enlarge_backpack() -> void:
+	const scale_up_20_percent : float = 1.2
+
 	selected = true
 	shadow.visible = true
-	$PackSprite.apply_scale(
-		Vector2(_scale_up_20_percent, _scale_up_20_percent)
-	)
+	$PackSprite.apply_scale(Vector2(scale_up_20_percent, scale_up_20_percent))
 	_sfx_pickup.play()
 
 func stop_deselect_shrink_backpack() -> void:
+	const scale_down_original : float = 0.833333333333
+
 	stop_movement()
 	selected = false
 	shadow.visible = false
-	$PackSprite.apply_scale(
-		Vector2(_scale_down_original, _scale_down_original)
-	)
+	$PackSprite.apply_scale(Vector2(scale_down_original, scale_down_original))
 	_tween_wiggle.play()
 	_sfx_drop.play()
 	_mouse_overlap_manual_check()
