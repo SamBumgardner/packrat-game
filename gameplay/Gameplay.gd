@@ -1,13 +1,15 @@
 # Scene to render when the game is finished.
 extends Control
 
+const busy_mouse_icon : Texture = preload("res://art/hourglass_icon.png")
+const NO_COLUMN : int = -1
+
 @onready var database = get_node("/root/Database")
+@onready var columns = $Columns.get_children() as Array[GameplayColumn]
 
 var mock_goal : int = 12
 var mock_victory : bool = false
 
-@onready var columns = $Columns.get_children() as Array[GameplayColumn]
-const NO_COLUMN : int = -1
 var hovered_column_index : int = NO_COLUMN
 var hovered_backpack : Backpack = null
 var selected_backpack : Backpack = null
@@ -17,6 +19,7 @@ var backpacks : Array[Backpack] = []
 
 var _columns_executing_day : int = 0
 var _columns_finished_day : int = 0
+var _input_enabled : bool = true
 
 ##################
 # INITIALIZATION #
@@ -51,6 +54,16 @@ func _on_columns_sort_children() -> void:
 #####################
 # NEXT DAY HANDLING #
 #####################
+func disable_cursor() -> void:
+	Input.set_custom_mouse_cursor(busy_mouse_icon)
+	_input_enabled = false
+	$NextDay/NextDayButton.disabled = true
+
+func enable_cursor() -> void:
+	Input.set_custom_mouse_cursor(null)
+	_input_enabled = true
+	$NextDay/NextDayButton.disabled = false
+
 func _increment_number_of_days() -> void:
 	database.increment_day_count()
 
@@ -60,8 +73,8 @@ func _increment_number_of_days() -> void:
 		)
 
 func _on_next_day_button_pressed() -> void:
+	disable_cursor()
 	_columns_executing_day = columns.size()
-	$NextDay/NextDayButton.disabled = true
 	for column in columns:
 		column.next_day()
 	_increment_number_of_days()
@@ -69,8 +82,9 @@ func _on_next_day_button_pressed() -> void:
 func _on_column_ready_for_next_day() -> void:
 	_columns_finished_day += 1
 	if _columns_finished_day == _columns_executing_day:
+		enable_cursor()
 		_columns_finished_day = 0
-		$NextDay/NextDayButton.disabled = false
+		_columns_executing_day = 0
 
 func _on_timer_timeout() -> void:
 	$MockExplanation/Title.visible = false
@@ -181,17 +195,18 @@ func _attempt_to_reveal_next_column() -> void:
 			return
 
 func _input(event):
-	if event.is_action_pressed("gameplay_select"):
-		_handle_backpack_selection()
-	
-	if event.is_action_pressed("ui_right"):
-		shift_backpack_column(backpacks.front(), 1)
-	
-	if event.is_action_pressed("ui_left"):
-		shift_backpack_column(backpacks.front(), -1)
-	
-	if event.is_action_pressed("ui_up"):
-		_attempt_to_reveal_next_column()
+	if _input_enabled:
+		if event.is_action_pressed("gameplay_select"):
+			_handle_backpack_selection()
+		
+		if event.is_action_pressed("ui_right"):
+			shift_backpack_column(backpacks.front(), 1)
+		
+		if event.is_action_pressed("ui_left"):
+			shift_backpack_column(backpacks.front(), -1)
+		
+		if event.is_action_pressed("ui_up"):
+			_attempt_to_reveal_next_column()
 
-	if event.is_action_pressed("ui_down"):
-		_attempt_to_hide_last_column()
+		if event.is_action_pressed("ui_down"):
+			_attempt_to_hide_last_column()

@@ -9,6 +9,7 @@ extends ColumnContents
 @onready var _item_name : RichTextLabel = $Contents/ItemName
 @onready var _item_graphic : Sprite2D = $Contents/ItemGraphicControl/ItemGraphic
 @onready var _fly_to_pack_graphic : Sprite2D = $Contents/ItemGraphicControl/FlyToPackItem
+@onready var _fly_item_sound : AudioStreamPlayer = $SFX_FlyItemSound
 
 @onready var _tween_fly_to_pack : Tween = create_tween()
 @onready var _tween_bonk_off_pack : Tween = create_tween()
@@ -120,5 +121,6 @@ func update_item_display() -> void:
 
 func fly_to_pack(column_backpack : Backpack, item_accepted : bool) -> void:
 	_reset_flying_tween()
+	_fly_item_sound.play()
 	_trigger_tween_fly_to_pack(column_backpack, item_accepted)
 	_item_graphic.modulate.a = 0

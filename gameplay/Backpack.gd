@@ -172,7 +172,6 @@ func remove_items() -> Array[Item]:
 #####################
 # DISPLAY REACTIONS #
 #####################
-
 func react_item_added():
 	_tween_bounce.play()
 	_sfx_item_added.play()

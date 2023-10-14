@@ -51,22 +51,18 @@ scale_amount_curve = SubResource("Curve_1s5st")
 
 [node name="SFX_BagDrop" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_pfifm")
-volume_db = 10.0
 mix_target = 2
 
 [node name="SFX_Pickup" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_37kfm")
-volume_db = 10.0
 mix_target = 2
 
 [node name="SFX_ItemAdded" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_34246")
-volume_db = 10.0
 mix_target = 2
 
 [node name="SFX_ItemRejected" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("6_sq3os")
-volume_db = 10.0
 mix_target = 2
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
