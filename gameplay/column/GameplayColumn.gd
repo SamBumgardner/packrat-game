@@ -5,6 +5,7 @@ class_name GameplayColumn
 
 signal column_entered
 signal column_exited
+signal ready_for_next_day
 
 const REGION_CONTENTS_SCENE = preload("res://gameplay/column/region/RegionContents.tscn")
 const COLUMN_CONTENTS_PRELOAD : Array[Resource] = [null, REGION_CONTENTS_SCENE]
@@ -22,6 +23,7 @@ var _column_contents : ColumnContents
 func _ready() -> void:
 	if column_type != GlobalConstants.ColumnContents.NONE:
 		_column_contents = COLUMN_CONTENTS_PRELOAD[column_type].instantiate()
+		_column_contents.content_actions_complete.connect(_on_content_actions_complete)
 		contents_root.add_child(_column_contents)
 
 func get_anchor_point_position() -> Vector2:
@@ -35,9 +37,14 @@ func _on_item_rect_changed() -> void:
 # NEXT DAY HANDLING #
 #####################
 func next_day() -> void:
-	if column_type != GlobalConstants.ColumnContents.NONE:
+	if column_type == GlobalConstants.ColumnContents.NONE:
+		ready_for_next_day.emit()
+	else:
 		_column_contents.next_day(current_backpack)
 	backpack_display.update_display(current_backpack)
+
+func _on_content_actions_complete() -> void:
+	ready_for_next_day.emit()
 
 ####################
 # BACKPACK CONTROL #

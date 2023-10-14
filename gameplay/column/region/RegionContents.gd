@@ -10,18 +10,21 @@ extends ColumnContents
 @onready var _item_graphic : Sprite2D = $Contents/ItemGraphicControl/ItemGraphic
 @onready var _fly_to_pack_graphic : Sprite2D = $Contents/ItemGraphicControl/FlyToPackItem
 
-@onready var _tween_fly_to_pack : Tween = create_tween();
-@onready var _tween_bonk_off_pack : Tween = create_tween();
+@onready var _tween_fly_to_pack : Tween = create_tween()
+@onready var _tween_bonk_off_pack : Tween = create_tween()
+var _tween_reveal_new_item : Tween
 
 var header_graphic : Texture = null
 var header_name : String = ""
 
-
-
 func _ready() -> void:
 	set_region(load("res://gameplay/column/region/region_forest.tres"))
 	set_item(_region.possible_items.pick_random())
+	update_item_display()
 	set_header_properties(_region.graphic, _region.name)
+	_init_tween_reveal_new_item()
+	_tween_fly_to_pack.stop()
+	_tween_bonk_off_pack.stop()
 
 func _trigger_tween_fly_to_pack(target_pack : Backpack, item_accepted : bool):
 	var randomized_offset = Vector2(20, 0).rotated(randf() * PI * 2)
@@ -39,6 +42,7 @@ func _trigger_tween_fly_to_pack(target_pack : Backpack, item_accepted : bool):
 	else:
 		_tween_fly_to_pack.connect("finished", target_pack.react_item_rejected)
 		_tween_fly_to_pack.connect("finished", _trigger_tween_bonk_off_pack)
+	_tween_fly_to_pack.connect("finished", _tween_reveal_new_item.play)
 	_tween_fly_to_pack.play()
 
 func _reset_flying_tween():
@@ -69,7 +73,25 @@ func _trigger_tween_bonk_off_pack() -> void:
 	
 	_tween_bonk_off_pack.play()
 
+func _reset_item_graphic():
+	_tween_reveal_new_item.stop()
+	_tween_bonk_off_pack.stop()
+	_reset_fly_to_pack_graphic()
+	_fly_to_pack_graphic.set_texture(_item_graphic.texture)
+	_fly_to_pack_graphic.show()
+
 func _init_tween_reveal_new_item():
+	_tween_reveal_new_item = create_tween()
+	_tween_reveal_new_item.tween_property($Contents/ItemName, "modulate", Color(1,1,1,0), .2).set_trans(Tween.TRANS_EXPO)
+	_tween_reveal_new_item.parallel().tween_property($Contents/SixElementDisplay, "modulate", Color(1,1,1,0), .2).set_trans(Tween.TRANS_EXPO)
+	
+	_tween_reveal_new_item.tween_property(_item_graphic, "modulate", Color(1,1,1,1), .5).set_trans(Tween.TRANS_EXPO)
+	_tween_reveal_new_item.parallel().tween_property($Contents/ItemName, "modulate", Color(1,1,1,1), .5).set_trans(Tween.TRANS_EXPO)
+	_tween_reveal_new_item.parallel().tween_property($Contents/SixElementDisplay, "modulate", Color(1,1,1,1), .5).set_trans(Tween.TRANS_EXPO)
+	
+	_tween_reveal_new_item.stop()
+	_tween_reveal_new_item.connect("step_finished", func(step_i): if step_i == 0: update_item_display())
+	_tween_reveal_new_item.connect("finished", _tween_reveal_new_item.stop)
 	pass
 
 func next_day(column_backpack : Backpack) -> void:
@@ -86,12 +108,16 @@ func set_region(new_region : Region) -> void:
 
 func set_item(new_item : Item) -> void:
 	_item = new_item
+
+func update_item_display() -> void:
 	_element_display.update_elements(_item.elements)
-	_item_name.text = new_item.name
-	_item_graphic.set_texture(new_item.graphic)
+	_item_name.text = _item.name
+	_item_graphic.set_texture(_item.graphic)
+	
+	content_actions_complete.emit()
 
 func fly_to_pack(column_backpack : Backpack, item_accepted : bool) -> void:
 	_reset_flying_tween()
 	_trigger_tween_fly_to_pack(column_backpack, item_accepted)
 	$Contents/ItemGraphicControl/CPUParticles2D.restart()
-	_item_graphic.hide()
+	_item_graphic.modulate.a = 0
