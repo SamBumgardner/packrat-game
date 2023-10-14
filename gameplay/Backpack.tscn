@@ -1,7 +1,11 @@
-[gd_scene load_steps=4 format=3 uid="uid://24e0kif4kkdt"]
+[gd_scene load_steps=8 format=3 uid="uid://24e0kif4kkdt"]
 
 [ext_resource type="Script" path="res://gameplay/Backpack.gd" id="1_1wqex"]
-[ext_resource type="Texture2D" uid="uid://brf4h74py8sal" path="res://icon.svg" id="1_hbr8j"]
+[ext_resource type="Texture2D" uid="uid://ct5h3dyyxyblj" path="res://art/pack_1.png" id="2_t74v1"]
+[ext_resource type="AudioStream" uid="uid://bxgblql1u8dhe" path="res://sound/bag_drop.wav" id="3_pfifm"]
+[ext_resource type="AudioStream" uid="uid://fiftdc4eocw5" path="res://sound/bag_pickup.wav" id="4_37kfm"]
+[ext_resource type="AudioStream" uid="uid://bmkd5fn01mky2" path="res://sound/item_added.wav" id="5_34246"]
+[ext_resource type="AudioStream" uid="uid://cemabdt5yr5oc" path="res://sound/item_rejected.wav" id="6_sq3os"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2k672"]
 size = Vector2(128, 128)
@@ -15,11 +19,31 @@ shape = SubResource("RectangleShape2D_2k672")
 [node name="ShadowSprite" type="Sprite2D" parent="."]
 modulate = Color(0.407843, 0.407843, 0.407843, 0.47451)
 scale = Vector2(0.8, 0.8)
-texture = ExtResource("1_hbr8j")
+texture = ExtResource("2_t74v1")
 
 [node name="PackSprite" type="Sprite2D" parent="."]
 scale = Vector2(0.9, 0.9)
-texture = ExtResource("1_hbr8j")
+texture = ExtResource("2_t74v1")
+
+[node name="SFX_BagDrop" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_pfifm")
+volume_db = 10.0
+mix_target = 2
+
+[node name="SFX_Pickup" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_37kfm")
+volume_db = 10.0
+mix_target = 2
+
+[node name="SFX_ItemAdded" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_34246")
+volume_db = 10.0
+mix_target = 2
+
+[node name="SFX_ItemRejected" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_sq3os")
+volume_db = 10.0
+mix_target = 2
 
 [connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
 [connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
