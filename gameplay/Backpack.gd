@@ -27,8 +27,8 @@ var _contained_items : Array[Item] = []
 @onready var _sfx_item_added : AudioStreamPlayer = $SFX_ItemAdded
 @onready var _sfx_item_rejected : AudioStreamPlayer = $SFX_ItemRejected
 
-var _tween_wiggle : Tween;
-var _tween_bounce : Tween;
+var _tween_wiggle : Tween
+var _tween_bounce : Tween
 
 
 ###########
@@ -144,11 +144,6 @@ func add_item(item : Item) -> bool:
 		for i in _contained_elements.size():
 			_contained_elements[i] += item.elements[i]
 		added_item = true
-		_tween_bounce.play()
-		_sfx_item_added.play()
-	else:
-		_tween_wiggle.play()
-		_sfx_item_rejected.play()
 	return added_item
 
 func get_max_capacity() -> int:
@@ -172,3 +167,15 @@ func remove_items() -> Array[Item]:
 	var removed_items : Array[Item] = _contained_items.duplicate()
 	_contained_items.clear()
 	return removed_items
+
+#####################
+# DISPLAY REACTIONS #
+#####################
+
+func react_item_added():
+	_tween_bounce.play()
+	_sfx_item_added.play()
+
+func react_item_rejected():
+	_tween_wiggle.play()
+	_sfx_item_rejected.play()
