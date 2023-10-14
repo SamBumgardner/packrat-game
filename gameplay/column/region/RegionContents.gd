@@ -40,7 +40,7 @@ func _init_tween_reveal_new_item():
 	)
 	_tween_reveal_new_item.stop()
 
-	_tween_reveal_new_item.connect("step_finished", func(step_i): if step_i == -1: update_item_display())
+	_tween_reveal_new_item.connect("step_finished", func(step_i): if step_i == 0: update_item_display())
 	_tween_reveal_new_item.connect("finished", emit_signal.bind("content_actions_complete"))
 	_tween_reveal_new_item.connect("finished", _tween_reveal_new_item.stop)
 
@@ -79,7 +79,7 @@ func fly_to_pack(column_backpack : Backpack, item_accepted : bool) -> void:
 	
 	_fly_to_pack_graphic.set_texture(_item_graphic.texture)
 	_fly_to_pack_graphic.show()
-	_item_graphic.modulate.a = 0
+	_item_graphic.modulate = Color.TRANSPARENT
 	
 	_fly_item_sound.play()
 	_trigger_tween_fly_to_pack(column_backpack, item_accepted)
