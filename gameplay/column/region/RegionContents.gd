@@ -31,7 +31,7 @@ func _trigger_tween_fly_to_pack(target_pack : Backpack, item_accepted : bool):
 	
 	_tween_fly_to_pack = create_tween()
 	_tween_fly_to_pack.set_ease(Tween.EASE_IN)
-	_tween_fly_to_pack.tween_property(_fly_to_pack_graphic, "scale", Vector2(.5, .5), .1).set_trans(Tween.TRANS_QUAD)
+	_tween_fly_to_pack.tween_property(_fly_to_pack_graphic, "scale", Vector2(.75, .75), .1).set_trans(Tween.TRANS_QUAD)
 	_tween_fly_to_pack.parallel().tween_property(_fly_to_pack_graphic, "position", _fly_to_pack_graphic.position + randomized_offset, .1).set_trans(Tween.TRANS_QUAD)
 	_tween_fly_to_pack.tween_property(_fly_to_pack_graphic, "global_position", target_pack.global_position, 1).set_trans(Tween.TRANS_EXPO)
 	_tween_fly_to_pack.parallel().tween_property(_fly_to_pack_graphic, "rotation", 12, 1).set_trans(Tween.TRANS_QUAD)
@@ -121,5 +121,4 @@ func update_item_display() -> void:
 func fly_to_pack(column_backpack : Backpack, item_accepted : bool) -> void:
 	_reset_flying_tween()
 	_trigger_tween_fly_to_pack(column_backpack, item_accepted)
-	$Contents/ItemGraphicControl/CPUParticles2D.restart()
 	_item_graphic.modulate.a = 0
