@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://gameplay/NextDayButton.gd" id="4_fxq41"]
 [ext_resource type="FontFile" uid="uid://c104v5f0ficln" path="res://fonts/Roboto/Roboto-Regular.ttf" id="5_rf4ff"]
 [ext_resource type="PackedScene" uid="uid://e1hatl7xepnb" path="res://hud/DaysPassedTracker.tscn" id="7_6ilhd"]
-[ext_resource type="PackedScene" uid="uid://dklr5kcqww66r" path="res://gameplay/GameplayColumn.tscn" id="8_pe5uu"]
+[ext_resource type="PackedScene" uid="uid://dklr5kcqww66r" path="res://gameplay/column/GameplayColumn.tscn" id="8_pe5uu"]
 [ext_resource type="PackedScene" uid="uid://24e0kif4kkdt" path="res://gameplay/Backpack.tscn" id="9_6n0cn"]
 
 [node name="Gameplay" type="Control"]
