@@ -15,6 +15,9 @@ var selected_backpack_home_column : GameplayColumn = null
 
 var backpacks : Array[Backpack] = []
 
+var _columns_executing_day : int = 0
+var _columns_finished_day : int = 0
+
 ##################
 # INITIALIZATION #
 ##################
@@ -35,8 +38,9 @@ func _init_columns() -> void:
 		if column.current_backpack != null:
 			column.set_backpack(column.current_backpack)
 			column.current_backpack.visible = true
-		column.connect("column_entered", _on_column_entered)
-		column.connect("column_exited", _on_column_exited)
+		column.column_entered.connect(_on_column_entered)
+		column.column_exited.connect(_on_column_exited)
+		column.ready_for_next_day.connect(_on_column_ready_for_next_day)
 
 # handles backpack positioning after initial load + after new columns added
 func _on_columns_sort_children() -> void:
@@ -56,9 +60,17 @@ func _increment_number_of_days() -> void:
 		)
 
 func _on_next_day_button_pressed() -> void:
+	_columns_executing_day = columns.size()
+	$NextDay/NextDayButton.disabled = true
 	for column in columns:
 		column.next_day()
 	_increment_number_of_days()
+
+func _on_column_ready_for_next_day() -> void:
+	_columns_finished_day += 1
+	if _columns_finished_day == _columns_executing_day:
+		_columns_finished_day = 0
+		$NextDay/NextDayButton.disabled = false
 
 func _on_timer_timeout() -> void:
 	$MockExplanation/Title.visible = false

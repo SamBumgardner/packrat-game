@@ -2,6 +2,8 @@ class_name ColumnContents
 
 extends VBoxContainer
 
+signal content_actions_complete
+
 @onready var _header_graphic : Sprite2D = $Header/Control/Sprite2D
 @onready var _header_label : RichTextLabel = $Header/Name
 
