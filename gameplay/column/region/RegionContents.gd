@@ -82,7 +82,8 @@ func _reset_item_graphic():
 
 func _init_tween_reveal_new_item():
 	_tween_reveal_new_item = create_tween()
-	_tween_reveal_new_item.tween_property($Contents/ItemName, "modulate", Color(1,1,1,0), .2).set_trans(Tween.TRANS_EXPO)
+	_tween_reveal_new_item.tween_property(_item_graphic, "modulate", Color(1,1,1,0), .2).set_trans(Tween.TRANS_EXPO)
+	_tween_reveal_new_item.parallel().tween_property($Contents/ItemName, "modulate", Color(1,1,1,0), .2).set_trans(Tween.TRANS_EXPO)
 	_tween_reveal_new_item.parallel().tween_property($Contents/SixElementDisplay, "modulate", Color(1,1,1,0), .2).set_trans(Tween.TRANS_EXPO)
 	
 	_tween_reveal_new_item.tween_property(_item_graphic, "modulate", Color(1,1,1,1), .5).set_trans(Tween.TRANS_EXPO)
@@ -91,6 +92,7 @@ func _init_tween_reveal_new_item():
 	
 	_tween_reveal_new_item.stop()
 	_tween_reveal_new_item.connect("step_finished", func(step_i): if step_i == 0: update_item_display())
+	_tween_reveal_new_item.connect("finished", emit_signal.bind("content_actions_complete"))
 	_tween_reveal_new_item.connect("finished", _tween_reveal_new_item.stop)
 	pass
 
@@ -100,6 +102,8 @@ func next_day(column_backpack : Backpack) -> void:
 		fly_to_pack(column_backpack, item_accepted)
 	var randomized_item : Item = _region.possible_items.pick_random()
 	set_item(randomized_item)
+	if column_backpack == null:
+		_tween_reveal_new_item.play()
 
 func set_region(new_region : Region) -> void:
 	_region = new_region
@@ -113,8 +117,6 @@ func update_item_display() -> void:
 	_element_display.update_elements(_item.elements)
 	_item_name.text = _item.name
 	_item_graphic.set_texture(_item.graphic)
-	
-	content_actions_complete.emit()
 
 func fly_to_pack(column_backpack : Backpack, item_accepted : bool) -> void:
 	_reset_flying_tween()
