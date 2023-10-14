@@ -1,14 +1,16 @@
-[gd_scene load_steps=10 format=3 uid="uid://crk2s578wsl64"]
+[gd_scene load_steps=12 format=3 uid="uid://crk2s578wsl64"]
 
 [ext_resource type="Script" path="res://gameplay/Gameplay.gd" id="1_cv37s"]
 [ext_resource type="PackedScene" uid="uid://c25adoveil6xs" path="res://hud/CurrencySilverCoin.tscn" id="2_a1m00"]
-[ext_resource type="FontFile" uid="uid://cddebactj84w3" path="res://fonts/Roboto/Roboto-Medium.ttf" id="2_ny8ex"]
+[ext_resource type="FontFile" uid="uid://d1faal3mxcb84" path="res://fonts/Roboto/Roboto-Medium.ttf" id="2_ny8ex"]
 [ext_resource type="PackedScene" uid="uid://dm07s06ryg2u" path="res://menus/BackToStartMenuButton.tscn" id="3_7t8p6"]
 [ext_resource type="Script" path="res://gameplay/NextDayButton.gd" id="4_fxq41"]
-[ext_resource type="FontFile" uid="uid://c104v5f0ficln" path="res://fonts/Roboto/Roboto-Regular.ttf" id="5_rf4ff"]
+[ext_resource type="FontFile" uid="uid://b0t1dk3g11t5r" path="res://fonts/Roboto/Roboto-Regular.ttf" id="5_rf4ff"]
 [ext_resource type="PackedScene" uid="uid://e1hatl7xepnb" path="res://hud/DaysPassedTracker.tscn" id="7_6ilhd"]
 [ext_resource type="PackedScene" uid="uid://dklr5kcqww66r" path="res://gameplay/column/GameplayColumn.tscn" id="8_pe5uu"]
+[ext_resource type="Texture2D" uid="uid://dpcbkq0fenpr1" path="res://art/pack_3.png" id="9_2cvdw"]
 [ext_resource type="PackedScene" uid="uid://24e0kif4kkdt" path="res://gameplay/Backpack.tscn" id="9_6n0cn"]
+[ext_resource type="Texture2D" uid="uid://cqd3yidq15cxo" path="res://art/pack_2.png" id="10_ugv6s"]
 
 [node name="Gameplay" type="Control"]
 layout_mode = 3
@@ -97,10 +99,11 @@ column_index = 5
 
 [node name="Backpack" parent="." instance=ExtResource("9_6n0cn")]
 visible = false
+backpack_graphic = ExtResource("9_2cvdw")
 
 [node name="Backpack2" parent="." instance=ExtResource("9_6n0cn")]
 visible = false
-modulate = Color(0, 1, 0.231373, 1)
+backpack_graphic = ExtResource("10_ugv6s")
 
 [node name="MockExplanation" type="VBoxContainer" parent="."]
 layout_mode = 1

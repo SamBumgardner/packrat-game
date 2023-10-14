@@ -14,12 +14,22 @@ var _target_global_position : Vector2 = Vector2.ZERO
 var _scale_down_original : float = 0.833333333333
 var _scale_up_20_percent : float = 1.2
 
+@export var backpack_graphic : Texture = preload("res://art/pack_1.png")
 @export var _item_capacity : int = 2
 var _contained_elements : Array[int] = []
 var _contained_items : Array[Item] = []
 
 @onready var collision_shape : Shape2D = $CollisionShape2D.shape
 @onready var shadow : Sprite2D = $ShadowSprite
+@onready var pack : Sprite2D = $PackSprite
+@onready var _sfx_pickup : AudioStreamPlayer = $SFX_Pickup
+@onready var _sfx_drop : AudioStreamPlayer = $SFX_BagDrop
+@onready var _sfx_item_added : AudioStreamPlayer = $SFX_ItemAdded
+@onready var _sfx_item_rejected : AudioStreamPlayer = $SFX_ItemRejected
+
+var _tween_wiggle : Tween;
+var _tween_bounce : Tween;
+
 
 ###########
 # GENERAL #
@@ -28,9 +38,36 @@ func _ready():
 	shadow.visible = false
 	_contained_elements.resize(GlobalConstants.Elements.size())
 	_contained_elements.fill(0)
+	_set_graphic(backpack_graphic)
+	_init_tween_wiggle()
+	_init_tween_bounce()
+
+func _set_graphic(texture : Texture) -> void:
+	pack.set_texture(texture)
+	shadow.set_texture(texture)
 
 func _process(delta):
 	_handle_movement(delta)
+
+##################
+# TWEEN HANDLING #
+##################
+func _init_tween_wiggle() -> void:
+	_tween_wiggle = create_tween()
+	_tween_wiggle.tween_property(pack, "rotation", .05, .1).set_trans(Tween.TRANS_CUBIC)
+	_tween_wiggle.tween_property(pack, "rotation", -.05, .1).set_trans(Tween.TRANS_CUBIC)
+	_tween_wiggle.tween_property(pack, "rotation", 0, .1).set_trans(Tween.TRANS_LINEAR)
+	_tween_wiggle.stop()
+	_tween_wiggle.connect("finished", _tween_wiggle.stop)
+
+func _init_tween_bounce() -> void:
+	_tween_bounce = create_tween()
+	_tween_bounce.tween_property(pack, "scale", Vector2(1.3, .9), .2).set_trans(Tween.TRANS_QUART)
+	_tween_bounce.parallel().tween_property(pack, "position", Vector2(0, 20), .2).set_trans(Tween.TRANS_QUART)
+	_tween_bounce.tween_property(pack, "scale", Vector2.ONE, .4).set_trans(Tween.TRANS_LINEAR)
+	_tween_bounce.parallel().tween_property(pack, "position", Vector2(0, 0), .4).set_trans(Tween.TRANS_LINEAR)
+	_tween_bounce.stop()
+	_tween_bounce.connect("finished", _tween_bounce.stop)
 
 #####################
 # MOVEMENT HANDLING #
@@ -72,6 +109,7 @@ func select_and_enlarge_backpack() -> void:
 	$PackSprite.apply_scale(
 		Vector2(_scale_up_20_percent, _scale_up_20_percent)
 	)
+	_sfx_pickup.play()
 
 func stop_deselect_shrink_backpack() -> void:
 	stop_movement()
@@ -80,6 +118,8 @@ func stop_deselect_shrink_backpack() -> void:
 	$PackSprite.apply_scale(
 		Vector2(_scale_down_original, _scale_down_original)
 	)
+	_tween_wiggle.play()
+	_sfx_drop.play()
 	_mouse_overlap_manual_check()
 
 func _mouse_overlap_manual_check() -> void:
@@ -104,6 +144,11 @@ func add_item(item : Item) -> bool:
 		for i in _contained_elements.size():
 			_contained_elements[i] += item.elements[i]
 		added_item = true
+		_tween_bounce.play()
+		_sfx_item_added.play()
+	else:
+		_tween_wiggle.play()
+		_sfx_item_rejected.play()
 	return added_item
 
 func get_max_capacity() -> int:
