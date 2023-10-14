@@ -28,21 +28,20 @@ func _ready() -> void:
 	_tween_bonk_off_pack.stop()
 
 func _trigger_tween_fly_to_pack(target_pack : Backpack, item_accepted : bool):
-	var randomized_offset = Vector2(20, 0).rotated(randf() * PI * 2)
-	
 	_tween_fly_to_pack = create_tween()
-	_tween_fly_to_pack.set_ease(Tween.EASE_IN)
-	_tween_fly_to_pack.tween_property(_fly_to_pack_graphic, "scale", Vector2(.75, .75), .1).set_trans(Tween.TRANS_QUAD)
-	_tween_fly_to_pack.parallel().tween_property(_fly_to_pack_graphic, "position", _fly_to_pack_graphic.position + randomized_offset, .1).set_trans(Tween.TRANS_QUAD)
-	_tween_fly_to_pack.tween_property(_fly_to_pack_graphic, "global_position", target_pack.global_position, 1).set_trans(Tween.TRANS_EXPO)
-	_tween_fly_to_pack.parallel().tween_property(_fly_to_pack_graphic, "rotation", 12, 1).set_trans(Tween.TRANS_QUAD)
-	_tween_fly_to_pack.parallel().tween_property(_fly_to_pack_graphic, "modulate", Color(1,1,1,0), 1).set_trans(Tween.TRANS_EXPO)
 	
+	_tween_fly_to_pack = RegionContentsTweens.init_tween_fly_to_pack(
+		_tween_fly_to_pack, 
+		_fly_to_pack_graphic, 
+		target_pack
+	)
+
 	if item_accepted:
 		_tween_fly_to_pack.connect("finished", target_pack.react_item_added)
 	else:
 		_tween_fly_to_pack.connect("finished", target_pack.react_item_rejected)
 		_tween_fly_to_pack.connect("finished", _trigger_tween_bonk_off_pack)
+	
 	_tween_fly_to_pack.connect("finished", _tween_reveal_new_item.play)
 	_tween_fly_to_pack.play()
 
