@@ -21,6 +21,7 @@ var _contained_items : Array[Item] = []
 
 @onready var collision_shape : Shape2D = $CollisionShape2D.shape
 @onready var shadow : Sprite2D = $ShadowSprite
+@onready var _item_added_particles : CPUParticles2D = $ItemAddedParticles
 @onready var pack : Sprite2D = $PackSprite
 @onready var _sfx_pickup : AudioStreamPlayer = $SFX_Pickup
 @onready var _sfx_drop : AudioStreamPlayer = $SFX_BagDrop
@@ -175,6 +176,7 @@ func remove_items() -> Array[Item]:
 func react_item_added():
 	_tween_bounce.play()
 	_sfx_item_added.play()
+	_item_added_particles.restart()
 
 func react_item_rejected():
 	_tween_wiggle.play()

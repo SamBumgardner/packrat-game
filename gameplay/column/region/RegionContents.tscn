@@ -1,13 +1,9 @@
-[gd_scene load_steps=6 format=3 uid="uid://culsm3gpgril1"]
+[gd_scene load_steps=5 format=3 uid="uid://culsm3gpgril1"]
 
 [ext_resource type="PackedScene" uid="uid://bygdha8oc17o7" path="res://gameplay/column/ColumnContents.tscn" id="1_h4lsb"]
 [ext_resource type="Script" path="res://gameplay/column/region/RegionContents.gd" id="2_08dnk"]
 [ext_resource type="Texture2D" uid="uid://brf4h74py8sal" path="res://icon.svg" id="3_rhexc"]
 [ext_resource type="PackedScene" uid="uid://b75uw1cnn27ae" path="res://gameplay/element_display/SixElementDisplay.tscn" id="4_fn1e6"]
-
-[sub_resource type="Curve" id="Curve_rn5kt"]
-_data = [Vector2(0.00363636, 1), 0.0, 0.0, 0, 0, Vector2(0.483636, 1), 0.0, 0.0, 0, 0, Vector2(0.763636, 0), 0.0, 0.0, 0, 0]
-point_count = 3
 
 [node name="ColumnContentsForRegion" instance=ExtResource("1_h4lsb")]
 script = ExtResource("2_08dnk")
@@ -23,29 +19,11 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
 
-[node name="CPUParticles2D" type="CPUParticles2D" parent="Contents/ItemGraphicControl" index="0"]
-z_index = 1
-position = Vector2(64, 64)
-emitting = false
-amount = 16
-one_shot = true
-explosiveness = 0.75
-direction = Vector2(0, 0)
-spread = 180.0
-gravity = Vector2(0, 0)
-initial_velocity_min = 500.0
-initial_velocity_max = 750.0
-damping_min = 2000.0
-damping_max = 2000.0
-scale_amount_min = 10.0
-scale_amount_max = 20.0
-scale_amount_curve = SubResource("Curve_rn5kt")
-
-[node name="ItemGraphic" type="Sprite2D" parent="Contents/ItemGraphicControl" index="1"]
+[node name="ItemGraphic" type="Sprite2D" parent="Contents/ItemGraphicControl" index="0"]
 texture = ExtResource("3_rhexc")
 centered = false
 
-[node name="FlyToPackItem" type="Sprite2D" parent="Contents/ItemGraphicControl" index="2"]
+[node name="FlyToPackItem" type="Sprite2D" parent="Contents/ItemGraphicControl" index="1"]
 visible = false
 z_index = 1
 texture = ExtResource("3_rhexc")
