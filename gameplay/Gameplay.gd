@@ -2,6 +2,7 @@
 extends Control
 
 const gameplay_column_scene : PackedScene = preload("res://gameplay/column/GameplayColumn.tscn")
+const backpack_scene : PackedScene = preload("res://gameplay/backpack/Backpack.tscn")
 const busy_mouse_icon : Texture = preload("res://art/hourglass_icon.png")
 const NO_COLUMN : int = -1
 
@@ -28,16 +29,22 @@ var _input_enabled : bool = true
 func _ready():
 	database.reset_values()
 	_set_mock_goal()
+	for column in $Columns.get_children(): _init_column(column)
 	_init_backpack($Backpack)
 	_init_backpack($Backpack2)
-	for column in $Columns.get_children(): _init_column(column)
 
 func _init_backpack(backpack : Backpack) -> void:
+	$OriginOfNewBackpacks.add_child(backpack)
 	backpacks.append(backpack)
 	backpack.backpack_entered.connect(_on_backpack_entered)
 	backpack.backpack_exited.connect(_on_backpack_exited)
+	for column in columns:
+		if column.current_backpack == null:
+			column.set_backpack(backpack)
+			break
 	
 func _init_column(column : GameplayColumn) -> void:
+	column.column_index = columns.size()
 	columns.append(column)
 	if column.current_backpack != null:
 		column.set_backpack(column.current_backpack)
@@ -145,12 +152,10 @@ func _select_backpack(backpack : Backpack) -> void:
 ############
 
 func add_column() -> void:
-	print("added extra column (stubbed)")
-	var new_column = gameplay_column_scene.instantiate()
-	_init_column(new_column)
+	_init_column(gameplay_column_scene.instantiate())
 
 func add_backpack() -> void:
-	print("added extra backpack (stubbed)")
+	_init_backpack(backpack_scene.instantiate())
 
 func modify_backpack_capacity(backpack : Backpack, change_by : int) -> void:
 	backpack.change_capacity(backpack.get_max_capacity() + change_by)
