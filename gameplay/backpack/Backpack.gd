@@ -3,6 +3,7 @@ extends Area2D
 
 class_name Backpack
 
+signal display_update
 signal backpack_entered
 signal backpack_exited
 
@@ -160,6 +161,7 @@ func get_current_item_count() -> int:
 
 func change_capacity(new_capacity : int) -> void:
 	_item_capacity = new_capacity
+	display_update.emit(self)
 
 func get_elements() -> Array[int]:
 	return _contained_elements.duplicate()
@@ -181,6 +183,7 @@ func react_item_added():
 	_tween_bounce.play()
 	_sfx_item_added.play()
 	_item_added_particles.restart()
+	display_update.emit(self)
 
 func react_item_rejected():
 	_tween_wiggle.play()
