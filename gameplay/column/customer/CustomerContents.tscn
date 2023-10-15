@@ -1,5 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://dd4yew4pfjlav"]
+[gd_scene load_steps=3 format=3 uid="uid://dd4yew4pfjlav"]
 
 [ext_resource type="PackedScene" uid="uid://bygdha8oc17o7" path="res://gameplay/column/ColumnContents.tscn" id="1_fhxqp"]
+[ext_resource type="Script" path="res://gameplay/column/customer/CustomerContents.gd" id="2_dhokb"]
 
 [node name="ColumnContents" instance=ExtResource("1_fhxqp")]
+script = ExtResource("2_dhokb")
