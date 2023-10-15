@@ -138,6 +138,28 @@ func _select_backpack(backpack : Backpack) -> void:
 		if column.current_backpack == selected_backpack:
 			selected_backpack_home_column = column
 
+############
+# UPGRADES #
+############
+
+func add_column() -> void:
+	print("added extra column (stubbed)")
+
+func add_backpack() -> void:
+	print("added extra backpack (stubbed)")
+
+func modify_backpack_capacity(backpack : Backpack, change_by : int) -> void:
+	backpack.change_capacity(backpack.get_max_capacity() + change_by)
+
+func set_column_next_type(column : GameplayColumn, type : GlobalConstants.ColumnContents) -> void:
+	print("set column ", column, " to change to contents type ", type, " (stubbed)")
+
+func enter_column_change_mode(new_type : GlobalConstants.ColumnContents) -> void:
+	print("entered column change mode for new_type ", new_type, " (stubbed)")
+
+func start_remodel() -> void:
+	print("started remodel, closing all columns (stubbed)")
+
 #############
 # TEMP CODE #
 #############
