@@ -40,7 +40,7 @@ func _ready():
 	for i in range(starting_column_count):
 		_init_column(gameplay_column_scene.instantiate(), starting_column_types[i])
 	for i in range(starting_backpack_count):
-		_init_backpack(backpack_scene.instantiate())
+		_init_backpack(backpack_scene.instantiate() as Backpack)
 
 func _init_backpack(backpack : Backpack) -> void:
 	$OriginOfNewBackpacks.add_child(backpack)
@@ -52,7 +52,7 @@ func _init_backpack(backpack : Backpack) -> void:
 			column.set_backpack(backpack)
 			break
 	
-func _init_column(column : GameplayColumn, column_type : int) -> void:
+func _init_column(column : GameplayColumn, column_type : GlobalConstants.ColumnContents) -> void:
 	column.column_index = columns.size()
 	column.column_type = column_type
 	columns.append(column)

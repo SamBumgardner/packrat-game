@@ -48,9 +48,9 @@ func next_day() -> void:
 		ready_for_next_day.emit()
 	else:
 		_column_contents.next_day(current_backpack)
-	backpack_display.update_display(current_backpack)
 
 func _on_content_actions_complete() -> void:
+	backpack_display.update_display(current_backpack)
 	ready_for_next_day.emit()
 
 ####################
@@ -64,12 +64,18 @@ func set_backpack(newBackpack : Backpack) -> void:
 		new_shadow.global_position = anchor_point.global_position
 		current_backpack.reparent(anchor_point)
 		current_backpack.set_target_position(anchor_point.global_position)
+		if !current_backpack.display_update.is_connected(_on_backpack_display_update):
+			current_backpack.display_update.connect(_on_backpack_display_update)
 	backpack_display.update_display(current_backpack)
 
 func snap_backpack_to_anchor() -> void:
 	if current_backpack != null:
 		current_backpack.global_position = anchor_point.global_position
 		current_backpack.stop_movement()
+
+func _on_backpack_display_update(updatedBackpack : Backpack) -> void:
+	if current_backpack == updatedBackpack:
+		backpack_display.update_display(updatedBackpack)
 
 ##################
 # INPUT HANDLING #
