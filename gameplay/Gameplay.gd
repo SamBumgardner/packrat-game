@@ -6,6 +6,14 @@ const backpack_scene : PackedScene = preload("res://gameplay/backpack/Backpack.t
 const busy_mouse_icon : Texture = preload("res://art/hourglass_icon.png")
 const NO_COLUMN : int = -1
 
+@export var starting_column_count : int = 3
+@export var starting_column_types : Array[GlobalConstants.ColumnContents] = [
+	GlobalConstants.ColumnContents.REGION,
+	GlobalConstants.ColumnContents.NONE,
+	GlobalConstants.ColumnContents.NONE
+]
+@export var starting_backpack_count : int = 2
+
 @onready var database = get_node("/root/Database")
 
 var mock_goal : int = 12
@@ -29,9 +37,10 @@ var _input_enabled : bool = true
 func _ready():
 	database.reset_values()
 	_set_mock_goal()
-	for column in $Columns.get_children(): _init_column(column)
-	_init_backpack($Backpack)
-	_init_backpack($Backpack2)
+	for i in range(starting_column_count):
+		_init_column(gameplay_column_scene.instantiate(), starting_column_types[i])
+	for i in range(starting_backpack_count):
+		_init_backpack(backpack_scene.instantiate())
 
 func _init_backpack(backpack : Backpack) -> void:
 	$OriginOfNewBackpacks.add_child(backpack)
@@ -43,8 +52,9 @@ func _init_backpack(backpack : Backpack) -> void:
 			column.set_backpack(backpack)
 			break
 	
-func _init_column(column : GameplayColumn) -> void:
+func _init_column(column : GameplayColumn, column_type : int) -> void:
 	column.column_index = columns.size()
+	column.column_type = column_type
 	columns.append(column)
 	if column.current_backpack != null:
 		column.set_backpack(column.current_backpack)
@@ -152,7 +162,7 @@ func _select_backpack(backpack : Backpack) -> void:
 ############
 
 func add_column() -> void:
-	_init_column(gameplay_column_scene.instantiate())
+	_init_column(gameplay_column_scene.instantiate(), GlobalConstants.ColumnContents.NONE)
 
 func add_backpack() -> void:
 	_init_backpack(backpack_scene.instantiate())
