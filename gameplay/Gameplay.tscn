@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://crk2s578wsl64"]
+[gd_scene load_steps=8 format=3 uid="uid://crk2s578wsl64"]
 
 [ext_resource type="Script" path="res://gameplay/Gameplay.gd" id="1_cv37s"]
 [ext_resource type="PackedScene" uid="uid://c25adoveil6xs" path="res://hud/CurrencySilverCoin.tscn" id="2_a1m00"]
@@ -7,10 +7,6 @@
 [ext_resource type="Script" path="res://gameplay/NextDayButton.gd" id="4_fxq41"]
 [ext_resource type="FontFile" uid="uid://b0t1dk3g11t5r" path="res://fonts/Roboto/Roboto-Regular.ttf" id="5_rf4ff"]
 [ext_resource type="PackedScene" uid="uid://e1hatl7xepnb" path="res://hud/DaysPassedTracker.tscn" id="7_6ilhd"]
-[ext_resource type="PackedScene" uid="uid://dklr5kcqww66r" path="res://gameplay/column/GameplayColumn.tscn" id="8_pe5uu"]
-[ext_resource type="PackedScene" uid="uid://24e0kif4kkdt" path="res://gameplay/backpack/Backpack.tscn" id="9_6n0cn"]
-[ext_resource type="Texture2D" uid="uid://cqd3yidq15cxo" path="res://art/pack_2.png" id="9_qu4xq"]
-[ext_resource type="Texture2D" uid="uid://dpcbkq0fenpr1" path="res://art/pack_3.png" id="10_s5p68"]
 
 [node name="Gameplay" type="Control"]
 layout_mode = 3
@@ -67,24 +63,6 @@ offset_bottom = 605.0
 grow_horizontal = 2
 theme_override_constants/separation = 10
 alignment = 1
-
-[node name="GameplayColumn" parent="Columns" instance=ExtResource("8_pe5uu")]
-layout_mode = 2
-column_type = 1
-
-[node name="GameplayColumn2" parent="Columns" instance=ExtResource("8_pe5uu")]
-layout_mode = 2
-column_index = 1
-
-[node name="GameplayColumn3" parent="Columns" instance=ExtResource("8_pe5uu")]
-layout_mode = 2
-column_index = 2
-
-[node name="Backpack" parent="." instance=ExtResource("9_6n0cn")]
-backpack_graphic = ExtResource("9_qu4xq")
-
-[node name="Backpack2" parent="." instance=ExtResource("9_6n0cn")]
-backpack_graphic = ExtResource("10_s5p68")
 
 [node name="MockExplanation" type="VBoxContainer" parent="."]
 layout_mode = 1
