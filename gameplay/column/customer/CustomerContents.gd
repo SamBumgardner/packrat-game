@@ -9,3 +9,9 @@ func _ready():
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	pass
+
+#####################
+# NEXT DAY HANDLING #
+#####################
+func next_day(column_backpack : Backpack) -> void:
+	content_actions_complete.emit()

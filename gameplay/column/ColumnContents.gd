@@ -1,5 +1,8 @@
 # Abstract to inherit from.
+#
 # Used by RegionContents and CustomerContents.
+# Descendents should emit `content_actions_complete` when `next_day` is called.
+# Otherwise day will never end.
 class_name ColumnContents
 
 extends VBoxContainer
@@ -13,5 +16,7 @@ func set_header_properties(graphic : Texture, name : String) -> void:
 	_header_graphic.set_texture(graphic)
 	_header_label.text = name
 
+# Function to overwrite as happening at the end of the last animation.
+# Otherwise day will never end.
 func next_day(backpack : Backpack) -> void:
 	pass
