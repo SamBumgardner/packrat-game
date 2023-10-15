@@ -1,11 +1,11 @@
 # Scene to render when the game is finished.
 extends Control
 
+const gameplay_column_scene : PackedScene = preload("res://gameplay/column/GameplayColumn.tscn")
 const busy_mouse_icon : Texture = preload("res://art/hourglass_icon.png")
 const NO_COLUMN : int = -1
 
 @onready var database = get_node("/root/Database")
-@onready var columns = $Columns.get_children() as Array[GameplayColumn]
 
 var mock_goal : int = 12
 var mock_victory : bool = false
@@ -16,6 +16,7 @@ var selected_backpack : Backpack = null
 var selected_backpack_home_column : GameplayColumn = null
 
 var backpacks : Array[Backpack] = []
+var columns : Array[GameplayColumn] = []
 
 var _columns_executing_day : int = 0
 var _columns_finished_day : int = 0
@@ -29,21 +30,22 @@ func _ready():
 	_set_mock_goal()
 	_init_backpack($Backpack)
 	_init_backpack($Backpack2)
-	_init_columns()
+	for column in $Columns.get_children(): _init_column(column)
 
 func _init_backpack(backpack : Backpack) -> void:
 	backpacks.append(backpack)
 	backpack.backpack_entered.connect(_on_backpack_entered)
 	backpack.backpack_exited.connect(_on_backpack_exited)
 	
-func _init_columns() -> void:
-	for column in columns:
-		if column.current_backpack != null:
-			column.set_backpack(column.current_backpack)
-			column.current_backpack.visible = true
-		column.column_entered.connect(_on_column_entered)
-		column.column_exited.connect(_on_column_exited)
-		column.ready_for_next_day.connect(_on_column_ready_for_next_day)
+func _init_column(column : GameplayColumn) -> void:
+	columns.append(column)
+	if column.current_backpack != null:
+		column.set_backpack(column.current_backpack)
+		column.current_backpack.visible = true
+	column.column_entered.connect(_on_column_entered)
+	column.column_exited.connect(_on_column_exited)
+	column.ready_for_next_day.connect(_on_column_ready_for_next_day)
+	$Columns.add_child(column)
 
 # handles backpack positioning after initial load + after new columns added
 func _on_columns_sort_children() -> void:
@@ -144,6 +146,8 @@ func _select_backpack(backpack : Backpack) -> void:
 
 func add_column() -> void:
 	print("added extra column (stubbed)")
+	var new_column = gameplay_column_scene.instantiate()
+	_init_column(new_column)
 
 func add_backpack() -> void:
 	print("added extra backpack (stubbed)")
