@@ -1,3 +1,5 @@
+# Abstract to inherit from.
+# Used by RegionContents and CustomerContents.
 class_name ColumnContents
 
 extends VBoxContainer

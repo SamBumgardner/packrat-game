@@ -7,8 +7,15 @@ signal column_entered
 signal column_exited
 signal ready_for_next_day
 
+const CUSTOMER_CONTENTS_SCENE = preload(
+	"res://gameplay/column/customer/CustomerContents.tscn"
+)
 const REGION_CONTENTS_SCENE = preload("res://gameplay/column/region/RegionContents.tscn")
-const COLUMN_CONTENTS_PRELOAD : Array[Resource] = [null, REGION_CONTENTS_SCENE]
+const COLUMN_CONTENTS_PRELOAD : Array[Resource] = [
+	null,
+	REGION_CONTENTS_SCENE,
+	CUSTOMER_CONTENTS_SCENE
+]
 
 @export var column_index : int
 @export var current_backpack : Backpack
