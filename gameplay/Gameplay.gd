@@ -217,9 +217,24 @@ func _attempt_to_reveal_next_column() -> void:
 
 func _input(event):
 	if _input_enabled:
+		# UPGRADES
+		if event.as_text() == "A" && (event as InputEventKey).is_released():
+			add_column()
+		
+		if event.as_text() == "S" && (event as InputEventKey).is_released():
+			add_backpack()
+		
+		if event.as_text() == "D" && (event as InputEventKey).is_released():
+			modify_backpack_capacity(backpacks[0], 1)
+		
+		if event.as_text() == "F" && (event as InputEventKey).is_released():
+			set_column_next_type(columns[1], GlobalConstants.ColumnContents.REGION)
+	
+		# BACKPACK MOVEMENT
 		if event.is_action_pressed("gameplay_select"):
 			_handle_backpack_selection()
 		
+		# TOTALLY TEMP
 		if event.is_action_pressed("ui_right"):
 			shift_backpack_column(backpacks.front(), 1)
 		
