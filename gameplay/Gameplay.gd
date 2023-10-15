@@ -68,6 +68,7 @@ func _increment_number_of_days() -> void:
 	database.increment_day_count()
 
 	if not mock_victory and database.day_count >= mock_goal:
+		enable_cursor()
 		get_tree().change_scene_to_file(
 			"res://gameplay/game_finished/GameFinished.tscn"
 		)
@@ -170,10 +171,8 @@ func shift_backpack_column(backpack : Backpack, shift_by : int) -> void:
 		columns[target_column_index]
 	)
 
-func swap_column_backpacks(
-	column1 : GameplayColumn,
-	column2 : GameplayColumn
-) -> void:
+func swap_column_backpacks(column1 : GameplayColumn, 
+		column2 : GameplayColumn) -> void:
 	var swap : Backpack = column1.current_backpack
 	column1.set_backpack(column2.current_backpack)
 	column2.set_backpack(swap)
