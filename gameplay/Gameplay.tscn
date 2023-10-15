@@ -81,6 +81,7 @@ current_backpack = NodePath("../../Backpack2")
 [node name="GameplayColumn3" parent="Columns" instance=ExtResource("8_pe5uu")]
 layout_mode = 2
 column_index = 2
+column_type = 2
 
 [node name="GameplayColumn4" parent="Columns" instance=ExtResource("8_pe5uu")]
 visible = false
