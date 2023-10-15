@@ -1,4 +1,4 @@
 class_name GlobalConstants
 
 enum Elements {NATURE, EARTH, FIRE, WATER, AIR, WILD}
-enum ColumnContents {NONE, REGION}
+enum ColumnContents {NONE, REGION, CUSTOMER}

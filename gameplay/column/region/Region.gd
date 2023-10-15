@@ -1,3 +1,4 @@
+# Defines logical unit Region as a Resource with properties.
 extends Resource
 
 class_name Region

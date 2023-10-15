@@ -1,3 +1,4 @@
+# Displays a region and handles its next day triggered logic.
 class_name RegionContents
 
 extends ColumnContents
