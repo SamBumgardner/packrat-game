@@ -19,6 +19,7 @@ const COLUMN_CONTENTS_PRELOAD : Array[Resource] = [
 
 @export var column_index : int
 @export var current_backpack : Backpack
+@export var start_column_type : GlobalConstants.ColumnContents
 @export var column_type : GlobalConstants.ColumnContents
 
 @onready var anchor_point : Control = $AnchorPoint
@@ -28,10 +29,19 @@ const COLUMN_CONTENTS_PRELOAD : Array[Resource] = [
 var _column_contents : ColumnContents
 
 func _ready() -> void:
-	if column_type != GlobalConstants.ColumnContents.NONE:
-		_column_contents = COLUMN_CONTENTS_PRELOAD[column_type].instantiate()
-		_column_contents.content_actions_complete.connect(_on_content_actions_complete)
-		contents_root.add_child(_column_contents)
+	set_column_type(start_column_type)
+
+func set_column_type(new_type : GlobalConstants.ColumnContents) -> void:
+	if column_type != new_type:
+		if column_type != GlobalConstants.ColumnContents.NONE:
+			_column_contents.queue_free()
+	
+		column_type = new_type
+	
+		if column_type != GlobalConstants.ColumnContents.NONE:
+			_column_contents = COLUMN_CONTENTS_PRELOAD[column_type].instantiate()
+			_column_contents.content_actions_complete.connect(_on_content_actions_complete)
+			contents_root.add_child(_column_contents)
 
 func get_anchor_point_position() -> Vector2:
 	return anchor_point.global_position

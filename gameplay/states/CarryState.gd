@@ -1,16 +1,12 @@
-class_name UpgradeState
+class_name CarryState
 
 extends GameplayState
-
-const HAMMER_MOUSE_ICON : Texture = preload("res://art/hammer_icon.png")
-
-
 
 func _init():
 	pass
 
 func _on_enter(gameplay : Gameplay) -> void:
-	Input.set_custom_mouse_cursor(HAMMER_MOUSE_ICON)
+	Input.set_custom_mouse_cursor(null)
 	gameplay.disable_next_day()
 
 func _on_exit(gameplay : Gameplay) -> void:
@@ -18,12 +14,9 @@ func _on_exit(gameplay : Gameplay) -> void:
 
 func process_input(gameplay : Gameplay, event : InputEvent) -> Gameplay.State:
 	var next_state = Gameplay.State.NO_CHANGE
-	if event.is_action_pressed("gameplay_cancel"):
-		next_state = Gameplay.State.SELECT
-	
+
+	# BACKPACK MOVEMENT
 	if event.is_action_pressed("gameplay_select"):
-		var succeeded = gameplay.attempt_staged_upgrade()
-		if succeeded:
-			next_state = Gameplay.State.SELECT
+		gameplay._handle_backpack_selection()
 	
 	return next_state
