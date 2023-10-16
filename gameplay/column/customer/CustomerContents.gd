@@ -21,13 +21,13 @@ func _process(delta):
 	pass
 
 func _get_cannot_buy(column_backpack : Backpack):
-	return (
-		not _get_has_backpack(column_backpack)
-		or not _get_wants_backpack(column_backpack)
-	)
+	return not _get_wants_backpack(column_backpack)
 
 func _get_has_backpack(column_backpack : Backpack):
 	return column_backpack != null
+
+func _get_has_at_least_one_element(column_backpack : Backpack):
+	return _get_unique_element_count(column_backpack) > 0
 
 func _get_unique_element_count(column_backpack : Backpack) -> int:
 	var backpack_elements = column_backpack.get_elements()
@@ -37,12 +37,12 @@ func _get_unique_element_count(column_backpack : Backpack) -> int:
 			.size()
 	)
 
+# Returns true if the current customer will buy the backpack's contents.
 func _get_wants_backpack(column_backpack : Backpack) -> bool:
-	if not _get_has_backpack(column_backpack):
+	if _customer == null or not _get_has_backpack(column_backpack):
 		return false
 
-	var backpack_elements = column_backpack.get_elements()
-	return not backpack_elements.is_empty() and backpack_elements.size() > 0
+	return _get_has_at_least_one_element(column_backpack)
 
 func _get_worth_silver_coin(column_backpack : Backpack) -> int:
 	var backpack_elements = column_backpack.get_elements()
@@ -56,6 +56,7 @@ func _set_purchase_backpack_contents(column_backpack : Backpack) -> void:
 		database.silver_coin_count
 		+ worth_silver_coin
 	)
+	database.increment_trade_count()
 
 #####################
 # NEXT DAY HANDLING #
