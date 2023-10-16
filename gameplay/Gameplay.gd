@@ -10,7 +10,7 @@ const NO_COLUMN : int = -1
 @export var starting_column_types : Array[GlobalConstants.ColumnContents] = [
 	GlobalConstants.ColumnContents.REGION,
 	GlobalConstants.ColumnContents.NONE,
-	GlobalConstants.ColumnContents.NONE
+	GlobalConstants.ColumnContents.CUSTOMER
 ]
 @export var starting_backpack_count : int = 2
 
