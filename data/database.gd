@@ -21,5 +21,8 @@ func reset_values() -> void:
 	day_count = _initial_day_count
 	updated_day_count.emit()
 
-	silver_coin_count = _initial_silver_coin_count
+	set_silver_coin_count(_initial_silver_coin_count)
+
+func set_silver_coin_count(updated_count : int) -> void:
+	silver_coin_count = updated_count
 	updated_silver_coin_count.emit()
