@@ -93,6 +93,8 @@ func _on_columns_sort_children() -> void:
 ##################
 # STATE HANDLING #
 ##################
+func _input(event):
+	set_current_state(states[current_state].process_input(self, event))
 
 func set_current_state(new_state : State) -> void:
 	if new_state != State.NO_CHANGE:
@@ -185,6 +187,12 @@ func _select_backpack(backpack : Backpack) -> void:
 		if column.current_backpack == selected_backpack:
 			selected_backpack_home_column = column
 
+func swap_column_backpacks(column1 : GameplayColumn, 
+		column2 : GameplayColumn) -> void:
+	var swap : Backpack = column1.current_backpack
+	column1.set_backpack(column2.current_backpack)
+	column2.set_backpack(swap)
+
 ############
 # UPGRADES #
 ############
@@ -238,61 +246,3 @@ func enter_column_change_mode(new_type : GlobalConstants.ColumnContents) -> void
 func start_remodel() -> void:
 	set_current_state(State.UPGRADE)
 	print("started remodel, closing all columns (stubbed)")
-
-#############
-# TEMP CODE #
-#############
-func shift_backpack_column(backpack : Backpack, shift_by : int) -> void:
-	var current_backpack_column_index = columns.size()
-	var last_visible_column_index : int = -1
-	for i in range(columns.size()):
-		if columns[i].current_backpack == backpack:
-			current_backpack_column_index = mini(
-				current_backpack_column_index,
-				i
-			)
-
-		if columns[i].visible:
-			last_visible_column_index = i 
-		else:
-			break;
-	
-	var visible_column_count : int = last_visible_column_index + 1
-	var target_column_index : int
-	if current_backpack_column_index > last_visible_column_index:
-		target_column_index = last_visible_column_index
-	else:
-		target_column_index = current_backpack_column_index + shift_by
-		if target_column_index < 0:
-			target_column_index += visible_column_count
-		target_column_index = target_column_index % visible_column_count
-	
-	swap_column_backpacks(
-		columns[current_backpack_column_index],
-		columns[target_column_index]
-	)
-
-func swap_column_backpacks(column1 : GameplayColumn, 
-		column2 : GameplayColumn) -> void:
-	var swap : Backpack = column1.current_backpack
-	column1.set_backpack(column2.current_backpack)
-	column2.set_backpack(swap)
-
-func _attempt_to_hide_last_column() -> void:
-	var reversed_columns = $Columns.get_children()
-	# Do not hide the last column if there is just one left.
-	reversed_columns = reversed_columns.slice(1)
-	reversed_columns.reverse()
-	for column in reversed_columns:
-		if column.visible:
-			column.visible = false
-			return
-
-func _attempt_to_reveal_next_column() -> void:
-	for column in $Columns.get_children():
-		if not column.visible:
-			column.visible = true
-			return
-
-func _input(event):
-	set_current_state(states[current_state].process_input(self, event))
