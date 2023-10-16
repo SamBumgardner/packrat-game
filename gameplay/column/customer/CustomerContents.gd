@@ -21,6 +21,12 @@ func _ready():
 func _process(delta):
 	pass
 
+func _get_cannot_buy(column_backpack : Backpack):
+	return (
+		not _get_has_backpack(column_backpack)
+		or not _get_wants_backpack(column_backpack)
+	)
+
 func _get_has_backpack(column_backpack : Backpack):
 	return column_backpack != null
 
@@ -43,17 +49,7 @@ func _get_worth_silver_coin(column_backpack : Backpack) -> int:
 	var backpack_elements = column_backpack.get_elements()
 	return _get_unique_element_count(column_backpack)
 
-#####################
-# NEXT DAY HANDLING #
-#####################
-func next_day(column_backpack : Backpack) -> void:
-	if (
-		not _get_has_backpack(column_backpack)
-		or not _get_wants_backpack(column_backpack)
-	):
-		content_actions_complete.emit()
-		return
-
+func _set_purchase_backpack_contents(column_backpack : Backpack) -> void:
 	var worth_silver_coin = _get_worth_silver_coin(column_backpack)
 
 	database.set_silver_coin_count(
@@ -62,8 +58,17 @@ func next_day(column_backpack : Backpack) -> void:
 	)
 	column_backpack.remove_items()
 
-	_trigger_tween_fly_from_pack_to_customer(column_backpack)
+#####################
+# NEXT DAY HANDLING #
+#####################
+func next_day(column_backpack : Backpack) -> void:
+	if (_get_cannot_buy(column_backpack)):
+		content_actions_complete.emit()
+		return
 
+	_set_purchase_backpack_contents(column_backpack)
+
+	_trigger_tween_fly_from_pack_to_customer(column_backpack)
 
 func _trigger_tween_fly_from_pack_to_customer(target_pack : Backpack):
 	_tween_fly_from_pack_to_customer = create_tween()
