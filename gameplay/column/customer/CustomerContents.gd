@@ -9,16 +9,11 @@ extends ColumnContents
 
 @onready var database = get_node("/root/Database")
 
-@onready var _fly_from_pack_to_customer_graphic : Sprite2D = (
-	$Contents/ItemGraphicControl/FlyToPackItem
-)
-@onready var _tween_fly_from_pack_to_customer : Tween = create_tween()
-
 var header_name : String = ""
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	set_mock_customer()
+	_set_mock_customer()
 	set_header_properties(_customer.graphic, _customer.name)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -72,27 +67,11 @@ func next_day(column_backpack : Backpack) -> void:
 
 	_set_purchase_backpack_contents(column_backpack)
 
-	_trigger_tween_fly_from_pack_to_customer(column_backpack)
+	content_actions_complete.emit()
 
 func set_customer(new_customer : Customer) -> void:
 	_customer = new_customer
 	header_name = _customer.name
 
-func set_mock_customer() -> void:
+func _set_mock_customer() -> void:
 	set_customer(load("res://gameplay/column/customer/customer001.tres"))
-
-func _trigger_tween_fly_from_pack_to_customer(target_pack : Backpack):
-	_tween_fly_from_pack_to_customer = create_tween()
-	_tween_fly_from_pack_to_customer = (
-		CustomerContentsTweens.init_tween_fly_from_pack_to_customer(
-			_tween_fly_from_pack_to_customer, 
-			_fly_from_pack_to_customer_graphic, 
-			target_pack
-		)
-	)
-
-	_tween_fly_from_pack_to_customer.connect(
-		"finished",
-		emit_signal.bind("content_actions_complete")
-	)
-	_tween_fly_from_pack_to_customer.play()
