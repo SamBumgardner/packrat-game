@@ -232,7 +232,7 @@ func enter_backpack_capacity_upgrade_mode() -> void:
 
 func enter_column_change_mode(new_type : GlobalConstants.ColumnContents) -> void:
 	set_current_state(State.UPGRADE)
-	staged_upgrade = upgrade_set_column_next_type.bind(GlobalConstants.ColumnContents.REGION)
+	staged_upgrade = upgrade_set_column_next_type.bind(new_type)
 	print("entered column change mode for new_type ", new_type, " (stubbed)")
 
 func start_remodel() -> void:
