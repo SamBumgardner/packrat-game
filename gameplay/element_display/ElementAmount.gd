@@ -7,7 +7,7 @@ extends HBoxContainer
 var amount : int = 0
 
 func _ready():
-		$ElementIcon.modulate = color_tint
+	$ElementIcon.modulate = color_tint
 
 func set_amount(new_amount) -> int:
 	amount = new_amount
