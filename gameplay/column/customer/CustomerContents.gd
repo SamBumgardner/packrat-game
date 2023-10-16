@@ -5,6 +5,8 @@ class_name CustomerContents
 
 extends ColumnContents
 
+@export var _customer : Customer = null
+
 @onready var database = get_node("/root/Database")
 
 @onready var _fly_from_pack_to_customer_graphic : Sprite2D = (
@@ -12,10 +14,12 @@ extends ColumnContents
 )
 @onready var _tween_fly_from_pack_to_customer : Tween = create_tween()
 
+var header_name : String = ""
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	pass # Replace with function body.
-
+	set_mock_customer()
+	set_header_properties(_customer.graphic, _customer.name)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
@@ -69,6 +73,13 @@ func next_day(column_backpack : Backpack) -> void:
 	_set_purchase_backpack_contents(column_backpack)
 
 	_trigger_tween_fly_from_pack_to_customer(column_backpack)
+
+func set_customer(new_customer : Customer) -> void:
+	_customer = new_customer
+	header_name = _customer.name
+
+func set_mock_customer() -> void:
+	set_customer(load("res://gameplay/column/customer/customer001.tres"))
 
 func _trigger_tween_fly_from_pack_to_customer(target_pack : Backpack):
 	_tween_fly_from_pack_to_customer = create_tween()

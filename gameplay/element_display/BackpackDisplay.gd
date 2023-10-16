@@ -28,3 +28,4 @@ func update_capacity(max_cap : int, current : int) -> void:
 
 func hide_capacity() -> void:
 	$HBoxContainer.hide()
+	
