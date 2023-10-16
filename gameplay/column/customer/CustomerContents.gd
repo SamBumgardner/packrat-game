@@ -7,6 +7,11 @@ extends ColumnContents
 
 @onready var database = get_node("/root/Database")
 
+@onready var _fly_from_pack_to_customer_graphic : Sprite2D = (
+	$Contents/ItemGraphicControl/FlyToPackItem
+)
+@onready var _tween_fly_from_pack_to_customer : Tween = create_tween()
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
 	pass # Replace with function body.
@@ -42,17 +47,36 @@ func _get_worth_silver_coin(column_backpack : Backpack) -> int:
 # NEXT DAY HANDLING #
 #####################
 func next_day(column_backpack : Backpack) -> void:
-	if not _get_has_backpack(column_backpack):
+	if (
+		not _get_has_backpack(column_backpack)
+		or not _get_wants_backpack(column_backpack)
+	):
 		content_actions_complete.emit()
 		return
 
-	if _get_wants_backpack(column_backpack):
-		var worth_silver_coin = _get_worth_silver_coin(column_backpack)
+	var worth_silver_coin = _get_worth_silver_coin(column_backpack)
 
-		database.set_silver_coin_count(
-			database.silver_coin_count
-			+ worth_silver_coin
+	database.set_silver_coin_count(
+		database.silver_coin_count
+		+ worth_silver_coin
+	)
+	column_backpack.remove_items()
+
+	_trigger_tween_fly_from_pack_to_customer(column_backpack)
+
+
+func _trigger_tween_fly_from_pack_to_customer(target_pack : Backpack):
+	_tween_fly_from_pack_to_customer = create_tween()
+	_tween_fly_from_pack_to_customer = (
+		CustomerContentsTweens.init_tween_fly_from_pack_to_customer(
+			_tween_fly_from_pack_to_customer, 
+			_fly_from_pack_to_customer_graphic, 
+			target_pack
 		)
-		column_backpack.remove_items()
+	)
 
-	content_actions_complete.emit()
+	_tween_fly_from_pack_to_customer.connect(
+		"finished",
+		emit_signal.bind("content_actions_complete")
+	)
+	_tween_fly_from_pack_to_customer.play()

@@ -1,7 +1,59 @@
-[gd_scene load_steps=3 format=3 uid="uid://dd4yew4pfjlav"]
+[gd_scene load_steps=5 format=3 uid="uid://dd4yew4pfjlav"]
 
 [ext_resource type="PackedScene" uid="uid://bygdha8oc17o7" path="res://gameplay/column/ColumnContents.tscn" id="1_fhxqp"]
 [ext_resource type="Script" path="res://gameplay/column/customer/CustomerContents.gd" id="2_dhokb"]
+[ext_resource type="Texture2D" uid="uid://brf4h74py8sal" path="res://icon.svg" id="3_m1uey"]
+[ext_resource type="FontFile" uid="uid://cddebactj84w3" path="res://fonts/Roboto/Roboto-Medium.ttf" id="5_buj63"]
 
 [node name="ColumnContents" instance=ExtResource("1_fhxqp")]
 script = ExtResource("2_dhokb")
+
+[node name="Contents" type="VBoxContainer" parent="." index="1"]
+layout_mode = 2
+
+[node name="WantsHeader" type="Label" parent="Contents" index="0"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_buj63")
+text = "Wants:"
+
+[node name="WantsDescription" type="Label" parent="Contents" index="1"]
+layout_mode = 2
+text = "Unique elements"
+
+[node name="BonusHeader" type="Label" parent="Contents" index="2"]
+visible = false
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_buj63")
+text = "Bonus:"
+
+[node name="BonusDescription" type="Label" parent="Contents" index="3"]
+visible = false
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_buj63")
+text = "None"
+
+[node name="RewardHeader" type="Label" parent="Contents" index="4"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_buj63")
+text = "Reward:"
+
+[node name="RewardDescription" type="Label" parent="Contents" index="5"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("5_buj63")
+text = "1 Silver Coin each"
+
+[node name="ItemGraphicControl" type="Control" parent="Contents" index="6"]
+custom_minimum_size = Vector2(128, 128)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 3
+
+[node name="ItemGraphic" type="Sprite2D" parent="Contents/ItemGraphicControl" index="0"]
+texture = ExtResource("3_m1uey")
+centered = false
+
+[node name="FlyToPackItem" type="Sprite2D" parent="Contents/ItemGraphicControl" index="1"]
+visible = false
+z_index = 1
+texture = ExtResource("3_m1uey")
+centered = false
