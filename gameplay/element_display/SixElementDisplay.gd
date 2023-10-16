@@ -2,12 +2,17 @@ class_name SixElementDisplay
 
 extends VBoxContainer
 
-@onready var elements : Array[ElementAmount] = [$HBoxContainer/Nature,
-		$HBoxContainer/Earth, $HBoxContainer2/Fire, $HBoxContainer2/Water,
-		$HBoxContainer3/Air, $HBoxContainer3/Wild]
+@onready var elements : Array[ElementAmount] = [
+	$HBoxContainer/Nature,
+	$HBoxContainer/Earth,
+	$HBoxContainer2/Fire,
+	$HBoxContainer2/Water,
+	$HBoxContainer3/Air,
+	$HBoxContainer3/Wild
+]
 @onready var _sorted_elements : Array[ElementAmount] = elements.duplicate()
 
-const EMPTY_ELEMENTS : Array[int] = [0,0,0,0,0,0]
+const EMPTY_ELEMENTS : Array[int] = [0, 0, 0, 0, 0, 0]
 
 func _ready() -> void:
 	init_element_amounts()

@@ -1,7 +1,9 @@
 # Scene to render menu options when the game is started.
 extends Control
 
-@onready var start_button = $TitleContentContainer/ButtonsContainer/StartButton as Button
+@onready var start_button = (
+	$TitleContentContainer/ButtonsContainer/StartButton as Button
+)
 
 func _ready():
 	start_button.grab_focus()

@@ -9,7 +9,9 @@ extends ColumnContents
 @onready var _element_display : SixElementDisplay = $Contents/SixElementDisplay
 @onready var _item_name : RichTextLabel = $Contents/ItemName
 @onready var _item_graphic : Sprite2D = $Contents/ItemGraphicControl/ItemGraphic
-@onready var _fly_to_pack_graphic : Sprite2D = $Contents/ItemGraphicControl/FlyToPackItem
+@onready var _fly_to_pack_graphic : Sprite2D = (
+	$Contents/ItemGraphicControl/FlyToPackItem
+)
 @onready var _fly_item_sound : AudioStreamPlayer = $SFX_FlyItemSound
 
 @onready var _tween_fly_to_pack : Tween = create_tween()
@@ -37,12 +39,18 @@ func _init_tween_reveal_new_item():
 		_tween_reveal_new_item,
 		_item_graphic,
 		_item_name,
-		_element_display	
+		_element_display
 	)
 	_tween_reveal_new_item.stop()
 
-	_tween_reveal_new_item.connect("step_finished", func(step_i): if step_i == 0: update_item_display())
-	_tween_reveal_new_item.connect("finished", emit_signal.bind("content_actions_complete"))
+	_tween_reveal_new_item.connect(
+		"step_finished",
+		func(step_i): if step_i == 0: update_item_display()
+	)
+	_tween_reveal_new_item.connect(
+		"finished",
+		emit_signal.bind("content_actions_complete")
+	)
 	_tween_reveal_new_item.connect("finished", _tween_reveal_new_item.stop)
 
 #####################
