@@ -8,36 +8,36 @@
 script = ExtResource("2_dhokb")
 _customer = null
 
-[node name="Contents" type="VBoxContainer" parent="." index="1"]
+[node name="TradeOffer" type="VBoxContainer" parent="." index="1"]
 layout_mode = 2
 
-[node name="WantsHeader" type="Label" parent="Contents" index="0"]
+[node name="WantsHeader" type="Label" parent="TradeOffer" index="0"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("5_buj63")
 text = "Wants:"
 
-[node name="WantsDescription" type="Label" parent="Contents" index="1"]
+[node name="WantsDescription" type="Label" parent="TradeOffer" index="1"]
 layout_mode = 2
 text = "Unique elements"
 
-[node name="BonusHeader" type="Label" parent="Contents" index="2"]
+[node name="BonusHeader" type="Label" parent="TradeOffer" index="2"]
 visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("5_buj63")
 text = "Bonus:"
 
-[node name="BonusDescription" type="Label" parent="Contents" index="3"]
+[node name="BonusDescription" type="Label" parent="TradeOffer" index="3"]
 visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("5_buj63")
 text = "None"
 
-[node name="RewardHeader" type="Label" parent="Contents" index="4"]
+[node name="RewardHeader" type="Label" parent="TradeOffer" index="4"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("5_buj63")
 text = "Reward:"
 
-[node name="RewardDescription" type="Label" parent="Contents" index="5"]
+[node name="RewardDescription" type="Label" parent="TradeOffer" index="5"]
 layout_mode = 2
 theme_override_fonts/font = ExtResource("5_buj63")
 text = "1 Silver Coin each"
