@@ -52,11 +52,11 @@ func _get_worth_silver_coin(column_backpack : Backpack) -> int:
 func _set_purchase_backpack_contents(column_backpack : Backpack) -> void:
 	var worth_silver_coin = _get_worth_silver_coin(column_backpack)
 
+	column_backpack.remove_items()
 	database.set_silver_coin_count(
 		database.silver_coin_count
 		+ worth_silver_coin
 	)
-	column_backpack.remove_items()
 
 #####################
 # NEXT DAY HANDLING #
