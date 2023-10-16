@@ -1,10 +1,19 @@
 # Scene to render when the game is finished.
+class_name Gameplay
+
 extends Control
 
 const gameplay_column_scene : PackedScene = preload("res://gameplay/column/GameplayColumn.tscn")
 const backpack_scene : PackedScene = preload("res://gameplay/backpack/Backpack.tscn")
-const busy_mouse_icon : Texture = preload("res://art/hourglass_icon.png")
 const NO_COLUMN : int = -1
+const starting_state = State.SELECT
+
+enum State {
+	NO_CHANGE = -1,
+	SELECT,
+	WAIT,
+	UPGRADE
+}
 
 @export var starting_column_count : int = 3
 @export var starting_column_types : Array[GlobalConstants.ColumnContents] = [
@@ -15,6 +24,14 @@ const NO_COLUMN : int = -1
 @export var starting_backpack_count : int = 2
 
 @onready var database = get_node("/root/Database")
+
+@export var current_state : State
+
+var states : Array[GameplayState] = [
+	SelectState.new(),
+	WaitState.new(),
+	UpgradeState.new()
+]
 
 var mock_goal : int = 12
 var mock_victory : bool = false
@@ -70,30 +87,36 @@ func _on_columns_sort_children() -> void:
 		if column.current_backpack != null:
 			column.snap_backpack_to_anchor()
 
+##################
+# STATE HANDLING #
+##################
+
+func set_current_state(new_state : State) -> void:
+	if new_state != State.NO_CHANGE:
+		states[current_state]._on_exit(self)
+		current_state = new_state
+		states[current_state]._on_enter(self)
+
 #####################
 # NEXT DAY HANDLING #
 #####################
-func disable_cursor() -> void:
-	Input.set_custom_mouse_cursor(busy_mouse_icon)
-	_input_enabled = false
-	$NextDay/NextDayButton.disabled = true
-
-func enable_cursor() -> void:
-	Input.set_custom_mouse_cursor(null)
-	_input_enabled = true
+func enable_next_day() -> void:
 	$NextDay/NextDayButton.disabled = false
+
+func disable_next_day() -> void:
+	$NextDay/NextDayButton.disabled = true
 
 func _increment_number_of_days() -> void:
 	database.increment_day_count()
 
 	if not mock_victory and database.day_count >= mock_goal:
-		enable_cursor()
+		set_current_state(State.SELECT)
 		get_tree().change_scene_to_file(
 			"res://gameplay/game_finished/GameFinished.tscn"
 		)
 
 func _on_next_day_button_pressed() -> void:
-	disable_cursor()
+	set_current_state(State.WAIT)
 	_columns_executing_day = columns.size()
 	for column in columns:
 		column.next_day()
@@ -102,7 +125,7 @@ func _on_next_day_button_pressed() -> void:
 func _on_column_ready_for_next_day() -> void:
 	_columns_finished_day += 1
 	if _columns_finished_day == _columns_executing_day:
-		enable_cursor()
+		set_current_state(State.SELECT)
 		_columns_finished_day = 0
 		_columns_executing_day = 0
 
@@ -174,9 +197,11 @@ func set_column_next_type(column : GameplayColumn, type : GlobalConstants.Column
 	print("set column ", column, " to change to contents type ", type, " (stubbed)")
 
 func enter_column_change_mode(new_type : GlobalConstants.ColumnContents) -> void:
+	set_current_state(State.UPGRADE)
 	print("entered column change mode for new_type ", new_type, " (stubbed)")
 
 func start_remodel() -> void:
+	set_current_state(State.UPGRADE)
 	print("started remodel, closing all columns (stubbed)")
 
 #############
@@ -235,33 +260,4 @@ func _attempt_to_reveal_next_column() -> void:
 			return
 
 func _input(event):
-	if _input_enabled:
-		# UPGRADES
-		if event.as_text() == "A" && (event as InputEventKey).is_released():
-			add_column()
-		
-		if event.as_text() == "S" && (event as InputEventKey).is_released():
-			add_backpack()
-		
-		if event.as_text() == "D" && (event as InputEventKey).is_released():
-			modify_backpack_capacity(backpacks[0], 1)
-		
-		if event.as_text() == "F" && (event as InputEventKey).is_released():
-			set_column_next_type(columns[1], GlobalConstants.ColumnContents.REGION)
-	
-		# BACKPACK MOVEMENT
-		if event.is_action_pressed("gameplay_select"):
-			_handle_backpack_selection()
-		
-		# TOTALLY TEMP
-		if event.is_action_pressed("ui_right"):
-			shift_backpack_column(backpacks.front(), 1)
-		
-		if event.is_action_pressed("ui_left"):
-			shift_backpack_column(backpacks.front(), -1)
-		
-		if event.is_action_pressed("ui_up"):
-			_attempt_to_reveal_next_column()
-
-		if event.is_action_pressed("ui_down"):
-			_attempt_to_hide_last_column()
+	set_current_state(states[current_state].process_input(self, event))
