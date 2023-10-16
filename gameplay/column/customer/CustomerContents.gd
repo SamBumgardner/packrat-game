@@ -75,4 +75,4 @@ func set_customer(new_customer : Customer) -> void:
 	header_name = _customer.name
 
 func _set_mock_customer() -> void:
-	set_customer(load("res://gameplay/column/customer/customer001.tres"))
+	set_customer(load("res://data/customers/customer001.tres"))
