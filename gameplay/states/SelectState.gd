@@ -20,7 +20,7 @@ func process_input(gameplay : Gameplay, event : InputEvent) -> Gameplay.State:
 		gameplay.add_backpack()
 	
 	if event.as_text() == "D" && (event as InputEventKey).is_released():
-		gameplay.modify_backpack_capacity(gameplay.backpacks[0], 1)
+		gameplay.enter_backpack_capacity_upgrade_mode()
 	
 	if event.as_text() == "F" && (event as InputEventKey).is_released():
 		gameplay.set_column_next_type(gameplay.columns[1], GlobalConstants.ColumnContents.REGION)

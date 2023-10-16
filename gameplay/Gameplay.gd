@@ -11,6 +11,7 @@ const starting_state = State.SELECT
 enum State {
 	NO_CHANGE = -1,
 	SELECT,
+	CARRY,
 	WAIT,
 	UPGRADE
 }
@@ -29,9 +30,12 @@ enum State {
 
 var states : Array[GameplayState] = [
 	SelectState.new(),
+	CarryState.new(),
 	WaitState.new(),
 	UpgradeState.new()
 ]
+
+var staged_upgrade : Callable
 
 var mock_goal : int = 12
 var mock_victory : bool = false
@@ -46,7 +50,6 @@ var columns : Array[GameplayColumn] = []
 
 var _columns_executing_day : int = 0
 var _columns_finished_day : int = 0
-var _input_enabled : bool = true
 
 ##################
 # INITIALIZATION #
@@ -71,7 +74,7 @@ func _init_backpack(backpack : Backpack) -> void:
 	
 func _init_column(column : GameplayColumn, column_type : GlobalConstants.ColumnContents) -> void:
 	column.column_index = columns.size()
-	column.column_type = column_type
+	column.start_column_type = column_type
 	columns.append(column)
 	if column.current_backpack != null:
 		column.set_backpack(column.current_backpack)
@@ -145,8 +148,10 @@ func _set_mock_goal() -> void:
 func _handle_backpack_selection() -> void:
 	if selected_backpack == null:
 		if hovered_backpack != null:
+			set_current_state(State.CARRY)
 			_select_backpack(hovered_backpack)
 	else:
+		set_current_state(State.SELECT)
 		_release_backpack()
 
 func _on_column_entered(column_index) -> void:
@@ -183,6 +188,18 @@ func _select_backpack(backpack : Backpack) -> void:
 ############
 # UPGRADES #
 ############
+func attempt_staged_upgrade() -> bool:
+	var hovered_column : GameplayColumn = null
+	if hovered_column_index != NO_COLUMN:
+		hovered_column = columns[hovered_column_index] 
+	
+	var succeeded : bool = staged_upgrade.call(hovered_backpack, hovered_column)
+	if succeeded:
+		pass # want to trigger some feedback that the upgrade attempt succeeded
+	else:
+		pass # want to trigger some feedback that upgrade attempt failed.
+	
+	return succeeded
 
 func add_column() -> void:
 	_init_column(gameplay_column_scene.instantiate(), GlobalConstants.ColumnContents.NONE)
@@ -190,14 +207,32 @@ func add_column() -> void:
 func add_backpack() -> void:
 	_init_backpack(backpack_scene.instantiate())
 
-func modify_backpack_capacity(backpack : Backpack, change_by : int) -> void:
+func upgrade_increase_backpack_capacity(
+		backpack : Backpack, 
+		_column : GameplayColumn,
+		change_by : int = 1
+	) -> bool:
 	backpack.change_capacity(backpack.get_max_capacity() + change_by)
+	return true
 
-func set_column_next_type(column : GameplayColumn, type : GlobalConstants.ColumnContents) -> void:
-	print("set column ", column, " to change to contents type ", type, " (stubbed)")
+func upgrade_set_column_next_type(
+		_backpack : Backpack, 
+		column : GameplayColumn, 
+		type : GlobalConstants.ColumnContents
+	) -> bool:
+	if column != null && column.column_type != type:
+		column.set_column_type(type)
+		return true
+	else:
+		return false
+
+func enter_backpack_capacity_upgrade_mode() -> void:
+	set_current_state(State.UPGRADE)
+	staged_upgrade = upgrade_increase_backpack_capacity
 
 func enter_column_change_mode(new_type : GlobalConstants.ColumnContents) -> void:
 	set_current_state(State.UPGRADE)
+	staged_upgrade = upgrade_set_column_next_type.bind(GlobalConstants.ColumnContents.REGION)
 	print("entered column change mode for new_type ", new_type, " (stubbed)")
 
 func start_remodel() -> void:
