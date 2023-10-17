@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Customer" load_steps=3 format=3 uid="uid://qbrxeka0fnpe"]
+
+[ext_resource type="Texture2D" uid="uid://lhadvaikkxws" path="res://art/customers/customer001.png" id="1_076fb"]
+[ext_resource type="Script" path="res://gameplay/column/customer/Customer.gd" id="2_vky1a"]
+
+[resource]
+script = ExtResource("2_vky1a")
+graphic = ExtResource("1_076fb")
+name = "Rocky"

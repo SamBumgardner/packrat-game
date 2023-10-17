@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Customer" load_steps=3 format=3 uid="uid://cpp7qkemoxfum"]
+
+[ext_resource type="Texture2D" uid="uid://lhadvaikkxws" path="res://art/customers/customer001.png" id="1_skjwe"]
+[ext_resource type="Script" path="res://gameplay/column/customer/Customer.gd" id="2_3h7om"]
+
+[resource]
+script = ExtResource("2_3h7om")
+graphic = ExtResource("1_skjwe")
+name = "Tim"
