@@ -59,13 +59,13 @@ func _on_item_rect_changed() -> void:
 func attempt_construction(new_type : GlobalConstants.ColumnContents) -> bool:
 	var succeeded : bool = false
 	if not _under_construction:
-		display_construction(new_type)
+		display_construction()
 		_constructing_column_type = new_type
 		_under_construction = true
 		succeeded = true
 	return succeeded
 
-func display_construction(new_type : GlobalConstants.ColumnContents) -> void:
+func display_construction() -> void:
 	$BackgroundFill.modulate.a = UNDER_CONSTRUCTION_ALPHA
 	$Contents.modulate.a = UNDER_CONSTRUCTION_ALPHA
 	$CenterPoint/UnderConstruction.show()
