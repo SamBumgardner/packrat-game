@@ -28,6 +28,9 @@ func process_input(gameplay : Gameplay, event : InputEvent) -> Gameplay.State:
 	if event.as_text() == "X" && (event as InputEventKey).is_released():
 		gameplay.enter_column_change_mode(GlobalConstants.ColumnContents.CUSTOMER)
 	
+	if event.as_text() == "C" && (event as InputEventKey).is_released():
+		gameplay.enter_column_change_mode(GlobalConstants.ColumnContents.NONE)
+	
 	# BACKPACK MOVEMENT
 	if event.is_action_pressed("gameplay_select"):
 		gameplay._handle_backpack_selection()
