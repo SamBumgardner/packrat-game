@@ -16,6 +16,7 @@ const COLUMN_CONTENTS_PRELOAD : Array[Resource] = [
 	REGION_CONTENTS_SCENE,
 	CUSTOMER_CONTENTS_SCENE
 ]
+const UNDER_CONSTRUCTION_ALPHA : float = .5;
 
 @export var column_index : int
 @export var current_backpack : Backpack
@@ -27,6 +28,8 @@ const COLUMN_CONTENTS_PRELOAD : Array[Resource] = [
 @onready var contents_root : Node = $Contents
 
 var _column_contents : ColumnContents
+var _under_construction : bool = false
+var _constructing_column_type : GlobalConstants.ColumnContents
 
 func _ready() -> void:
 	set_column_type(start_column_type)
@@ -50,11 +53,41 @@ func get_anchor_point_position() -> Vector2:
 func _on_item_rect_changed() -> void:
 	$CenterPoint/Area2D/CollisionShape2D.shape.set_size(size)
 
+################
+# CONSTRUCTION #
+################
+func attempt_construction(new_type : GlobalConstants.ColumnContents) -> bool:
+	var succeeded : bool = false
+	if not _under_construction:
+		display_construction(new_type)
+		_constructing_column_type = new_type
+		_under_construction = true
+		succeeded = true
+	return succeeded
+
+func display_construction(new_type : GlobalConstants.ColumnContents) -> void:
+	$BackgroundFill.modulate.a = UNDER_CONSTRUCTION_ALPHA
+	$Contents.modulate.a = UNDER_CONSTRUCTION_ALPHA
+	$CenterPoint/UnderConstruction.show()
+
+func stop_displaying_construction() -> void:
+	$BackgroundFill.modulate = Color.WHITE
+	$Contents.modulate = Color.WHITE
+	$CenterPoint/UnderConstruction.hide()
+
+func finish_construction() -> void:
+	set_column_type(_constructing_column_type)
+	stop_displaying_construction()
+	_under_construction = false
+
 #####################
 # NEXT DAY HANDLING #
 #####################
 func next_day() -> void:
-	if column_type == GlobalConstants.ColumnContents.NONE:
+	if _under_construction:
+		finish_construction()
+		ready_for_next_day.emit()
+	elif column_type == GlobalConstants.ColumnContents.NONE:
 		ready_for_next_day.emit()
 	else:
 		_column_contents.next_day(current_backpack)

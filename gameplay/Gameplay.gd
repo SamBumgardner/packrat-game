@@ -229,8 +229,7 @@ func upgrade_set_column_next_type(
 		type : GlobalConstants.ColumnContents
 	) -> bool:
 	if column != null && column.column_type != type:
-		column.set_column_type(type)
-		return true
+		return column.attempt_construction(type)
 	else:
 		return false
 
@@ -241,7 +240,6 @@ func enter_backpack_capacity_upgrade_mode() -> void:
 func enter_column_change_mode(new_type : GlobalConstants.ColumnContents) -> void:
 	set_current_state(State.UPGRADE)
 	staged_upgrade = upgrade_set_column_next_type.bind(new_type)
-	print("entered column change mode for new_type ", new_type, " (stubbed)")
 
 func start_remodel() -> void:
 	set_current_state(State.UPGRADE)
