@@ -32,28 +32,6 @@ grow_vertical = 0
 layout_direction = 0
 layout_mode = 1
 
-[node name="NextDay" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -81.0
-offset_top = -40.0
-grow_horizontal = 0
-grow_vertical = 0
-
-[node name="DaysPassedTracker" parent="NextDay" instance=ExtResource("7_6ilhd")]
-layout_mode = 2
-
-[node name="NextDayButton" type="Button" parent="NextDay"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_ny8ex")
-theme_override_font_sizes/font_size = 18
-text = "Next Day"
-script = ExtResource("4_fxq41")
-
 [node name="Columns" type="HBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = 5
@@ -101,6 +79,28 @@ autostart = true
 [node name="UpgradeMenu" parent="." instance=ExtResource("2_nf7ra")]
 layout_mode = 0
 
+[node name="NextDay" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -81.0
+offset_top = -56.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="DaysPassedTracker" parent="NextDay" instance=ExtResource("7_6ilhd")]
+layout_mode = 2
+
+[node name="NextDayButton" type="Button" parent="NextDay"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ny8ex")
+theme_override_font_sizes/font_size = 18
+text = "Next Day"
+script = ExtResource("4_fxq41")
+
 [node name="OriginOfNewBackpacks" type="Control" parent="."]
 layout_mode = 1
 anchors_preset = 7
@@ -115,6 +115,6 @@ offset_bottom = 128.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[connection signal="pressed" from="NextDay/NextDayButton" to="." method="_on_next_day_button_pressed"]
 [connection signal="sort_children" from="Columns" to="." method="_on_columns_sort_children"]
 [connection signal="timeout" from="MockExplanation/DelayHidingTitle" to="." method="_on_timer_timeout"]
+[connection signal="pressed" from="NextDay/NextDayButton" to="." method="_on_next_day_button_pressed"]
