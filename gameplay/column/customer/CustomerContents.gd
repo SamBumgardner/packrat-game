@@ -60,6 +60,43 @@ func _get_wants_backpack(column_backpack : Backpack) -> bool:
 	return _get_has_at_least_one_element(column_backpack)
 
 func _get_worth_silver_coin(column_backpack : Backpack) -> int:
+	if (
+		_customer.trade_formula == GlobalConstants.TradeFormula.COUNT_UNIQUE_ELEMENTS
+	):
+		# Default formula.
+		var backpack_elements = column_backpack.get_elements()
+		return _get_unique_element_count(column_backpack)
+
+	if (
+		_customer.trade_formula == GlobalConstants.TradeFormula.PAIR_OF_UNIQUE
+	):
+		var trade_formula_divisor = 2
+		var trade_formula_reward_multiplier = 5
+
+		var backpack_elements = column_backpack.get_elements()
+		var trade_formula_matches = floor(
+			_get_unique_element_count(column_backpack)
+			/ trade_formula_divisor
+		)
+		return trade_formula_matches * trade_formula_reward_multiplier
+
+	if (
+		_customer.trade_formula == GlobalConstants.TradeFormula.THREE_OF_A_KIND
+	):
+		var trade_formula_filter_element_minimum = 3
+		var trade_formula_reward_multiplier = 25
+
+		var backpack_elements = column_backpack.get_elements()
+		var element_type_matches = backpack_elements.filter(
+			func(element : int): return (
+				element >= trade_formula_filter_element_minimum
+			)
+		)
+		var trade_formula_matches = element_type_matches.size()
+		return trade_formula_matches * trade_formula_reward_multiplier
+
+
+	# Default formula.
 	var backpack_elements = column_backpack.get_elements()
 	return _get_unique_element_count(column_backpack)
 

@@ -14,3 +14,9 @@ enum ColumnContents {
 	REGION,
 	CUSTOMER
 }
+
+enum TradeFormula {
+	COUNT_UNIQUE_ELEMENTS,
+	PAIR_OF_UNIQUE,
+	THREE_OF_A_KIND
+}
