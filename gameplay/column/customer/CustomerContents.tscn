@@ -2,42 +2,11 @@
 
 [ext_resource type="PackedScene" uid="uid://bygdha8oc17o7" path="res://gameplay/column/ColumnContents.tscn" id="1_fhxqp"]
 [ext_resource type="Script" path="res://gameplay/column/customer/CustomerContents.gd" id="2_dhokb"]
-[ext_resource type="FontFile" uid="uid://cddebactj84w3" path="res://fonts/Roboto/Roboto-Medium.ttf" id="5_buj63"]
+[ext_resource type="PackedScene" uid="uid://lyah2pc5jcsu" path="res://gameplay/trade_offer/TradeOffer.tscn" id="3_ga3b0"]
 
 [node name="ColumnContents" instance=ExtResource("1_fhxqp")]
 script = ExtResource("2_dhokb")
 _customer = null
 
-[node name="TradeOffer" type="VBoxContainer" parent="." index="1"]
+[node name="TradeOffer" parent="." index="1" instance=ExtResource("3_ga3b0")]
 layout_mode = 2
-
-[node name="WantsHeader" type="Label" parent="TradeOffer" index="0"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("5_buj63")
-text = "Wants:"
-
-[node name="WantsDescription" type="Label" parent="TradeOffer" index="1"]
-layout_mode = 2
-text = "Unique elements"
-
-[node name="BonusHeader" type="Label" parent="TradeOffer" index="2"]
-visible = false
-layout_mode = 2
-theme_override_fonts/font = ExtResource("5_buj63")
-text = "Bonus:"
-
-[node name="BonusDescription" type="Label" parent="TradeOffer" index="3"]
-visible = false
-layout_mode = 2
-theme_override_fonts/font = ExtResource("5_buj63")
-text = "None"
-
-[node name="RewardHeader" type="Label" parent="TradeOffer" index="4"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("5_buj63")
-text = "Reward:"
-
-[node name="RewardDescription" type="Label" parent="TradeOffer" index="5"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("5_buj63")
-text = "1 Silver Coin each"

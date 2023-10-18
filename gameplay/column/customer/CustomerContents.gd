@@ -5,6 +5,8 @@ class_name CustomerContents
 
 extends ColumnContents
 
+@onready var trade_offer = $TradeOffer
+
 @export var _customer : Customer = null
 
 @onready var database = get_node("/root/Database")
@@ -107,6 +109,7 @@ func _set_customer(new_customer : Customer) -> void:
 	_customer = new_customer
 	header_name = _customer.name
 	set_header_properties(_customer.graphic, _customer.name)
+	trade_offer.set_trade_formula(_customer.trade_formula)
 
 func _set_customer_by_index(customer_index : int) -> void:
 	if (
