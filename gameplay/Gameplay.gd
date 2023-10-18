@@ -1,11 +1,40 @@
 # Scene to render when the game is finished.
+class_name Gameplay
+
 extends Control
 
-const busy_mouse_icon : Texture = preload("res://art/hourglass_icon.png")
+const gameplay_column_scene : PackedScene = preload("res://gameplay/column/GameplayColumn.tscn")
+const backpack_scene : PackedScene = preload("res://gameplay/backpack/Backpack.tscn")
 const NO_COLUMN : int = -1
+const starting_state = State.SELECT
+
+enum State {
+	NO_CHANGE = -1,
+	SELECT,
+	CARRY,
+	WAIT,
+	UPGRADE
+}
+
+@export var starting_column_count : int = 2
+@export var starting_column_types : Array[GlobalConstants.ColumnContents] = [
+	GlobalConstants.ColumnContents.REGION,
+	GlobalConstants.ColumnContents.CUSTOMER
+]
+@export var starting_backpack_count : int = 1
 
 @onready var database = get_node("/root/Database")
-@onready var columns = $Columns.get_children() as Array[GameplayColumn]
+
+@export var current_state : State
+
+var states : Array[GameplayState] = [
+	SelectState.new(),
+	CarryState.new(),
+	WaitState.new(),
+	UpgradeState.new()
+]
+
+var staged_upgrade : Callable
 
 var mock_goal : int = 12
 var mock_victory : bool = false
@@ -16,10 +45,10 @@ var selected_backpack : Backpack = null
 var selected_backpack_home_column : GameplayColumn = null
 
 var backpacks : Array[Backpack] = []
+var columns : Array[GameplayColumn] = []
 
 var _columns_executing_day : int = 0
 var _columns_finished_day : int = 0
-var _input_enabled : bool = true
 
 ##################
 # INITIALIZATION #
@@ -27,23 +56,35 @@ var _input_enabled : bool = true
 func _ready():
 	database.reset_values()
 	_set_mock_goal()
-	_init_backpack($Backpack)
-	_init_backpack($Backpack2)
-	_init_columns()
+	for i in range(starting_column_count):
+		_init_column(gameplay_column_scene.instantiate(), starting_column_types[i])
+	for i in range(starting_backpack_count):
+		_init_backpack(backpack_scene.instantiate() as Backpack)
+	Database.active_region_columns = get_typed_column_count(GlobalConstants.ColumnContents.REGION)
+	Database.active_customer_columns = get_typed_column_count(GlobalConstants.ColumnContents.CUSTOMER)
+	Database.set_silver_coin_count(Database.silver_coin_count)
 
 func _init_backpack(backpack : Backpack) -> void:
+	$OriginOfNewBackpacks.add_child(backpack)
 	backpacks.append(backpack)
 	backpack.backpack_entered.connect(_on_backpack_entered)
 	backpack.backpack_exited.connect(_on_backpack_exited)
-	
-func _init_columns() -> void:
 	for column in columns:
-		if column.current_backpack != null:
-			column.set_backpack(column.current_backpack)
-			column.current_backpack.visible = true
-		column.column_entered.connect(_on_column_entered)
-		column.column_exited.connect(_on_column_exited)
-		column.ready_for_next_day.connect(_on_column_ready_for_next_day)
+		if column.current_backpack == null:
+			column.set_backpack(backpack)
+			break
+	
+func _init_column(column : GameplayColumn, column_type : GlobalConstants.ColumnContents) -> void:
+	column.column_index = columns.size()
+	column.start_column_type = column_type
+	columns.append(column)
+	if column.current_backpack != null:
+		column.set_backpack(column.current_backpack)
+		column.current_backpack.visible = true
+	column.column_entered.connect(_on_column_entered)
+	column.column_exited.connect(_on_column_exited)
+	column.ready_for_next_day.connect(_on_column_ready_for_next_day)
+	$Columns.add_child(column)
 
 # handles backpack positioning after initial load + after new columns added
 func _on_columns_sort_children() -> void:
@@ -51,30 +92,41 @@ func _on_columns_sort_children() -> void:
 		if column.current_backpack != null:
 			column.snap_backpack_to_anchor()
 
+##################
+# STATE HANDLING #
+##################
+func _input(event):
+	set_current_state(states[current_state].process_input(self, event))
+
+func set_current_state(new_state : State) -> void:
+	if new_state != State.NO_CHANGE:
+		states[current_state]._on_exit(self)
+		current_state = new_state
+		states[current_state]._on_enter(self)
+
+func _on_upgrade_selected(upgrade_type : UpgradeManager.UpgradeType):
+	states[current_state].handle_upgrade_selected(self, upgrade_type)
+
 #####################
 # NEXT DAY HANDLING #
 #####################
-func disable_cursor() -> void:
-	Input.set_custom_mouse_cursor(busy_mouse_icon)
-	_input_enabled = false
-	$NextDay/NextDayButton.disabled = true
-
-func enable_cursor() -> void:
-	Input.set_custom_mouse_cursor(null)
-	_input_enabled = true
+func enable_next_day() -> void:
 	$NextDay/NextDayButton.disabled = false
+
+func disable_next_day() -> void:
+	$NextDay/NextDayButton.disabled = true
 
 func _increment_number_of_days() -> void:
 	database.increment_day_count()
 
 	if not mock_victory and database.day_count >= mock_goal:
-		enable_cursor()
+		set_current_state(State.SELECT)
 		get_tree().change_scene_to_file(
 			"res://gameplay/game_finished/GameFinished.tscn"
 		)
 
 func _on_next_day_button_pressed() -> void:
-	disable_cursor()
+	set_current_state(State.WAIT)
 	_columns_executing_day = columns.size()
 	for column in columns:
 		column.next_day()
@@ -83,7 +135,7 @@ func _on_next_day_button_pressed() -> void:
 func _on_column_ready_for_next_day() -> void:
 	_columns_finished_day += 1
 	if _columns_finished_day == _columns_executing_day:
-		enable_cursor()
+		set_current_state(State.SELECT)
 		_columns_finished_day = 0
 		_columns_executing_day = 0
 
@@ -103,8 +155,10 @@ func _set_mock_goal() -> void:
 func _handle_backpack_selection() -> void:
 	if selected_backpack == null:
 		if hovered_backpack != null:
+			set_current_state(State.CARRY)
 			_select_backpack(hovered_backpack)
 	else:
+		set_current_state(State.SELECT)
 		_release_backpack()
 
 func _on_column_entered(column_index) -> void:
@@ -138,74 +192,106 @@ func _select_backpack(backpack : Backpack) -> void:
 		if column.current_backpack == selected_backpack:
 			selected_backpack_home_column = column
 
-#############
-# TEMP CODE #
-#############
-func shift_backpack_column(backpack : Backpack, shift_by : int) -> void:
-	var current_backpack_column_index = columns.size()
-	var last_visible_column_index : int = -1
-	for i in range(columns.size()):
-		if columns[i].current_backpack == backpack:
-			current_backpack_column_index = mini(
-				current_backpack_column_index,
-				i
-			)
-
-		if columns[i].visible:
-			last_visible_column_index = i 
-		else:
-			break;
-	
-	var visible_column_count : int = last_visible_column_index + 1
-	var target_column_index : int
-	if current_backpack_column_index > last_visible_column_index:
-		target_column_index = last_visible_column_index
-	else:
-		target_column_index = current_backpack_column_index + shift_by
-		if target_column_index < 0:
-			target_column_index += visible_column_count
-		target_column_index = target_column_index % visible_column_count
-	
-	swap_column_backpacks(
-		columns[current_backpack_column_index],
-		columns[target_column_index]
-	)
-
 func swap_column_backpacks(column1 : GameplayColumn, 
 		column2 : GameplayColumn) -> void:
 	var swap : Backpack = column1.current_backpack
 	column1.set_backpack(column2.current_backpack)
 	column2.set_backpack(swap)
 
-func _attempt_to_hide_last_column() -> void:
-	var reversed_columns = $Columns.get_children()
-	# Do not hide the last column if there is just one left.
-	reversed_columns = reversed_columns.slice(1)
-	reversed_columns.reverse()
-	for column in reversed_columns:
-		if column.visible:
-			column.visible = false
-			return
+############
+# UPGRADES #
+############
+func attempt_staged_upgrade() -> bool:
+	var hovered_column : GameplayColumn = null
+	if hovered_column_index != NO_COLUMN:
+		hovered_column = columns[hovered_column_index] 
+	
+	var succeeded : bool = staged_upgrade.call(hovered_backpack, hovered_column)
+	if succeeded:
+		pass # want to trigger some feedback that the upgrade attempt succeeded
+	else:
+		pass # want to trigger some feedback that upgrade attempt failed.
+	
+	return succeeded
 
-func _attempt_to_reveal_next_column() -> void:
-	for column in $Columns.get_children():
-		if not column.visible:
-			column.visible = true
-			return
+func add_column() -> void:
+	_init_column(gameplay_column_scene.instantiate(), GlobalConstants.ColumnContents.NONE)
+	upgrade_completed(UpgradeManager.UpgradeType.ADD_COLUMN)
 
-func _input(event):
-	if _input_enabled:
-		if event.is_action_pressed("gameplay_select"):
-			_handle_backpack_selection()
-		
-		if event.is_action_pressed("ui_right"):
-			shift_backpack_column(backpacks.front(), 1)
-		
-		if event.is_action_pressed("ui_left"):
-			shift_backpack_column(backpacks.front(), -1)
-		
-		if event.is_action_pressed("ui_up"):
-			_attempt_to_reveal_next_column()
+func add_backpack() -> void:
+	if columns.reduce(func(accum, col): return accum + int(col.current_backpack == null), 0) > 0:
+		_init_backpack(backpack_scene.instantiate())
+		upgrade_completed(UpgradeManager.UpgradeType.ADD_BACKPACK)
 
-		if event.is_action_pressed("ui_down"):
-			_attempt_to_hide_last_column()
+func upgrade_increase_backpack_capacity(
+		backpack : Backpack, 
+		_column : GameplayColumn,
+		change_by : int = 2
+	) -> bool:
+	var succeeded = false
+	if backpack != null:
+		backpack.change_capacity(backpack.get_max_capacity() + change_by)
+		upgrade_completed(UpgradeManager.UpgradeType.INCREASE_CAPACITY)
+		succeeded = true
+	return succeeded
+
+func upgrade_set_column_next_type(
+		_backpack : Backpack, 
+		column : GameplayColumn, 
+		type : GlobalConstants.ColumnContents
+	) -> bool:
+	if column != null && column.column_type != type:
+		var succeeded : bool = column.attempt_construction(type)
+		if succeeded:
+			var upgrade_type : UpgradeManager.UpgradeType
+			match type:
+				GlobalConstants.ColumnContents.CUSTOMER:
+					upgrade_type = UpgradeManager.UpgradeType.CHANGE_COLUMN_CUSTOMER
+				GlobalConstants.ColumnContents.REGION:
+					upgrade_type = UpgradeManager.UpgradeType.CHANGE_COLUMN_REGION
+				GlobalConstants.ColumnContents.NONE:
+					upgrade_type = UpgradeManager.UpgradeType.EMPTY_COLUMN
+			upgrade_completed(upgrade_type)
+		return succeeded
+	else:
+		return false
+
+func enter_backpack_capacity_upgrade_mode() -> void:
+	set_current_state(State.UPGRADE)
+	staged_upgrade = upgrade_increase_backpack_capacity
+
+func enter_column_change_mode(new_type : GlobalConstants.ColumnContents) -> void:
+	set_current_state(State.UPGRADE)
+	staged_upgrade = upgrade_set_column_next_type.bind(new_type)
+
+func start_remodel() -> bool:
+	print("started remodel, closing all columns (stubbed)")
+	upgrade_completed(UpgradeManager.UpgradeType.REMODEL)
+	return true
+
+
+# Count all active & under-construction columns for the specified Contents Type
+func get_typed_column_count(type_to_count : GlobalConstants.ColumnContents) -> int:
+	var column_count : int = 0
+	for column in columns:
+		if column._under_construction and column._constructing_column_type == type_to_count:
+				column_count += 1
+		elif !column._under_construction and column.column_type == type_to_count:
+				column_count += 1
+	return column_count
+
+func upgrade_completed(upgrade_type : UpgradeManager.UpgradeType) -> void:
+	var cost : int = UpgradeManager.get_cost(upgrade_type)
+	match upgrade_type:
+		UpgradeManager.UpgradeType.ADD_BACKPACK:
+			Database.backpacks_purchased += 1
+		UpgradeManager.UpgradeType.ADD_COLUMN:
+			Database.columns_purchased += 1
+		UpgradeManager.UpgradeType.INCREASE_CAPACITY:
+			Database.capacity_increases_purchased += 1
+		UpgradeManager.UpgradeType.REMODEL:
+			Database.shop_level += 1
+		_:
+			Database.active_region_columns = get_typed_column_count(GlobalConstants.ColumnContents.REGION)
+			Database.active_customer_columns = get_typed_column_count(GlobalConstants.ColumnContents.CUSTOMER)
+	Database.set_silver_coin_count(Database.silver_coin_count - cost)

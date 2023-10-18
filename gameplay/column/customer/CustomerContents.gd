@@ -31,7 +31,7 @@ func _ready():
 	set_header_properties(_customer.graphic, _customer.name)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
+func _process(_delta):
 	pass
 
 func _build_customer_file_path(file_name : String) -> String:

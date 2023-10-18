@@ -3,6 +3,7 @@ extends Area2D
 
 class_name Backpack
 
+signal display_update
 signal backpack_entered
 signal backpack_exited
 
@@ -15,7 +16,13 @@ var selected : bool = false
 var _target_global_position : Vector2 = Vector2.ZERO
 
 # Parameters for appearance and inventory.
-@export var backpack_graphic : Texture = preload("res://art/pack_1.png")
+const POSSIBLE_GRAPHICS : Array[Texture] = [
+	preload("res://art/pack_1.png"),
+	preload("res://art/pack_2.png"),
+	preload("res://art/pack_3.png")
+]
+static var used_graphic_indexes : Array[int] = []
+@export var backpack_graphic : Texture
 @export var _item_capacity : int = 2
 var _contained_elements : Array[int] = []
 var _contained_items : Array[Item] = []
@@ -43,13 +50,22 @@ func _ready():
 	shadow.visible = false
 	_contained_elements.resize(GlobalConstants.Elements.size())
 	_contained_elements.fill(0)
-	_set_graphic(backpack_graphic)
+	_set_random_pack_graphic()
 
 	_tween_wiggle = create_tween()
 	BackpackTweens.init_tween_wiggle(_tween_wiggle, pack)
 
 	_tween_bounce = create_tween()
 	BackpackTweens.init_tween_bounce(_tween_bounce, pack)
+
+func _set_random_pack_graphic() -> void:
+	var selected_index = randi() % POSSIBLE_GRAPHICS.size()
+	while selected_index in used_graphic_indexes \
+			and used_graphic_indexes.size() < POSSIBLE_GRAPHICS.size():
+		selected_index = (selected_index + 1) % POSSIBLE_GRAPHICS.size()
+	backpack_graphic = POSSIBLE_GRAPHICS[selected_index]
+	_set_graphic(backpack_graphic)
+	used_graphic_indexes.append(selected_index)
 
 func _set_graphic(texture : Texture) -> void:
 	pack.set_texture(texture)
@@ -145,6 +161,7 @@ func get_current_item_count() -> int:
 
 func change_capacity(new_capacity : int) -> void:
 	_item_capacity = new_capacity
+	display_update.emit(self)
 
 func get_elements() -> Array[int]:
 	return _contained_elements.duplicate()
@@ -166,6 +183,7 @@ func react_item_added():
 	_tween_bounce.play()
 	_sfx_item_added.play()
 	_item_added_particles.restart()
+	display_update.emit(self)
 
 func react_item_rejected():
 	_tween_wiggle.play()

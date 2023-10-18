@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://dklr5kcqww66r"]
+[gd_scene load_steps=5 format=3 uid="uid://dklr5kcqww66r"]
 
 [ext_resource type="Script" path="res://gameplay/column/GameplayColumn.gd" id="1_p351e"]
+[ext_resource type="Texture2D" uid="uid://brf4h74py8sal" path="res://icon.svg" id="2_1ajk1"]
 [ext_resource type="PackedScene" uid="uid://d0cn6rkagucs0" path="res://gameplay/element_display/BackpackDisplay.tscn" id="2_gynnr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fj0u2"]
@@ -37,6 +38,26 @@ grow_vertical = 2
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CenterPoint/Area2D"]
 shape = SubResource("RectangleShape2D_fj0u2")
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
+
+[node name="UnderConstruction" type="Node2D" parent="CenterPoint"]
+visible = false
+z_index = 2
+
+[node name="Sprite2D" type="Sprite2D" parent="CenterPoint/UnderConstruction"]
+texture = ExtResource("2_1ajk1")
+
+[node name="Label" type="Label" parent="CenterPoint/UnderConstruction"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_top = 64.0
+offset_right = 20.0
+offset_bottom = 87.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+text = "Renovating..."
+horizontal_alignment = 1
 
 [node name="AnchorPoint" type="Control" parent="."]
 layout_mode = 1

@@ -4,14 +4,12 @@
 [ext_resource type="Script" path="res://gameplay/Gameplay.gd" id="1_cv37s"]
 [ext_resource type="Texture2D" uid="uid://43qw31c6dcje" path="res://art/backgrounds/bargain_table.jpg" id="2_551k0"]
 [ext_resource type="PackedScene" uid="uid://c25adoveil6xs" path="res://hud/CurrencySilverCoin.tscn" id="2_a1m00"]
-[ext_resource type="FontFile" uid="uid://cddebactj84w3" path="res://fonts/Roboto/Roboto-Medium.ttf" id="2_ny8ex"]
+[ext_resource type="PackedScene" uid="uid://7hqfyc7u8h48" path="res://gameplay/upgrade/UpgradeMenu.tscn" id="2_nf7ra"]
+[ext_resource type="FontFile" uid="uid://d1faal3mxcb84" path="res://fonts/Roboto/Roboto-Medium.ttf" id="2_ny8ex"]
 [ext_resource type="PackedScene" uid="uid://dm07s06ryg2u" path="res://menus/BackToStartMenuButton.tscn" id="3_7t8p6"]
 [ext_resource type="Script" path="res://gameplay/NextDayButton.gd" id="4_fxq41"]
+[ext_resource type="FontFile" uid="uid://b0t1dk3g11t5r" path="res://fonts/Roboto/Roboto-Regular.ttf" id="5_rf4ff"]
 [ext_resource type="PackedScene" uid="uid://e1hatl7xepnb" path="res://hud/DaysPassedTracker.tscn" id="7_6ilhd"]
-[ext_resource type="PackedScene" uid="uid://dklr5kcqww66r" path="res://gameplay/column/GameplayColumn.tscn" id="8_pe5uu"]
-[ext_resource type="PackedScene" uid="uid://24e0kif4kkdt" path="res://gameplay/backpack/Backpack.tscn" id="9_6n0cn"]
-[ext_resource type="Texture2D" uid="uid://bk7hvcje618o2" path="res://art/pack_2.png" id="9_qu4xq"]
-[ext_resource type="Texture2D" uid="uid://tma5uxklkwfw" path="res://art/pack_3.png" id="10_s5p68"]
 
 [node name="Gameplay" type="Control"]
 layout_mode = 3
@@ -31,38 +29,18 @@ scale = Vector2(0.37, 0.37)
 texture = ExtResource("2_551k0")
 
 [node name="CurrencySilverCoin" parent="." instance=ExtResource("2_a1m00")]
-layout_mode = 0
-anchors_preset = 0
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
 anchor_right = 0.0
-anchor_bottom = 0.0
+offset_top = -64.0
+offset_right = 91.0
 grow_horizontal = 1
-grow_vertical = 1
+grow_vertical = 0
 
 [node name="BackToStartMenuButton" parent="." instance=ExtResource("3_7t8p6")]
 layout_direction = 0
 layout_mode = 1
-
-[node name="NextDay" type="VBoxContainer" parent="."]
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -81.0
-offset_top = -40.0
-grow_horizontal = 0
-grow_vertical = 0
-
-[node name="DaysPassedTracker" parent="NextDay" instance=ExtResource("7_6ilhd")]
-layout_mode = 2
-
-[node name="NextDayButton" type="Button" parent="NextDay"]
-layout_mode = 2
-theme_override_fonts/font = ExtResource("2_ny8ex")
-theme_override_font_sizes/font_size = 18
-text = "Next Day"
-script = ExtResource("4_fxq41")
 
 [node name="Columns" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -76,45 +54,6 @@ offset_bottom = 605.0
 grow_horizontal = 2
 theme_override_constants/separation = 10
 alignment = 1
-
-[node name="GameplayColumn" parent="Columns" node_paths=PackedStringArray("current_backpack") instance=ExtResource("8_pe5uu")]
-layout_mode = 2
-current_backpack = NodePath("../../Backpack")
-column_type = 1
-
-[node name="GameplayColumn2" parent="Columns" node_paths=PackedStringArray("current_backpack") instance=ExtResource("8_pe5uu")]
-layout_mode = 2
-column_index = 1
-current_backpack = NodePath("../../Backpack2")
-
-[node name="GameplayColumn3" parent="Columns" instance=ExtResource("8_pe5uu")]
-layout_mode = 2
-column_index = 2
-column_type = 2
-
-[node name="GameplayColumn4" parent="Columns" instance=ExtResource("8_pe5uu")]
-visible = false
-layout_mode = 2
-column_index = 3
-column_type = 1
-
-[node name="GameplayColumn5" parent="Columns" instance=ExtResource("8_pe5uu")]
-visible = false
-layout_mode = 2
-column_index = 4
-
-[node name="GameplayColumn6" parent="Columns" instance=ExtResource("8_pe5uu")]
-visible = false
-layout_mode = 2
-column_index = 5
-
-[node name="Backpack" parent="." instance=ExtResource("9_6n0cn")]
-visible = false
-backpack_graphic = ExtResource("9_qu4xq")
-
-[node name="Backpack2" parent="." instance=ExtResource("9_6n0cn")]
-visible = false
-backpack_graphic = ExtResource("10_s5p68")
 
 [node name="MockExplanation" type="VBoxContainer" parent="."]
 layout_mode = 1
@@ -145,6 +84,47 @@ horizontal_alignment = 1
 wait_time = 3.0
 autostart = true
 
-[connection signal="pressed" from="NextDay/NextDayButton" to="." method="_on_next_day_button_pressed"]
+[node name="UpgradeMenu" parent="." instance=ExtResource("2_nf7ra")]
+z_index = 3
+layout_mode = 0
+
+[node name="NextDay" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -81.0
+offset_top = -56.0
+grow_horizontal = 0
+grow_vertical = 0
+
+[node name="DaysPassedTracker" parent="NextDay" instance=ExtResource("7_6ilhd")]
+layout_mode = 2
+
+[node name="NextDayButton" type="Button" parent="NextDay"]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_ny8ex")
+theme_override_font_sizes/font_size = 18
+text = "Next Day"
+script = ExtResource("4_fxq41")
+
+[node name="OriginOfNewBackpacks" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -20.0
+offset_top = 88.0
+offset_right = 20.0
+offset_bottom = 128.0
+grow_horizontal = 2
+grow_vertical = 0
+
 [connection signal="sort_children" from="Columns" to="." method="_on_columns_sort_children"]
 [connection signal="timeout" from="MockExplanation/DelayHidingTitle" to="." method="_on_timer_timeout"]
+[connection signal="upgrade_selected" from="UpgradeMenu" to="." method="_on_upgrade_selected"]
+[connection signal="pressed" from="NextDay/NextDayButton" to="." method="_on_next_day_button_pressed"]
