@@ -1,11 +1,11 @@
 [gd_scene load_steps=9 format=3 uid="uid://24e0kif4kkdt"]
 
 [ext_resource type="Script" path="res://gameplay/backpack/Backpack.gd" id="1_v6j3i"]
-[ext_resource type="Texture2D" uid="uid://ct5h3dyyxyblj" path="res://art/pack_1.png" id="2_80h0r"]
-[ext_resource type="AudioStream" uid="uid://bxgblql1u8dhe" path="res://sound/bag_drop.wav" id="3_a0h7p"]
-[ext_resource type="AudioStream" uid="uid://bmkd5fn01mky2" path="res://sound/item_added.wav" id="3_p4sdx"]
-[ext_resource type="AudioStream" uid="uid://cemabdt5yr5oc" path="res://sound/item_rejected.wav" id="4_stjcx"]
-[ext_resource type="AudioStream" uid="uid://dvlt1knfeyk5c" path="res://sound/pickup.wav" id="5_cwn6i"]
+[ext_resource type="Texture2D" uid="uid://dn3tr3uw2yf3y" path="res://art/pack_1.png" id="2_80h0r"]
+[ext_resource type="AudioStream" uid="uid://cipxpp1bsjpeq" path="res://sound/bag_drop.wav" id="3_a0h7p"]
+[ext_resource type="AudioStream" uid="uid://ieufgybn3fbw" path="res://sound/item_added.wav" id="3_p4sdx"]
+[ext_resource type="AudioStream" uid="uid://c3widbpucq5g6" path="res://sound/item_rejected.wav" id="4_stjcx"]
+[ext_resource type="AudioStream" uid="uid://vudp7om3c0w1" path="res://sound/pickup.wav" id="5_cwn6i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2k672"]
 size = Vector2(128, 128)
