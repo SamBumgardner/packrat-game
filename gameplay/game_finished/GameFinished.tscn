@@ -22,17 +22,20 @@ offset_bottom = 2849.0
 scale = Vector2(0.34, 0.34)
 texture = ExtResource("6_2mm8t")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="TitleContentMarginContainer" type="MarginContainer" parent="."]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -270.0
-offset_right = 270.0
-offset_bottom = 114.0
+offset_left = -268.0
+offset_right = 268.0
+offset_bottom = 216.0
 grow_horizontal = 2
 
-[node name="Victory" type="Label" parent="VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TitleContentMarginContainer"]
+layout_mode = 2
+
+[node name="Victory" type="Label" parent="TitleContentMarginContainer/VBoxContainer"]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 16
@@ -41,37 +44,52 @@ theme_override_font_sizes/font_size = 72
 text = "Congratulations!"
 horizontal_alignment = 1
 
-[node name="Statistics" type="VBoxContainer" parent="VBoxContainer"]
+[node name="NarrowMarginContainer" type="MarginContainer" parent="TitleContentMarginContainer/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="TransparentBackground" type="ColorRect" parent="TitleContentMarginContainer/VBoxContainer/NarrowMarginContainer"]
+layout_mode = 2
+color = Color(1, 1, 1, 0.85098)
+
+[node name="Padding8px" type="MarginContainer" parent="TitleContentMarginContainer/VBoxContainer/NarrowMarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="Statistics" type="VBoxContainer" parent="TitleContentMarginContainer/VBoxContainer/NarrowMarginContainer/Padding8px"]
 layout_mode = 2
 alignment = 1
 
-[node name="CurrencySilverCoin" parent="VBoxContainer/Statistics" instance=ExtResource("3_gv0k7")]
+[node name="CurrencySilverCoin" parent="TitleContentMarginContainer/VBoxContainer/NarrowMarginContainer/Padding8px/Statistics" instance=ExtResource("3_gv0k7")]
 layout_mode = 2
 alignment = 1
 
-[node name="DaysPassedTracker" parent="VBoxContainer/Statistics" instance=ExtResource("3_edudb")]
+[node name="DaysPassedTracker" parent="TitleContentMarginContainer/VBoxContainer/NarrowMarginContainer/Padding8px/Statistics" instance=ExtResource("3_edudb")]
 layout_mode = 2
 alignment = 1
 
-[node name="TradesMadeTracker" type="HBoxContainer" parent="VBoxContainer/Statistics"]
+[node name="TradesMadeTracker" type="HBoxContainer" parent="TitleContentMarginContainer/VBoxContainer/NarrowMarginContainer/Padding8px/Statistics"]
 layout_mode = 2
 alignment = 1
 script = ExtResource("4_pl6ob")
 
-[node name="UnitTrades" type="Label" parent="VBoxContainer/Statistics/TradesMadeTracker"]
+[node name="UnitTrades" type="Label" parent="TitleContentMarginContainer/VBoxContainer/NarrowMarginContainer/Padding8px/Statistics/TradesMadeTracker"]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
 text = "Trades"
 horizontal_alignment = 1
 
-[node name="UnitTradesX" type="Label" parent="VBoxContainer/Statistics/TradesMadeTracker"]
+[node name="UnitTradesX" type="Label" parent="TitleContentMarginContainer/VBoxContainer/NarrowMarginContainer/Padding8px/Statistics/TradesMadeTracker"]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
 text = "x"
 
-[node name="NumberOfTrades" type="Label" parent="VBoxContainer/Statistics/TradesMadeTracker"]
+[node name="NumberOfTrades" type="Label" parent="TitleContentMarginContainer/VBoxContainer/NarrowMarginContainer/Padding8px/Statistics/TradesMadeTracker"]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
