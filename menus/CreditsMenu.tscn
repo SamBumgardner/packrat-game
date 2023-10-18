@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cl87ap5mgbyxq"]
 
 [ext_resource type="PackedScene" uid="uid://dm07s06ryg2u" path="res://menus/BackToStartMenuButton.tscn" id="1"]
-[ext_resource type="FontFile" uid="uid://c104v5f0ficln" path="res://fonts/Roboto/Roboto-Regular.ttf" id="2_dkh84"]
+[ext_resource type="Theme" uid="uid://c1rbyyhtqrqqt" path="res://fonts/normal_font_theme.tres" id="1_12lkd"]
 [ext_resource type="Texture2D" uid="uid://6yom13chrvpm" path="res://art/backgrounds/grand_opening.jpg" id="2_vylv0"]
 [ext_resource type="Script" path="res://menus/CreditsMenu.gd" id="4"]
 
@@ -12,50 +12,48 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_12lkd")
 script = ExtResource("4")
 
 [node name="Background" type="TextureRect" parent="."]
+layout_mode = 0
 offset_right = 3685.0
 offset_bottom = 3023.0
 scale = Vector2(0.35, 0.35)
 texture = ExtResource("2_vylv0")
 
 [node name="CreditsContainer" type="VBoxContainer" parent="."]
-layout_mode = 0
+layout_mode = 1
+anchors_preset = -1
 anchor_left = 0.33
 anchor_top = 0.25
 anchor_right = 0.66
 anchor_bottom = 0.75
-grow_horizontal = 2
-grow_vertical = 0
 alignment = 1
 
 [node name="Credit" type="Label" parent="CreditsContainer"]
 layout_mode = 2
+theme = ExtResource("1_12lkd")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
-theme_override_fonts/font = ExtResource("2_dkh84")
 text = "Sam Bumgardner ... Lead Designer"
 
 [node name="Credit2" type="Label" parent="CreditsContainer"]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
-theme_override_fonts/font = ExtResource("2_dkh84")
 text = "Noah Bumgardner ... Designer, Programmer"
 
 [node name="Credit3" type="Label" parent="CreditsContainer"]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
-theme_override_fonts/font = ExtResource("2_dkh84")
 text = "Tom Bumgardner ... Artist"
 
 [node name="CreditAdditionalAssets" type="Label" parent="CreditsContainer"]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
-theme_override_fonts/font = ExtResource("2_dkh84")
 text = "Additional Assets from:
 Roboto font
 by Christian Robertson"

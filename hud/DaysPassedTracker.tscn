@@ -1,7 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://e1hatl7xepnb"]
+[gd_scene load_steps=2 format=3 uid="uid://e1hatl7xepnb"]
 
 [ext_resource type="Script" path="res://hud/DaysPassedTracker.gd" id="1_rtc04"]
-[ext_resource type="FontFile" uid="uid://cddebactj84w3" path="res://fonts/Roboto/Roboto-Medium.ttf" id="2_a3nec"]
 
 [node name="DaysPassedTracker" type="HBoxContainer"]
 anchors_preset = 15
@@ -15,11 +14,9 @@ script = ExtResource("1_rtc04")
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
-theme_override_fonts/font = ExtResource("2_a3nec")
 text = "Day"
 
 [node name="NumberOfDays" type="Label" parent="."]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
-theme_override_fonts/font = ExtResource("2_a3nec")

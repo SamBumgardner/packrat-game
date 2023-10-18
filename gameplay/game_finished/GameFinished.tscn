@@ -1,6 +1,6 @@
 [gd_scene load_steps=7 format=3 uid="uid://cly8rrgsjooew"]
 
-[ext_resource type="FontFile" uid="uid://ck0ltu3wyr11x" path="res://fonts/Roboto/Roboto-Black.ttf" id="2_gcbv0"]
+[ext_resource type="FontFile" uid="uid://q3gqhife6qv" path="res://fonts/Roboto/Roboto-Bold.ttf" id="2_8ue0n"]
 [ext_resource type="PackedScene" uid="uid://e1hatl7xepnb" path="res://hud/DaysPassedTracker.tscn" id="3_edudb"]
 [ext_resource type="PackedScene" uid="uid://c25adoveil6xs" path="res://hud/CurrencySilverCoin.tscn" id="3_gv0k7"]
 [ext_resource type="PackedScene" uid="uid://dm07s06ryg2u" path="res://menus/BackToStartMenuButton.tscn" id="4_d0d6f"]
@@ -36,7 +36,7 @@ grow_horizontal = 2
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 16
-theme_override_fonts/font = ExtResource("2_gcbv0")
+theme_override_fonts/font = ExtResource("2_8ue0n")
 theme_override_font_sizes/font_size = 72
 text = "Congratulations!"
 horizontal_alignment = 1
@@ -62,7 +62,6 @@ script = ExtResource("4_pl6ob")
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
-theme_override_fonts/font = ExtResource("2_gcbv0")
 text = "Trades"
 horizontal_alignment = 1
 
@@ -70,14 +69,12 @@ horizontal_alignment = 1
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
-theme_override_fonts/font = ExtResource("2_gcbv0")
 text = "x"
 
 [node name="NumberOfTrades" type="Label" parent="VBoxContainer/Statistics/TradesMadeTracker"]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
-theme_override_fonts/font = ExtResource("2_gcbv0")
 text = "0"
 
 [node name="BackToStartMenuButton" parent="." instance=ExtResource("4_d0d6f")]
