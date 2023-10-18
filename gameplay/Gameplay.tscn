@@ -1,8 +1,8 @@
 [gd_scene load_steps=10 format=3 uid="uid://crk2s578wsl64"]
 
-[ext_resource type="Theme" uid="uid://c1rbyyhtqrqqt" path="res://fonts/normal_font_theme.tres" id="1_43exs"]
+[ext_resource type="Theme" path="res://fonts/normal_font_theme.tres" id="1_43exs"]
 [ext_resource type="Script" path="res://gameplay/Gameplay.gd" id="1_cv37s"]
-[ext_resource type="Texture2D" uid="uid://43qw31c6dcje" path="res://art/backgrounds/bargain_table.jpg" id="2_551k0"]
+[ext_resource type="Texture2D" path="res://art/backgrounds/bargain_table.jpg" id="2_551k0"]
 [ext_resource type="PackedScene" uid="uid://c25adoveil6xs" path="res://hud/CurrencySilverCoin.tscn" id="2_a1m00"]
 [ext_resource type="PackedScene" uid="uid://7hqfyc7u8h48" path="res://gameplay/upgrade/UpgradeMenu.tscn" id="2_nf7ra"]
 [ext_resource type="FontFile" uid="uid://cddebactj84w3" path="res://fonts/Roboto/Roboto-Medium.ttf" id="2_ny8ex"]

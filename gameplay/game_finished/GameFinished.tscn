@@ -5,7 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://c25adoveil6xs" path="res://hud/CurrencySilverCoin.tscn" id="3_gv0k7"]
 [ext_resource type="PackedScene" uid="uid://dm07s06ryg2u" path="res://menus/BackToStartMenuButton.tscn" id="4_d0d6f"]
 [ext_resource type="Script" path="res://gameplay/game_finished/TradesMadeTracker.gd" id="4_pl6ob"]
-[ext_resource type="Texture2D" uid="uid://djghjno2ajqnp" path="res://art/backgrounds/well_deserved_nap.jpg" id="6_2mm8t"]
+[ext_resource type="Texture2D" path="res://art/backgrounds/well_deserved_nap.jpg" id="6_2mm8t"]
 
 [node name="GameFinished" type="Control"]
 layout_mode = 3

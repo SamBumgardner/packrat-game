@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://cl87ap5mgbyxq"]
 
 [ext_resource type="PackedScene" uid="uid://dm07s06ryg2u" path="res://menus/BackToStartMenuButton.tscn" id="1"]
-[ext_resource type="Theme" uid="uid://c1rbyyhtqrqqt" path="res://fonts/normal_font_theme.tres" id="1_12lkd"]
-[ext_resource type="Texture2D" uid="uid://6yom13chrvpm" path="res://art/backgrounds/grand_opening.jpg" id="2_vylv0"]
+[ext_resource type="Theme" path="res://fonts/normal_font_theme.tres" id="1_12lkd"]
+[ext_resource type="Texture2D" path="res://art/backgrounds/grand_opening.jpg" id="2_vylv0"]
 [ext_resource type="Script" path="res://menus/CreditsMenu.gd" id="4"]
 
 [node name="CreditsMenu" type="Control"]
