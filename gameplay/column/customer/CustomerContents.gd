@@ -100,11 +100,10 @@ func _get_worth_silver_coin(column_backpack : Backpack) -> int:
 	var backpack_elements = column_backpack.get_elements()
 	return _get_unique_element_count(column_backpack)
 
+# Sets the active customer.
+# Assumes a previous method call is keeping track of the random queue of
+#  customers.
 func _set_customer(new_customer : Customer) -> void:
-	push_warning(
-		"""Warning: Bypassing the random queue of customers.
-The next customer will pick up where the last customer left off."""
-	)
 	_customer = new_customer
 	header_name = _customer.name
 	set_header_properties(_customer.graphic, _customer.name)
