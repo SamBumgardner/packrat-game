@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://c25adoveil6xs"]
+[gd_scene load_steps=5 format=3 uid="uid://c25adoveil6xs"]
 
 [ext_resource type="Script" path="res://hud/CurrencySilverCoin.gd" id="1_i1iqb"]
 [ext_resource type="Texture2D" uid="uid://5ty6x2r65koq" path="res://art/silver_coin.png" id="2_7gmhd"]
+[ext_resource type="FontFile" uid="uid://ck0ltu3wyr11x" path="res://fonts/Roboto/Roboto-Black.ttf" id="3_o2uuh"]
 [ext_resource type="FontFile" uid="uid://cddebactj84w3" path="res://fonts/Roboto/Roboto-Medium.ttf" id="3_wkxmr"]
 
 [node name="CurrencySilverCoin" type="HBoxContainer"]
@@ -18,10 +19,14 @@ texture = ExtResource("2_7gmhd")
 
 [node name="SilverCoinXAmount" type="Label" parent="."]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3_wkxmr")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("3_o2uuh")
 text = "x"
 
 [node name="Amount" type="Label" parent="."]
 layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
 theme_override_fonts/font = ExtResource("3_wkxmr")
 text = "0"
