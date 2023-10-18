@@ -1,6 +1,7 @@
-[gd_scene load_steps=12 format=3 uid="uid://crk2s578wsl64"]
+[gd_scene load_steps=13 format=3 uid="uid://crk2s578wsl64"]
 
 [ext_resource type="Script" path="res://gameplay/Gameplay.gd" id="1_cv37s"]
+[ext_resource type="Texture2D" uid="uid://43qw31c6dcje" path="res://art/backgrounds/bargain_table.jpg" id="2_551k0"]
 [ext_resource type="PackedScene" uid="uid://c25adoveil6xs" path="res://hud/CurrencySilverCoin.tscn" id="2_a1m00"]
 [ext_resource type="FontFile" uid="uid://cddebactj84w3" path="res://fonts/Roboto/Roboto-Medium.ttf" id="2_ny8ex"]
 [ext_resource type="PackedScene" uid="uid://dm07s06ryg2u" path="res://menus/BackToStartMenuButton.tscn" id="3_7t8p6"]
@@ -20,6 +21,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_cv37s")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.37, 0.37)
+texture = ExtResource("2_551k0")
 
 [node name="CurrencySilverCoin" parent="." instance=ExtResource("2_a1m00")]
 layout_mode = 0
