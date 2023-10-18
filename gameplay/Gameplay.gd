@@ -219,13 +219,14 @@ func add_column() -> void:
 	upgrade_completed(UpgradeManager.UpgradeType.ADD_COLUMN)
 
 func add_backpack() -> void:
-	_init_backpack(backpack_scene.instantiate())
-	upgrade_completed(UpgradeManager.UpgradeType.ADD_BACKPACK)
+	if columns.reduce(func(accum, col): return accum + int(col.current_backpack == null), 0) > 0:
+		_init_backpack(backpack_scene.instantiate())
+		upgrade_completed(UpgradeManager.UpgradeType.ADD_BACKPACK)
 
 func upgrade_increase_backpack_capacity(
 		backpack : Backpack, 
 		_column : GameplayColumn,
-		change_by : int = 1
+		change_by : int = 2
 	) -> bool:
 	var succeeded = false
 	if backpack != null:
