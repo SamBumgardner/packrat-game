@@ -24,4 +24,5 @@ grow_vertical = 2
 self_modulate = Color(1, 1, 1, 0.196078)
 z_index = 1
 z_as_relative = false
+scale = Vector2(0.8, 0.8)
 texture = ExtResource("2_6qx3n")
