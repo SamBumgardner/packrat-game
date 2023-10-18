@@ -2,7 +2,6 @@ extends Control
 
 signal upgrade_selected
 
-@onready var background = $MarginToMatchOpenUpgradeMenu/Background
 @onready var upgrade_options = $UpgradeMenuList/UpgradeOptions
 
 const UPGRADE_BUTTON_SCENE : PackedScene = preload("res://gameplay/upgrade/UpgradeButton.tscn")
@@ -41,7 +40,7 @@ func _on_money_or_level_changed():
 
 func _on_show_hide_button_button_down():
 	var incoming_visibility = not upgrade_options.visible
-	background.visible = incoming_visibility
+	#background.visible = incoming_visibility
 	upgrade_options.visible = incoming_visibility
 
 func _on_button_pressed(upgrade_type : UpgradeManager.UpgradeType) -> void:
