@@ -20,17 +20,36 @@ layout_mode = 1
 scale = Vector2(0.35, 0.35)
 texture = ExtResource("2_llt0a")
 
-[node name="TitleContentContainer" type="VBoxContainer" parent="."]
-layout_mode = 0
-anchor_left = 0.33
-anchor_top = 0.25
-anchor_right = 0.66
-anchor_bottom = 0.75
+[node name="TitleContentMarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -228.0
+offset_top = -108.5
+offset_right = 228.0
+offset_bottom = 108.5
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
+
+[node name="TransparentBackground" type="ColorRect" parent="TitleContentMarginContainer"]
+layout_mode = 2
+color = Color(1, 1, 1, 0.85098)
+
+[node name="Padding8px" type="MarginContainer" parent="TitleContentMarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="TitleContentRows" type="VBoxContainer" parent="TitleContentMarginContainer/Padding8px"]
+layout_mode = 2
 alignment = 1
 
-[node name="Title" type="Label" parent="TitleContentContainer"]
+[node name="Title" type="Label" parent="TitleContentMarginContainer/Padding8px/TitleContentRows"]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 16
@@ -39,7 +58,7 @@ theme_override_font_sizes/font_size = 72
 text = "Packrat Game"
 horizontal_alignment = 1
 
-[node name="SubTitle" type="Label" parent="TitleContentContainer"]
+[node name="SubTitle" type="Label" parent="TitleContentMarginContainer/Padding8px/TitleContentRows"]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
@@ -48,21 +67,21 @@ theme_override_font_sizes/font_size = 24
 text = "Ludum Dare 54 Game Jam Entry"
 horizontal_alignment = 1
 
-[node name="ButtonsContainer" type="VBoxContainer" parent="TitleContentContainer"]
+[node name="ButtonRows" type="VBoxContainer" parent="TitleContentMarginContainer/Padding8px/TitleContentRows"]
 layout_mode = 2
 
-[node name="StartButton" type="Button" parent="TitleContentContainer/ButtonsContainer"]
+[node name="StartButton" type="Button" parent="TitleContentMarginContainer/Padding8px/TitleContentRows/ButtonRows"]
 layout_mode = 2
 text = "Start"
 
-[node name="CreditsButton" type="Button" parent="TitleContentContainer/ButtonsContainer"]
+[node name="CreditsButton" type="Button" parent="TitleContentMarginContainer/Padding8px/TitleContentRows/ButtonRows"]
 layout_mode = 2
 text = "Credits"
 
-[node name="QuitButton" type="Button" parent="TitleContentContainer/ButtonsContainer"]
+[node name="QuitButton" type="Button" parent="TitleContentMarginContainer/Padding8px/TitleContentRows/ButtonRows"]
 layout_mode = 2
 text = "Quit"
 
-[connection signal="pressed" from="TitleContentContainer/ButtonsContainer/StartButton" to="." method="_on_StartButton_pressed"]
-[connection signal="pressed" from="TitleContentContainer/ButtonsContainer/CreditsButton" to="." method="_on_CreditsButton_pressed"]
-[connection signal="pressed" from="TitleContentContainer/ButtonsContainer/QuitButton" to="." method="_on_QuitButton_pressed"]
+[connection signal="pressed" from="TitleContentMarginContainer/Padding8px/TitleContentRows/ButtonRows/StartButton" to="." method="_on_StartButton_pressed"]
+[connection signal="pressed" from="TitleContentMarginContainer/Padding8px/TitleContentRows/ButtonRows/CreditsButton" to="." method="_on_CreditsButton_pressed"]
+[connection signal="pressed" from="TitleContentMarginContainer/Padding8px/TitleContentRows/ButtonRows/QuitButton" to="." method="_on_QuitButton_pressed"]

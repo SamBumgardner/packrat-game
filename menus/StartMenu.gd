@@ -1,14 +1,19 @@
 # Scene to render menu options when the game is started.
 extends Control
 
+@onready var quit_button = (
+	$TitleContentMarginContainer/Padding8px/TitleContentRows/ButtonRows/QuitButton
+	as Button
+)
 @onready var start_button = (
-	$TitleContentContainer/ButtonsContainer/StartButton as Button
+	$TitleContentMarginContainer/Padding8px/TitleContentRows/ButtonRows/StartButton
+	as Button
 )
 
 func _ready():
 	start_button.grab_focus()
 	if OS.get_name() == "HTML5":
-		$TitleContentContainer/ButtonsContainer/QuitButton.visible = false
+		quit_button.visible = false
 
 func _on_CreditsButton_pressed() -> void:
 	get_tree().change_scene_to_file("res://menus/CreditsMenu.tscn")
