@@ -1,8 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://b7nqon34mqhr5"]
-
-[ext_resource type="FontFile" uid="uid://q3gqhife6qv" path="res://fonts/Roboto/Roboto-Bold.ttf" id="1"]
+[gd_scene load_steps=6 format=3 uid="uid://b7nqon34mqhr5"]
+[ext_resource type="FontFile" uid="uid://bu77pr0tn14rr" path="res://fonts/Roboto/Roboto-Bold.ttf" id="1"]
 [ext_resource type="Theme" path="res://fonts/normal_font_theme.tres" id="1_toiww"]
-[ext_resource type="Texture2D" path="res://art/backgrounds/grand_opening.jpg" id="2_llt0a"]
+[ext_resource type="Texture2D" uid="uid://bbltb0nt7c3jp" path="res://art/backgrounds/grand_opening.jpg" id="2_llt0a"]
+[ext_resource type="Texture2D" uid="uid://clb62ur83kib1" path="res://art/dialogue_box.png" id="4_vq270"]
 [ext_resource type="Script" path="res://menus/StartMenu.gd" id="5"]
 
 [node name="StartMenu" type="Control"]
@@ -21,6 +21,7 @@ scale = Vector2(0.35, 0.35)
 texture = ExtResource("2_llt0a")
 
 [node name="TitleContentMarginContainer" type="MarginContainer" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -34,7 +35,13 @@ offset_bottom = 108.5
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="TextureRect" type="Sprite2D" parent="TitleContentMarginContainer"]
+position = Vector2(239, 132.5)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("4_vq270")
+
 [node name="TransparentBackground" type="ColorRect" parent="TitleContentMarginContainer"]
+visible = false
 layout_mode = 2
 color = Color(1, 1, 1, 0.85098)
 
@@ -55,7 +62,7 @@ theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 16
 theme_override_fonts/font = ExtResource("1")
 theme_override_font_sizes/font_size = 72
-text = "Packrat Game"
+text = "Packrat"
 horizontal_alignment = 1
 
 [node name="SubTitle" type="Label" parent="TitleContentMarginContainer/Padding8px/TitleContentRows"]
@@ -82,6 +89,12 @@ text = "Credits"
 layout_mode = 2
 text = "Quit"
 
+[node name="TitleFadeInDelay" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
 [connection signal="pressed" from="TitleContentMarginContainer/Padding8px/TitleContentRows/ButtonRows/StartButton" to="." method="_on_StartButton_pressed"]
 [connection signal="pressed" from="TitleContentMarginContainer/Padding8px/TitleContentRows/ButtonRows/CreditsButton" to="." method="_on_CreditsButton_pressed"]
 [connection signal="pressed" from="TitleContentMarginContainer/Padding8px/TitleContentRows/ButtonRows/QuitButton" to="." method="_on_QuitButton_pressed"]
+[connection signal="timeout" from="TitleFadeInDelay" to="." method="_on_title_fade_in_delay_timeout"]
