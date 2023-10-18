@@ -23,3 +23,13 @@ func _on_StartButton_pressed() -> void:
 
 func _on_QuitButton_pressed() -> void:
 	get_tree().quit()
+
+
+func _on_title_fade_in_delay_timeout():
+	$TitleContentMarginContainer.modulate = Color.TRANSPARENT
+	$TitleContentMarginContainer.position = $TitleContentMarginContainer.position + Vector2(0, 20)
+	$TitleContentMarginContainer.show()
+	var visibility_tween = $TitleContentMarginContainer.create_tween().set_ease(Tween.EASE_OUT).set_trans(Tween.TRANS_CUBIC)
+	visibility_tween.tween_property($TitleContentMarginContainer, "modulate", Color.WHITE, 2)
+	visibility_tween.parallel().tween_property($TitleContentMarginContainer, "position", $TitleContentMarginContainer.position - Vector2(0, 20), 2)
+
