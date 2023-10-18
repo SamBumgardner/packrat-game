@@ -1,9 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://7hqfyc7u8h48"]
+[gd_scene load_steps=3 format=3 uid="uid://7hqfyc7u8h48"]
 
 [ext_resource type="Script" path="res://gameplay/upgrade/UpgradeMenu.gd" id="1_2ene1"]
 [ext_resource type="Script" path="res://gameplay/upgrade/UpgradeManager.gd" id="1_u7guu"]
-[ext_resource type="Texture2D" uid="uid://ct5h3dyyxyblj" path="res://art/pack_1.png" id="2_fmau3"]
-[ext_resource type="Texture2D" uid="uid://brf4h74py8sal" path="res://icon.svg" id="3_f734c"]
 
 [node name="UpgradeMenu" type="VBoxContainer"]
 offset_right = 97.0
@@ -17,57 +15,7 @@ layout_mode = 2
 text = "UPGRADES!"
 
 [node name="UpgradeOptions" type="VBoxContainer" parent="."]
-visible = false
 layout_mode = 2
-
-[node name="BuyButton" type="Button" parent="UpgradeOptions"]
-custom_minimum_size = Vector2(200, 50)
-layout_mode = 2
-text = "New Bag: 200"
-icon = ExtResource("2_fmau3")
-expand_icon = true
-
-[node name="BuyButton2" type="Button" parent="UpgradeOptions"]
-custom_minimum_size = Vector2(200, 50)
-layout_mode = 2
-text = "Extra Column: 500"
-icon = ExtResource("3_f734c")
-expand_icon = true
-
-[node name="BuyButton3" type="Button" parent="UpgradeOptions"]
-custom_minimum_size = Vector2(200, 50)
-layout_mode = 2
-text = "Expand Capacity: 50"
-icon = ExtResource("3_f734c")
-expand_icon = true
-
-[node name="BuyButton4" type="Button" parent="UpgradeOptions"]
-custom_minimum_size = Vector2(200, 50)
-layout_mode = 2
-text = "Expand Capacity: 50"
-icon = ExtResource("3_f734c")
-expand_icon = true
-
-[node name="BuyButton5" type="Button" parent="UpgradeOptions"]
-custom_minimum_size = Vector2(200, 50)
-layout_mode = 2
-text = "Expand Capacity: 50"
-icon = ExtResource("3_f734c")
-expand_icon = true
-
-[node name="BuyButton6" type="Button" parent="UpgradeOptions"]
-custom_minimum_size = Vector2(200, 50)
-layout_mode = 2
-text = "Expand Capacity: 50"
-icon = ExtResource("3_f734c")
-expand_icon = true
-
-[node name="BuyButton7" type="Button" parent="UpgradeOptions"]
-custom_minimum_size = Vector2(200, 50)
-layout_mode = 2
-text = "Expand Capacity: 50"
-icon = ExtResource("3_f734c")
-expand_icon = true
 
 [node name="UpgradeManager" type="Node" parent="."]
 script = ExtResource("1_u7guu")

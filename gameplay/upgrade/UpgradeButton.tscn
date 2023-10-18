@@ -1,0 +1,27 @@
+[gd_scene load_steps=3 format=3 uid="uid://boqd6oxg2m6qa"]
+
+[ext_resource type="Texture2D" uid="uid://dkew3i6wq7feh" path="res://art/silver_coin.png" id="2_6qx3n"]
+[ext_resource type="Script" path="res://gameplay/upgrade/UpgradeButton.gd" id="2_s77sd"]
+
+[node name="UpgradeButton" type="Button"]
+custom_minimum_size = Vector2(200, 50)
+text = "Upgrade_Name: Cost"
+expand_icon = true
+script = ExtResource("2_s77sd")
+
+[node name="Control" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DisabledReasonSprite" type="Sprite2D" parent="Control"]
+self_modulate = Color(1, 1, 1, 0.196078)
+z_index = 1
+z_as_relative = false
+texture = ExtResource("2_6qx3n")
