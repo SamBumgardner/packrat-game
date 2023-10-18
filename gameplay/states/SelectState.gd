@@ -32,5 +32,5 @@ func handle_upgrade_selected(gameplay : Gameplay, upgrade_type : UpgradeManager.
 		UpgradeManager.UpgradeType.EMPTY_COLUMN:
 			gameplay.enter_column_change_mode(GlobalConstants.ColumnContents.NONE)
 		UpgradeManager.UpgradeType.REMODEL:
-			pass
+			gameplay.start_remodel()
 	return Gameplay.State.NO_CHANGE
