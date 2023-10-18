@@ -1,0 +1,38 @@
+[gd_scene load_steps=3 format=3 uid="uid://lyah2pc5jcsu"]
+
+[ext_resource type="Script" path="res://gameplay/trade_offer/TradeOffer.gd" id="1_084g1"]
+[ext_resource type="FontFile" uid="uid://cddebactj84w3" path="res://fonts/Roboto/Roboto-Medium.ttf" id="1_t44va"]
+
+[node name="TradeOffer" type="VBoxContainer"]
+script = ExtResource("1_084g1")
+
+[node name="WantsHeader" type="Label" parent="."]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_t44va")
+text = "Wants:"
+
+[node name="WantsDescription" type="Label" parent="."]
+layout_mode = 2
+text = "Unique elements"
+
+[node name="BonusHeader" type="Label" parent="."]
+visible = false
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_t44va")
+text = "Bonus:"
+
+[node name="BonusDescription" type="Label" parent="."]
+visible = false
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_t44va")
+text = "None"
+
+[node name="RewardHeader" type="Label" parent="."]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_t44va")
+text = "Reward:"
+
+[node name="RewardDescription" type="Label" parent="."]
+layout_mode = 2
+theme_override_fonts/font = ExtResource("1_t44va")
+text = "1 Silver Coin each"
