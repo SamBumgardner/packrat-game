@@ -214,9 +214,11 @@ func attempt_staged_upgrade() -> bool:
 
 func add_column() -> void:
 	_init_column(gameplay_column_scene.instantiate(), GlobalConstants.ColumnContents.NONE)
+	upgrade_completed(UpgradeManager.UpgradeType.ADD_COLUMN)
 
 func add_backpack() -> void:
 	_init_backpack(backpack_scene.instantiate())
+	upgrade_completed(UpgradeManager.UpgradeType.ADD_BACKPACK)
 
 func upgrade_increase_backpack_capacity(
 		backpack : Backpack, 
@@ -224,6 +226,7 @@ func upgrade_increase_backpack_capacity(
 		change_by : int = 1
 	) -> bool:
 	backpack.change_capacity(backpack.get_max_capacity() + change_by)
+	upgrade_completed(UpgradeManager.UpgradeType.INCREASE_CAPACITY)	
 	return true
 
 func upgrade_set_column_next_type(
@@ -232,7 +235,18 @@ func upgrade_set_column_next_type(
 		type : GlobalConstants.ColumnContents
 	) -> bool:
 	if column != null && column.column_type != type:
-		return column.attempt_construction(type)
+		var succeeded : bool = column.attempt_construction(type)
+		if succeeded:
+			var upgrade_type : UpgradeManager.UpgradeType
+			match type:
+				GlobalConstants.ColumnContents.CUSTOMER:
+					upgrade_type = UpgradeManager.UpgradeType.CHANGE_COLUMN_CUSTOMER
+				GlobalConstants.ColumnContents.REGION:
+					upgrade_type = UpgradeManager.UpgradeType.CHANGE_COLUMN_REGION
+				GlobalConstants.ColumnContents.NONE:
+					upgrade_type = UpgradeManager.UpgradeType.EMPTY_COLUMN
+			upgrade_completed(upgrade_type)
+		return succeeded
 	else:
 		return false
 
@@ -244,6 +258,12 @@ func enter_column_change_mode(new_type : GlobalConstants.ColumnContents) -> void
 	set_current_state(State.UPGRADE)
 	staged_upgrade = upgrade_set_column_next_type.bind(new_type)
 
-func start_remodel() -> void:
-	pass
+func start_remodel() -> bool:
 	print("started remodel, closing all columns (stubbed)")
+	upgrade_completed(UpgradeManager.UpgradeType.REMODEL)
+	return true
+
+func upgrade_completed(upgrade_type : UpgradeManager.UpgradeType) -> void:
+	var cost : int = UpgradeManager.get_cost(upgrade_type)
+	Database.set_silver_coin_count(Database.silver_coin_count - cost)
+	# Tell Database or whoever to increment number of times upgrade has been purchased.
