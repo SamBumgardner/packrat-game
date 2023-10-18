@@ -7,3 +7,4 @@
 script = ExtResource("2_d84d2")
 graphic = ExtResource("1_toqlo")
 name = "Bailey"
+trade_formula = 0

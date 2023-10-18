@@ -7,3 +7,4 @@
 script = ExtResource("2_3h7om")
 graphic = ExtResource("1_skjwe")
 name = "Tim"
+trade_formula = 1
