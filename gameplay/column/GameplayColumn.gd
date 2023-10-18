@@ -79,6 +79,7 @@ func finish_construction() -> void:
 	set_column_type(_constructing_column_type)
 	stop_displaying_construction()
 	_under_construction = false
+	_constructing_column_type = column_type
 
 #####################
 # NEXT DAY HANDLING #

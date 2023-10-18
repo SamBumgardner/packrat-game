@@ -16,13 +16,12 @@ enum State {
 	UPGRADE
 }
 
-@export var starting_column_count : int = 3
+@export var starting_column_count : int = 2
 @export var starting_column_types : Array[GlobalConstants.ColumnContents] = [
 	GlobalConstants.ColumnContents.REGION,
-	GlobalConstants.ColumnContents.NONE,
 	GlobalConstants.ColumnContents.CUSTOMER
 ]
-@export var starting_backpack_count : int = 2
+@export var starting_backpack_count : int = 1
 
 @onready var database = get_node("/root/Database")
 
@@ -61,6 +60,9 @@ func _ready():
 		_init_column(gameplay_column_scene.instantiate(), starting_column_types[i])
 	for i in range(starting_backpack_count):
 		_init_backpack(backpack_scene.instantiate() as Backpack)
+	Database.active_region_columns = get_typed_column_count(GlobalConstants.ColumnContents.REGION)
+	Database.active_customer_columns = get_typed_column_count(GlobalConstants.ColumnContents.CUSTOMER)
+	Database.set_silver_coin_count(Database.silver_coin_count)
 
 func _init_backpack(backpack : Backpack) -> void:
 	$OriginOfNewBackpacks.add_child(backpack)
@@ -225,9 +227,12 @@ func upgrade_increase_backpack_capacity(
 		_column : GameplayColumn,
 		change_by : int = 1
 	) -> bool:
-	backpack.change_capacity(backpack.get_max_capacity() + change_by)
-	upgrade_completed(UpgradeManager.UpgradeType.INCREASE_CAPACITY)	
-	return true
+	var succeeded = false
+	if backpack != null:
+		backpack.change_capacity(backpack.get_max_capacity() + change_by)
+		upgrade_completed(UpgradeManager.UpgradeType.INCREASE_CAPACITY)
+		succeeded = true
+	return succeeded
 
 func upgrade_set_column_next_type(
 		_backpack : Backpack, 
@@ -263,7 +268,29 @@ func start_remodel() -> bool:
 	upgrade_completed(UpgradeManager.UpgradeType.REMODEL)
 	return true
 
+
+# Count all active & under-construction columns for the specified Contents Type
+func get_typed_column_count(type_to_count : GlobalConstants.ColumnContents) -> int:
+	var column_count : int = 0
+	for column in columns:
+		if column._under_construction and column._constructing_column_type == type_to_count:
+				column_count += 1
+		elif !column._under_construction and column.column_type == type_to_count:
+				column_count += 1
+	return column_count
+
 func upgrade_completed(upgrade_type : UpgradeManager.UpgradeType) -> void:
 	var cost : int = UpgradeManager.get_cost(upgrade_type)
+	match upgrade_type:
+		UpgradeManager.UpgradeType.ADD_BACKPACK:
+			Database.backpacks_purchased += 1
+		UpgradeManager.UpgradeType.ADD_COLUMN:
+			Database.columns_purchased += 1
+		UpgradeManager.UpgradeType.INCREASE_CAPACITY:
+			Database.capacity_increases_purchased += 1
+		UpgradeManager.UpgradeType.REMODEL:
+			Database.shop_level += 1
+		_:
+			Database.active_region_columns = get_typed_column_count(GlobalConstants.ColumnContents.REGION)
+			Database.active_customer_columns = get_typed_column_count(GlobalConstants.ColumnContents.CUSTOMER)
 	Database.set_silver_coin_count(Database.silver_coin_count - cost)
-	# Tell Database or whoever to increment number of times upgrade has been purchased.

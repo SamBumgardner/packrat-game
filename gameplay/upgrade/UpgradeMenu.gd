@@ -29,6 +29,7 @@ func _ready():
 
 func _on_money_or_level_changed():
 	for upgrade_type in UpgradeManager.UpgradeType.values():
+		_upgrade_buttons[upgrade_type].set_cost(UpgradeManager.get_cost(upgrade_type))
 		var restricted_reason : UpgradeManager.RestrictedReason = UpgradeManager.check_restricted(upgrade_type)
 		if restricted_reason != UpgradeManager.RestrictedReason.NONE:
 			_upgrade_buttons[upgrade_type].disable_with_reason(restricted_reason)

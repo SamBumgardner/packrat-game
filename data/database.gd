@@ -6,12 +6,25 @@ signal updated_silver_coin_count
 signal updated_trade_count
 
 var _initial_day_count : int = 1
-var _initial_silver_coin_count : int = 0
+var _initial_silver_coin_count : int = 50
 var _initial_trade_count : int = 0
+var _initial_backpacks_purchased : int = 0
+var _initial_columns_purchased : int = 0
+var _initial_capacity_increases_purchased : int = 0
+var _initial_active_region_columns = 0
+var _initial_active_customer_columns = 0
+var _initial_shop_level = 0
 
 var day_count : int
 var silver_coin_count : int
 var trade_count : int
+
+var backpacks_purchased : int = 0
+var columns_purchased : int = 0
+var capacity_increases_purchased : int = 0
+var active_region_columns = 0
+var active_customer_columns = 0
+var shop_level = 0
 
 func _ready():
 	reset_values()
@@ -31,6 +44,13 @@ func reset_values() -> void:
 	set_silver_coin_count(_initial_silver_coin_count)
 
 	trade_count = _initial_trade_count
+	
+	backpacks_purchased = _initial_backpacks_purchased
+	columns_purchased = _initial_columns_purchased
+	capacity_increases_purchased = _initial_capacity_increases_purchased
+	active_region_columns = _initial_active_region_columns
+	active_customer_columns = _initial_active_customer_columns
+	shop_level = _initial_shop_level
 
 func set_silver_coin_count(updated_count : int) -> void:
 	silver_coin_count = updated_count
