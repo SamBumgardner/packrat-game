@@ -1,7 +1,5 @@
 class_name UpgradeManager
 
-extends Node
-
 enum UpgradeType {
 	ADD_BACKPACK = 0,
 	ADD_COLUMN,
@@ -20,23 +18,23 @@ enum RestrictedReason {
 
 const NO_LIMIT_PER_LEVEL : Array[int] = [100, 100, 100, 100]
 
-@export var add_backpack_costs : Array[int] = [50, 75, 100, 150, 200]
-@export var add_column_costs : Array[int] = [100, 125, 175, 250]
-@export var increase_capacity_costs : Array[int] = [10, 20, 30, 40, 50, 60]
-@export var change_column_region_costs : Array[int] = [30]
-@export var change_column_customer_costs : Array[int] = [30]
-@export var empty_column_costs : Array[int] = [-30]
-@export var remodel_costs : Array[int] = [150, 250, 350, 500]
+static var add_backpack_costs : Array[int] = [50, 75, 100, 150, 200]
+static var add_column_costs : Array[int] = [100, 125, 175, 250]
+static var increase_capacity_costs : Array[int] = [10, 20, 30, 40, 50, 60]
+static var change_column_region_costs : Array[int] = [30]
+static var change_column_customer_costs : Array[int] = [30]
+static var empty_column_costs : Array[int] = [-30]
+static var remodel_costs : Array[int] = [150, 250, 350, 500]
 
-@export var add_backpack_level_limits : Array[int] = [2, 3, 4, 6]
-@export var add_column_level_limits : Array[int] = [3, 4, 5, 6]
-@export var increase_capacity_level_limits : Array[int] = [3, 4, 5, 6]
-@export var change_column_region_level_limits : Array[int] = NO_LIMIT_PER_LEVEL
-@export var change_column_customer_level_limits : Array[int] = NO_LIMIT_PER_LEVEL
-@export var empty_column_level_limits : Array[int] = NO_LIMIT_PER_LEVEL
-@export var remodel_level_limits : Array[int] = NO_LIMIT_PER_LEVEL
+static var add_backpack_level_limits : Array[int] = [2, 3, 4, 6]
+static var add_column_level_limits : Array[int] = [3, 4, 5, 6]
+static var increase_capacity_level_limits : Array[int] = [3, 4, 5, 6]
+static var change_column_region_level_limits : Array[int] = NO_LIMIT_PER_LEVEL
+static var change_column_customer_level_limits : Array[int] = NO_LIMIT_PER_LEVEL
+static var empty_column_level_limits : Array[int] = NO_LIMIT_PER_LEVEL
+static var remodel_level_limits : Array[int] = NO_LIMIT_PER_LEVEL
 
-var _costs : Array[Array] = [
+static var _costs : Array[Array] = [
 	add_backpack_costs,
 	add_column_costs,
 	increase_capacity_costs,
@@ -45,7 +43,7 @@ var _costs : Array[Array] = [
 	empty_column_costs,
 	remodel_costs
 ]
-var _level_limits : Array[Array] = [
+static var _level_limits : Array[Array] = [
 	add_backpack_level_limits,
 	add_column_level_limits,
 	increase_capacity_level_limits,
@@ -54,7 +52,7 @@ var _level_limits : Array[Array] = [
 	empty_column_level_limits,
 	remodel_level_limits
 ]
-var _count_times_bought : Array[Callable] = [
+static var _count_times_bought : Array[Callable] = [
 	func () : return 0,
 	func () : return 0,
 	func () : return 0,
@@ -64,11 +62,11 @@ var _count_times_bought : Array[Callable] = [
 	func () : return 0,
 ]
 
-func get_cost(upgrade_type : UpgradeType) -> int:
+static func get_cost(upgrade_type : UpgradeType) -> int:
 	var number_of_times_bought = _count_times_bought[upgrade_type].call()
 	return _costs[upgrade_type][number_of_times_bought]
 
-func can_buy(upgrade_type : UpgradeType) -> RestrictedReason:
+static func check_restricted(upgrade_type : UpgradeType) -> RestrictedReason:
 	var current_level = 0 # temp var, should pull this from DB or gameplay
 	
 	var number_of_times_bought = _count_times_bought[upgrade_type].call()
