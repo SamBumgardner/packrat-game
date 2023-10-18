@@ -117,4 +117,5 @@ grow_vertical = 0
 
 [connection signal="sort_children" from="Columns" to="." method="_on_columns_sort_children"]
 [connection signal="timeout" from="MockExplanation/DelayHidingTitle" to="." method="_on_timer_timeout"]
+[connection signal="upgrade_selected" from="UpgradeMenu" to="." method="_on_upgrade_selected"]
 [connection signal="pressed" from="NextDay/NextDayButton" to="." method="_on_next_day_button_pressed"]
