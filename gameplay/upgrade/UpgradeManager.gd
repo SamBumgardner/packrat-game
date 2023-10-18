@@ -1,7 +1,7 @@
 class_name UpgradeManager
 
 enum UpgradeType {
-	ADD_BACKPACK = 0,
+	ADD_BACKPACK,
 	ADD_COLUMN,
 	INCREASE_CAPACITY,
 	CHANGE_COLUMN_REGION,

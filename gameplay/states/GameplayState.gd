@@ -12,3 +12,6 @@ func _on_exit(_gameplay : Gameplay) -> void:
 
 func process_input(_gameplay : Gameplay, _event : InputEvent) -> Gameplay.State:
 	return Gameplay.State.NO_CHANGE
+
+func handle_upgrade_selected(_gameplay : Gameplay, _upgrade_type : UpgradeManager.UpgradeType) -> Gameplay.State:
+	return Gameplay.State.NO_CHANGE

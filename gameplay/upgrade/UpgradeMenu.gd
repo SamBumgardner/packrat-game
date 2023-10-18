@@ -39,5 +39,4 @@ func _on_show_hide_button_button_down():
 	$UpgradeOptions.visible = !$UpgradeOptions.visible
 
 func _on_button_pressed(upgrade_type : UpgradeManager.UpgradeType) -> void:
-	print(upgrade_type)
 	upgrade_selected.emit(upgrade_type)

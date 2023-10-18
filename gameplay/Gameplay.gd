@@ -102,6 +102,9 @@ func set_current_state(new_state : State) -> void:
 		current_state = new_state
 		states[current_state]._on_enter(self)
 
+func _on_upgrade_selected(upgrade_type : UpgradeManager.UpgradeType):
+	states[current_state].handle_upgrade_selected(self, upgrade_type)
+
 #####################
 # NEXT DAY HANDLING #
 #####################
@@ -242,5 +245,5 @@ func enter_column_change_mode(new_type : GlobalConstants.ColumnContents) -> void
 	staged_upgrade = upgrade_set_column_next_type.bind(new_type)
 
 func start_remodel() -> void:
-	set_current_state(State.UPGRADE)
+	pass
 	print("started remodel, closing all columns (stubbed)")
