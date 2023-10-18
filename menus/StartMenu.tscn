@@ -40,11 +40,6 @@ position = Vector2(239, 132.5)
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("4_vq270")
 
-[node name="TransparentBackground" type="ColorRect" parent="TitleContentMarginContainer"]
-visible = false
-layout_mode = 2
-color = Color(1, 1, 1, 0.85098)
-
 [node name="Padding8px" type="MarginContainer" parent="TitleContentMarginContainer"]
 layout_mode = 2
 theme_override_constants/margin_left = 8
