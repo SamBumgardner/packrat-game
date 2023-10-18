@@ -1,20 +1,36 @@
-[gd_scene load_steps=2 format=3 uid="uid://7hqfyc7u8h48"]
+[gd_scene load_steps=3 format=3 uid="uid://7hqfyc7u8h48"]
 
 [ext_resource type="Script" path="res://gameplay/upgrade/UpgradeMenu.gd" id="1_2ene1"]
+[ext_resource type="Texture2D" uid="uid://ukfugysyme04" path="res://art/backgrounds/scroll_blank.png" id="2_wopu0"]
 
-[node name="UpgradeMenu" type="VBoxContainer"]
-offset_right = 97.0
-offset_bottom = 31.0
-size_flags_horizontal = 6
-size_flags_vertical = 6
+[node name="UpgradeMenu" type="MarginContainer"]
+offset_right = 2789.0
+offset_bottom = 1699.0
 script = ExtResource("1_2ene1")
 
-[node name="ShowHideButton" type="Button" parent="."]
+[node name="MarginToMatchOpenUpgradeMenu" type="MarginContainer" parent="."]
+custom_minimum_size = Vector2(300, 500)
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+theme_override_constants/margin_left = -50
+theme_override_constants/margin_top = -60
+
+[node name="Background" type="TextureRect" parent="MarginToMatchOpenUpgradeMenu"]
+layout_mode = 2
+texture = ExtResource("2_wopu0")
+expand_mode = 1
+
+[node name="UpgradeMenuList" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+
+[node name="ShowHideButton" type="Button" parent="UpgradeMenuList"]
 layout_mode = 2
 text = "UPGRADES!"
 
-[node name="UpgradeOptions" type="VBoxContainer" parent="."]
-visible = false
+[node name="UpgradeOptions" type="VBoxContainer" parent="UpgradeMenuList"]
 layout_mode = 2
 
-[connection signal="button_down" from="ShowHideButton" to="." method="_on_show_hide_button_button_down"]
+[connection signal="button_down" from="UpgradeMenuList/ShowHideButton" to="UpgradeMenuList" method="_on_show_hide_button_button_down"]
