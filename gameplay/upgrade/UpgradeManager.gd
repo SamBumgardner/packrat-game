@@ -64,7 +64,11 @@ var _count_times_bought : Array[Callable] = [
 	func () : return 0,
 ]
 
-func can_buy(upgrade_type : UpgradeType):
+func get_cost(upgrade_type : UpgradeType) -> int:
+	var number_of_times_bought = _count_times_bought[upgrade_type].call()
+	return _costs[upgrade_type][number_of_times_bought]
+
+func can_buy(upgrade_type : UpgradeType) -> RestrictedReason:
 	var current_level = 0 # temp var, should pull this from DB or gameplay
 	
 	var number_of_times_bought = _count_times_bought[upgrade_type].call()
