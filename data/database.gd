@@ -2,6 +2,7 @@
 extends Node
 
 signal updated_day_count
+signal updated_shop_level
 signal updated_silver_coin_count
 signal updated_trade_count
 
@@ -51,7 +52,12 @@ func reset_values() -> void:
 	active_region_columns = _initial_active_region_columns
 	active_customer_columns = _initial_active_customer_columns
 	shop_level = _initial_shop_level
+	updated_shop_level.emit()
 
 func set_silver_coin_count(updated_count : int) -> void:
 	silver_coin_count = updated_count
 	updated_silver_coin_count.emit()
+
+func set_shop_level(updated_level : int) -> void:
+	shop_level = updated_level
+	updated_shop_level.emit()

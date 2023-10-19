@@ -302,7 +302,7 @@ func upgrade_completed(upgrade_type : UpgradeManager.UpgradeType) -> void:
 		UpgradeManager.UpgradeType.INCREASE_CAPACITY:
 			Database.capacity_increases_purchased += 1
 		UpgradeManager.UpgradeType.REMODEL:
-			Database.shop_level += 1
+			Database.set_shop_level(Database.shop_level + 1)
 		_:
 			Database.active_region_columns = get_typed_column_count(GlobalConstants.ColumnContents.REGION)
 			Database.active_customer_columns = get_typed_column_count(GlobalConstants.ColumnContents.CUSTOMER)
