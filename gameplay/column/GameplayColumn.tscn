@@ -65,6 +65,8 @@ offset_right = 20.0
 offset_bottom = 87.0
 grow_horizontal = 2
 size_flags_horizontal = 4
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 20
 text = "Renovating..."
 horizontal_alignment = 1
 

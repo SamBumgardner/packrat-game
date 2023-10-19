@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://lyah2pc5jcsu"]
 
 [ext_resource type="Script" path="res://gameplay/trade_offer/TradeOffer.gd" id="1_084g1"]
-[ext_resource type="FontFile" uid="uid://cddebactj84w3" path="res://fonts/Roboto/Roboto-Medium.ttf" id="1_t44va"]
+[ext_resource type="FontFile" uid="uid://cv7jguoc63tx5" path="res://fonts/Roboto/Roboto-Medium.ttf" id="1_t44va"]
 
 [node name="TradeOffer" type="VBoxContainer"]
 script = ExtResource("1_084g1")
