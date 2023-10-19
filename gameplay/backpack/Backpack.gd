@@ -17,9 +17,9 @@ var _target_global_position : Vector2 = Vector2.ZERO
 
 # Parameters for appearance and inventory.
 const POSSIBLE_GRAPHICS : Array[Texture] = [
-	preload("res://art/pack_1.png"),
-	preload("res://art/pack_2.png"),
-	preload("res://art/pack_3.png")
+	preload("res://art/pack_1_c_scale.png"),
+	preload("res://art/pack_2_c_scale.png"),
+	preload("res://art/pack_3_c_scale.png")
 ]
 static var used_graphic_indexes : Array[int] = []
 @export var backpack_graphic : Texture
