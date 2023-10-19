@@ -1,9 +1,11 @@
-[gd_scene load_steps=5 format=3 uid="uid://cl87ap5mgbyxq"]
+[gd_scene load_steps=7 format=3 uid="uid://cl87ap5mgbyxq"]
 
 [ext_resource type="PackedScene" uid="uid://dm07s06ryg2u" path="res://menus/BackToStartMenuButton.tscn" id="1"]
 [ext_resource type="Theme" uid="uid://c1rbyyhtqrqqt" path="res://fonts/normal_font_theme.tres" id="1_12lkd"]
-[ext_resource type="Texture2D" uid="uid://6yom13chrvpm" path="res://art/backgrounds/grand_opening.jpg" id="2_vylv0"]
+[ext_resource type="Texture2D" uid="uid://bc13c8far2njh" path="res://art/backgrounds/grand_opening.jpg" id="2_vylv0"]
 [ext_resource type="Script" path="res://menus/CreditsMenu.gd" id="4"]
+[ext_resource type="AudioStream" uid="uid://dm27behegbjg" path="res://sound/Anticipated-Arrival_v1b.ogg" id="5_eev3j"]
+[ext_resource type="Script" path="res://sound/LoopBGM.gd" id="6_7hp0t"]
 
 [node name="CreditsMenu" type="Control"]
 layout_mode = 3
@@ -56,7 +58,7 @@ layout_mode = 2
 theme = ExtResource("1_12lkd")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
-text = "Sam Bumgardner ... Lead Designer"
+text = "Sam Bumgardner ... Lead Designer, Programmer"
 
 [node name="Credit2" type="Label" parent="CreditsMarginContainer/Padding8px/CreditsRows"]
 layout_mode = 2
@@ -81,3 +83,9 @@ by Christian Robertson"
 [node name="BackToStartMenuButton" parent="." instance=ExtResource("1")]
 layout_direction = 0
 layout_mode = 1
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_eev3j")
+volume_db = -20.0
+autoplay = true
+script = ExtResource("6_7hp0t")

@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://b7nqon34mqhr5"]
+[gd_scene load_steps=8 format=3 uid="uid://b7nqon34mqhr5"]
 
 [ext_resource type="FontFile" uid="uid://dkh871r4vl1hr" path="res://fonts/Roboto/Roboto-Bold.ttf" id="1"]
 [ext_resource type="Theme" uid="uid://c1rbyyhtqrqqt" path="res://fonts/normal_font_theme.tres" id="1_toiww"]
 [ext_resource type="Texture2D" uid="uid://bc13c8far2njh" path="res://art/backgrounds/grand_opening.jpg" id="2_llt0a"]
 [ext_resource type="Texture2D" uid="uid://ch0ewypdhr8gi" path="res://art/dialogue_box.png" id="4_vq270"]
 [ext_resource type="Script" path="res://menus/StartMenu.gd" id="5"]
+[ext_resource type="AudioStream" uid="uid://lgej3y4ihbf" path="res://sound/Contented-Customers_v8b.ogg" id="6_tdej7"]
+[ext_resource type="Script" path="res://sound/LoopBGM.gd" id="7_fccre"]
 
 [node name="StartMenu" type="Control"]
 layout_mode = 3
@@ -89,6 +91,12 @@ text = "Quit"
 wait_time = 2.0
 one_shot = true
 autostart = true
+
+[node name="BGM" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_tdej7")
+autoplay = true
+bus = &"BGM"
+script = ExtResource("7_fccre")
 
 [connection signal="pressed" from="TitleContentMarginContainer/Padding8px/TitleContentRows/ButtonRows/StartButton" to="." method="_on_StartButton_pressed"]
 [connection signal="pressed" from="TitleContentMarginContainer/Padding8px/TitleContentRows/ButtonRows/CreditsButton" to="." method="_on_CreditsButton_pressed"]
