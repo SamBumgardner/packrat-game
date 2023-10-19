@@ -53,6 +53,9 @@ var _columns_finished_day : int = 0
 # INITIALIZATION #
 ##################
 func _ready():
+	for button in get_tree().get_nodes_in_group("button"):
+		button.button_down.connect($ButtonSFX.play)
+	
 	_fade_in_setup()
 	database.reset_values()
 	_set_mock_goal()

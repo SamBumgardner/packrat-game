@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dm07s06ryg2u"]
 
 [ext_resource type="Script" path="res://menus/BackToStartMenuButton.gd" id="1"]
-[ext_resource type="FontFile" uid="uid://cv7jguoc63tx5" path="res://fonts/Roboto/Roboto-Medium.ttf" id="2_hvh6w"]
+[ext_resource type="FontFile" uid="uid://d1faal3mxcb84" path="res://fonts/Roboto/Roboto-Medium.ttf" id="2_hvh6w"]
 
 [node name="BackToStartMenuButton" type="Control"]
 layout_direction = 3
@@ -12,7 +12,7 @@ anchor_right = 1.0
 grow_horizontal = 0
 script = ExtResource("1")
 
-[node name="ExitButton" type="Button" parent="."]
+[node name="ExitButton" type="Button" parent="." groups=["button"]]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0
