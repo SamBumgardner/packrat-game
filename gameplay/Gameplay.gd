@@ -36,8 +36,7 @@ var states : Array[GameplayState] = [
 
 var staged_upgrade : Callable
 
-var mock_goal : int = 12
-var mock_victory : bool = false
+var mock_goal : int = 4
 
 var hovered_column_index : int = NO_COLUMN
 var hovered_backpack : Backpack = null
@@ -132,12 +131,6 @@ func disable_next_day() -> void:
 func _increment_number_of_days() -> void:
 	database.increment_day_count()
 
-	if not mock_victory and database.day_count >= mock_goal:
-		set_current_state(State.SELECT)
-		get_tree().change_scene_to_file(
-			"res://gameplay/game_finished/GameFinished.tscn"
-		)
-
 func _on_next_day_button_pressed() -> void:
 	set_current_state(State.WAIT)
 	_columns_executing_day = columns.size()
@@ -157,7 +150,7 @@ func _on_timer_timeout() -> void:
 
 func _set_mock_goal() -> void:
 	$MockExplanation/Explanation.text = (
-		"Survive until day " +
+		"Reach Shop Level " +
 		str(mock_goal) +
 		" to win!"
 	)
@@ -280,6 +273,12 @@ func enter_column_change_mode(new_type : GlobalConstants.ColumnContents) -> void
 func start_remodel() -> bool:
 	$LevelUpParticles.restart()
 	upgrade_completed(UpgradeManager.UpgradeType.REMODEL)
+	
+	if Database.shop_level >= mock_goal:
+		set_current_state(State.SELECT)
+		get_tree().change_scene_to_file(
+			"res://gameplay/game_finished/GameFinished.tscn"
+		)
 	return true
 
 
