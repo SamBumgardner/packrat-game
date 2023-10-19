@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://crk2s578wsl64"]
+[gd_scene load_steps=13 format=3 uid="uid://crk2s578wsl64"]
 
 [ext_resource type="Theme" uid="uid://c1rbyyhtqrqqt" path="res://fonts/normal_font_theme.tres" id="1_43exs"]
 [ext_resource type="Script" path="res://gameplay/Gameplay.gd" id="1_cv37s"]
@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://dm07s06ryg2u" path="res://menus/BackToStartMenuButton.tscn" id="3_7t8p6"]
 [ext_resource type="Script" path="res://gameplay/NextDayButton.gd" id="4_fxq41"]
 [ext_resource type="PackedScene" uid="uid://e1hatl7xepnb" path="res://hud/DaysPassedTracker.tscn" id="7_6ilhd"]
+[ext_resource type="Texture2D" uid="uid://rvhnv7527uvk" path="res://art/right_arrow.png" id="9_oawgj"]
 
 [sub_resource type="Gradient" id="Gradient_les6x"]
 offsets = PackedFloat32Array(0, 0.799544, 1)
@@ -108,7 +109,7 @@ z_index = 3
 layout_mode = 0
 
 [node name="TextureRect2" type="TextureRect" parent="."]
-custom_minimum_size = Vector2(200, 64)
+custom_minimum_size = Vector2(200, 125)
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -136,12 +137,15 @@ grow_vertical = 0
 
 [node name="DaysPassedTracker" parent="NextDay" instance=ExtResource("7_6ilhd")]
 layout_mode = 2
+size_flags_horizontal = 4
 
 [node name="NextDayButton" type="Button" parent="NextDay"]
+custom_minimum_size = Vector2(100, 75)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_ny8ex")
 theme_override_font_sizes/font_size = 18
 text = "Next Day"
+icon = ExtResource("9_oawgj")
 script = ExtResource("4_fxq41")
 
 [node name="OriginOfNewBackpacks" type="Control" parent="."]
