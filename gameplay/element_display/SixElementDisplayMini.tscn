@@ -1,7 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://b6daeiymon5ei"]
+[gd_scene load_steps=8 format=3 uid="uid://b6daeiymon5ei"]
 
 [ext_resource type="Script" path="res://gameplay/element_display/SixElementDisplay.gd" id="1_ll034"]
 [ext_resource type="PackedScene" uid="uid://b612mtbq43632" path="res://gameplay/element_display/ElementAmountMini.tscn" id="2_qeahf"]
+[ext_resource type="Texture2D" uid="uid://cnt2l5jrtnvr8" path="res://art/leaf_icon.png" id="3_0npq0"]
+[ext_resource type="Texture2D" uid="uid://bsv81var57322" path="res://art/earth_icon.png" id="4_mltbq"]
+[ext_resource type="Texture2D" uid="uid://dg8a2ijhknq2t" path="res://art/fire_icon.png" id="5_lidc0"]
+[ext_resource type="Texture2D" uid="uid://d3qau4kbkkekc" path="res://art/water_icon.png" id="6_fjg46"]
+[ext_resource type="Texture2D" uid="uid://ddb74x3fnou14" path="res://art/wind_icon.png" id="7_qpo84"]
 
 [node name="SixElementDisplayMini" type="VBoxContainer"]
 custom_minimum_size = Vector2(0, 100)
@@ -17,10 +22,12 @@ size_flags_vertical = 3
 [node name="Nature" parent="HBoxContainer" instance=ExtResource("2_qeahf")]
 layout_mode = 2
 color_tint = Color(0.1, 1, 0, 1)
+element_icon = ExtResource("3_0npq0")
 
 [node name="Earth" parent="HBoxContainer" instance=ExtResource("2_qeahf")]
 layout_mode = 2
-color_tint = Color(0.38, 0.133, 0, 1)
+color_tint = Color(1, 0.784314, 0, 1)
+element_icon = ExtResource("4_mltbq")
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -31,10 +38,12 @@ size_flags_stretch_ratio = 0.0
 [node name="Fire" parent="HBoxContainer2" instance=ExtResource("2_qeahf")]
 layout_mode = 2
 color_tint = Color(1, 0, 0, 1)
+element_icon = ExtResource("5_lidc0")
 
 [node name="Water" parent="HBoxContainer2" instance=ExtResource("2_qeahf")]
 layout_mode = 2
 color_tint = Color(0, 0, 1, 1)
+element_icon = ExtResource("6_fjg46")
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -44,6 +53,7 @@ size_flags_vertical = 3
 [node name="Air" parent="HBoxContainer3" instance=ExtResource("2_qeahf")]
 layout_mode = 2
 color_tint = Color(0, 1, 0.764706, 1)
+element_icon = ExtResource("7_qpo84")
 
 [node name="Wild" parent="HBoxContainer3" instance=ExtResource("2_qeahf")]
 layout_mode = 2

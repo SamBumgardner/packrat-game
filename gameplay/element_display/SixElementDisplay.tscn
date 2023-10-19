@@ -1,7 +1,12 @@
-[gd_scene load_steps=3 format=3 uid="uid://b75uw1cnn27ae"]
+[gd_scene load_steps=8 format=3 uid="uid://b75uw1cnn27ae"]
 
 [ext_resource type="PackedScene" uid="uid://c8wte7nhlq43y" path="res://gameplay/element_display/ElementAmount.tscn" id="1_75klo"]
 [ext_resource type="Script" path="res://gameplay/element_display/SixElementDisplay.gd" id="1_wp5ud"]
+[ext_resource type="Texture2D" uid="uid://cnt2l5jrtnvr8" path="res://art/leaf_icon.png" id="3_stqgx"]
+[ext_resource type="Texture2D" uid="uid://bsv81var57322" path="res://art/earth_icon.png" id="4_yf8q4"]
+[ext_resource type="Texture2D" uid="uid://dg8a2ijhknq2t" path="res://art/fire_icon.png" id="5_27ibh"]
+[ext_resource type="Texture2D" uid="uid://d3qau4kbkkekc" path="res://art/water_icon.png" id="6_8j1nm"]
+[ext_resource type="Texture2D" uid="uid://ddb74x3fnou14" path="res://art/wind_icon.png" id="7_ncred"]
 
 [node name="SixElementDisplay" type="VBoxContainer"]
 script = ExtResource("1_wp5ud")
@@ -13,11 +18,13 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 6
 color_tint = Color(0.101961, 1, 0, 1)
+element_icon = ExtResource("3_stqgx")
 
 [node name="Earth" parent="HBoxContainer" instance=ExtResource("1_75klo")]
 layout_mode = 2
 size_flags_horizontal = 6
-color_tint = Color(0.380392, 0.133333, 0, 1)
+color_tint = Color(1, 0.784314, 0, 1)
+element_icon = ExtResource("4_yf8q4")
 
 [node name="HBoxContainer2" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -26,11 +33,13 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 6
 color_tint = Color(1, 0, 0, 1)
+element_icon = ExtResource("5_27ibh")
 
 [node name="Water" parent="HBoxContainer2" instance=ExtResource("1_75klo")]
 layout_mode = 2
 size_flags_horizontal = 6
 color_tint = Color(0, 0, 1, 1)
+element_icon = ExtResource("6_8j1nm")
 
 [node name="HBoxContainer3" type="HBoxContainer" parent="."]
 layout_mode = 2
@@ -39,6 +48,7 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 6
 color_tint = Color(0, 1, 0.764706, 1)
+element_icon = ExtResource("7_ncred")
 
 [node name="Wild" parent="HBoxContainer3" instance=ExtResource("1_75klo")]
 layout_mode = 2
