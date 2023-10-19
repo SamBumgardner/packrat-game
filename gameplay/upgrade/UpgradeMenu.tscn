@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://7hqfyc7u8h48"]
+[gd_scene load_steps=3 format=3 uid="uid://7hqfyc7u8h48"]
 
 [ext_resource type="Script" path="res://gameplay/upgrade/UpgradeMenu.gd" id="1_2ene1"]
+[ext_resource type="Texture2D" uid="uid://bdg3cw7lto23m" path="res://art/level_up_icon.png" id="2_02syh"]
 
 [node name="UpgradeMenu" type="MarginContainer"]
 offset_right = 97.0
@@ -19,6 +20,7 @@ size_flags_vertical = 0
 [node name="ShowHideButton" type="Button" parent="UpgradeMenuList"]
 layout_mode = 2
 text = "UPGRADES!"
+icon = ExtResource("2_02syh")
 
 [node name="UpgradeOptions" type="VBoxContainer" parent="UpgradeMenuList"]
 visible = false
