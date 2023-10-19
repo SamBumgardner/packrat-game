@@ -21,7 +21,7 @@ func _ready():
 	else:
 		_initial_scroll_background()
 	first_load = false
-	if OS.get_name() == "HTML5":
+	if OS.get_name() == "Web":
 		quit_button.visible = false
 
 func _on_CreditsButton_pressed() -> void:
