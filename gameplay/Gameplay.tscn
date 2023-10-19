@@ -31,13 +31,14 @@ theme = ExtResource("1_43exs")
 script = ExtResource("1_cv37s")
 
 [node name="Background" type="TextureRect" parent="."]
+self_modulate = Color(0.431373, 0.431373, 0.431373, 1)
 layout_mode = 1
 offset_right = 40.0
 offset_bottom = 40.0
 scale = Vector2(0.37, 0.37)
 texture = ExtResource("2_551k0")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="CurrencyGradient" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(200, 64)
 layout_mode = 1
 anchors_preset = 2
@@ -108,7 +109,7 @@ autostart = true
 z_index = 3
 layout_mode = 0
 
-[node name="TextureRect2" type="TextureRect" parent="."]
+[node name="NextDayGradient" type="TextureRect" parent="."]
 custom_minimum_size = Vector2(200, 125)
 layout_mode = 1
 anchors_preset = 3
@@ -162,7 +163,11 @@ offset_bottom = 128.0
 grow_horizontal = 2
 grow_vertical = 0
 
+[node name="FadeInTimer" type="Timer" parent="."]
+one_shot = true
+
 [connection signal="sort_children" from="Columns" to="." method="_on_columns_sort_children"]
 [connection signal="timeout" from="MockExplanation/DelayHidingTitle" to="." method="_on_timer_timeout"]
 [connection signal="upgrade_selected" from="UpgradeMenu" to="." method="_on_upgrade_selected"]
 [connection signal="pressed" from="NextDay/NextDayButton" to="." method="_on_next_day_button_pressed"]
+[connection signal="timeout" from="FadeInTimer" to="." method="_on_fade_in_timer_timeout"]

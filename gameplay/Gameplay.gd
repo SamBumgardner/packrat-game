@@ -54,6 +54,7 @@ var _columns_finished_day : int = 0
 # INITIALIZATION #
 ##################
 func _ready():
+	_fade_in_setup()
 	database.reset_values()
 	_set_mock_goal()
 	for i in range(starting_column_count):
@@ -91,6 +92,18 @@ func _on_columns_sort_children() -> void:
 	for column in columns:
 		if column.current_backpack != null:
 			column.snap_backpack_to_anchor()
+
+func _fade_in_setup():
+	$FadeInTimer.start()
+	$Columns.hide()
+
+func _on_fade_in_timer_timeout():
+	$Columns.modulate = Color.TRANSPARENT
+	$Columns.show()
+	var fade_in_tween = create_tween().set_ease(Tween.EASE_IN).set_trans(Tween.TRANS_LINEAR)
+	fade_in_tween.tween_property($Background, "modulate", Color(0.431, 0.431, 0.431), 2)
+	fade_in_tween.parallel().tween_property($Columns, "modulate", Color.WHITE, 1)
+
 
 ##################
 # STATE HANDLING #
