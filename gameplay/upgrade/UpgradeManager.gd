@@ -70,7 +70,8 @@ static func get_cost(upgrade_type : UpgradeType) -> int:
 static func check_restricted(upgrade_type : UpgradeType) -> RestrictedReason:
 	var current_level = Database.shop_level
 	var number_of_times_bought = _count_times_bought[upgrade_type].call()
-	var max_number_for_level = _level_limits[upgrade_type][current_level]
+	var max_count_index = _level_limits[upgrade_type].size() - 1
+	var max_number_for_level = _level_limits[upgrade_type][min(current_level, max_count_index)]
 	var max_cost_index = _costs[upgrade_type].size() - 1
 	var cost = _costs[upgrade_type][min(number_of_times_bought, max_cost_index)]
 	if number_of_times_bought >= max_number_for_level:
