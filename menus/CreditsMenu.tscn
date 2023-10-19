@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://cl87ap5mgbyxq"]
+[gd_scene load_steps=5 format=3 uid="uid://cl87ap5mgbyxq"]
 
 [ext_resource type="PackedScene" uid="uid://dm07s06ryg2u" path="res://menus/BackToStartMenuButton.tscn" id="1"]
-[ext_resource type="FontFile" uid="uid://bfaytobi4bbyw" path="res://fonts/Roboto/Roboto-Regular.ttf" id="2_dkh84"]
+[ext_resource type="Theme" path="res://fonts/normal_font_theme.tres" id="1_12lkd"]
+[ext_resource type="Texture2D" path="res://art/backgrounds/grand_opening.jpg" id="2_vylv0"]
 [ext_resource type="Script" path="res://menus/CreditsMenu.gd" id="4"]
 
 [node name="CreditsMenu" type="Control"]
@@ -11,43 +12,68 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_12lkd")
 script = ExtResource("4")
 
 [node name="Background" type="TextureRect" parent="."]
-visible = false
 layout_mode = 0
-anchor_right = 1.0
-anchor_bottom = 1.0
-expand_mode = 1
+offset_right = 3685.0
+offset_bottom = 3023.0
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("2_vylv0")
 
-[node name="CreditsContainer" type="VBoxContainer" parent="."]
-layout_mode = 0
-anchor_left = 0.33
-anchor_top = 0.25
-anchor_right = 0.66
-anchor_bottom = 0.75
+[node name="CreditsMarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -162.5
+offset_top = -80.0
+offset_right = 162.5
+offset_bottom = 80.0
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
+
+[node name="TransparentBackground" type="ColorRect" parent="CreditsMarginContainer"]
+layout_mode = 2
+color = Color(1, 1, 1, 0.85098)
+
+[node name="Padding8px" type="MarginContainer" parent="CreditsMarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="CreditsRows" type="VBoxContainer" parent="CreditsMarginContainer/Padding8px"]
+layout_mode = 2
 alignment = 1
 
-[node name="Credit" type="Label" parent="CreditsContainer"]
+[node name="Credit" type="Label" parent="CreditsMarginContainer/Padding8px/CreditsRows"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_dkh84")
+theme = ExtResource("1_12lkd")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
 text = "Sam Bumgardner ... Lead Designer"
 
-[node name="Credit2" type="Label" parent="CreditsContainer"]
+[node name="Credit2" type="Label" parent="CreditsMarginContainer/Padding8px/CreditsRows"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_dkh84")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
 text = "Noah Bumgardner ... Designer, Programmer"
 
-[node name="Credit3" type="Label" parent="CreditsContainer"]
+[node name="Credit3" type="Label" parent="CreditsMarginContainer/Padding8px/CreditsRows"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_dkh84")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
 text = "Tom Bumgardner ... Artist"
 
-[node name="CreditAdditionalAssets" type="Label" parent="CreditsContainer"]
+[node name="CreditAdditionalAssets" type="Label" parent="CreditsMarginContainer/Padding8px/CreditsRows"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("2_dkh84")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
 text = "Additional Assets from:
 Roboto font
 by Christian Robertson"

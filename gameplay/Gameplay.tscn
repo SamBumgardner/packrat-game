@@ -1,13 +1,23 @@
-[gd_scene load_steps=9 format=3 uid="uid://crk2s578wsl64"]
+[gd_scene load_steps=12 format=3 uid="uid://crk2s578wsl64"]
 
+[ext_resource type="Theme" uid="uid://c1rbyyhtqrqqt" path="res://fonts/normal_font_theme.tres" id="1_43exs"]
 [ext_resource type="Script" path="res://gameplay/Gameplay.gd" id="1_cv37s"]
+[ext_resource type="Texture2D" uid="uid://bq5un3lfqh3ie" path="res://art/backgrounds/bargain_table.jpg" id="2_551k0"]
 [ext_resource type="PackedScene" uid="uid://c25adoveil6xs" path="res://hud/CurrencySilverCoin.tscn" id="2_a1m00"]
 [ext_resource type="PackedScene" uid="uid://7hqfyc7u8h48" path="res://gameplay/upgrade/UpgradeMenu.tscn" id="2_nf7ra"]
-[ext_resource type="FontFile" uid="uid://d1faal3mxcb84" path="res://fonts/Roboto/Roboto-Medium.ttf" id="2_ny8ex"]
+[ext_resource type="FontFile" uid="uid://cv7jguoc63tx5" path="res://fonts/Roboto/Roboto-Medium.ttf" id="2_ny8ex"]
 [ext_resource type="PackedScene" uid="uid://dm07s06ryg2u" path="res://menus/BackToStartMenuButton.tscn" id="3_7t8p6"]
 [ext_resource type="Script" path="res://gameplay/NextDayButton.gd" id="4_fxq41"]
-[ext_resource type="FontFile" uid="uid://b0t1dk3g11t5r" path="res://fonts/Roboto/Roboto-Regular.ttf" id="5_rf4ff"]
 [ext_resource type="PackedScene" uid="uid://e1hatl7xepnb" path="res://hud/DaysPassedTracker.tscn" id="7_6ilhd"]
+
+[sub_resource type="Gradient" id="Gradient_les6x"]
+offsets = PackedFloat32Array(0, 0.799544, 1)
+colors = PackedColorArray(0.313726, 0, 0, 1, 0.603922, 0.309804, 0.203922, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vm8hw"]
+gradient = SubResource("Gradient_les6x")
+fill_from = Vector2(0, 0.226496)
+fill_to = Vector2(0.709402, 0)
 
 [node name="Gameplay" type="Control"]
 layout_mode = 3
@@ -16,7 +26,26 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_43exs")
 script = ExtResource("1_cv37s")
+
+[node name="Background" type="TextureRect" parent="."]
+layout_mode = 1
+offset_right = 40.0
+offset_bottom = 40.0
+scale = Vector2(0.37, 0.37)
+texture = ExtResource("2_551k0")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(200, 64)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+texture = SubResource("GradientTexture2D_vm8hw")
 
 [node name="CurrencySilverCoin" parent="." instance=ExtResource("2_a1m00")]
 layout_mode = 1
@@ -59,7 +88,6 @@ grow_horizontal = 2
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 12
-theme_override_fonts/font = ExtResource("5_rf4ff")
 theme_override_font_sizes/font_size = 32
 text = "Welcome to Packrat!"
 horizontal_alignment = 1
@@ -68,7 +96,6 @@ horizontal_alignment = 1
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 12
-theme_override_fonts/font = ExtResource("5_rf4ff")
 theme_override_font_sizes/font_size = 24
 horizontal_alignment = 1
 
@@ -79,6 +106,21 @@ autostart = true
 [node name="UpgradeMenu" parent="." instance=ExtResource("2_nf7ra")]
 z_index = 3
 layout_mode = 0
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(200, 64)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -64.0
+grow_horizontal = 0
+grow_vertical = 0
+texture = SubResource("GradientTexture2D_vm8hw")
+flip_h = true
 
 [node name="NextDay" type="VBoxContainer" parent="."]
 layout_mode = 1

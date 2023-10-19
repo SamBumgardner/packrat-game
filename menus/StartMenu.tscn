@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://b7nqon34mqhr5"]
+[gd_scene load_steps=6 format=3 uid="uid://b7nqon34mqhr5"]
 
-[ext_resource type="FontFile" uid="uid://dkh871r4vl1hr" path="res://fonts/Roboto/Roboto-Bold.ttf" id="1"]
-[ext_resource type="FontFile" uid="uid://cjycq52vwfpu7" path="res://fonts/Roboto/Roboto-Black.ttf" id="3_bmuqt"]
-[ext_resource type="FontFile" uid="uid://b0t1dk3g11t5r" path="res://fonts/Roboto/Roboto-Regular.ttf" id="4_co7c5"]
+[ext_resource type="FontFile" uid="uid://bu77pr0tn14rr" path="res://fonts/Roboto/Roboto-Bold.ttf" id="1"]
+[ext_resource type="Theme" uid="uid://c1rbyyhtqrqqt" path="res://fonts/normal_font_theme.tres" id="1_toiww"]
+[ext_resource type="Texture2D" uid="uid://bbltb0nt7c3jp" path="res://art/backgrounds/grand_opening.jpg" id="2_llt0a"]
+[ext_resource type="Texture2D" uid="uid://clb62ur83kib1" path="res://art/dialogue_box.png" id="4_vq270"]
 [ext_resource type="Script" path="res://menus/StartMenu.gd" id="5"]
 
 [node name="StartMenu" type="Control"]
@@ -12,58 +13,84 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = ExtResource("1_toiww")
 script = ExtResource("5")
 
 [node name="Background" type="TextureRect" parent="."]
-visible = false
-layout_mode = 0
-anchor_right = 1.0
-anchor_bottom = 1.0
-expand_mode = 1
-stretch_mode = 1
+layout_mode = 1
+scale = Vector2(0.35, 0.35)
+texture = ExtResource("2_llt0a")
 
-[node name="TitleContentContainer" type="VBoxContainer" parent="."]
-layout_mode = 0
-anchor_left = 0.33
-anchor_top = 0.25
-anchor_right = 0.66
-anchor_bottom = 0.75
+[node name="TitleContentMarginContainer" type="MarginContainer" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -228.0
+offset_top = -108.5
+offset_right = 228.0
+offset_bottom = 108.5
 grow_horizontal = 2
-grow_vertical = 0
+grow_vertical = 2
+
+[node name="TextureRect" type="Sprite2D" parent="TitleContentMarginContainer"]
+position = Vector2(239, 132.5)
+scale = Vector2(0.6, 0.6)
+texture = ExtResource("4_vq270")
+
+[node name="Padding8px" type="MarginContainer" parent="TitleContentMarginContainer"]
+layout_mode = 2
+theme_override_constants/margin_left = 8
+theme_override_constants/margin_top = 8
+theme_override_constants/margin_right = 8
+theme_override_constants/margin_bottom = 8
+
+[node name="TitleContentRows" type="VBoxContainer" parent="TitleContentMarginContainer/Padding8px"]
+layout_mode = 2
 alignment = 1
 
-[node name="Title" type="Label" parent="TitleContentContainer"]
+[node name="Title" type="Label" parent="TitleContentMarginContainer/Padding8px/TitleContentRows"]
 layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 16
 theme_override_fonts/font = ExtResource("1")
 theme_override_font_sizes/font_size = 72
-text = "Packrat Game"
+text = "Packrat"
 horizontal_alignment = 1
 
-[node name="SubTitle" type="Label" parent="TitleContentContainer"]
+[node name="SubTitle" type="Label" parent="TitleContentMarginContainer/Padding8px/TitleContentRows"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("3_bmuqt")
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 8
+theme_override_fonts/font = ExtResource("1")
 theme_override_font_sizes/font_size = 24
 text = "Ludum Dare 54 Game Jam Entry"
 horizontal_alignment = 1
 
-[node name="ButtonsContainer" type="VBoxContainer" parent="TitleContentContainer"]
+[node name="ButtonRows" type="VBoxContainer" parent="TitleContentMarginContainer/Padding8px/TitleContentRows"]
 layout_mode = 2
 
-[node name="StartButton" type="Button" parent="TitleContentContainer/ButtonsContainer"]
+[node name="StartButton" type="Button" parent="TitleContentMarginContainer/Padding8px/TitleContentRows/ButtonRows"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("4_co7c5")
 text = "Start"
 
-[node name="CreditsButton" type="Button" parent="TitleContentContainer/ButtonsContainer"]
+[node name="CreditsButton" type="Button" parent="TitleContentMarginContainer/Padding8px/TitleContentRows/ButtonRows"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("4_co7c5")
 text = "Credits"
 
-[node name="QuitButton" type="Button" parent="TitleContentContainer/ButtonsContainer"]
+[node name="QuitButton" type="Button" parent="TitleContentMarginContainer/Padding8px/TitleContentRows/ButtonRows"]
 layout_mode = 2
-theme_override_fonts/font = ExtResource("4_co7c5")
 text = "Quit"
 
-[connection signal="pressed" from="TitleContentContainer/ButtonsContainer/StartButton" to="." method="_on_StartButton_pressed"]
-[connection signal="pressed" from="TitleContentContainer/ButtonsContainer/CreditsButton" to="." method="_on_CreditsButton_pressed"]
-[connection signal="pressed" from="TitleContentContainer/ButtonsContainer/QuitButton" to="." method="_on_QuitButton_pressed"]
+[node name="TitleFadeInDelay" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+autostart = true
+
+[connection signal="pressed" from="TitleContentMarginContainer/Padding8px/TitleContentRows/ButtonRows/StartButton" to="." method="_on_StartButton_pressed"]
+[connection signal="pressed" from="TitleContentMarginContainer/Padding8px/TitleContentRows/ButtonRows/CreditsButton" to="." method="_on_CreditsButton_pressed"]
+[connection signal="pressed" from="TitleContentMarginContainer/Padding8px/TitleContentRows/ButtonRows/QuitButton" to="." method="_on_QuitButton_pressed"]
+[connection signal="timeout" from="TitleFadeInDelay" to="." method="_on_title_fade_in_delay_timeout"]

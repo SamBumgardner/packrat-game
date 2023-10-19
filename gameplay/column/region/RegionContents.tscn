@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://gameplay/column/region/RegionContents.gd" id="2_08dnk"]
 [ext_resource type="Texture2D" uid="uid://brf4h74py8sal" path="res://icon.svg" id="3_rhexc"]
 [ext_resource type="PackedScene" uid="uid://b75uw1cnn27ae" path="res://gameplay/element_display/SixElementDisplay.tscn" id="4_fn1e6"]
-[ext_resource type="AudioStream" uid="uid://bmk7qabh1diu3" path="res://sound/item_fall.wav" id="5_lmqjb"]
+[ext_resource type="AudioStream" uid="uid://xyi2vj0p2xat" path="res://sound/item_fall.wav" id="5_lmqjb"]
 
 [node name="ColumnContentsForRegion" instance=ExtResource("1_h4lsb")]
 script = ExtResource("2_08dnk")
@@ -34,6 +34,8 @@ centered = false
 clip_contents = false
 layout_mode = 2
 size_flags_horizontal = 4
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
 text = "Item Name"
 fit_content = true
 scroll_active = false
