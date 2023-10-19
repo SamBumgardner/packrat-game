@@ -18,6 +18,8 @@ var visibility_tween : Tween
 func _ready():
 	if !first_load:
 		force_title_appear()
+	else:
+		_initial_scroll_background()
 	first_load = false
 	if OS.get_name() == "HTML5":
 		quit_button.visible = false
@@ -34,6 +36,11 @@ func _on_QuitButton_pressed() -> void:
 func _input(event):
 	if event.is_action_pressed("gameplay_select"):
 		skip_fade_in()
+
+func _initial_scroll_background():
+	$Background.position = $Background.position + Vector2(0, -200)
+	var background_tween = $Background.create_tween().set_ease(Tween.EASE_IN_OUT).set_trans(Tween.TRANS_CUBIC)
+	background_tween.tween_property($Background, "position", $Background.position + Vector2(0, 200), 4)
 
 func _on_title_fade_in_delay_timeout():
 	$TitleContentMarginContainer.modulate = Color.TRANSPARENT

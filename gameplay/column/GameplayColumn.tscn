@@ -1,10 +1,19 @@
-[gd_scene load_steps=5 format=3 uid="uid://dklr5kcqww66r"]
+[gd_scene load_steps=7 format=3 uid="uid://dklr5kcqww66r"]
 
 [ext_resource type="Script" path="res://gameplay/column/GameplayColumn.gd" id="1_p351e"]
 [ext_resource type="Texture2D" uid="uid://brf4h74py8sal" path="res://icon.svg" id="2_1ajk1"]
 [ext_resource type="PackedScene" uid="uid://d0cn6rkagucs0" path="res://gameplay/element_display/BackpackDisplay.tscn" id="2_gynnr"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fj0u2"]
+
+[sub_resource type="Gradient" id="Gradient_fn8qx"]
+offsets = PackedFloat32Array(0, 0.724374, 1)
+colors = PackedColorArray(0.458824, 0.458824, 0.458824, 1, 0.0933941, 0.0933941, 0.0933941, 1, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_lewan"]
+gradient = SubResource("Gradient_fn8qx")
+fill_from = Vector2(0.517094, 0)
+fill_to = Vector2(0.700855, 1)
 
 [node name="GameplayColumn" type="Control"]
 custom_minimum_size = Vector2(150, 580)
@@ -21,7 +30,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.686275, 0.686275, 0.686275, 0.698039)
+color = Color(0.196078, 0.196078, 0.196078, 0.662745)
 
 [node name="CenterPoint" type="Control" parent="."]
 layout_mode = 1
@@ -79,6 +88,15 @@ anchor_right = 0.5
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0
+
+[node name="ColorRect" type="TextureRect" parent="CenterBottom"]
+custom_minimum_size = Vector2(150, 120)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+grow_horizontal = 2
+texture = SubResource("GradientTexture2D_lewan")
 
 [node name="BackpackDisplay" parent="CenterBottom" instance=ExtResource("2_gynnr")]
 layout_mode = 1

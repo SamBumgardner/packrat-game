@@ -1,6 +1,6 @@
-[gd_scene load_steps=10 format=3 uid="uid://crk2s578wsl64"]
+[gd_scene load_steps=12 format=3 uid="uid://crk2s578wsl64"]
 
-[ext_resource type="Theme" path="res://fonts/normal_font_theme.tres" id="1_43exs"]
+[ext_resource type="Theme" uid="uid://c1rbyyhtqrqqt" path="res://fonts/normal_font_theme.tres" id="1_43exs"]
 [ext_resource type="Script" path="res://gameplay/Gameplay.gd" id="1_cv37s"]
 [ext_resource type="Texture2D" uid="uid://bq5un3lfqh3ie" path="res://art/backgrounds/bargain_table.jpg" id="2_551k0"]
 [ext_resource type="PackedScene" uid="uid://c25adoveil6xs" path="res://hud/CurrencySilverCoin.tscn" id="2_a1m00"]
@@ -9,6 +9,15 @@
 [ext_resource type="PackedScene" uid="uid://dm07s06ryg2u" path="res://menus/BackToStartMenuButton.tscn" id="3_7t8p6"]
 [ext_resource type="Script" path="res://gameplay/NextDayButton.gd" id="4_fxq41"]
 [ext_resource type="PackedScene" uid="uid://e1hatl7xepnb" path="res://hud/DaysPassedTracker.tscn" id="7_6ilhd"]
+
+[sub_resource type="Gradient" id="Gradient_les6x"]
+offsets = PackedFloat32Array(0, 0.223235, 0.870159, 1)
+colors = PackedColorArray(0, 0, 0, 1, 0.569476, 0.569476, 0.569476, 1, 0.590606, 0.590606, 0.590606, 0.95092, 1, 1, 1, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_vm8hw"]
+gradient = SubResource("Gradient_les6x")
+fill_from = Vector2(0, 0.226496)
+fill_to = Vector2(0.709402, 0)
 
 [node name="Gameplay" type="Control"]
 layout_mode = 3
@@ -26,6 +35,17 @@ offset_right = 40.0
 offset_bottom = 40.0
 scale = Vector2(0.37, 0.37)
 texture = ExtResource("2_551k0")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(200, 64)
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -40.0
+offset_right = 40.0
+grow_vertical = 0
+texture = SubResource("GradientTexture2D_vm8hw")
 
 [node name="CurrencySilverCoin" parent="." instance=ExtResource("2_a1m00")]
 layout_mode = 1
