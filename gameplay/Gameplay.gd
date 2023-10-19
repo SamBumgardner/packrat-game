@@ -278,7 +278,7 @@ func enter_column_change_mode(new_type : GlobalConstants.ColumnContents) -> void
 	staged_upgrade = upgrade_set_column_next_type.bind(new_type)
 
 func start_remodel() -> bool:
-	print("started remodel, closing all columns (stubbed)")
+	$LevelUpParticles.restart()
 	upgrade_completed(UpgradeManager.UpgradeType.REMODEL)
 	return true
 

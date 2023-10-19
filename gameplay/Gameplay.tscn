@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://crk2s578wsl64"]
+[gd_scene load_steps=16 format=3 uid="uid://crk2s578wsl64"]
 
 [ext_resource type="Theme" uid="uid://c1rbyyhtqrqqt" path="res://fonts/normal_font_theme.tres" id="1_43exs"]
 [ext_resource type="Script" path="res://gameplay/Gameplay.gd" id="1_cv37s"]
@@ -9,7 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://dm07s06ryg2u" path="res://menus/BackToStartMenuButton.tscn" id="3_7t8p6"]
 [ext_resource type="Script" path="res://gameplay/NextDayButton.gd" id="4_fxq41"]
 [ext_resource type="PackedScene" uid="uid://e1hatl7xepnb" path="res://hud/DaysPassedTracker.tscn" id="7_6ilhd"]
-[ext_resource type="Texture2D" uid="uid://cvpru133oby1q" path="res://art/right_arrow.png" id="9_oawgj"]
+[ext_resource type="Texture2D" uid="uid://rvhnv7527uvk" path="res://art/right_arrow.png" id="9_oawgj"]
+[ext_resource type="Texture2D" uid="uid://dv7i1leokgxr" path="res://art/level_up.png" id="11_ck6ys"]
 
 [sub_resource type="Gradient" id="Gradient_les6x"]
 offsets = PackedFloat32Array(0, 0.799544, 1)
@@ -19,6 +20,13 @@ colors = PackedColorArray(0.313726, 0, 0, 1, 0.603922, 0.309804, 0.203922, 1, 1,
 gradient = SubResource("Gradient_les6x")
 fill_from = Vector2(0, 0.226496)
 fill_to = Vector2(0.709402, 0)
+
+[sub_resource type="Gradient" id="Gradient_4aujt"]
+colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
+
+[sub_resource type="Gradient" id="Gradient_mammj"]
+offsets = PackedFloat32Array(1)
+colors = PackedColorArray(1, 1, 1, 1)
 
 [node name="Gameplay" type="Control"]
 layout_mode = 3
@@ -165,6 +173,20 @@ grow_vertical = 0
 
 [node name="FadeInTimer" type="Timer" parent="."]
 one_shot = true
+
+[node name="LevelUpParticles" type="CPUParticles2D" parent="."]
+position = Vector2(640, 360)
+emitting = false
+amount = 40
+lifetime = 2.0
+one_shot = true
+explosiveness = 0.2
+texture = ExtResource("11_ck6ys")
+emission_shape = 3
+emission_rect_extents = Vector2(640, 360)
+gravity = Vector2(0, -200)
+color_ramp = SubResource("Gradient_4aujt")
+color_initial_ramp = SubResource("Gradient_mammj")
 
 [connection signal="sort_children" from="Columns" to="." method="_on_columns_sort_children"]
 [connection signal="timeout" from="MockExplanation/DelayHidingTitle" to="." method="_on_timer_timeout"]
