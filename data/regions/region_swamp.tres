@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Region" load_steps=8 format=3 uid="uid://50qsg1o875hp"]
+
+[ext_resource type="Texture2D" uid="uid://dkuwobps8htnm" path="res://art/swamp_c.png" id="1_tht3t"]
+[ext_resource type="Resource" uid="uid://cbhyrlxjeqv7p" path="res://gameplay/item/rock.tres" id="2_f2u1y"]
+[ext_resource type="Resource" uid="uid://bd8gapst58k0d" path="res://gameplay/item/bone.tres" id="3_msg6p"]
+[ext_resource type="Resource" uid="uid://b2k6te6kvfqyl" path="res://gameplay/item/drop.tres" id="4_0u0le"]
+[ext_resource type="Resource" uid="uid://b4ku3h6gnt7sl" path="res://gameplay/item/flower.tres" id="5_xsgkc"]
+[ext_resource type="Resource" uid="uid://b2d14kt044of8" path="res://gameplay/item/rainfall.tres" id="6_mowd0"]
+[ext_resource type="Script" path="res://gameplay/column/region/Region.gd" id="7_xkiyl"]
+
+[resource]
+script = ExtResource("7_xkiyl")
+name = "Bootswallow Swamp"
+graphic = ExtResource("1_tht3t")
+possible_items = Array[Resource("res://gameplay/item/Item.gd")]([ExtResource("2_f2u1y"), ExtResource("3_msg6p"), ExtResource("4_0u0le"), ExtResource("5_xsgkc"), ExtResource("6_mowd0")])

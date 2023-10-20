@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Region" load_steps=8 format=3 uid="uid://cmlgsmtra2kkh"]
+
+[ext_resource type="Texture2D" uid="uid://c6kq5x3agfvbs" path="res://art/dungeon_c.png" id="1_cut67"]
+[ext_resource type="Resource" uid="uid://cbhyrlxjeqv7p" path="res://gameplay/item/rock.tres" id="2_qd7si"]
+[ext_resource type="Resource" uid="uid://bd8gapst58k0d" path="res://gameplay/item/bone.tres" id="3_q0puu"]
+[ext_resource type="Resource" uid="uid://b2k6te6kvfqyl" path="res://gameplay/item/drop.tres" id="4_q8p7x"]
+[ext_resource type="Resource" uid="uid://b4ku3h6gnt7sl" path="res://gameplay/item/flower.tres" id="5_tg6to"]
+[ext_resource type="Resource" uid="uid://b2d14kt044of8" path="res://gameplay/item/rainfall.tres" id="6_we36r"]
+[ext_resource type="Script" path="res://gameplay/column/region/Region.gd" id="7_f1dqw"]
+
+[resource]
+script = ExtResource("7_f1dqw")
+name = "The Sleeping Vault"
+graphic = ExtResource("1_cut67")
+possible_items = Array[Resource("res://gameplay/item/Item.gd")]([ExtResource("2_qd7si"), ExtResource("3_q0puu"), ExtResource("4_q8p7x"), ExtResource("5_tg6to"), ExtResource("6_we36r")])

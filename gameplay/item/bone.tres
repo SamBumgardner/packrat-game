@@ -1,16 +1,16 @@
 [gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://bd8gapst58k0d"]
 
-[ext_resource type="Texture2D" uid="uid://dg2untsusf5a6" path="res://art/items/bone.png" id="1_dpj5j"]
+[ext_resource type="Texture2D" uid="uid://dg2untsusf5a6" path="res://art/items/bone.png" id="1_377nd"]
 [ext_resource type="Script" path="res://gameplay/item/Item.gd" id="2_t1ex8"]
 
 [resource]
 script = ExtResource("2_t1ex8")
-name = "Legendary Bone"
-graphic = ExtResource("1_jgwc4")
-ele_nature = 1
+name = "Bone"
+graphic = ExtResource("1_377nd")
+ele_nature = 0
 ele_earth = 1
 ele_fire = 2
-ele_water = 1
-ele_air = 1
-ele_wild = 1
-elements = Array[int]([1, 1, 2, 1, 1, 1])
+ele_water = 0
+ele_air = 0
+ele_wild = 0
+elements = Array[int]([0, 1, 2, 0, 0, 0])
