@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Customer" load_steps=3 format=3 uid="uid://3nbrk0hkmil1"]
+
+[ext_resource type="Texture2D" uid="uid://bemokukchqax0" path="res://art/customers/customer017.png" id="1_2d1r7"]
+[ext_resource type="Script" path="res://gameplay/column/customer/Customer.gd" id="2_scmel"]
+
+[resource]
+script = ExtResource("2_scmel")
+graphic = ExtResource("1_2d1r7")
+name = "Bilbo"
+trade_formula = 1
