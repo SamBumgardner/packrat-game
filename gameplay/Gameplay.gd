@@ -120,7 +120,7 @@ func set_current_state(new_state : State) -> void:
 		states[current_state]._on_enter(self)
 
 func _on_upgrade_selected(upgrade_type : UpgradeManager.UpgradeType):
-	states[current_state].handle_upgrade_selected(self, upgrade_type)
+	set_current_state(states[current_state].handle_upgrade_selected(self, upgrade_type))
 
 #####################
 # NEXT DAY HANDLING #
@@ -227,10 +227,12 @@ func add_column() -> void:
 	_init_column(gameplay_column_scene.instantiate(), GlobalConstants.ColumnContents.NONE)
 	upgrade_completed(UpgradeManager.UpgradeType.ADD_COLUMN)
 
-func add_backpack() -> void:
+func add_backpack() -> bool:
 	if columns.reduce(func(accum, col): return accum + int(col.current_backpack == null), 0) > 0:
 		_init_backpack(backpack_scene.instantiate())
 		upgrade_completed(UpgradeManager.UpgradeType.ADD_BACKPACK)
+		return true
+	return false
 
 func upgrade_increase_backpack_capacity(
 		backpack : Backpack, 
