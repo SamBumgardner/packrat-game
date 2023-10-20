@@ -2,9 +2,9 @@
 
 [ext_resource type="PackedScene" uid="uid://dm07s06ryg2u" path="res://menus/BackToStartMenuButton.tscn" id="1"]
 [ext_resource type="Theme" uid="uid://c1rbyyhtqrqqt" path="res://fonts/normal_font_theme.tres" id="1_12lkd"]
-[ext_resource type="Texture2D" uid="uid://bc13c8far2njh" path="res://art/backgrounds/grand_opening.jpg" id="2_vylv0"]
+[ext_resource type="Texture2D" uid="uid://6yom13chrvpm" path="res://art/backgrounds/grand_opening.jpg" id="2_vylv0"]
 [ext_resource type="Script" path="res://menus/CreditsMenu.gd" id="4"]
-[ext_resource type="AudioStream" uid="uid://dm27behegbjg" path="res://sound/Anticipated-Arrival_v1b.ogg" id="5_eev3j"]
+[ext_resource type="AudioStream" uid="uid://dv4wkmv62d06" path="res://sound/Anticipated-Arrival_v1b.ogg" id="5_eev3j"]
 [ext_resource type="Script" path="res://sound/LoopBGM.gd" id="6_7hp0t"]
 
 [node name="CreditsMenu" type="Control"]

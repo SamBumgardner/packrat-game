@@ -1,12 +1,12 @@
 [gd_scene load_steps=9 format=3 uid="uid://cly8rrgsjooew"]
 
-[ext_resource type="FontFile" uid="uid://dkh871r4vl1hr" path="res://fonts/Roboto/Roboto-Bold.ttf" id="2_8ue0n"]
+[ext_resource type="FontFile" uid="uid://q3gqhife6qv" path="res://fonts/Roboto/Roboto-Bold.ttf" id="2_8ue0n"]
 [ext_resource type="PackedScene" uid="uid://e1hatl7xepnb" path="res://hud/DaysPassedTracker.tscn" id="3_edudb"]
 [ext_resource type="PackedScene" uid="uid://c25adoveil6xs" path="res://hud/CurrencySilverCoin.tscn" id="3_gv0k7"]
 [ext_resource type="PackedScene" uid="uid://dm07s06ryg2u" path="res://menus/BackToStartMenuButton.tscn" id="4_d0d6f"]
 [ext_resource type="Script" path="res://gameplay/game_finished/TradesMadeTracker.gd" id="4_pl6ob"]
-[ext_resource type="Texture2D" uid="uid://c5lj30biw3kel" path="res://art/backgrounds/well_deserved_nap.jpg" id="6_2mm8t"]
-[ext_resource type="AudioStream" uid="uid://dm27behegbjg" path="res://sound/Anticipated-Arrival_v1b.ogg" id="7_q1xyy"]
+[ext_resource type="Texture2D" uid="uid://djghjno2ajqnp" path="res://art/backgrounds/well_deserved_nap.jpg" id="6_2mm8t"]
+[ext_resource type="AudioStream" uid="uid://dv4wkmv62d06" path="res://sound/Anticipated-Arrival_v1b.ogg" id="7_q1xyy"]
 [ext_resource type="Script" path="res://sound/LoopBGM.gd" id="8_81jn8"]
 
 [node name="GameFinished" type="Control"]
