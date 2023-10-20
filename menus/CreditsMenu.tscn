@@ -31,10 +31,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -162.5
-offset_top = -80.0
-offset_right = 162.5
-offset_bottom = 80.0
+offset_left = -259.5
+offset_top = -58.0
+offset_right = 259.5
+offset_bottom = 58.0
 grow_horizontal = 2
 grow_vertical = 2
 
@@ -58,27 +58,25 @@ layout_mode = 2
 theme = ExtResource("1_12lkd")
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
-text = "Sam Bumgardner ... Lead Designer, Programmer"
+text = "Sam Bumgardner ... Lead Designer, Programmer, Animator"
 
 [node name="Credit2" type="Label" parent="CreditsMarginContainer/Padding8px/CreditsRows"]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
-text = "Noah Bumgardner ... Designer, Programmer"
+text = "Noah Bumgardner ... Designer, Programmer, Composer"
 
 [node name="Credit3" type="Label" parent="CreditsMarginContainer/Padding8px/CreditsRows"]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
-text = "Tom Bumgardner ... Artist"
+text = "Tom Bumgardner ... Artist; drew all backgrounds, items, and customers"
 
 [node name="CreditAdditionalAssets" type="Label" parent="CreditsMarginContainer/Padding8px/CreditsRows"]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
-text = "Additional Assets from:
-Roboto font
-by Christian Robertson"
+text = "Additional Asset of Roboto font by Christian Robertson"
 
 [node name="BackToStartMenuButton" parent="." instance=ExtResource("1")]
 layout_direction = 0
