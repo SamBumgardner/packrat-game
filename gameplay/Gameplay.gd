@@ -283,7 +283,7 @@ func enter_column_change_mode(new_type : GlobalConstants.ColumnContents) -> void
 	staged_upgrade = upgrade_set_column_next_type.bind(new_type)
 
 func start_remodel() -> bool:
-	$BGM.volume_db = BGM_default_volume - 30
+	$BGM.volume_db = BGM_default_volume - 60
 	$LevelUpFanfare.volume_db = -10
 	$LevelUpParticles.restart()
 	$LevelUpFanfare.play()
@@ -294,7 +294,8 @@ func start_remodel() -> bool:
 	fanfare_tween = create_tween()
 	fanfare_tween.set_ease(Tween.EASE_IN)
 	fanfare_tween.tween_property($LevelUpFanfare, "volume_db", 0, 1)
-	fanfare_tween.parallel().tween_property($BGM, "volume_db", BGM_default_volume, 8)
+	fanfare_tween.tween_property($BGM, "volume_db", $BGM.volume_db, 1)
+	fanfare_tween.tween_property($BGM, "volume_db", BGM_default_volume, 8)
 	
 	return true
 
