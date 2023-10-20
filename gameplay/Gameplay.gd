@@ -58,6 +58,7 @@ func _ready():
 	
 	_fade_in_setup()
 	database.reset_values()
+	Backpack.used_graphic_indexes = []
 	_set_mock_goal()
 	for i in range(starting_column_count):
 		_init_column(gameplay_column_scene.instantiate(), starting_column_types[i])
