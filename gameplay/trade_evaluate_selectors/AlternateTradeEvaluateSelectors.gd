@@ -16,7 +16,12 @@ static var tier_1_cost_func : Array[Callable] = [
 ]
 
 static var tier_2_cost_func : Array[Callable] = [
-	AlternateTradeEvaluateSelectors.cost_tier_2_placeholder
+	AlternateTradeEvaluateSelectors.cost_ten_total,
+	AlternateTradeEvaluateSelectors.cost_five_single_element.bind(GlobalConstants.Elements.NATURE),
+	AlternateTradeEvaluateSelectors.cost_five_single_element.bind(GlobalConstants.Elements.EARTH),
+	AlternateTradeEvaluateSelectors.cost_five_single_element.bind(GlobalConstants.Elements.FIRE),
+	AlternateTradeEvaluateSelectors.cost_five_single_element.bind(GlobalConstants.Elements.WATER),
+	AlternateTradeEvaluateSelectors.cost_five_single_element.bind(GlobalConstants.Elements.AIR),
 ]
 
 static var tier_3_cost_func : Array[Callable] = [
@@ -30,7 +35,12 @@ static var tier_1_display_func : Array[Callable] = [
 ]
 
 static var tier_2_display_func : Array[Callable] = [
-	AlternateTradeEvaluateSelectors.description_tier_2_placeholder
+	AlternateTradeEvaluateSelectors.description_ten_total,
+	AlternateTradeEvaluateSelectors.description_five_single_element.bind(GlobalConstants.Elements.NATURE),
+	AlternateTradeEvaluateSelectors.description_five_single_element.bind(GlobalConstants.Elements.EARTH),
+	AlternateTradeEvaluateSelectors.description_five_single_element.bind(GlobalConstants.Elements.FIRE),
+	AlternateTradeEvaluateSelectors.description_five_single_element.bind(GlobalConstants.Elements.WATER),
+	AlternateTradeEvaluateSelectors.description_five_single_element.bind(GlobalConstants.Elements.AIR),
 ]
 
 static var tier_3_display_func : Array[Callable] = [
@@ -130,18 +140,39 @@ static func description_three_of_a_kind(
 #################
 # TIER 2 OFFERS #
 #################
-static func cost_tier_2_placeholder(
+static func cost_ten_total(
 	backpack : Backpack,
 	reward_multiplier : int = 1,
 ) -> int:
-	return 30 * reward_multiplier
+	if _get_total_element_count(backpack) >= 10:
+		return 40 * reward_multiplier
+	return 0
+	
 
-static func description_tier_2_placeholder(
+static func description_ten_total(
 	reward_multiplier : int = 1
 ) -> OfferDescription:
 	var description : OfferDescription = OfferDescription.new()
-	description.wants_description = "Tier 2 Placholder"
-	description.reward_description = str(30 * reward_multiplier)
+	description.wants_description = "Ten Elements (total)"
+	description.reward_description = str(40 * reward_multiplier)
+	return description
+
+static func cost_five_single_element(
+	backpack : Backpack,
+	reward_multiplier : int,
+	bind_element : GlobalConstants.Elements
+) -> int:
+	if backpack.get_elements()[bind_element] >= 5:
+		return 35 * reward_multiplier
+	return 0
+	
+static func description_five_single_element(
+	reward_multiplier : int,
+	bind_element : GlobalConstants.Elements
+) -> OfferDescription:
+	var description : OfferDescription = OfferDescription.new()
+	description.wants_description = "Five " + str(GlobalConstants.Elements.find_key(bind_element))
+	description.reward_description = str(40 * reward_multiplier)
 	return description
 
 #################
@@ -175,3 +206,7 @@ static func _get_unique_element_count(column_backpack : Backpack) -> int:
 static func _get_highest_element_value(column_backpack : Backpack) -> int:
 	var backpack_elements = column_backpack.get_elements()
 	return backpack_elements.reduce(func(number, accum): return max(number, accum), 0)
+
+static func _get_total_element_count(column_backpack : Backpack) -> int:
+	var backpack_elements = column_backpack.get_elements()
+	return backpack_elements.reduce(func(number, accum): return number + accum, 0)
