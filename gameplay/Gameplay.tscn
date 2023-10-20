@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://crk2s578wsl64"]
+[gd_scene load_steps=21 format=3 uid="uid://crk2s578wsl64"]
 
 [ext_resource type="Theme" uid="uid://c1rbyyhtqrqqt" path="res://fonts/normal_font_theme.tres" id="1_43exs"]
 [ext_resource type="Script" path="res://gameplay/Gameplay.gd" id="1_cv37s"]
@@ -15,6 +15,7 @@
 [ext_resource type="AudioStream" uid="uid://due4gludv615l" path="res://sound/Bumping-Business_v9b.ogg" id="13_xye5j"]
 [ext_resource type="Script" path="res://sound/LoopBGM.gd" id="14_5fn8r"]
 [ext_resource type="AudioStream" uid="uid://dg15g20xrn71s" path="res://sound/select.wav" id="15_o0374"]
+[ext_resource type="AudioStream" uid="uid://livu4jx4imin" path="res://sound/Level-Up-Fanfare_v3b.wav" id="16_4kfkq"]
 
 [sub_resource type="Gradient" id="Gradient_les6x"]
 offsets = PackedFloat32Array(0, 0.799544, 1)
@@ -211,6 +212,10 @@ stream = ExtResource("15_o0374")
 volume_db = -20.0
 pitch_scale = 2.0
 bus = &"SFX"
+
+[node name="LevelUpFanfare" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("16_4kfkq")
+bus = &"Fanfare"
 
 [connection signal="sort_children" from="Columns" to="." method="_on_columns_sort_children"]
 [connection signal="timeout" from="MockExplanation/DelayHidingTitle" to="." method="_on_timer_timeout"]
