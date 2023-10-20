@@ -4,12 +4,12 @@ class_name RegionContents
 extends ColumnContents
 
 const POSSIBLE_REGIONS : Array[Region] = [
-	preload("res://data/regions/region_dungeon.tres"),
-	preload("res://data/regions/region_fields.tres"),
+#	preload("res://data/regions/region_dungeon.tres"),
+#	preload("res://data/regions/region_fields.tres"),
 	preload("res://data/regions/region_forest.tres"),
-	preload("res://data/regions/region_meadow.tres"),
-	preload("res://data/regions/region_mountain.tres"),
-	preload("res://data/regions/region_swamp.tres")
+#	preload("res://data/regions/region_meadow.tres"),
+#	preload("res://data/regions/region_mountain.tres"),
+#	preload("res://data/regions/region_swamp.tres")
 ]
 
 @export var _region : Region = null
@@ -35,7 +35,7 @@ var header_name : String = ""
 ##################
 func _ready() -> void:
 	set_region(POSSIBLE_REGIONS.pick_random())
-	set_item(_region.possible_items.pick_random())
+	set_item(_region.possible_items.pick_random(), select_allowed_modifier())
 	update_item_display()
 	set_header_properties(_region.graphic, _region.name)
 	_init_tween_reveal_new_item()
@@ -70,7 +70,7 @@ func next_day(column_backpack : Backpack) -> void:
 		var item_accepted : bool = column_backpack.add_item(_item)
 		fly_to_pack(column_backpack, item_accepted)
 	var randomized_item : Item = _region.possible_items.pick_random()
-	set_item(randomized_item)
+	set_item(randomized_item, select_allowed_modifier())
 	if column_backpack == null:
 		_tween_reveal_new_item.play()
 
@@ -79,8 +79,34 @@ func set_region(new_region : Region) -> void:
 	header_graphic = _region.graphic
 	header_name = _region.name
 
-func set_item(new_item : Item) -> void:
-	_item = new_item
+func set_item(new_item : Item, new_modifier : Modifier) -> void:
+	_item = new_item.duplicate()
+	_item.apply_modifier(new_modifier)
+
+func select_allowed_modifier() -> Modifier:
+	var modifier_roll = randi() % 100
+	var modifier_list_to_pick_from : Array[Modifier]
+	match Database.shop_level:
+		1:
+			if modifier_roll >= 75:
+				modifier_list_to_pick_from = _region.modifiers_tier_1
+		2:
+			if modifier_roll >= 50 and modifier_roll < 75:
+				modifier_list_to_pick_from = _region.modifiers_tier_1
+			elif modifier_roll >= 75:
+				modifier_list_to_pick_from = _region.modifiers_tier_2
+		3:
+			if modifier_roll >= 25 and modifier_roll < 50:
+				modifier_list_to_pick_from = _region.modifiers_tier_1
+			elif modifier_roll >= 50 and modifier_roll < 80:
+				modifier_list_to_pick_from = _region.modifiers_tier_2
+			elif modifier_roll >= 80:
+				modifier_list_to_pick_from = _region.modifiers_tier_3
+	
+	if modifier_list_to_pick_from != null:
+		return modifier_list_to_pick_from.pick_random()
+	else:
+		return null
 
 ##################
 # ITEM ANIMATION #

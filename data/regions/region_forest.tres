@@ -1,15 +1,27 @@
-[gd_resource type="Resource" script_class="Region" load_steps=8 format=3 uid="uid://cxj5rom32wi6a"]
+[gd_resource type="Resource" script_class="Region" load_steps=17 format=3 uid="uid://cxj5rom32wi6a"]
 
 [ext_resource type="Script" path="res://gameplay/column/region/Region.gd" id="1_hfvlj"]
 [ext_resource type="Texture2D" uid="uid://d0cishrx0ag6d" path="res://art/forest_c.png" id="1_yjfay"]
-[ext_resource type="Resource" uid="uid://cbhyrlxjeqv7p" path="res://gameplay/item/rock.tres" id="2_xicta"]
-[ext_resource type="Resource" uid="uid://bd8gapst58k0d" path="res://gameplay/item/bone.tres" id="3_05k4a"]
-[ext_resource type="Resource" uid="uid://b2k6te6kvfqyl" path="res://gameplay/item/drop.tres" id="4_0t5p8"]
-[ext_resource type="Resource" uid="uid://b4ku3h6gnt7sl" path="res://gameplay/item/flower.tres" id="5_a3ugk"]
-[ext_resource type="Resource" uid="uid://b2d14kt044of8" path="res://gameplay/item/rainfall.tres" id="6_l05o3"]
+[ext_resource type="Resource" path="res://data/items/modifiers/modifier_cool.tres" id="2_1drqv"]
+[ext_resource type="Resource" path="res://data/items/modifiers/modifier_dry.tres" id="3_m56iv"]
+[ext_resource type="Resource" path="res://data/items/modifiers/modifier_flexible.tres" id="4_8t7bl"]
+[ext_resource type="Resource" uid="uid://cbhyrlxjeqv7p" path="res://data/items/rock.tres" id="5_3u1or"]
+[ext_resource type="Resource" path="res://data/items/modifiers/modifier_lucky.tres" id="5_lr1by"]
+[ext_resource type="Resource" path="res://data/items/modifiers/modifier_old.tres" id="6_0dhek"]
+[ext_resource type="Resource" uid="uid://bd8gapst58k0d" path="res://data/items/bone.tres" id="6_ouvys"]
+[ext_resource type="Resource" uid="uid://b2k6te6kvfqyl" path="res://data/items/drop.tres" id="7_ayldn"]
+[ext_resource type="Resource" path="res://data/items/modifiers/modifier_uncommon.tres" id="7_mms1h"]
+[ext_resource type="Resource" path="res://data/items/modifiers/modifier_cursed.tres" id="8_j0g8y"]
+[ext_resource type="Resource" uid="uid://b4ku3h6gnt7sl" path="res://data/items/flower.tres" id="8_y6wxa"]
+[ext_resource type="Resource" uid="uid://b2d14kt044of8" path="res://data/items/rainfall.tres" id="9_htr64"]
+[ext_resource type="Resource" path="res://data/items/modifiers/modifier_frozen.tres" id="9_y7v43"]
+[ext_resource type="Resource" path="res://data/items/modifiers/modifier_rare.tres" id="10_jvdd5"]
 
 [resource]
 script = ExtResource("1_hfvlj")
 name = "Evergreen Forest"
 graphic = ExtResource("1_yjfay")
-possible_items = Array[Resource("res://gameplay/item/Item.gd")]([ExtResource("2_xicta"), ExtResource("3_05k4a"), ExtResource("4_0t5p8"), ExtResource("5_a3ugk"), ExtResource("6_l05o3")])
+possible_items = Array[Resource("res://gameplay/item/Item.gd")]([ExtResource("5_3u1or"), ExtResource("6_ouvys"), ExtResource("7_ayldn"), ExtResource("8_y6wxa"), ExtResource("9_htr64")])
+modifiers_tier_1 = Array[Resource("res://gameplay/item/Modifier.gd")]([ExtResource("2_1drqv"), ExtResource("3_m56iv"), ExtResource("4_8t7bl")])
+modifiers_tier_2 = Array[Resource("res://gameplay/item/Modifier.gd")]([ExtResource("5_lr1by"), ExtResource("6_0dhek"), ExtResource("7_mms1h"), ExtResource("2_1drqv"), ExtResource("3_m56iv"), ExtResource("4_8t7bl")])
+modifiers_tier_3 = Array[Resource("res://gameplay/item/Modifier.gd")]([ExtResource("8_j0g8y"), ExtResource("9_y7v43"), ExtResource("10_jvdd5")])
