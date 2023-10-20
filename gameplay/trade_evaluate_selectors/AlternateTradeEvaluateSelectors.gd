@@ -16,7 +16,7 @@ static var tier_1_cost_func : Array[Callable] = [
 ]
 
 static var tier_2_cost_func : Array[Callable] = [
-	AlternateTradeEvaluateSelectors.tier_2_placeholder
+	AlternateTradeEvaluateSelectors.cost_tier_2_placeholder
 ]
 
 static var tier_3_cost_func : Array[Callable] = [
@@ -30,11 +30,11 @@ static var tier_1_display_func : Array[Callable] = [
 ]
 
 static var tier_2_display_func : Array[Callable] = [
-	AlternateTradeEvaluateSelectors.tier_2_placeholder
+	AlternateTradeEvaluateSelectors.description_tier_2_placeholder
 ]
 
 static var tier_3_display_func : Array[Callable] = [
-	AlternateTradeEvaluateSelectors.tier_3_placeholder
+	AlternateTradeEvaluateSelectors.description_tier_3_placeholder
 ]
 
 static var cost_func : Array[Array] = [
@@ -84,7 +84,7 @@ static func cost_three_unique_elements(
 	reward_multiplier : int = 1
 ) -> int:
 	if _get_unique_element_count(backpack) >= 3:
-		return 10 * reward_multiplier
+		return 15 * reward_multiplier
 	return 0
 
 static func description_three_unique_elements(
@@ -92,7 +92,7 @@ static func description_three_unique_elements(
 ) -> OfferDescription:
 	var description : OfferDescription = OfferDescription.new()
 	description.wants_description = "Three unique elements"
-	description.reward_description = str(10 * reward_multiplier)
+	description.reward_description = str(15 * reward_multiplier)
 	return description
 
 static func cost_at_least_two_items(
@@ -100,7 +100,7 @@ static func cost_at_least_two_items(
 	reward_multiplier : int = 1,
 ) -> int:
 	if backpack._contained_items.size() >= 2:
-		return 15 * reward_multiplier
+		return 20 * reward_multiplier
 	return 0
 
 static func description_at_least_two_items(
@@ -108,7 +108,7 @@ static func description_at_least_two_items(
 ) -> OfferDescription:
 	var description : OfferDescription = OfferDescription.new()
 	description.wants_description = "Two items"
-	description.reward_description = str(15 * reward_multiplier)
+	description.reward_description = str(20 * reward_multiplier)
 	return description
 
 static func cost_three_of_a_kind(
@@ -116,7 +116,7 @@ static func cost_three_of_a_kind(
 	reward_multiplier : int = 1,
 ) -> int:
 	if _get_highest_element_value(backpack) >= 3:
-		return 10 * reward_multiplier
+		return 15 * reward_multiplier
 	return 0
 
 static func description_three_of_a_kind(
@@ -124,17 +124,25 @@ static func description_three_of_a_kind(
 ) -> OfferDescription:
 	var description : OfferDescription = OfferDescription.new()
 	description.wants_description = "Three of a single element"
-	description.reward_description = str(10 * reward_multiplier)
+	description.reward_description = str(15 * reward_multiplier)
 	return description
 
 #################
 # TIER 2 OFFERS #
 #################
-static func tier_2_placeholder(
+static func cost_tier_2_placeholder(
 	backpack : Backpack,
 	reward_multiplier : int = 1,
 ) -> int:
-	return 30
+	return 30 * reward_multiplier
+
+static func description_tier_2_placeholder(
+	reward_multiplier : int = 1
+) -> OfferDescription:
+	var description : OfferDescription = OfferDescription.new()
+	description.wants_description = "Tier 2 Placholder"
+	description.reward_description = str(30 * reward_multiplier)
+	return description
 
 #################
 # TIER 3 OFFERS #
@@ -143,7 +151,15 @@ static func tier_3_placeholder(
 	backpack : Backpack,
 	reward_multiplier : int = 1,
 ) -> int:
-	return 55
+	return 55 * reward_multiplier
+
+static func description_tier_3_placeholder(
+	reward_multiplier : int = 1
+) -> OfferDescription:
+	var description : OfferDescription = OfferDescription.new()
+	description.wants_description = "Tier 3 Placholder"
+	description.reward_description = str(55 * reward_multiplier)
+	return description
 
 #####################
 # PRIVATE FUNCTIONS #
