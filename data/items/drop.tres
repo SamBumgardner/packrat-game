@@ -1,12 +1,12 @@
 [gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://b2k6te6kvfqyl"]
 
-[ext_resource type="Texture2D" uid="uid://b4il5mmq2qjr5" path="res://art/items/drop.png" id="1_h2kik"]
-[ext_resource type="Script" path="res://gameplay/item/Item.gd" id="1_jny3s"]
+[ext_resource type="Texture2D" uid="uid://b4il5mmq2qjr5" path="res://art/items/drop.png" id="1_lgx04"]
+[ext_resource type="Script" path="res://gameplay/item/Item.gd" id="2_7x0q3"]
 
 [resource]
-script = ExtResource("1_jny3s")
+script = ExtResource("2_7x0q3")
 name = "Drop"
-graphic = ExtResource("1_h2kik")
+graphic = ExtResource("1_lgx04")
 ele_nature = 0
 ele_earth = 0
 ele_fire = 1
