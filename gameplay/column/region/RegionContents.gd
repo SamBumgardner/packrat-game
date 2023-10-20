@@ -3,6 +3,15 @@ class_name RegionContents
 
 extends ColumnContents
 
+const POSSIBLE_REGIONS : Array[Region] = [
+	preload("res://data/regions/region_dungeon.tres"),
+	preload("res://data/regions/region_fields.tres"),
+	preload("res://data/regions/region_forest.tres"),
+	preload("res://data/regions/region_meadow.tres"),
+	preload("res://data/regions/region_mountain.tres"),
+	preload("res://data/regions/region_swamp.tres")
+]
+
 @export var _region : Region = null
 @export var _item : Item = null
 
@@ -25,7 +34,7 @@ var header_name : String = ""
 # INITIALIZATION #
 ##################
 func _ready() -> void:
-	set_region(load("res://gameplay/column/region/region_forest.tres"))
+	set_region(POSSIBLE_REGIONS.pick_random())
 	set_item(_region.possible_items.pick_random())
 	update_item_display()
 	set_header_properties(_region.graphic, _region.name)

@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="Region" load_steps=8 format=3 uid="uid://blonus1552tjm"]
+
+[ext_resource type="Texture2D" uid="uid://brjx2s7q664i3" path="res://art/mountain_c.png" id="1_n78hf"]
+[ext_resource type="Resource" uid="uid://cbhyrlxjeqv7p" path="res://gameplay/item/rock.tres" id="2_axyy6"]
+[ext_resource type="Resource" uid="uid://bd8gapst58k0d" path="res://gameplay/item/bone.tres" id="3_vyiik"]
+[ext_resource type="Resource" uid="uid://b2k6te6kvfqyl" path="res://gameplay/item/drop.tres" id="4_kkh7w"]
+[ext_resource type="Resource" uid="uid://b4ku3h6gnt7sl" path="res://gameplay/item/flower.tres" id="5_imcds"]
+[ext_resource type="Resource" uid="uid://b2d14kt044of8" path="res://gameplay/item/rainfall.tres" id="6_d06wb"]
+[ext_resource type="Script" path="res://gameplay/column/region/Region.gd" id="7_5ttkr"]
+
+[resource]
+script = ExtResource("7_5ttkr")
+name = "Silverstone Peaks"
+graphic = ExtResource("1_n78hf")
+possible_items = Array[Resource("res://gameplay/item/Item.gd")]([ExtResource("2_axyy6"), ExtResource("3_vyiik"), ExtResource("4_kkh7w"), ExtResource("5_imcds"), ExtResource("6_d06wb")])
