@@ -2,11 +2,11 @@
 
 [ext_resource type="PackedScene" uid="uid://bygdha8oc17o7" path="res://gameplay/column/ColumnContents.tscn" id="1_fhxqp"]
 [ext_resource type="Script" path="res://gameplay/column/customer/CustomerContents.gd" id="2_dhokb"]
-[ext_resource type="PackedScene" uid="uid://lyah2pc5jcsu" path="res://gameplay/trade_offer/TradeOffer.tscn" id="3_ga3b0"]
+[ext_resource type="PackedScene" uid="uid://bfib0elj05sww" path="res://gameplay/trade_offer/AlternateTradeOffer.tscn" id="4_5wf4w"]
 
 [node name="ColumnContents" instance=ExtResource("1_fhxqp")]
 script = ExtResource("2_dhokb")
 _customer = null
 
-[node name="TradeOffer" parent="." index="1" instance=ExtResource("3_ga3b0")]
+[node name="TradeOffer2" parent="." index="1" instance=ExtResource("4_5wf4w")]
 layout_mode = 2

@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://lyah2pc5jcsu"]
 
 [ext_resource type="Script" path="res://gameplay/trade_offer/TradeOffer.gd" id="1_084g1"]
-[ext_resource type="FontFile" uid="uid://cv7jguoc63tx5" path="res://fonts/Roboto/Roboto-Medium.ttf" id="1_t44va"]
+[ext_resource type="FontFile" uid="uid://d1faal3mxcb84" path="res://fonts/Roboto/Roboto-Medium.ttf" id="1_t44va"]
 
 [node name="TradeOffer" type="VBoxContainer"]
 script = ExtResource("1_084g1")
@@ -17,7 +17,8 @@ text = "Wants:"
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
-text = "Unique elements"
+text = "Three Unique elements"
+autowrap_mode = 2
 
 [node name="BonusHeader" type="Label" parent="."]
 visible = false
