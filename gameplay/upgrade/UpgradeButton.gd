@@ -36,6 +36,7 @@ func disable_with_reason(reason : UpgradeManager.RestrictedReason) -> void:
 		UpgradeManager.RestrictedReason.SHOP_LEVEL:
 			$Control.show()
 			$Control/DisabledReasonSprite.texture = LEVEL_TEXTURE
+			$Control/DisabledReasonSprite.modulate = Color.WHITE
 			tooltip_text = SHOP_LEVEL_TIP
 		_:
 			$Control.hide()
