@@ -34,6 +34,8 @@ var states : Array[GameplayState] = [
 	UpgradeState.new()
 ]
 
+@onready var BGM_default_volume : float = $BGM.volume_db
+
 var staged_upgrade : Callable
 
 var mock_goal : int = 4
@@ -48,6 +50,8 @@ var columns : Array[GameplayColumn] = []
 
 var _columns_executing_day : int = 0
 var _columns_finished_day : int = 0
+
+var fanfare_tween : Tween
 
 ##################
 # INITIALIZATION #
@@ -67,6 +71,8 @@ func _ready():
 	Database.active_region_columns = get_typed_column_count(GlobalConstants.ColumnContents.REGION)
 	Database.active_customer_columns = get_typed_column_count(GlobalConstants.ColumnContents.CUSTOMER)
 	Database.set_silver_coin_count(Database.silver_coin_count)
+	
+	$LevelUpFanfare.finished.connect(trigger_end_game_transition)
 
 func _init_backpack(backpack : Backpack) -> void:
 	$OriginOfNewBackpacks.add_child(backpack)
@@ -277,16 +283,25 @@ func enter_column_change_mode(new_type : GlobalConstants.ColumnContents) -> void
 	staged_upgrade = upgrade_set_column_next_type.bind(new_type)
 
 func start_remodel() -> bool:
+	$BGM.volume_db = BGM_default_volume - 30
 	$LevelUpParticles.restart()
+	$LevelUpFanfare.play()
 	upgrade_completed(UpgradeManager.UpgradeType.REMODEL)
 	
+	if fanfare_tween != null:
+		fanfare_tween.stop()
+	fanfare_tween = create_tween()
+	fanfare_tween.set_ease(Tween.EASE_IN)
+	fanfare_tween.tween_property($BGM, "volume_db", BGM_default_volume, 8)
+	
+	return true
+
+func trigger_end_game_transition() -> void:
 	if Database.shop_level >= mock_goal:
 		set_current_state(State.SELECT)
 		get_tree().change_scene_to_file(
 			"res://gameplay/game_finished/GameFinished.tscn"
 		)
-	return true
-
 
 # Count all active & under-construction columns for the specified Contents Type
 func get_typed_column_count(type_to_count : GlobalConstants.ColumnContents) -> int:
