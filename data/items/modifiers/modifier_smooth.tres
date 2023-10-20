@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Modifier" load_steps=2 format=3 uid="uid://bffceyfnl0x6p"]
+[gd_resource type="Resource" script_class="Modifier" load_steps=2 format=3 uid="uid://csintba7h1s7h"]
 
 [ext_resource type="Script" path="res://gameplay/item/Modifier.gd" id="1_k1td5"]
 
