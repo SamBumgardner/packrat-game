@@ -1,12 +1,12 @@
 [gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://cbhyrlxjeqv7p"]
 
-[ext_resource type="Texture2D" uid="uid://dfa7qrm5j2dvi" path="res://art/items/rock.png" id="1_0iu2o"]
+[ext_resource type="Texture2D" uid="uid://cweepkrt6scug" path="res://art/rock.png" id="1_206at"]
 [ext_resource type="Script" path="res://gameplay/item/Item.gd" id="2_7ohdm"]
 
 [resource]
 script = ExtResource("2_7ohdm")
 name = "Lonesome Rock"
-graphic = ExtResource("1_0iu2o")
+graphic = ExtResource("1_206at")
 ele_nature = 1
 ele_earth = 2
 ele_fire = 0
