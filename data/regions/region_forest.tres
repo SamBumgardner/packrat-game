@@ -21,7 +21,7 @@
 script = ExtResource("1_hfvlj")
 name = "Evergreen Forest"
 graphic = ExtResource("1_yjfay")
-possible_items = Array[Resource("res://gameplay/item/Item.gd")]([ExtResource("5_3u1or"), ExtResource("6_ouvys"), ExtResource("7_ayldn"), ExtResource("8_y6wxa"), ExtResource("9_htr64")])
+possible_items = Array[Resource("res://gameplay/item/Item.gd")]([ExtResource("5_3u1or"), ExtResource("6_ouvys"), ExtResource("7_ayldn"), ExtResource("8_y6wxa"), ExtResource("9_htr64"), ExtResource("5_3u1or"), ExtResource("8_y6wxa"), ExtResource("8_y6wxa"), ExtResource("7_ayldn")])
 modifiers_tier_1 = Array[Resource("res://gameplay/item/Modifier.gd")]([ExtResource("2_1drqv"), ExtResource("3_m56iv"), ExtResource("4_8t7bl")])
 modifiers_tier_2 = Array[Resource("res://gameplay/item/Modifier.gd")]([ExtResource("5_lr1by"), ExtResource("6_0dhek"), ExtResource("7_mms1h"), ExtResource("2_1drqv"), ExtResource("3_m56iv"), ExtResource("4_8t7bl")])
 modifiers_tier_3 = Array[Resource("res://gameplay/item/Modifier.gd")]([ExtResource("8_j0g8y"), ExtResource("9_y7v43"), ExtResource("10_jvdd5")])

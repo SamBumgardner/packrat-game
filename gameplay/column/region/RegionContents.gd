@@ -4,12 +4,12 @@ class_name RegionContents
 extends ColumnContents
 
 const POSSIBLE_REGIONS : Array[Region] = [
-#	preload("res://data/regions/region_dungeon.tres"),
-#	preload("res://data/regions/region_fields.tres"),
+	preload("res://data/regions/region_dungeon.tres"),
+	preload("res://data/regions/region_fields.tres"),
 	preload("res://data/regions/region_forest.tres"),
-#	preload("res://data/regions/region_meadow.tres"),
-#	preload("res://data/regions/region_mountain.tres"),
-#	preload("res://data/regions/region_swamp.tres")
+	preload("res://data/regions/region_meadow.tres"),
+	preload("res://data/regions/region_mountain.tres"),
+	preload("res://data/regions/region_swamp.tres")
 ]
 
 @export var _region : Region = null
@@ -86,15 +86,22 @@ func set_item(new_item : Item, new_modifier : Modifier) -> void:
 func select_allowed_modifier() -> Modifier:
 	var modifier_roll = randi() % 100
 	var modifier_list_to_pick_from : Array[Modifier]
+
 	match Database.shop_level:
+		0:
+			return null
 		1:
 			if modifier_roll >= 75:
 				modifier_list_to_pick_from = _region.modifiers_tier_1
+			else: 
+				return null
 		2:
 			if modifier_roll >= 50 and modifier_roll < 75:
 				modifier_list_to_pick_from = _region.modifiers_tier_1
 			elif modifier_roll >= 75:
 				modifier_list_to_pick_from = _region.modifiers_tier_2
+			else:
+				return null
 		3:
 			if modifier_roll >= 25 and modifier_roll < 50:
 				modifier_list_to_pick_from = _region.modifiers_tier_1
@@ -102,11 +109,10 @@ func select_allowed_modifier() -> Modifier:
 				modifier_list_to_pick_from = _region.modifiers_tier_2
 			elif modifier_roll >= 80:
 				modifier_list_to_pick_from = _region.modifiers_tier_3
-	
-	if modifier_list_to_pick_from != null:
-		return modifier_list_to_pick_from.pick_random()
-	else:
-		return null
+			else:
+				return null
+	print(modifier_list_to_pick_from)
+	return modifier_list_to_pick_from.pick_random()
 
 ##################
 # ITEM ANIMATION #
