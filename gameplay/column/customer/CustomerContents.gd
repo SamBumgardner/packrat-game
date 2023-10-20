@@ -45,9 +45,11 @@ var _current_customer_file_name = _possible_customer_file_name_list[
 ]
 var _current_customer_index = _default_customer_index
 
+static var _previously_selected_customers : Array[int] = []
+
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	_set_first_customer()
+	_set_random_customer()
 	set_header_properties(_customer.graphic, _customer.name)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -149,8 +151,14 @@ func _set_customer_by_index(customer_index : int) -> void:
 	]
 	_set_customer(load(_build_customer_file_path(_current_customer_file_name)))
 
-func _set_first_customer() -> void:
-	_set_customer_by_index(_default_customer_index)
+func _set_random_customer() -> void:
+	if _previously_selected_customers.size() == _possible_customer_file_name_list.size():
+		_previously_selected_customers.clear()
+	
+	var random_index = randi() % _possible_customer_file_name_list.size()
+	while random_index in _previously_selected_customers:
+		random_index = (random_index + 1) % _possible_customer_file_name_list.size()
+	_set_customer_by_index(random_index)
 
 func _set_next_customer() -> void:
 	var next_customer_index = (
@@ -169,26 +177,16 @@ func _set_purchase_backpack_contents(column_backpack : Backpack) -> void:
 	)
 	database.increment_trade_count()
 
-func _set_random_customer() -> void:
-	var randomized_customer_file_name = (
-		_possible_customer_file_name_list.pick_random()
-	)
-	var randomized_customer_path = (
-		_customer_data_folder_path
-		+ randomized_customer_file_name
-	)
-	_set_customer(load(randomized_customer_path))
-
 #####################
 # NEXT DAY HANDLING #
 #####################
 func next_day(column_backpack : Backpack) -> void:
 	if (_get_cannot_buy(column_backpack)):
-		_set_next_customer()
+		_set_random_customer()
 		content_actions_complete.emit()
 		return
 
 	_set_purchase_backpack_contents(column_backpack)
 
-	_set_next_customer()
+	_set_random_customer()
 	content_actions_complete.emit()
