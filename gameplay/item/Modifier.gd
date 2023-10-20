@@ -1,6 +1,6 @@
 extends Resource
 
-class_name Item
+class_name Modifier
 
 @export var prefix : String = ""
 

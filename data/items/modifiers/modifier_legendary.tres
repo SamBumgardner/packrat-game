@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="Modifier" load_steps=2 format=3 uid="uid://bffceyfnl0x6p"]
+
+[ext_resource type="Script" path="res://gameplay/item/Modifier.gd" id="1_k1td5"]
+
+[resource]
+script = ExtResource("1_k1td5")
+prefix = "Legendary"
+ele_nature = 2
+ele_earth = 2
+ele_fire = 2
+ele_water = 2
+ele_air = 2
+ele_wild = 0
+elements = Array[int]([2, 2, 2, 2, 2, 0])
