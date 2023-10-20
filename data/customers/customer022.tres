@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Customer" load_steps=3 format=3 uid="uid://0l6vksx0corv"]
+
+[ext_resource type="Texture2D" uid="uid://sptbmnsucd7q" path="res://art/customers/customer022.png" id="1_ewa3r"]
+[ext_resource type="Script" path="res://gameplay/column/customer/Customer.gd" id="2_xl2xa"]
+
+[resource]
+script = ExtResource("2_xl2xa")
+graphic = ExtResource("1_ewa3r")
+name = "Flippy"
+trade_formula = 0

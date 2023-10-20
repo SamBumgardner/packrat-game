@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Customer" load_steps=3 format=3 uid="uid://b8sw5dcy8pv73"]
+
+[ext_resource type="Texture2D" uid="uid://whjpdv034cnc" path="res://art/customers/customer014.png" id="1_1xt6w"]
+[ext_resource type="Script" path="res://gameplay/column/customer/Customer.gd" id="2_vx6ga"]
+
+[resource]
+script = ExtResource("2_vx6ga")
+graphic = ExtResource("1_1xt6w")
+name = "Ruby"
+trade_formula = 1

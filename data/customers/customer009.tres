@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Customer" load_steps=3 format=3 uid="uid://vgccypifmbqb"]
+
+[ext_resource type="Texture2D" uid="uid://77033ecuu7on" path="res://art/customers/customer009.png" id="1_s8qbt"]
+[ext_resource type="Script" path="res://gameplay/column/customer/Customer.gd" id="2_vxyp2"]
+
+[resource]
+script = ExtResource("2_vxyp2")
+graphic = ExtResource("1_s8qbt")
+name = "Pippin"
+trade_formula = 2

@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Customer" load_steps=3 format=3 uid="uid://dgndmuc8j2w0a"]
+
+[ext_resource type="Texture2D" uid="uid://ds4e615p5m7xu" path="res://art/customers/customer020.png" id="1_cbyxw"]
+[ext_resource type="Script" path="res://gameplay/column/customer/Customer.gd" id="2_ml3y5"]
+
+[resource]
+script = ExtResource("2_ml3y5")
+graphic = ExtResource("1_cbyxw")
+name = "Chester"
+trade_formula = 1

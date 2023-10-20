@@ -17,7 +17,27 @@ var header_name : String = ""
 const _possible_customer_file_name_list : Array[String] = [
 	"customer001.tres",
 	"customer002.tres",
-	"customer003.tres"
+	"customer003.tres",
+	"customer004.tres",
+	"customer005.tres",
+	"customer006.tres",
+	"customer007.tres",
+	"customer008.tres",
+	"customer009.tres",
+	"customer010.tres",
+	"customer011.tres",
+	"customer012.tres",
+	"customer013.tres",
+	"customer014.tres",
+	"customer015.tres",
+	"customer016.tres",
+	"customer017.tres",
+	"customer018.tres",
+	"customer019.tres",
+	"customer020.tres",
+	"customer021.tres",
+	"customer022.tres",
+	"customer023.tres"
 ]
 
 var _current_customer_file_name = _possible_customer_file_name_list[
