@@ -152,12 +152,14 @@ func _set_customer_by_index(customer_index : int) -> void:
 	_set_customer(load(_build_customer_file_path(_current_customer_file_name)))
 
 func _set_random_customer() -> void:
-	if _previously_selected_customers.size() == _possible_customer_file_name_list.size():
+	if _previously_selected_customers.size() >= _possible_customer_file_name_list.size():
 		_previously_selected_customers.clear()
 	
 	var random_index = randi() % _possible_customer_file_name_list.size()
 	while random_index in _previously_selected_customers:
 		random_index = (random_index + 1) % _possible_customer_file_name_list.size()
+	_previously_selected_customers.append(random_index)
+	print(_previously_selected_customers)
 	_set_customer_by_index(random_index)
 
 func _set_next_customer() -> void:
