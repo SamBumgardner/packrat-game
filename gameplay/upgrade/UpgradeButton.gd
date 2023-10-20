@@ -13,11 +13,17 @@ const COST_TIP = "Don't have enough coins"
 
 func set_upgrade_name(new_name : String) -> void:
 	upgrade_name = new_name
-	text = upgrade_name + ": " + str(cost)
+	if cost < 0:
+		text = upgrade_name + ": Appropriate Refund"
+	else:
+		text = upgrade_name + ": " + str(cost)
 
 func set_cost(new_cost : int):
 	cost = new_cost
-	text = upgrade_name + ": " + str(cost)
+	if cost < 0:
+		text = upgrade_name + ": Appropriate Refund"
+	else:
+		text = upgrade_name + ": " + str(cost)
 
 func disable_with_reason(reason : UpgradeManager.RestrictedReason) -> void:
 	disabled = true

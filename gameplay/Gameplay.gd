@@ -308,6 +308,15 @@ func upgrade_completed(upgrade_type : UpgradeManager.UpgradeType) -> void:
 			Database.capacity_increases_purchased += 1
 		UpgradeManager.UpgradeType.REMODEL:
 			Database.set_shop_level(Database.shop_level + 1)
+		UpgradeManager.UpgradeType.EMPTY_COLUMN:
+			var remaining_regions = get_typed_column_count(GlobalConstants.ColumnContents.REGION)
+			var remaining_customers = get_typed_column_count(GlobalConstants.ColumnContents.CUSTOMER)
+			var deleted_last_region = remaining_regions == 0 and Database.active_region_columns != remaining_regions
+			var deleted_last_customer = remaining_customers == 0 and Database.active_customer_columns != remaining_customers
+			if deleted_last_region or deleted_last_customer:
+				cost = 0
+			Database.active_region_columns = get_typed_column_count(GlobalConstants.ColumnContents.REGION)
+			Database.active_customer_columns = get_typed_column_count(GlobalConstants.ColumnContents.CUSTOMER)
 		_:
 			Database.active_region_columns = get_typed_column_count(GlobalConstants.ColumnContents.REGION)
 			Database.active_customer_columns = get_typed_column_count(GlobalConstants.ColumnContents.CUSTOMER)
