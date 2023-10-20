@@ -25,13 +25,18 @@ func init_element_amounts() -> void:
 func update_elements(new_element_values : Array[int]) -> void:
 	for i in GlobalConstants.Elements.size():
 		var new_amount = elements[i].set_amount(new_element_values[i])
-		elements[i].visible = new_amount > 0
+		elements[i].visible = new_amount != 0
 	_sort_element_display()
 
 func clear_elements() -> void:
 	update_elements(EMPTY_ELEMENTS)
 
 func _element_amount_sort(a:ElementAmount, b:ElementAmount) -> bool:
+	if a.amount == 0:
+		return false
+	elif b.amount == 0:
+		return true
+	
 	return a.amount > b.amount
 
 func _sort_element_display() -> void:

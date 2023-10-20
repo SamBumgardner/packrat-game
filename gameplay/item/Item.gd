@@ -14,3 +14,9 @@ class_name Item
 
 @export var elements : Array[int] = [0, 0, 0, 0, 0, 0]
 # can add other qualities that all items will have here
+
+func apply_modifier(modifier : Modifier) -> void:
+	if modifier != null:
+		name = modifier.prefix + " " + name
+		for i in elements.size():
+			elements[i] += modifier.elements[i]
