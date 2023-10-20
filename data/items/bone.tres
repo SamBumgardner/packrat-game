@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://bd8gapst58k0d"]
+[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://8wibdkfxtwl6"]
 
 [ext_resource type="Texture2D" uid="uid://dg2untsusf5a6" path="res://art/items/bone.png" id="1_wx53q"]
 [ext_resource type="Script" path="res://gameplay/item/Item.gd" id="2_jej0n"]
