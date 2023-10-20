@@ -18,13 +18,13 @@ enum RestrictedReason {
 
 const NO_LIMIT_PER_LEVEL : Array[int] = [100, 100, 100, 100]
 
-static var add_backpack_costs : Array[int] = [50, 75, 100, 150, 200]
-static var add_column_costs : Array[int] = [100, 125, 175, 250]
-static var increase_capacity_costs : Array[int] = [10, 20, 30, 40, 50, 60]
-static var change_column_region_costs : Array[int] = [0, 30]
-static var change_column_customer_costs : Array[int] = [0, 30]
+static var add_backpack_costs : Array[int] = [15, 45, 90, 200]
+static var add_column_costs : Array[int] = [45, 90, 175, 250]
+static var increase_capacity_costs : Array[int] = [10, 25, 35, 50, 55, 60]
+static var change_column_region_costs : Array[int] = [0, 30, 40, 50, 60]
+static var change_column_customer_costs : Array[int] = [0, 30, 35, 40]
 static var empty_column_costs : Array[int] = [-30]
-static var remodel_costs : Array[int] = [150, 250, 350, 500]
+static var remodel_costs : Array[int] = [50, 150, 350, 600]
 
 static var add_backpack_level_limits : Array[int] = [1, 2, 3, 4]
 static var add_column_level_limits : Array[int] = [0, 2, 3, 4]
