@@ -1,0 +1,56 @@
+[gd_scene load_steps=3 format=3 uid="uid://bfib0elj05sww"]
+
+[ext_resource type="Script" path="res://gameplay/trade_offer/AlternateTradeOffer.gd" id="1_llgmb"]
+[ext_resource type="FontFile" uid="uid://d1faal3mxcb84" path="res://fonts/Roboto/Roboto-Medium.ttf" id="2_wl60c"]
+
+[node name="TradeOffer" type="VBoxContainer"]
+script = ExtResource("1_llgmb")
+
+[node name="WantsHeader" type="Label" parent="."]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_wl60c")
+text = "Wants:"
+
+[node name="WantsDescription" type="Label" parent="."]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_font_sizes/font_size = 14
+text = "Unique elements"
+autowrap_mode = 2
+
+[node name="BonusHeader" type="Label" parent="."]
+visible = false
+layout_mode = 2
+theme_override_fonts/font = ExtResource("2_wl60c")
+text = "Bonus:"
+
+[node name="BonusDescription" type="Label" parent="."]
+visible = false
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("2_wl60c")
+theme_override_font_sizes/font_size = 14
+text = "None"
+autowrap_mode = 2
+
+[node name="RewardHeader" type="Label" parent="."]
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 10
+theme_override_fonts/font = ExtResource("2_wl60c")
+text = "Reward:"
+
+[node name="RewardDescription" type="Label" parent="."]
+custom_minimum_size = Vector2(128, 0)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 6
+theme_override_fonts/font = ExtResource("2_wl60c")
+theme_override_font_sizes/font_size = 14
+text = "1 Silver Coin each"
+autowrap_mode = 2

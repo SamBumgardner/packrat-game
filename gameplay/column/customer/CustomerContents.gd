@@ -5,7 +5,9 @@ class_name CustomerContents
 
 extends ColumnContents
 
-@onready var trade_offer = $TradeOffer
+@onready var trade_offer = $TradeOffer2
+var _current_offer_tier : int = 0
+var _current_offer_trade_enum_value : int = 0
 
 @export var _customer : Customer = null
 
@@ -59,11 +61,17 @@ func _process(_delta):
 func _build_customer_file_path(file_name : String) -> String:
 	return _customer_data_folder_path + file_name
 
-func _get_cannot_buy(column_backpack : Backpack):
-	return not TradeEvaluateSelectors.get_wants_backpack(
+func _get_offer_value(column_backpack : Backpack):
+	return AlternateTradeEvaluateSelectors.calculate_offer_cost( 
 		column_backpack,
-		_customer
+		Database.shop_level,
+		_current_offer_tier,
+		_current_offer_trade_enum_value
 	)
+
+func _get_cannot_buy(column_backpack : Backpack):
+	if column_backpack == null or 0 >= _get_offer_value(column_backpack):
+		return true
 
 # Sets the active customer.
 # Assumes a previous method call is keeping track of the random queue of
@@ -72,7 +80,12 @@ func _set_customer(new_customer : Customer) -> void:
 	_customer = new_customer
 	header_name = _customer.name
 	set_header_properties(_customer.graphic, _customer.name)
-	trade_offer.set_trade_formula(_customer.trade_formula)
+	_select_trade_offer()
+
+func _select_trade_offer() -> void:
+	_current_offer_tier = 0
+	_current_offer_trade_enum_value = GlobalConstants.TIER_1_TRADE_OFFERS.values().pick_random()
+	trade_offer.set_trade_formula(_current_offer_tier, _current_offer_trade_enum_value)
 
 func _set_customer_by_index(customer_index : int) -> void:
 	if (
@@ -110,10 +123,7 @@ func _set_next_customer() -> void:
 	_set_customer_by_index(next_customer_index)
 
 func _set_purchase_backpack_contents(column_backpack : Backpack) -> void:
-	var worth_silver_coin = TradeEvaluateSelectors.get_worth_silver_coin(
-		column_backpack,
-		_customer
-	)
+	var worth_silver_coin = _get_offer_value(column_backpack)
 
 	column_backpack.remove_items()
 	database.set_silver_coin_count(
