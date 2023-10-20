@@ -82,9 +82,40 @@ func _set_customer(new_customer : Customer) -> void:
 	set_header_properties(_customer.graphic, _customer.name)
 	_select_trade_offer()
 
+func _select_random_offer_tier(shop_level : int) -> int:
+	var tier_roll : int = randi() % 100
+	var selected_tier = 0 
+	match shop_level:
+		0:
+			selected_tier = 0
+		1:
+			selected_tier = 0
+		2:
+			if tier_roll >= 50:
+				selected_tier = 1
+			else:
+				selected_tier = 0
+		3:
+			if tier_roll >= 20 and tier_roll < 60:
+				selected_tier = 1
+			elif tier_roll >= 60:
+				selected_tier = 2
+			else:
+				selected_tier = 0
+		_: 
+			selected_tier = 2
+	return selected_tier
+
 func _select_trade_offer() -> void:
-	_current_offer_tier = 0
-	_current_offer_trade_enum_value = GlobalConstants.TIER_1_TRADE_OFFERS.values().pick_random()
+	_current_offer_tier = _select_random_offer_tier(Database.shop_level)
+	match _current_offer_tier:
+		0:
+			_current_offer_trade_enum_value = GlobalConstants.TIER_1_TRADE_OFFERS.values().pick_random()
+		1:
+			_current_offer_trade_enum_value = GlobalConstants.TIER_2_TRADE_OFFERS.values().pick_random()
+		2:
+			_current_offer_trade_enum_value = GlobalConstants.TIER_3_TRADE_OFFERS.values().pick_random()
+	
 	trade_offer.set_trade_formula(_current_offer_tier, _current_offer_trade_enum_value)
 
 func _set_customer_by_index(customer_index : int) -> void:

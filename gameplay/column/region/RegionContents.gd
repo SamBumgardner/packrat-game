@@ -111,7 +111,6 @@ func select_allowed_modifier() -> Modifier:
 				modifier_list_to_pick_from = _region.modifiers_tier_3
 			else:
 				return null
-	print(modifier_list_to_pick_from)
 	return modifier_list_to_pick_from.pick_random()
 
 ##################

@@ -7,7 +7,7 @@ signal updated_silver_coin_count
 signal updated_trade_count
 
 var _initial_day_count : int = 1
-var _initial_silver_coin_count : int = 50
+var _initial_silver_coin_count : int = 45
 var _initial_trade_count : int = 0
 var _initial_backpacks_purchased : int = 0
 var _initial_columns_purchased : int = 0
