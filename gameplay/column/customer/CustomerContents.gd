@@ -89,7 +89,10 @@ func _select_random_offer_tier(shop_level : int) -> int:
 		0:
 			selected_tier = 0
 		1:
-			selected_tier = 0
+			if tier_roll >= 75:
+				selected_tier = 1
+			else:
+				selected_tier = 0
 		2:
 			if tier_roll >= 50:
 				selected_tier = 1
