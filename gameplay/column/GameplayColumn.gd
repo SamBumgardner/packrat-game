@@ -6,6 +6,7 @@ class_name GameplayColumn
 signal column_entered
 signal column_exited
 signal ready_for_next_day
+signal backpack_changed
 
 const CUSTOMER_CONTENTS_SCENE = preload(
 	"res://gameplay/column/customer/CustomerContents.tscn"
@@ -24,6 +25,7 @@ const UNDER_CONSTRUCTION_ALPHA : float = .5;
 @export var column_type : GlobalConstants.ColumnContents
 
 @onready var anchor_point : Control = $AnchorPoint
+@onready var content_status : Sprite2D = $AnchorPoint/StatusSprite
 @onready var backpack_display : BackpackDisplay = $CenterBottom/BackpackDisplay
 @onready var contents_root : Node = $Contents
 
@@ -37,6 +39,7 @@ func _ready() -> void:
 func set_column_type(new_type : GlobalConstants.ColumnContents) -> void:
 	if column_type != new_type:
 		if column_type != GlobalConstants.ColumnContents.NONE:
+			backpack_changed.disconnect(_column_contents._on_column_backpack_set)
 			_column_contents.queue_free()
 	
 		column_type = new_type
@@ -44,6 +47,8 @@ func set_column_type(new_type : GlobalConstants.ColumnContents) -> void:
 		if column_type != GlobalConstants.ColumnContents.NONE:
 			_column_contents = COLUMN_CONTENTS_PRELOAD[column_type].instantiate()
 			_column_contents.content_actions_complete.connect(_on_content_actions_complete)
+			_column_contents.content_status_change.connect(_on_content_status_change)
+			backpack_changed.connect(_column_contents._on_column_backpack_set)
 			contents_root.add_child(_column_contents)
 
 func get_anchor_point_position() -> Vector2:
@@ -111,6 +116,7 @@ func set_backpack(newBackpack : Backpack) -> void:
 		if !current_backpack.display_update.is_connected(_on_backpack_display_update):
 			current_backpack.display_update.connect(_on_backpack_display_update)
 	backpack_display.update_display(current_backpack)
+	backpack_changed.emit(current_backpack)
 
 func snap_backpack_to_anchor() -> void:
 	if current_backpack != null:
@@ -127,6 +133,10 @@ func _on_backpack_display_update(updatedBackpack : Backpack) -> void:
 func attempt_alternate_action() -> void:
 	if not _under_construction and _column_contents != null:
 		_column_contents.attempt_alternate_action(current_backpack)
+
+func _on_content_status_change(new_status : GlobalConstants.ColumnStatus) -> void:
+	# Need to replace this if we end up supporting multiple statuses
+	content_status.visible = new_status != GlobalConstants.ColumnStatus.NONE
 
 ##################
 # INPUT HANDLING #

@@ -15,6 +15,11 @@ enum ColumnContents {
 	CUSTOMER
 }
 
+enum ColumnStatus {
+	NONE,
+	CUSTOMER_TALK
+}
+
 enum TradeFormula {
 	COUNT_UNIQUE_ELEMENTS,
 	PAIR_OF_UNIQUE,

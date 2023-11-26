@@ -8,6 +8,7 @@ class_name ColumnContents
 extends VBoxContainer
 
 signal content_actions_complete
+signal content_status_change
 
 @onready var _header_graphic : Sprite2D = $Header/Control/Sprite2D
 @onready var _header_label : RichTextLabel = $Header/Name
@@ -23,4 +24,8 @@ func next_day(_backpack : Backpack) -> void:
 
 # Function to overwrite if some "alternate action" should occur when right-clicked
 func attempt_alternate_action(_backpack : Backpack) -> void:
+	pass
+
+# Overwrite if we need to trigger some functionality when the column's backpack changes
+func _on_column_backpack_set(_backpack : Backpack) -> void:
 	pass
