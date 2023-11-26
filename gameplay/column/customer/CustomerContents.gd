@@ -43,8 +43,11 @@ var _current_customer_file_name = _possible_customer_file_name_list[
 	_default_customer_index
 ]
 var _current_customer_index = _default_customer_index
+
 var _current_offer_tier : int = 0
 var _current_offer_trade_enum_value : int = 0
+
+var _is_talking_to_customer : bool = false
 
 @onready var database = get_node("/root/Database")
 @onready var trade_offer = $TradeOffer2
@@ -168,18 +171,24 @@ func _set_purchase_backpack_contents(column_backpack : Backpack) -> void:
 
 func attempt_alternate_action(column_backpack : Backpack) -> void:
 	if column_backpack == null:
-		print("oh boy, time to set up 'retain customer' functionality")
+		_is_talking_to_customer = !_is_talking_to_customer
+		var new_status = GlobalConstants.ColumnStatus.CUSTOMER_TALK if _is_talking_to_customer else GlobalConstants.ColumnStatus.NONE
+		content_status_change.emit(new_status)
+
+func _on_column_backpack_set(new_column_backpack : Backpack) -> void:
+	if _is_talking_to_customer:
+		_is_talking_to_customer = false
+		content_status_change.emit(GlobalConstants.ColumnStatus.NONE)
 
 #####################
 # NEXT DAY HANDLING #
 #####################
 func next_day(column_backpack : Backpack) -> void:
-	if (_get_cannot_buy(column_backpack)):
-		_set_random_customer()
-		content_actions_complete.emit()
-		return
-
-	_set_purchase_backpack_contents(column_backpack)
-
-	_set_random_customer()
+	if not _is_talking_to_customer:
+		if _get_cannot_buy(column_backpack):
+			_set_random_customer()
+		else:
+			_set_purchase_backpack_contents(column_backpack)
+			_set_random_customer()
+	
 	content_actions_complete.emit()
