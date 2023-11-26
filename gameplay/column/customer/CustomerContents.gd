@@ -5,17 +5,8 @@ class_name CustomerContents
 
 extends ColumnContents
 
-@onready var trade_offer = $TradeOffer2
-var _current_offer_tier : int = 0
-var _current_offer_trade_enum_value : int = 0
-
-@export var _customer : Customer = null
-
-@onready var database = get_node("/root/Database")
-
 const _customer_data_folder_path = "res://data/customers/"
 const _default_customer_index = 0
-var header_name : String = ""
 const _possible_customer_file_name_list : Array[String] = [
 	"customer001.tres",
 	"customer002.tres",
@@ -42,12 +33,21 @@ const _possible_customer_file_name_list : Array[String] = [
 	"customer023.tres"
 ]
 
+static var _previously_selected_customers : Array[int] = []
+
+@export var _customer : Customer = null
+
+var header_name : String = ""
+
 var _current_customer_file_name = _possible_customer_file_name_list[
 	_default_customer_index
 ]
 var _current_customer_index = _default_customer_index
+var _current_offer_tier : int = 0
+var _current_offer_trade_enum_value : int = 0
 
-static var _previously_selected_customers : Array[int] = []
+@onready var database = get_node("/root/Database")
+@onready var trade_offer = $TradeOffer2
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
@@ -165,6 +165,10 @@ func _set_purchase_backpack_contents(column_backpack : Backpack) -> void:
 		+ worth_silver_coin
 	)
 	database.increment_trade_count()
+
+func attempt_alternate_action(column_backpack : Backpack) -> void:
+	if column_backpack == null:
+		print("oh boy, time to set up 'retain customer' functionality")
 
 #####################
 # NEXT DAY HANDLING #

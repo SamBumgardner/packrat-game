@@ -121,6 +121,13 @@ func _on_backpack_display_update(updatedBackpack : Backpack) -> void:
 	if current_backpack == updatedBackpack:
 		backpack_display.update_display(updatedBackpack)
 
+############################
+# ALTERNATE CONTENT ACTION #
+############################
+func attempt_alternate_action() -> void:
+	if not _under_construction and _column_contents != null:
+		_column_contents.attempt_alternate_action(current_backpack)
+
 ##################
 # INPUT HANDLING #
 ##################

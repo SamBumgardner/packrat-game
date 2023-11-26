@@ -20,3 +20,7 @@ func set_header_properties(graphic : Texture, header_name : String) -> void:
 # Otherwise day will never end.
 func next_day(_backpack : Backpack) -> void:
 	pass
+
+# Function to overwrite if some "alternate action" should occur when right-clicked
+func attempt_alternate_action(_backpack : Backpack) -> void:
+	pass
