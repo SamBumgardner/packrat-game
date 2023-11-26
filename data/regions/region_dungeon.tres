@@ -6,7 +6,7 @@
 [ext_resource type="Resource" uid="uid://bcx12wml2j3qm" path="res://data/items/modifiers/modifier_brave.tres" id="2_r030n"]
 [ext_resource type="Resource" uid="uid://dcwnv721dvmty" path="res://data/items/modifiers/modifier_fearful.tres" id="3_0aaun"]
 [ext_resource type="Resource" uid="uid://8wibdkfxtwl6" path="res://data/items/bone.tres" id="3_26fii"]
-[ext_resource type="Resource" path="res://data/items/modifiers/modifier_weathered.tres" id="4_2pyp5"]
+[ext_resource type="Resource" uid="uid://dftxck35eyn5b" path="res://data/items/modifiers/modifier_weathered.tres" id="4_2pyp5"]
 [ext_resource type="Resource" uid="uid://bayasngilt6hv" path="res://data/items/drop.tres" id="4_ppvg5"]
 [ext_resource type="Resource" uid="uid://dw3lwif85lvk6" path="res://data/items/flower.tres" id="5_1p0qs"]
 [ext_resource type="Resource" uid="uid://bl7hwv8rijm6" path="res://data/items/modifiers/modifier_warm.tres" id="5_xycgs"]
@@ -16,7 +16,7 @@
 [ext_resource type="Resource" uid="uid://c3ns0n0itx6x1" path="res://data/items/modifiers/modifier_frozen.tres" id="8_bx8u0"]
 [ext_resource type="Resource" uid="uid://b3t4ja60h1d3u" path="res://data/items/modifiers/modifier_lucky.tres" id="9_t5tq0"]
 [ext_resource type="Resource" uid="uid://twsv352mfpy" path="res://data/items/modifiers/modifier_uncommon.tres" id="10_7qqae"]
-[ext_resource type="Resource" path="res://data/items/modifiers/modifier_lava.tres" id="11_6s6y3"]
+[ext_resource type="Resource" uid="uid://dkenqlnoi5to5" path="res://data/items/modifiers/modifier_lava.tres" id="11_6s6y3"]
 [ext_resource type="Resource" uid="uid://cmffkcutodkib" path="res://data/items/modifiers/modifier_rare.tres" id="13_y2rf2"]
 
 [resource]
