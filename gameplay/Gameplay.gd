@@ -177,6 +177,10 @@ func _handle_backpack_selection() -> void:
 		set_current_state(State.SELECT)
 		_release_backpack()
 
+func attempt_alternate_action() -> void:
+	if hovered_column_index != NO_COLUMN:
+		columns[hovered_column_index].attempt_alternate_action()
+
 func _on_column_entered(column_index) -> void:
 	hovered_column_index = column_index
 
