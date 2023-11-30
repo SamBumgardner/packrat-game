@@ -1,7 +1,11 @@
 # Shared component to show the player's number of silver coins collected.
-extends HBoxContainer
+class_name CurrencySilverCoin extends HBoxContainer
 
 @onready var database = get_node("/root/Database")
+
+var coin_center_position : Vector2 :
+	get:
+		return $SilverCoin/CoinCenter.global_position
 
 func _ready():
 	_sync_silver_coin_count()

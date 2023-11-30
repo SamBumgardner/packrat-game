@@ -163,6 +163,7 @@ func _set_purchase_backpack_contents(column_backpack : Backpack) -> void:
 	var worth_silver_coin = _get_offer_value(column_backpack)
 
 	column_backpack.remove_items()
+	column_backpack.react_sale_completed()
 	database.set_silver_coin_count(
 		database.silver_coin_count
 		+ worth_silver_coin

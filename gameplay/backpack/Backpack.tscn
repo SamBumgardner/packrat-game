@@ -1,11 +1,13 @@
-[gd_scene load_steps=9 format=3 uid="uid://24e0kif4kkdt"]
+[gd_scene load_steps=11 format=3 uid="uid://24e0kif4kkdt"]
 
 [ext_resource type="Script" path="res://gameplay/backpack/Backpack.gd" id="1_v6j3i"]
-[ext_resource type="Texture2D" uid="uid://ct5h3dyyxyblj" path="res://art/pack_1.png" id="2_80h0r"]
-[ext_resource type="AudioStream" uid="uid://bxgblql1u8dhe" path="res://sound/bag_drop.wav" id="3_a0h7p"]
-[ext_resource type="AudioStream" uid="uid://bmkd5fn01mky2" path="res://sound/item_added.wav" id="3_p4sdx"]
-[ext_resource type="AudioStream" uid="uid://cemabdt5yr5oc" path="res://sound/item_rejected.wav" id="4_stjcx"]
-[ext_resource type="AudioStream" uid="uid://dvlt1knfeyk5c" path="res://sound/pickup.wav" id="5_cwn6i"]
+[ext_resource type="Texture2D" uid="uid://bsk8r0r6n6kes" path="res://art/pack_1.png" id="2_80h0r"]
+[ext_resource type="AudioStream" uid="uid://bylqisvfjpnyf" path="res://sound/bag_drop.wav" id="3_a0h7p"]
+[ext_resource type="PackedScene" uid="uid://p5tq20p3knyo" path="res://testing_particle_shader.tscn" id="3_eavka"]
+[ext_resource type="AudioStream" uid="uid://3cng3ebpng30" path="res://sound/item_added.wav" id="3_p4sdx"]
+[ext_resource type="Texture2D" uid="uid://ckymihsi1p2up" path="res://art/tiny_silver_coin.png" id="4_muu63"]
+[ext_resource type="AudioStream" uid="uid://du0ac420dqsuy" path="res://sound/item_rejected.wav" id="4_stjcx"]
+[ext_resource type="AudioStream" uid="uid://brh2v8cu64d02" path="res://sound/pickup.wav" id="5_cwn6i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2k672"]
 size = Vector2(128, 128)
@@ -30,6 +32,11 @@ texture = ExtResource("2_80h0r")
 z_index = 3
 scale = Vector2(0.9, 0.9)
 texture = ExtResource("2_80h0r")
+
+[node name="CoinParticles" parent="PackSprite" instance=ExtResource("3_eavka")]
+position = Vector2(0, -12)
+scale = Vector2(1.11111, 1.11111)
+texture = ExtResource("4_muu63")
 
 [node name="ItemAddedParticles" type="CPUParticles2D" parent="."]
 z_index = 1

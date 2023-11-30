@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://crk2s578wsl64"]
+[gd_scene load_steps=21 format=3 uid="uid://crk2s578wsl64"]
 
 [ext_resource type="Theme" uid="uid://c1rbyyhtqrqqt" path="res://fonts/normal_font_theme.tres" id="1_43exs"]
 [ext_resource type="Script" path="res://gameplay/Gameplay.gd" id="1_cv37s"]
@@ -12,7 +12,6 @@
 [ext_resource type="PackedScene" uid="uid://e1hatl7xepnb" path="res://hud/DaysPassedTracker.tscn" id="7_6ilhd"]
 [ext_resource type="Texture2D" uid="uid://rvhnv7527uvk" path="res://art/right_arrow.png" id="9_oawgj"]
 [ext_resource type="Texture2D" uid="uid://dv7i1leokgxr" path="res://art/level_up.png" id="11_ck6ys"]
-[ext_resource type="PackedScene" uid="uid://p5tq20p3knyo" path="res://testing_particle_shader.tscn" id="13_66afv"]
 [ext_resource type="AudioStream" uid="uid://dfqa3e00i0k18" path="res://sound/Bumping-Business_v9b.ogg" id="13_xye5j"]
 [ext_resource type="Script" path="res://sound/LoopBGM.gd" id="14_5fn8r"]
 [ext_resource type="AudioStream" uid="uid://crisgrnymbvmc" path="res://sound/select.wav" id="15_o0374"]
@@ -200,10 +199,6 @@ emission_rect_extents = Vector2(640, 360)
 gravity = Vector2(0, -200)
 color_ramp = SubResource("Gradient_4aujt")
 color_initial_ramp = SubResource("Gradient_mammj")
-
-[node name="GPUParticles2D" parent="." instance=ExtResource("13_66afv")]
-position = Vector2(548, 530)
-particle_destination = Vector2(32, 625)
 
 [node name="BGM" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("13_xye5j")

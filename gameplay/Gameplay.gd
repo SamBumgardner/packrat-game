@@ -35,6 +35,7 @@ var states : Array[GameplayState] = [
 ]
 
 @onready var BGM_default_volume : float = $BGM.volume_db
+@onready var currency_silver_coin : CurrencySilverCoin = $VBoxContainer/CurrencySilverCoin
 
 var staged_upgrade : Callable
 
@@ -75,6 +76,7 @@ func _ready():
 	$LevelUpFanfare.finished.connect(trigger_end_game_transition)
 
 func _init_backpack(backpack : Backpack) -> void:
+	backpack.coin_destination = currency_silver_coin.coin_center_position
 	$OriginOfNewBackpacks.add_child(backpack)
 	backpacks.append(backpack)
 	backpack.backpack_entered.connect(_on_backpack_entered)
