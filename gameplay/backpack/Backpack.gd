@@ -24,6 +24,7 @@ const POSSIBLE_GRAPHICS : Array[Texture] = [
 static var used_graphic_indexes : Array[int] = []
 @export var backpack_graphic : Texture
 @export var _item_capacity : int = 2
+@export var coin_destination : Vector2 = Vector2.ZERO
 var _contained_elements : Array[int] = []
 var _contained_items : Array[Item] = []
 
@@ -31,6 +32,7 @@ var _contained_items : Array[Item] = []
 @onready var collision_shape : Shape2D = $CollisionShape2D.shape
 @onready var shadow : Sprite2D = $ShadowSprite
 @onready var _item_added_particles : CPUParticles2D = $ItemAddedParticles
+@onready var coin_particles : DestinationParticles = $PackSprite/CoinParticles
 @onready var pack : Sprite2D = $PackSprite
 
 # Parameters for sound effects.
@@ -42,6 +44,7 @@ var _contained_items : Array[Item] = []
 # Parameters for tween animations.
 var _tween_wiggle : Tween
 var _tween_bounce : Tween
+var _tween_squeeze : Tween
 
 ###########
 # GENERAL #
@@ -57,6 +60,11 @@ func _ready():
 
 	_tween_bounce = create_tween()
 	BackpackTweens.init_tween_bounce(_tween_bounce, pack)
+	
+	_tween_squeeze = create_tween()
+	BackpackTweens.init_tween_squeeze(_tween_squeeze, pack, coin_particles.restart)
+	
+	coin_particles.particle_destination = coin_destination
 
 func _set_random_pack_graphic() -> void:
 	var selected_index = randi() % POSSIBLE_GRAPHICS.size()
@@ -188,3 +196,6 @@ func react_item_added():
 func react_item_rejected():
 	_tween_wiggle.play()
 	_sfx_item_rejected.play()
+
+func react_sale_completed():
+	_tween_squeeze.play()

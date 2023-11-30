@@ -8,10 +8,12 @@
 shader = ExtResource("1_jctsd")
 shader_parameter/destination = Vector3(0, 0, 0)
 
-[node name="GPUParticles2D" type="GPUParticles2D"]
+[node name="DestinationParticles" type="GPUParticles2D"]
+emitting = false
 process_material = SubResource("ShaderMaterial_yroor")
 texture = ExtResource("2_e78tw")
 lifetime = 2.0
+one_shot = true
 explosiveness = 0.85
 randomness = 0.95
 script = ExtResource("3_6t1fc")
