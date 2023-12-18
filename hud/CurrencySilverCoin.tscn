@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://c25adoveil6xs"]
 
 [ext_resource type="Script" path="res://hud/CurrencySilverCoin.gd" id="1_i1iqb"]
-[ext_resource type="Texture2D" uid="uid://cnlqcn5haw8f0" path="res://art/silver_coin.png" id="2_7gmhd"]
+[ext_resource type="Texture2D" uid="uid://dkew3i6wq7feh" path="res://art/silver_coin.png" id="2_7gmhd"]
 
 [node name="CurrencySilverCoin" type="HBoxContainer"]
 anchors_preset = 15

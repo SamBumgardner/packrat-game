@@ -6,6 +6,7 @@ class_name Backpack
 signal display_update
 signal backpack_entered
 signal backpack_exited
+signal finished_emitting_coins
 
 ##############
 # PARAMETERS #
@@ -46,6 +47,9 @@ var _tween_wiggle : Tween
 var _tween_bounce : Tween
 var _tween_squeeze : Tween
 
+# For tracking state of coin emission
+var _is_emitting_coins : bool = false
+
 ###########
 # GENERAL #
 ###########
@@ -81,6 +85,14 @@ func _set_graphic(texture : Texture) -> void:
 
 func _process(delta):
 	_handle_movement(delta)
+	_check_coin_emission()
+
+func _check_coin_emission() -> void:
+	if not _is_emitting_coins and coin_particles.emitting:
+		_is_emitting_coins = true
+	elif _is_emitting_coins and not coin_particles.emitting:
+		_is_emitting_coins = false
+		finished_emitting_coins.emit()
 
 #####################
 # MOVEMENT HANDLING #
