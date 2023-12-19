@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://boqd6oxg2m6qa"]
 
-[ext_resource type="Texture2D" uid="uid://cnlqcn5haw8f0" path="res://art/silver_coin.png" id="2_6qx3n"]
+[ext_resource type="Texture2D" uid="uid://dkew3i6wq7feh" path="res://art/silver_coin.png" id="2_6qx3n"]
 [ext_resource type="Script" path="res://gameplay/upgrade/UpgradeButton.gd" id="2_s77sd"]
 
 [node name="UpgradeButton" type="Button" groups=["button"]]

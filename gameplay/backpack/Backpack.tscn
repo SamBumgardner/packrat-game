@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://24e0kif4kkdt"]
+[gd_scene load_steps=13 format=3 uid="uid://24e0kif4kkdt"]
 
 [ext_resource type="Script" path="res://gameplay/backpack/Backpack.gd" id="1_v6j3i"]
 [ext_resource type="Texture2D" uid="uid://ct5h3dyyxyblj" path="res://art/pack_1.png" id="2_80h0r"]
@@ -8,6 +8,8 @@
 [ext_resource type="Texture2D" uid="uid://b2rwswr2yxsii" path="res://art/tiny_silver_coin.png" id="4_muu63"]
 [ext_resource type="AudioStream" uid="uid://cemabdt5yr5oc" path="res://sound/item_rejected.wav" id="4_stjcx"]
 [ext_resource type="AudioStream" uid="uid://dvlt1knfeyk5c" path="res://sound/pickup.wav" id="5_cwn6i"]
+[ext_resource type="AudioStream" uid="uid://buvacv54y2ilk" path="res://sound/coins.wav" id="9_efvuc"]
+[ext_resource type="AudioStream" uid="uid://dht1vgpcnimud" path="res://sound/pop.wav" id="10_6ej52"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2k672"]
 size = Vector2(128, 128)
@@ -73,6 +75,16 @@ bus = &"SFX"
 
 [node name="SFX_Pickup" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("5_cwn6i")
+volume_db = -15.0
+bus = &"SFX"
+
+[node name="SFX_Coins" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("9_efvuc")
+volume_db = -15.0
+bus = &"SFX"
+
+[node name="SFX_Squeeze" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("10_6ej52")
 volume_db = -15.0
 bus = &"SFX"
 

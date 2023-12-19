@@ -29,7 +29,7 @@ func _ready():
 		_upgrade_buttons.append(new_upgrade_button)
 	Database.updated_silver_coin_count.connect(_on_money_or_level_changed)
 
-func _on_money_or_level_changed():
+func _on_money_or_level_changed(_is_initial_value : bool):
 	for upgrade_type in UpgradeManager.UpgradeType.values():
 		_upgrade_buttons[upgrade_type].set_cost(UpgradeManager.get_cost(upgrade_type))
 		var restricted_reason : UpgradeManager.RestrictedReason = UpgradeManager.check_restricted(upgrade_type)
