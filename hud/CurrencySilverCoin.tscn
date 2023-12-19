@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://c25adoveil6xs"]
+[gd_scene load_steps=4 format=3 uid="uid://c25adoveil6xs"]
 
 [ext_resource type="Script" path="res://hud/CurrencySilverCoin.gd" id="1_i1iqb"]
 [ext_resource type="Texture2D" uid="uid://dkew3i6wq7feh" path="res://art/silver_coin.png" id="2_7gmhd"]
+[ext_resource type="AudioStream" uid="uid://buvacv54y2ilk" path="res://sound/coins.wav" id="3_00o0t"]
 
 [node name="CurrencySilverCoin" type="HBoxContainer"]
 anchors_preset = 15
@@ -37,3 +38,7 @@ layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
 text = "0"
+
+[node name="SFX_ValueChanging" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_00o0t")
+pitch_scale = 0.5

@@ -41,6 +41,7 @@ var _contained_items : Array[Item] = []
 @onready var _sfx_item_added : AudioStreamPlayer = $SFX_ItemAdded
 @onready var _sfx_item_rejected : AudioStreamPlayer = $SFX_ItemRejected
 @onready var _sfx_pickup : AudioStreamPlayer = $SFX_Pickup
+@onready var _sfx_coins : AudioStreamPlayer = $SFX_Coins
 
 # Parameters for tween animations.
 var _tween_wiggle : Tween
@@ -66,7 +67,7 @@ func _ready():
 	BackpackTweens.init_tween_bounce(_tween_bounce, pack)
 	
 	_tween_squeeze = create_tween()
-	BackpackTweens.init_tween_squeeze(_tween_squeeze, pack, coin_particles.restart)
+	BackpackTweens.init_tween_squeeze(_tween_squeeze, pack, emit_coins)
 	
 	coin_particles.particle_destination = coin_destination
 
@@ -210,4 +211,9 @@ func react_item_rejected():
 	_sfx_item_rejected.play()
 
 func react_sale_completed():
+	$SFX_Squeeze.play()
 	_tween_squeeze.play()
+
+func emit_coins():
+	coin_particles.restart()
+	_sfx_coins.play()

@@ -3,7 +3,7 @@ extends Node
 
 signal updated_day_count
 signal updated_shop_level
-signal updated_silver_coin_count
+signal updated_silver_coin_count(is_initial_value : bool)
 signal updated_trade_count
 
 var _initial_day_count : int = 1
@@ -42,7 +42,7 @@ func reset_values() -> void:
 	day_count = _initial_day_count
 	updated_day_count.emit()
 
-	set_silver_coin_count(_initial_silver_coin_count)
+	set_silver_coin_count(_initial_silver_coin_count, true)
 
 	trade_count = _initial_trade_count
 	
@@ -54,9 +54,9 @@ func reset_values() -> void:
 	shop_level = _initial_shop_level
 	updated_shop_level.emit()
 
-func set_silver_coin_count(updated_count : int) -> void:
+func set_silver_coin_count(updated_count : int, is_initial_value : bool = false) -> void:
 	silver_coin_count = updated_count
-	updated_silver_coin_count.emit()
+	updated_silver_coin_count.emit(is_initial_value)
 
 func set_shop_level(updated_level : int) -> void:
 	shop_level = updated_level

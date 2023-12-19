@@ -15,21 +15,23 @@ var _coin_display_number : int :
 var _display_number_tween : Tween
 
 func _ready():
-	_start_display_number_tween(database.silver_coin_count)
-	_display_number_tween.custom_step(100)
-
-	_sync_silver_coin_count()
+	_display_number_tween = create_tween()
+	_display_number_tween.stop()
+	
+	_coin_display_number = database.silver_coin_count
 	database.connect("updated_silver_coin_count", _on_updated_silver_coin_count)
 
-func _on_updated_silver_coin_count() -> void:
-	_start_display_number_tween(database.silver_coin_count)
-
-func _sync_silver_coin_count() -> void:
-	_start_display_number_tween(database.silver_coin_count)
+func _on_updated_silver_coin_count(is_initial_value : bool) -> void:
+	if not is_initial_value:
+		_start_display_number_tween(database.silver_coin_count)
+	else:
+		_coin_display_number = database.silver_coin_count
 
 func _start_display_number_tween(new_coin_value : int) -> void:
 	if _display_number_tween != null && _display_number_tween.is_running():
 		_display_number_tween.stop()
+	
+	$SFX_ValueChanging.play()
 
 	_display_number_tween = create_tween()
 	_display_number_tween.set_ease(Tween.EASE_OUT)
