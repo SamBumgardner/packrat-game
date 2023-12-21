@@ -104,7 +104,7 @@ static func init_tween_squeeze(tween_to_init : Tween, pack : Sprite2D, squeeze_c
 		.5
 	]
 
-	# Step 1 of 2
+	# Step 1 of 7
 	tween_to_init.tween_property(
 		pack,
 		"scale",
@@ -124,8 +124,7 @@ static func init_tween_squeeze(tween_to_init : Tween, pack : Sprite2D, squeeze_c
 		step_duration_list[0]
 	).set_trans(Tween.TRANS_QUART)
 
-	# Step 2 of 2
-	# Step 1 of 3
+	# Step 2 of 7
 	tween_to_init.tween_property(
 		pack,
 		"rotation",
@@ -133,7 +132,7 @@ static func init_tween_squeeze(tween_to_init : Tween, pack : Sprite2D, squeeze_c
 		step_duration_list[1]
 	).set_trans(Tween.TRANS_CUBIC)
 
-	# Step 2 of 3
+	# Step 3 of 7
 	tween_to_init.tween_property(
 		pack,
 		"rotation",
@@ -141,18 +140,22 @@ static func init_tween_squeeze(tween_to_init : Tween, pack : Sprite2D, squeeze_c
 		step_duration_list[2]
 	).set_trans(Tween.TRANS_CUBIC)
 
-	# Step 3 of 3
+	# Step 4 of 7
 	tween_to_init.tween_property(
 		pack,
 		"rotation",
 		0,
 		step_duration_list[3]
 	).set_trans(Tween.TRANS_LINEAR)
+	
+	# Step 5 of 7
 	tween_to_init.tween_interval(step_duration_list[4])
+	
+	# Step 6 of 7
 	tween_to_init.tween_callback(squeeze_callback)
 	tween_to_init.tween_interval(step_duration_list[5])
 
-	# Step 3 of 3
+	# Step 7 of 7
 	tween_to_init.tween_property(
 		pack,
 		"scale",

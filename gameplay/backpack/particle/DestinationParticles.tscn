@@ -1,0 +1,19 @@
+[gd_scene load_steps=5 format=3 uid="uid://p5tq20p3knyo"]
+
+[ext_resource type="Shader" path="res://gameplay/backpack/particle/DestinationParticles.gdshader" id="1_q7i2q"]
+[ext_resource type="Texture2D" uid="uid://cnlqcn5haw8f0" path="res://art/silver_coin.png" id="2_55882"]
+[ext_resource type="Script" path="res://gameplay/backpack/particle/DestinationParticles.gd" id="3_ta5tk"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yroor"]
+shader = ExtResource("1_q7i2q")
+shader_parameter/destination = Vector3(0, 0, 0)
+
+[node name="DestinationParticles" type="GPUParticles2D"]
+emitting = false
+process_material = SubResource("ShaderMaterial_yroor")
+texture = ExtResource("2_55882")
+lifetime = 2.0
+one_shot = true
+explosiveness = 0.85
+randomness = 0.95
+script = ExtResource("3_ta5tk")
