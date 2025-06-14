@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://nea5kyjnasom"]
 
-[ext_resource type="Script" path="res://hud/ShopLevelTracker.gd" id="1_41buw"]
+[ext_resource type="Script" uid="uid://cpohgkbo4xxqc" path="res://hud/ShopLevelTracker.gd" id="1_41buw"]
 
 [node name="ShopLevelTracker" type="HBoxContainer"]
 anchors_preset = 15

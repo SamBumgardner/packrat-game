@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Modifier" load_steps=2 format=3 uid="uid://b74jjxfe5x87k"]
 
-[ext_resource type="Script" path="res://gameplay/item/Modifier.gd" id="1_k1td5"]
+[ext_resource type="Script" uid="uid://bba1tp7owq566" path="res://gameplay/item/Modifier.gd" id="1_k1td5"]
 
 [resource]
 script = ExtResource("1_k1td5")

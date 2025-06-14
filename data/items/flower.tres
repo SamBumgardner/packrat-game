@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://dw3lwif85lvk6"]
 
-[ext_resource type="Script" path="res://gameplay/item/Item.gd" id="1_cf6kt"]
+[ext_resource type="Script" uid="uid://drs07dlaiwl54" path="res://gameplay/item/Item.gd" id="1_cf6kt"]
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_mbtgs"]
 load_path = "res://.godot/imported/flower.png-e04befccfcc8aa10f65974a37bd8e112.ctex"

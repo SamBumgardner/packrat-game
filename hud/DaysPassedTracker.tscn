@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://e1hatl7xepnb"]
 
-[ext_resource type="Script" path="res://hud/DaysPassedTracker.gd" id="1_rtc04"]
+[ext_resource type="Script" uid="uid://0wdk8yoy186f" path="res://hud/DaysPassedTracker.gd" id="1_rtc04"]
 
 [node name="DaysPassedTracker" type="HBoxContainer"]
 anchors_preset = 15

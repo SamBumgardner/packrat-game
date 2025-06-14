@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Customer" load_steps=3 format=3 uid="uid://c1a8y77stmdef"]
 
-[ext_resource type="Texture2D" uid="uid://c5o15u5ihbseq" path="res://art/customers/customer010.png" id="1_5iads"]
-[ext_resource type="Script" path="res://gameplay/column/customer/Customer.gd" id="2_qswoh"]
+[ext_resource type="Texture2D" uid="uid://dvhrflhoy5fpd" path="res://art/customers/customer010.png" id="1_5iads"]
+[ext_resource type="Script" uid="uid://c4i8yqdkl6qy6" path="res://gameplay/column/customer/Customer.gd" id="2_qswoh"]
 
 [resource]
 script = ExtResource("2_qswoh")

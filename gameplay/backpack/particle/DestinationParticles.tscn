@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://p5tq20p3knyo"]
 
-[ext_resource type="Shader" path="res://gameplay/backpack/particle/DestinationParticles.gdshader" id="1_q7i2q"]
-[ext_resource type="Texture2D" uid="uid://cnlqcn5haw8f0" path="res://art/silver_coin.png" id="2_55882"]
-[ext_resource type="Script" path="res://gameplay/backpack/particle/DestinationParticles.gd" id="3_ta5tk"]
+[ext_resource type="Shader" uid="uid://dsstol7u6da0d" path="res://gameplay/backpack/particle/DestinationParticles.gdshader" id="1_q7i2q"]
+[ext_resource type="Texture2D" uid="uid://dipixm83mjd04" path="res://art/silver_coin.png" id="2_55882"]
+[ext_resource type="Script" uid="uid://bk0ymakpw0w8x" path="res://gameplay/backpack/particle/DestinationParticles.gd" id="3_ta5tk"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_yroor"]
 shader = ExtResource("1_q7i2q")

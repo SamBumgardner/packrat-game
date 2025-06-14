@@ -1,10 +1,10 @@
 [gd_scene load_steps=6 format=3 uid="uid://culsm3gpgril1"]
 
 [ext_resource type="PackedScene" uid="uid://bygdha8oc17o7" path="res://gameplay/column/ColumnContents.tscn" id="1_h4lsb"]
-[ext_resource type="Script" path="res://gameplay/column/region/RegionContents.gd" id="2_08dnk"]
+[ext_resource type="Script" uid="uid://dhsehovibjr5l" path="res://gameplay/column/region/RegionContents.gd" id="2_08dnk"]
 [ext_resource type="Texture2D" uid="uid://brf4h74py8sal" path="res://icon.svg" id="3_rhexc"]
 [ext_resource type="PackedScene" uid="uid://b75uw1cnn27ae" path="res://gameplay/element_display/SixElementDisplay.tscn" id="4_fn1e6"]
-[ext_resource type="AudioStream" uid="uid://bmk7qabh1diu3" path="res://sound/item_fall.wav" id="5_lmqjb"]
+[ext_resource type="AudioStream" uid="uid://tib78psujenh" path="res://sound/item_fall.wav" id="5_lmqjb"]
 
 [node name="ColumnContentsForRegion" instance=ExtResource("1_h4lsb")]
 script = ExtResource("2_08dnk")

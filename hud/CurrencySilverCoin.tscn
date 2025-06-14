@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://c25adoveil6xs"]
 
-[ext_resource type="Script" path="res://hud/CurrencySilverCoin.gd" id="1_i1iqb"]
-[ext_resource type="Texture2D" uid="uid://dkew3i6wq7feh" path="res://art/silver_coin.png" id="2_7gmhd"]
-[ext_resource type="AudioStream" uid="uid://buvacv54y2ilk" path="res://sound/coins.wav" id="3_00o0t"]
+[ext_resource type="Script" uid="uid://dopnu7plj3q28" path="res://hud/CurrencySilverCoin.gd" id="1_i1iqb"]
+[ext_resource type="Texture2D" uid="uid://dipixm83mjd04" path="res://art/silver_coin.png" id="2_7gmhd"]
+[ext_resource type="AudioStream" uid="uid://d37palxdo4u2q" path="res://sound/coins.wav" id="3_00o0t"]
 
 [node name="CurrencySilverCoin" type="HBoxContainer"]
 anchors_preset = 15

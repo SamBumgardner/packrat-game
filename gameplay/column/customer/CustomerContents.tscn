@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dd4yew4pfjlav"]
 
 [ext_resource type="PackedScene" uid="uid://bygdha8oc17o7" path="res://gameplay/column/ColumnContents.tscn" id="1_fhxqp"]
-[ext_resource type="Script" path="res://gameplay/column/customer/CustomerContents.gd" id="2_dhokb"]
+[ext_resource type="Script" uid="uid://wbprjb58rtpg" path="res://gameplay/column/customer/CustomerContents.gd" id="2_dhokb"]
 [ext_resource type="PackedScene" uid="uid://bfib0elj05sww" path="res://gameplay/trade_offer/AlternateTradeOffer.tscn" id="4_5wf4w"]
 
 [node name="ColumnContents" instance=ExtResource("1_fhxqp")]

@@ -1,29 +1,31 @@
-[gd_resource type="Resource" script_class="Region" load_steps=19 format=3 uid="uid://nqw1n02sgcr4"]
+[gd_resource type="Resource" script_class="Region" load_steps=21 format=3 uid="uid://nqw1n02sgcr4"]
 
-[ext_resource type="Texture2D" uid="uid://cpm3inmj8uefb" path="res://art/meadow_c.png" id="1_fix1i"]
+[ext_resource type="Texture2D" uid="uid://cnr100scvn81w" path="res://art/meadow_c.png" id="1_fix1i"]
+[ext_resource type="Script" uid="uid://bba1tp7owq566" path="res://gameplay/item/Modifier.gd" id="2_4ng71"]
 [ext_resource type="Resource" uid="uid://cb4tyqraptk12" path="res://data/items/modifiers/modifier_happy.tres" id="2_i40ii"]
 [ext_resource type="Resource" uid="uid://ypmpwtankob1" path="res://data/items/rock.tres" id="2_kxva0"]
 [ext_resource type="Resource" uid="uid://bcx12wml2j3qm" path="res://data/items/modifiers/modifier_brave.tres" id="2_xkp66"]
 [ext_resource type="Resource" uid="uid://8wibdkfxtwl6" path="res://data/items/bone.tres" id="3_6e8sy"]
 [ext_resource type="Resource" uid="uid://doega52i5wce7" path="res://data/items/modifiers/modifier_cool.tres" id="3_b3m2w"]
-[ext_resource type="Resource" path="res://data/items/modifiers/modifier_new.tres" id="4_u82iy"]
+[ext_resource type="Resource" uid="uid://ldqmorxuqkbi" path="res://data/items/modifiers/modifier_new.tres" id="4_u82iy"]
 [ext_resource type="Resource" uid="uid://bayasngilt6hv" path="res://data/items/drop.tres" id="4_x3g5q"]
-[ext_resource type="Resource" path="res://data/items/modifiers/modifier_smooth.tres" id="5_idjad"]
+[ext_resource type="Resource" uid="uid://csintba7h1s7h" path="res://data/items/modifiers/modifier_smooth.tres" id="5_idjad"]
 [ext_resource type="Resource" uid="uid://dw3lwif85lvk6" path="res://data/items/flower.tres" id="5_le2f7"]
 [ext_resource type="Resource" uid="uid://5qk4laiofa05" path="res://data/items/rainfall.tres" id="6_4nu7i"]
 [ext_resource type="Resource" uid="uid://cwbdaukkt528f" path="res://data/items/modifiers/modifier_flexible.tres" id="7_2q7x2"]
-[ext_resource type="Script" path="res://gameplay/column/region/Region.gd" id="7_pc3qv"]
-[ext_resource type="Resource" path="res://data/items/modifiers/modifier_magical.tres" id="8_mgpus"]
+[ext_resource type="Script" uid="uid://bvy2tec13jdtf" path="res://gameplay/column/region/Region.gd" id="7_pc3qv"]
+[ext_resource type="Resource" uid="uid://c3udb06f1e1c4" path="res://data/items/modifiers/modifier_magical.tres" id="8_mgpus"]
 [ext_resource type="Resource" uid="uid://twsv352mfpy" path="res://data/items/modifiers/modifier_uncommon.tres" id="9_0sjov"]
-[ext_resource type="Resource" path="res://data/items/modifiers/modifier_soggy.tres" id="10_uw5hr"]
+[ext_resource type="Resource" uid="uid://co3fvgcoe5v2u" path="res://data/items/modifiers/modifier_soggy.tres" id="10_uw5hr"]
 [ext_resource type="Resource" uid="uid://b3t4ja60h1d3u" path="res://data/items/modifiers/modifier_lucky.tres" id="11_dwmdd"]
 [ext_resource type="Resource" uid="uid://cmffkcutodkib" path="res://data/items/modifiers/modifier_rare.tres" id="12_v65x3"]
+[ext_resource type="Script" uid="uid://drs07dlaiwl54" path="res://gameplay/item/Item.gd" id="14_lvoah"]
 
 [resource]
 script = ExtResource("7_pc3qv")
 name = "Dawnbreeze Meadow"
 graphic = ExtResource("1_fix1i")
-possible_items = Array[Resource("res://gameplay/item/Item.gd")]([ExtResource("2_kxva0"), ExtResource("3_6e8sy"), ExtResource("4_x3g5q"), ExtResource("5_le2f7"), ExtResource("6_4nu7i"), ExtResource("6_4nu7i"), ExtResource("5_le2f7"), ExtResource("5_le2f7"), ExtResource("5_le2f7")])
-modifiers_tier_1 = Array[Resource("res://gameplay/item/Modifier.gd")]([ExtResource("2_xkp66"), ExtResource("3_b3m2w"), ExtResource("4_u82iy"), ExtResource("5_idjad")])
-modifiers_tier_2 = Array[Resource("res://gameplay/item/Modifier.gd")]([ExtResource("2_i40ii"), ExtResource("7_2q7x2"), ExtResource("8_mgpus"), ExtResource("5_idjad"), ExtResource("2_xkp66"), ExtResource("9_0sjov")])
-modifiers_tier_3 = Array[Resource("res://gameplay/item/Modifier.gd")]([ExtResource("10_uw5hr"), ExtResource("11_dwmdd"), ExtResource("12_v65x3")])
+possible_items = Array[ExtResource("14_lvoah")]([ExtResource("2_kxva0"), ExtResource("3_6e8sy"), ExtResource("4_x3g5q"), ExtResource("5_le2f7"), ExtResource("6_4nu7i"), ExtResource("6_4nu7i"), ExtResource("5_le2f7"), ExtResource("5_le2f7"), ExtResource("5_le2f7")])
+modifiers_tier_1 = Array[ExtResource("2_4ng71")]([ExtResource("2_xkp66"), ExtResource("3_b3m2w"), ExtResource("4_u82iy"), ExtResource("5_idjad")])
+modifiers_tier_2 = Array[ExtResource("2_4ng71")]([ExtResource("2_i40ii"), ExtResource("7_2q7x2"), ExtResource("8_mgpus"), ExtResource("5_idjad"), ExtResource("2_xkp66"), ExtResource("9_0sjov")])
+modifiers_tier_3 = Array[ExtResource("2_4ng71")]([ExtResource("10_uw5hr"), ExtResource("11_dwmdd"), ExtResource("12_v65x3")])
