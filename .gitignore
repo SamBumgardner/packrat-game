@@ -8,6 +8,11 @@ export_presets.cfg
 *.tmp
 build/
 
+# Godot 4+ specific ignores
+.godot/
+/android/
+*.tmp
+
 # Imported translations (automatically generated from CSV files)
 *.translation
 
