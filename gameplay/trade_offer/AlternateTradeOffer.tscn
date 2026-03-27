@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bfib0elj05sww"]
 
 [ext_resource type="Script" path="res://gameplay/trade_offer/AlternateTradeOffer.gd" id="1_llgmb"]
-[ext_resource type="FontFile" uid="uid://d1faal3mxcb84" path="res://fonts/Roboto/Roboto-Medium.ttf" id="2_wl60c"]
+[ext_resource type="FontFile" uid="uid://cv7jguoc63tx5" path="res://fonts/Roboto/Roboto-Medium.ttf" id="2_wl60c"]
 
 [node name="TradeOffer" type="VBoxContainer"]
 script = ExtResource("1_llgmb")
@@ -13,13 +13,16 @@ theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("2_wl60c")
 text = "Wants:"
 
-[node name="WantsDescription" type="Label" parent="."]
+[node name="WantsDescription" type="RichTextLabel" parent="."]
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 6
-theme_override_font_sizes/font_size = 14
-text = "Unique elements"
+theme_override_font_sizes/normal_font_size = 14
+bbcode_enabled = true
+text = "Five [img region=64,0,32,32 height=24]res://art/element_sheet.png[/img]"
+fit_content = true
+scroll_active = false
 autowrap_mode = 2
 
 [node name="BonusHeader" type="Label" parent="."]

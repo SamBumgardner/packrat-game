@@ -182,7 +182,7 @@ static func description_five_single_element(
 	bind_element : GlobalConstants.Elements
 ) -> OfferDescription:
 	var description : OfferDescription = OfferDescription.new()
-	description.wants_description = "Five " + str(GlobalConstants.Elements.find_key(bind_element))
+	description.wants_description = "Five " + _build_element_image_tag(bind_element)
 	description.reward_description = str(35 * reward_multiplier)
 	return description
 
@@ -238,8 +238,8 @@ static func description_two_major_elements(
 	bind_element_2 : GlobalConstants.Elements
 ) -> OfferDescription:
 	var description : OfferDescription = OfferDescription.new()
-	description.wants_description = "Ten " + str(GlobalConstants.Elements.find_key(bind_element_1))
-	description.wants_description += " and Six " + str(GlobalConstants.Elements.find_key(bind_element_2))
+	description.wants_description = "Ten " + _build_element_image_tag(bind_element_1)
+	description.wants_description += " and Six " + _build_element_image_tag(bind_element_2)
 	description.reward_description = str(85 * reward_multiplier)
 	return description
 
@@ -269,3 +269,6 @@ static func _get_unique_negative_element_count(column_backpack : Backpack) -> in
 			.filter(func(number): return number < 0)
 			.size()
 	)
+
+static func _build_element_image_tag(element : GlobalConstants.Elements) -> String:
+	return "[img region=%s,0,32,32 height=24]res://art/element_sheet.png[/img]" % [32 * element]

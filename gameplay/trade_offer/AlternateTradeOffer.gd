@@ -4,7 +4,7 @@ extends VBoxContainer
 
 @onready var _bonus_description : Label = $BonusDescription
 @onready var _reward_description : Label = $RewardDescription
-@onready var _wants_description : Label = $WantsDescription
+@onready var _wants_description : RichTextLabel = $WantsDescription
 
 var _offer_tier : int = 0
 var _trade_offer_index : int = 0
