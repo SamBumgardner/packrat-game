@@ -221,6 +221,7 @@ stream = ExtResource("16_4kfkq")
 bus = &"Fanfare"
 
 [connection signal="sort_children" from="Columns" to="." method="_on_columns_sort_children"]
+[connection signal="mouse_entered" from="Columns/Backpack" to="." method="_on_backpack_entered"]
 [connection signal="timeout" from="MockExplanation/DelayHidingTitle" to="." method="_on_timer_timeout"]
 [connection signal="upgrade_selected" from="UpgradeMenu" to="." method="_on_upgrade_selected"]
 [connection signal="pressed" from="NextDay/NextDayButton" to="." method="_on_next_day_button_pressed"]
