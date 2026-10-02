@@ -1,15 +1,15 @@
-[gd_scene load_steps=13 format=3 uid="uid://24e0kif4kkdt"]
+[gd_scene format=3 uid="uid://24e0kif4kkdt"]
 
 [ext_resource type="Script" uid="uid://ct8h2sak52nsc" path="res://gameplay/backpack/Backpack.gd" id="1_v6j3i"]
-[ext_resource type="Texture2D" uid="uid://eg51rrtgc8ic" path="res://art/pack_1.png" id="2_80h0r"]
-[ext_resource type="AudioStream" uid="uid://ooirpxmumrfv" path="res://sound/bag_drop.wav" id="3_a0h7p"]
+[ext_resource type="Texture2D" uid="uid://btwj135ytq2ct" path="res://art/pack_1.png" id="2_80h0r"]
+[ext_resource type="AudioStream" uid="uid://btlimssa0pkgb" path="res://sound/bag_drop.wav" id="3_a0h7p"]
 [ext_resource type="PackedScene" uid="uid://p5tq20p3knyo" path="res://gameplay/backpack/particle/DestinationParticles.tscn" id="3_eavka"]
-[ext_resource type="AudioStream" uid="uid://briw8plgcgnfj" path="res://sound/item_added.wav" id="3_p4sdx"]
-[ext_resource type="Texture2D" uid="uid://61l35txy2177" path="res://art/tiny_silver_coin.png" id="4_muu63"]
-[ext_resource type="AudioStream" uid="uid://bhhlbivh8t0xh" path="res://sound/item_rejected.wav" id="4_stjcx"]
-[ext_resource type="AudioStream" uid="uid://dqmiblyg4rcc7" path="res://sound/pickup.wav" id="5_cwn6i"]
-[ext_resource type="AudioStream" uid="uid://d37palxdo4u2q" path="res://sound/coins.wav" id="9_efvuc"]
-[ext_resource type="AudioStream" uid="uid://tr1ifl68v5dd" path="res://sound/pop.wav" id="10_6ej52"]
+[ext_resource type="AudioStream" uid="uid://oasyy38cyp1a" path="res://sound/item_added.wav" id="3_p4sdx"]
+[ext_resource type="Texture2D" uid="uid://c230y821lb4yi" path="res://art/tiny_silver_coin.png" id="4_muu63"]
+[ext_resource type="AudioStream" uid="uid://owg4ao7bripr" path="res://sound/item_rejected.wav" id="4_stjcx"]
+[ext_resource type="AudioStream" uid="uid://bi7r0npt51gmf" path="res://sound/pickup.wav" id="5_cwn6i"]
+[ext_resource type="AudioStream" uid="uid://c23kw326gvmof" path="res://sound/coins.wav" id="9_efvuc"]
+[ext_resource type="AudioStream" uid="uid://foxlunntq3t6" path="res://sound/pop.wav" id="10_6ej52"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2k672"]
 size = Vector2(128, 128)
@@ -18,29 +18,29 @@ size = Vector2(128, 128)
 _data = [Vector2(0.00363636, 1), 0.0, 0.0, 0, 0, Vector2(0.483636, 1), 0.0, 0.0, 0, 0, Vector2(0.763636, 0), 0.0, 0.0, 0, 0]
 point_count = 3
 
-[node name="Backpack" type="Area2D"]
+[node name="Backpack" type="Area2D" unique_id=127065583]
 z_index = 2
 script = ExtResource("1_v6j3i")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1713014601]
 shape = SubResource("RectangleShape2D_2k672")
 
-[node name="ShadowSprite" type="Sprite2D" parent="."]
+[node name="ShadowSprite" type="Sprite2D" parent="." unique_id=1911608231]
 modulate = Color(0.407843, 0.407843, 0.407843, 0.784314)
 scale = Vector2(0.8, 0.8)
 texture = ExtResource("2_80h0r")
 
-[node name="PackSprite" type="Sprite2D" parent="."]
+[node name="PackSprite" type="Sprite2D" parent="." unique_id=1898769998]
 z_index = 3
 scale = Vector2(0.9, 0.9)
 texture = ExtResource("2_80h0r")
 
-[node name="CoinParticles" parent="PackSprite" instance=ExtResource("3_eavka")]
+[node name="CoinParticles" parent="PackSprite" unique_id=163284640 instance=ExtResource("3_eavka")]
 position = Vector2(0, -12)
 scale = Vector2(1.11111, 1.11111)
 texture = ExtResource("4_muu63")
 
-[node name="ItemAddedParticles" type="CPUParticles2D" parent="."]
+[node name="ItemAddedParticles" type="CPUParticles2D" parent="." unique_id=841371818]
 z_index = 1
 scale = Vector2(0.9, 0.9)
 emitting = false
@@ -58,32 +58,32 @@ scale_amount_min = 10.0
 scale_amount_max = 20.0
 scale_amount_curve = SubResource("Curve_1s5st")
 
-[node name="SFX_BagDrop" type="AudioStreamPlayer" parent="."]
+[node name="SFX_BagDrop" type="AudioStreamPlayer" parent="." unique_id=960736966]
 stream = ExtResource("3_a0h7p")
 volume_db = -15.0
 bus = &"SFX"
 
-[node name="SFX_ItemAdded" type="AudioStreamPlayer" parent="."]
+[node name="SFX_ItemAdded" type="AudioStreamPlayer" parent="." unique_id=540244693]
 stream = ExtResource("3_p4sdx")
 volume_db = -15.0
 bus = &"SFX"
 
-[node name="SFX_ItemRejected" type="AudioStreamPlayer" parent="."]
+[node name="SFX_ItemRejected" type="AudioStreamPlayer" parent="." unique_id=1695178708]
 stream = ExtResource("4_stjcx")
 volume_db = -15.0
 bus = &"SFX"
 
-[node name="SFX_Pickup" type="AudioStreamPlayer" parent="."]
+[node name="SFX_Pickup" type="AudioStreamPlayer" parent="." unique_id=1098036725]
 stream = ExtResource("5_cwn6i")
 volume_db = -15.0
 bus = &"SFX"
 
-[node name="SFX_Coins" type="AudioStreamPlayer" parent="."]
+[node name="SFX_Coins" type="AudioStreamPlayer" parent="." unique_id=1703487432]
 stream = ExtResource("9_efvuc")
 volume_db = -15.0
 bus = &"SFX"
 
-[node name="SFX_Squeeze" type="AudioStreamPlayer" parent="."]
+[node name="SFX_Squeeze" type="AudioStreamPlayer" parent="." unique_id=582952741]
 stream = ExtResource("10_6ej52")
 volume_db = -15.0
 bus = &"SFX"

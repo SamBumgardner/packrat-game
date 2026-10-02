@@ -1,10 +1,10 @@
-[gd_scene load_steps=4 format=3 uid="uid://c25adoveil6xs"]
+[gd_scene format=3 uid="uid://c25adoveil6xs"]
 
 [ext_resource type="Script" uid="uid://dopnu7plj3q28" path="res://hud/CurrencySilverCoin.gd" id="1_i1iqb"]
-[ext_resource type="Texture2D" uid="uid://dipixm83mjd04" path="res://art/silver_coin.png" id="2_7gmhd"]
-[ext_resource type="AudioStream" uid="uid://d37palxdo4u2q" path="res://sound/coins.wav" id="3_00o0t"]
+[ext_resource type="Texture2D" uid="uid://dk363jnrq1mig" path="res://art/silver_coin.png" id="2_7gmhd"]
+[ext_resource type="AudioStream" uid="uid://c23kw326gvmof" path="res://sound/coins.wav" id="3_00o0t"]
 
-[node name="CurrencySilverCoin" type="HBoxContainer"]
+[node name="CurrencySilverCoin" type="HBoxContainer" unique_id=335540615]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -12,12 +12,12 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_i1iqb")
 
-[node name="SilverCoin" type="TextureRect" parent="."]
+[node name="SilverCoin" type="TextureRect" parent="." unique_id=657098555]
 z_index = 2
 layout_mode = 2
 texture = ExtResource("2_7gmhd")
 
-[node name="CoinCenter" type="Control" parent="SilverCoin"]
+[node name="CoinCenter" type="Control" parent="SilverCoin" unique_id=894750285]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -27,18 +27,18 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="SilverCoinXAmount" type="Label" parent="."]
+[node name="SilverCoinXAmount" type="Label" parent="." unique_id=878101318]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
 text = "x"
 
-[node name="Amount" type="Label" parent="."]
+[node name="Amount" type="Label" parent="." unique_id=1468569831]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
 text = "0"
 
-[node name="SFX_ValueChanging" type="AudioStreamPlayer" parent="."]
+[node name="SFX_ValueChanging" type="AudioStreamPlayer" parent="." unique_id=2137734685]
 stream = ExtResource("3_00o0t")
 pitch_scale = 0.5

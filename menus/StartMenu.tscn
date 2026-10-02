@@ -1,14 +1,14 @@
-[gd_scene load_steps=8 format=3 uid="uid://b7nqon34mqhr5"]
+[gd_scene format=3 uid="uid://b7nqon34mqhr5"]
 
-[ext_resource type="FontFile" uid="uid://cep0f8tjmrqh8" path="res://fonts/Roboto/Roboto-Bold.ttf" id="1"]
+[ext_resource type="FontFile" uid="uid://bieyrqfdxmaab" path="res://fonts/Roboto/Roboto-Bold.ttf" id="1"]
 [ext_resource type="Theme" uid="uid://c1rbyyhtqrqqt" path="res://fonts/normal_font_theme.tres" id="1_toiww"]
-[ext_resource type="Texture2D" uid="uid://ivuxatc3mehp" path="res://art/backgrounds/grand_opening.jpg" id="2_llt0a"]
-[ext_resource type="Texture2D" uid="uid://c0r7ejujsnbxv" path="res://art/dialogue_box.png" id="4_vq270"]
+[ext_resource type="Texture2D" uid="uid://bs3trmprsqbdd" path="res://art/backgrounds/grand_opening.jpg" id="2_llt0a"]
+[ext_resource type="Texture2D" uid="uid://b3schql4kvcqr" path="res://art/dialogue_box.png" id="4_vq270"]
 [ext_resource type="Script" uid="uid://dmpseavoghrl2" path="res://menus/StartMenu.gd" id="5"]
-[ext_resource type="AudioStream" uid="uid://18oi2fb3splw" path="res://sound/Contented-Customers_v8b.ogg" id="6_tdej7"]
+[ext_resource type="AudioStream" uid="uid://b8xh7ymw5nab4" path="res://sound/Contented-Customers_v8b.ogg" id="6_tdej7"]
 [ext_resource type="Script" uid="uid://ew52s2ma8ak3" path="res://sound/LoopBGM.gd" id="7_fccre"]
 
-[node name="StartMenu" type="Control"]
+[node name="StartMenu" type="Control" unique_id=1670064580]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -18,12 +18,12 @@ grow_vertical = 2
 theme = ExtResource("1_toiww")
 script = ExtResource("5")
 
-[node name="Background" type="TextureRect" parent="."]
+[node name="Background" type="TextureRect" parent="." unique_id=524997756]
 layout_mode = 1
 scale = Vector2(0.35, 0.35)
 texture = ExtResource("2_llt0a")
 
-[node name="TitleContentMarginContainer" type="MarginContainer" parent="."]
+[node name="TitleContentMarginContainer" type="MarginContainer" parent="." unique_id=1418668050]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -38,23 +38,23 @@ offset_bottom = 108.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="TextureRect" type="Sprite2D" parent="TitleContentMarginContainer"]
+[node name="TextureRect" type="Sprite2D" parent="TitleContentMarginContainer" unique_id=1676001933]
 position = Vector2(239, 132.5)
 scale = Vector2(0.6, 0.6)
 texture = ExtResource("4_vq270")
 
-[node name="Padding8px" type="MarginContainer" parent="TitleContentMarginContainer"]
+[node name="Padding8px" type="MarginContainer" parent="TitleContentMarginContainer" unique_id=1530278970]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="TitleContentRows" type="VBoxContainer" parent="TitleContentMarginContainer/Padding8px"]
+[node name="TitleContentRows" type="VBoxContainer" parent="TitleContentMarginContainer/Padding8px" unique_id=1631855015]
 layout_mode = 2
 alignment = 1
 
-[node name="Title" type="Label" parent="TitleContentMarginContainer/Padding8px/TitleContentRows"]
+[node name="Title" type="Label" parent="TitleContentMarginContainer/Padding8px/TitleContentRows" unique_id=2033339260]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 16
@@ -63,7 +63,7 @@ theme_override_font_sizes/font_size = 72
 text = "Packrat"
 horizontal_alignment = 1
 
-[node name="SubTitle" type="Label" parent="TitleContentMarginContainer/Padding8px/TitleContentRows"]
+[node name="SubTitle" type="Label" parent="TitleContentMarginContainer/Padding8px/TitleContentRows" unique_id=1523160079]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
@@ -72,27 +72,27 @@ theme_override_font_sizes/font_size = 24
 text = "Ludum Dare 54 Game Jam Entry"
 horizontal_alignment = 1
 
-[node name="ButtonRows" type="VBoxContainer" parent="TitleContentMarginContainer/Padding8px/TitleContentRows"]
+[node name="ButtonRows" type="VBoxContainer" parent="TitleContentMarginContainer/Padding8px/TitleContentRows" unique_id=1488914103]
 layout_mode = 2
 
-[node name="StartButton" type="Button" parent="TitleContentMarginContainer/Padding8px/TitleContentRows/ButtonRows"]
+[node name="StartButton" type="Button" parent="TitleContentMarginContainer/Padding8px/TitleContentRows/ButtonRows" unique_id=254549353]
 layout_mode = 2
 text = "Start"
 
-[node name="CreditsButton" type="Button" parent="TitleContentMarginContainer/Padding8px/TitleContentRows/ButtonRows"]
+[node name="CreditsButton" type="Button" parent="TitleContentMarginContainer/Padding8px/TitleContentRows/ButtonRows" unique_id=1744675529]
 layout_mode = 2
 text = "Credits"
 
-[node name="QuitButton" type="Button" parent="TitleContentMarginContainer/Padding8px/TitleContentRows/ButtonRows"]
+[node name="QuitButton" type="Button" parent="TitleContentMarginContainer/Padding8px/TitleContentRows/ButtonRows" unique_id=767899415]
 layout_mode = 2
 text = "Quit"
 
-[node name="TitleFadeInDelay" type="Timer" parent="."]
+[node name="TitleFadeInDelay" type="Timer" parent="." unique_id=106352169]
 wait_time = 2.0
 one_shot = true
 autostart = true
 
-[node name="BGM" type="AudioStreamPlayer" parent="."]
+[node name="BGM" type="AudioStreamPlayer" parent="." unique_id=1607533408]
 stream = ExtResource("6_tdej7")
 autoplay = true
 bus = &"BGM"

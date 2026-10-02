@@ -1,21 +1,21 @@
-[gd_scene load_steps=21 format=3 uid="uid://crk2s578wsl64"]
+[gd_scene format=3 uid="uid://crk2s578wsl64"]
 
 [ext_resource type="Theme" uid="uid://c1rbyyhtqrqqt" path="res://fonts/normal_font_theme.tres" id="1_43exs"]
 [ext_resource type="Script" uid="uid://betffbg1b0sv5" path="res://gameplay/Gameplay.gd" id="1_cv37s"]
-[ext_resource type="Texture2D" uid="uid://ogrxarsf8mqx" path="res://art/backgrounds/bargain_table.jpg" id="2_551k0"]
+[ext_resource type="Texture2D" uid="uid://coxbej8pbf7pb" path="res://art/backgrounds/bargain_table.jpg" id="2_551k0"]
 [ext_resource type="PackedScene" uid="uid://c25adoveil6xs" path="res://hud/CurrencySilverCoin.tscn" id="2_a1m00"]
 [ext_resource type="PackedScene" uid="uid://7hqfyc7u8h48" path="res://gameplay/upgrade/UpgradeMenu.tscn" id="2_nf7ra"]
-[ext_resource type="FontFile" uid="uid://djfyfk3oefcl6" path="res://fonts/Roboto/Roboto-Medium.ttf" id="2_ny8ex"]
+[ext_resource type="FontFile" uid="uid://ctdmebi1e5w7q" path="res://fonts/Roboto/Roboto-Medium.ttf" id="2_ny8ex"]
 [ext_resource type="PackedScene" uid="uid://dm07s06ryg2u" path="res://menus/BackToStartMenuButton.tscn" id="3_7t8p6"]
 [ext_resource type="PackedScene" uid="uid://nea5kyjnasom" path="res://hud/ShopLevelTracker.tscn" id="4_ekkjw"]
 [ext_resource type="Script" uid="uid://c00r7w6ux1s34" path="res://gameplay/NextDayButton.gd" id="4_fxq41"]
 [ext_resource type="PackedScene" uid="uid://e1hatl7xepnb" path="res://hud/DaysPassedTracker.tscn" id="7_6ilhd"]
-[ext_resource type="Texture2D" uid="uid://bqg3dxvtfqs3m" path="res://art/right_arrow.png" id="9_oawgj"]
-[ext_resource type="Texture2D" uid="uid://dourhi8ie5rrh" path="res://art/level_up.png" id="11_ck6ys"]
-[ext_resource type="AudioStream" uid="uid://cx8n2wqp2sc0j" path="res://sound/Bumping-Business_v9b.ogg" id="13_xye5j"]
+[ext_resource type="Texture2D" uid="uid://3cnofxg2t12i" path="res://art/right_arrow.png" id="9_oawgj"]
+[ext_resource type="Texture2D" uid="uid://j6jolcn0d6ms" path="res://art/level_up.png" id="11_ck6ys"]
+[ext_resource type="AudioStream" uid="uid://cubs1eb3i4376" path="res://sound/Bumping-Business_v9b.ogg" id="13_xye5j"]
 [ext_resource type="Script" uid="uid://ew52s2ma8ak3" path="res://sound/LoopBGM.gd" id="14_5fn8r"]
-[ext_resource type="AudioStream" uid="uid://bkb1ocvsefe35" path="res://sound/select.wav" id="15_o0374"]
-[ext_resource type="AudioStream" uid="uid://cwpepvvwhqbt3" path="res://sound/Level-Up-Fanfare_v3b.wav" id="16_4kfkq"]
+[ext_resource type="AudioStream" uid="uid://cjhdp33l2uks6" path="res://sound/select.wav" id="15_o0374"]
+[ext_resource type="AudioStream" uid="uid://dn3np4hg84a07" path="res://sound/Level-Up-Fanfare_v3b.wav" id="16_4kfkq"]
 
 [sub_resource type="Gradient" id="Gradient_les6x"]
 offsets = PackedFloat32Array(0, 0.799544, 1)
@@ -33,7 +33,7 @@ colors = PackedColorArray(1, 1, 1, 1, 1, 1, 1, 0)
 offsets = PackedFloat32Array(1)
 colors = PackedColorArray(1, 1, 1, 1)
 
-[node name="Gameplay" type="Control"]
+[node name="Gameplay" type="Control" unique_id=605217352]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -43,7 +43,7 @@ grow_vertical = 2
 theme = ExtResource("1_43exs")
 script = ExtResource("1_cv37s")
 
-[node name="Background" type="TextureRect" parent="."]
+[node name="Background" type="TextureRect" parent="." unique_id=1119280391]
 self_modulate = Color(0.431373, 0.431373, 0.431373, 1)
 layout_mode = 1
 offset_right = 40.0
@@ -51,7 +51,7 @@ offset_bottom = 40.0
 scale = Vector2(0.37, 0.37)
 texture = ExtResource("2_551k0")
 
-[node name="CurrencyGradient" type="TextureRect" parent="."]
+[node name="CurrencyGradient" type="TextureRect" parent="." unique_id=287801196]
 custom_minimum_size = Vector2(200, 125)
 layout_mode = 1
 anchors_preset = 2
@@ -62,7 +62,7 @@ offset_right = 40.0
 grow_vertical = 0
 texture = SubResource("GradientTexture2D_vm8hw")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1832269032]
 layout_mode = 1
 anchors_preset = 2
 anchor_top = 1.0
@@ -73,17 +73,17 @@ offset_bottom = -5.0
 grow_vertical = 0
 theme_override_constants/separation = 15
 
-[node name="CurrencySilverCoin" parent="VBoxContainer" instance=ExtResource("2_a1m00")]
+[node name="CurrencySilverCoin" parent="VBoxContainer" unique_id=2076050151 instance=ExtResource("2_a1m00")]
 layout_mode = 2
 
-[node name="ShopLevelTracker" parent="VBoxContainer" instance=ExtResource("4_ekkjw")]
+[node name="ShopLevelTracker" parent="VBoxContainer" unique_id=1193556639 instance=ExtResource("4_ekkjw")]
 layout_mode = 2
 
-[node name="BackToStartMenuButton" parent="." instance=ExtResource("3_7t8p6")]
-layout_direction = 0
+[node name="BackToStartMenuButton" parent="." unique_id=842599775 instance=ExtResource("3_7t8p6")]
 layout_mode = 1
+layout_direction = 0
 
-[node name="Columns" type="HBoxContainer" parent="."]
+[node name="Columns" type="HBoxContainer" parent="." unique_id=1894815336]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -96,7 +96,7 @@ grow_horizontal = 2
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="MockExplanation" type="VBoxContainer" parent="."]
+[node name="MockExplanation" type="VBoxContainer" parent="." unique_id=780360226]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -106,7 +106,7 @@ offset_right = 146.0
 offset_bottom = 74.0
 grow_horizontal = 2
 
-[node name="Title" type="Label" parent="MockExplanation"]
+[node name="Title" type="Label" parent="MockExplanation" unique_id=2039344259]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 12
@@ -114,22 +114,22 @@ theme_override_font_sizes/font_size = 32
 text = "Welcome to Packrat!"
 horizontal_alignment = 1
 
-[node name="Explanation" type="Label" parent="MockExplanation"]
+[node name="Explanation" type="Label" parent="MockExplanation" unique_id=1626007533]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 12
 theme_override_font_sizes/font_size = 24
 horizontal_alignment = 1
 
-[node name="DelayHidingTitle" type="Timer" parent="MockExplanation"]
+[node name="DelayHidingTitle" type="Timer" parent="MockExplanation" unique_id=1508868833]
 wait_time = 3.0
 autostart = true
 
-[node name="UpgradeMenu" parent="." instance=ExtResource("2_nf7ra")]
+[node name="UpgradeMenu" parent="." unique_id=521597163 instance=ExtResource("2_nf7ra")]
 z_index = 3
 layout_mode = 0
 
-[node name="NextDayGradient" type="TextureRect" parent="."]
+[node name="NextDayGradient" type="TextureRect" parent="." unique_id=1577139792]
 custom_minimum_size = Vector2(200, 125)
 layout_mode = 1
 anchors_preset = 3
@@ -144,7 +144,7 @@ grow_vertical = 0
 texture = SubResource("GradientTexture2D_vm8hw")
 flip_h = true
 
-[node name="NextDay" type="VBoxContainer" parent="."]
+[node name="NextDay" type="VBoxContainer" parent="." unique_id=300126362]
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -156,11 +156,11 @@ offset_top = -56.0
 grow_horizontal = 0
 grow_vertical = 0
 
-[node name="DaysPassedTracker" parent="NextDay" instance=ExtResource("7_6ilhd")]
+[node name="DaysPassedTracker" parent="NextDay" unique_id=2088540599 instance=ExtResource("7_6ilhd")]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="NextDayButton" type="Button" parent="NextDay"]
+[node name="NextDayButton" type="Button" parent="NextDay" unique_id=17500958]
 custom_minimum_size = Vector2(100, 75)
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_ny8ex")
@@ -169,7 +169,7 @@ text = "Next Day"
 icon = ExtResource("9_oawgj")
 script = ExtResource("4_fxq41")
 
-[node name="OriginOfNewBackpacks" type="Control" parent="."]
+[node name="OriginOfNewBackpacks" type="Control" parent="." unique_id=1624075781]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -183,37 +183,37 @@ offset_bottom = 128.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="FadeInTimer" type="Timer" parent="."]
+[node name="FadeInTimer" type="Timer" parent="." unique_id=1615163936]
 one_shot = true
 
-[node name="LevelUpParticles" type="CPUParticles2D" parent="."]
+[node name="LevelUpParticles" type="CPUParticles2D" parent="." unique_id=1242028284]
 position = Vector2(640, 360)
 emitting = false
 amount = 40
+texture = ExtResource("11_ck6ys")
 lifetime = 2.0
 one_shot = true
 explosiveness = 0.2
-texture = ExtResource("11_ck6ys")
 emission_shape = 3
 emission_rect_extents = Vector2(640, 360)
 gravity = Vector2(0, -200)
 color_ramp = SubResource("Gradient_4aujt")
 color_initial_ramp = SubResource("Gradient_mammj")
 
-[node name="BGM" type="AudioStreamPlayer" parent="."]
+[node name="BGM" type="AudioStreamPlayer" parent="." unique_id=1694992776]
 stream = ExtResource("13_xye5j")
 volume_db = -20.0
 autoplay = true
 bus = &"BGM"
 script = ExtResource("14_5fn8r")
 
-[node name="ButtonSFX" type="AudioStreamPlayer" parent="."]
+[node name="ButtonSFX" type="AudioStreamPlayer" parent="." unique_id=868463043]
 stream = ExtResource("15_o0374")
 volume_db = -20.0
 pitch_scale = 2.0
 bus = &"SFX"
 
-[node name="LevelUpFanfare" type="AudioStreamPlayer" parent="."]
+[node name="LevelUpFanfare" type="AudioStreamPlayer" parent="." unique_id=683865818]
 stream = ExtResource("16_4kfkq")
 bus = &"Fanfare"
 

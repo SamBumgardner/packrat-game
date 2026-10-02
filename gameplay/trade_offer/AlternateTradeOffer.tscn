@@ -1,19 +1,19 @@
-[gd_scene load_steps=3 format=3 uid="uid://bfib0elj05sww"]
+[gd_scene format=3 uid="uid://bfib0elj05sww"]
 
 [ext_resource type="Script" uid="uid://d1cu7ky661ib5" path="res://gameplay/trade_offer/AlternateTradeOffer.gd" id="1_llgmb"]
-[ext_resource type="FontFile" uid="uid://djfyfk3oefcl6" path="res://fonts/Roboto/Roboto-Medium.ttf" id="2_wl60c"]
+[ext_resource type="FontFile" uid="uid://ctdmebi1e5w7q" path="res://fonts/Roboto/Roboto-Medium.ttf" id="2_wl60c"]
 
-[node name="TradeOffer" type="VBoxContainer"]
+[node name="TradeOffer" type="VBoxContainer" unique_id=1117694347]
 script = ExtResource("1_llgmb")
 
-[node name="WantsHeader" type="Label" parent="."]
+[node name="WantsHeader" type="Label" parent="." unique_id=954901866]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("2_wl60c")
 text = "Wants:"
 
-[node name="WantsDescription" type="Label" parent="."]
+[node name="WantsDescription" type="Label" parent="." unique_id=1763046721]
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -22,13 +22,13 @@ theme_override_font_sizes/font_size = 14
 text = "Unique elements"
 autowrap_mode = 2
 
-[node name="BonusHeader" type="Label" parent="."]
+[node name="BonusHeader" type="Label" parent="." unique_id=1860916845]
 visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("2_wl60c")
 text = "Bonus:"
 
-[node name="BonusDescription" type="Label" parent="."]
+[node name="BonusDescription" type="Label" parent="." unique_id=742344761]
 visible = false
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
@@ -38,14 +38,14 @@ theme_override_font_sizes/font_size = 14
 text = "None"
 autowrap_mode = 2
 
-[node name="RewardHeader" type="Label" parent="."]
+[node name="RewardHeader" type="Label" parent="." unique_id=880967112]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("2_wl60c")
 text = "Reward:"
 
-[node name="RewardDescription" type="Label" parent="."]
+[node name="RewardDescription" type="Label" parent="." unique_id=942129869]
 custom_minimum_size = Vector2(128, 0)
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)

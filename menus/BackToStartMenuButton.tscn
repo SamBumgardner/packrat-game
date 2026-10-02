@@ -1,18 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://dm07s06ryg2u"]
+[gd_scene format=3 uid="uid://dm07s06ryg2u"]
 
 [ext_resource type="Script" uid="uid://bmeh0le4nhchx" path="res://menus/BackToStartMenuButton.gd" id="1"]
-[ext_resource type="FontFile" uid="uid://djfyfk3oefcl6" path="res://fonts/Roboto/Roboto-Medium.ttf" id="2_hvh6w"]
+[ext_resource type="FontFile" uid="uid://ctdmebi1e5w7q" path="res://fonts/Roboto/Roboto-Medium.ttf" id="2_hvh6w"]
 
-[node name="BackToStartMenuButton" type="Control"]
-layout_direction = 3
+[node name="BackToStartMenuButton" type="Control" unique_id=299812114]
 layout_mode = 3
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
 grow_horizontal = 0
+layout_direction = 3
 script = ExtResource("1")
 
-[node name="ExitButton" type="Button" parent="." groups=["button"]]
+[node name="ExitButton" type="Button" parent="." unique_id=1895773199 groups=["button"]]
 layout_mode = 1
 anchors_preset = 1
 anchor_left = 1.0

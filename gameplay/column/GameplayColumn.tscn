@@ -1,9 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://dklr5kcqww66r"]
+[gd_scene format=3 uid="uid://dklr5kcqww66r"]
 
 [ext_resource type="Script" uid="uid://byfvipisktjq" path="res://gameplay/column/GameplayColumn.gd" id="1_p351e"]
 [ext_resource type="Texture2D" uid="uid://brf4h74py8sal" path="res://icon.svg" id="2_1ajk1"]
 [ext_resource type="PackedScene" uid="uid://d0cn6rkagucs0" path="res://gameplay/element_display/BackpackDisplay.tscn" id="2_gynnr"]
-[ext_resource type="Texture2D" uid="uid://debul4ttrrmvm" path="res://art/customer_talk.png" id="3_m00og"]
+[ext_resource type="Texture2D" uid="uid://d4hnbuemexrkm" path="res://art/customer_talk.png" id="3_m00og"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fj0u2"]
 
@@ -16,7 +16,7 @@ gradient = SubResource("Gradient_fn8qx")
 fill_from = Vector2(0.517094, 0)
 fill_to = Vector2(0.700855, 1)
 
-[node name="GameplayColumn" type="Control"]
+[node name="GameplayColumn" type="Control" unique_id=1212391649]
 custom_minimum_size = Vector2(150, 580)
 layout_mode = 3
 anchors_preset = 0
@@ -24,7 +24,7 @@ offset_right = 150.0
 offset_bottom = 580.0
 script = ExtResource("1_p351e")
 
-[node name="BackgroundFill" type="ColorRect" parent="."]
+[node name="BackgroundFill" type="ColorRect" parent="." unique_id=138719889]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -33,7 +33,7 @@ grow_horizontal = 2
 grow_vertical = 2
 color = Color(0.196078, 0.196078, 0.196078, 0.662745)
 
-[node name="CenterPoint" type="Control" parent="."]
+[node name="CenterPoint" type="Control" parent="." unique_id=1285499791]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -43,20 +43,20 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Area2D" type="Area2D" parent="CenterPoint"]
+[node name="Area2D" type="Area2D" parent="CenterPoint" unique_id=1166529847]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="CenterPoint/Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CenterPoint/Area2D" unique_id=923798891]
 shape = SubResource("RectangleShape2D_fj0u2")
 debug_color = Color(0, 0.6, 0.701961, 0.419608)
 
-[node name="UnderConstruction" type="Node2D" parent="CenterPoint"]
+[node name="UnderConstruction" type="Node2D" parent="CenterPoint" unique_id=629873831]
 visible = false
 z_index = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="CenterPoint/UnderConstruction"]
+[node name="Sprite2D" type="Sprite2D" parent="CenterPoint/UnderConstruction" unique_id=2111154260]
 texture = ExtResource("2_1ajk1")
 
-[node name="Label" type="Label" parent="CenterPoint/UnderConstruction"]
+[node name="Label" type="Label" parent="CenterPoint/UnderConstruction" unique_id=1285037003]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -71,7 +71,7 @@ theme_override_constants/outline_size = 20
 text = "Renovating..."
 horizontal_alignment = 1
 
-[node name="AnchorPoint" type="Control" parent="."]
+[node name="AnchorPoint" type="Control" parent="." unique_id=2088518211]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -82,11 +82,11 @@ offset_bottom = -64.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="StatusSprite" type="Sprite2D" parent="AnchorPoint"]
+[node name="StatusSprite" type="Sprite2D" parent="AnchorPoint" unique_id=1278557374]
 visible = false
 texture = ExtResource("3_m00og")
 
-[node name="CenterBottom" type="Control" parent="."]
+[node name="CenterBottom" type="Control" parent="." unique_id=1823332424]
 layout_mode = 1
 anchors_preset = 7
 anchor_left = 0.5
@@ -96,7 +96,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 0
 
-[node name="ColorRect" type="TextureRect" parent="CenterBottom"]
+[node name="ColorRect" type="TextureRect" parent="CenterBottom" unique_id=1059441295]
 custom_minimum_size = Vector2(150, 120)
 layout_mode = 1
 anchors_preset = 5
@@ -105,7 +105,7 @@ anchor_right = 0.5
 grow_horizontal = 2
 texture = SubResource("GradientTexture2D_lewan")
 
-[node name="BackpackDisplay" parent="CenterBottom" instance=ExtResource("2_gynnr")]
+[node name="BackpackDisplay" parent="CenterBottom" unique_id=449346678 instance=ExtResource("2_gynnr")]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -115,7 +115,7 @@ offset_right = 67.5
 offset_bottom = 89.0
 grow_horizontal = 2
 
-[node name="Contents" type="Control" parent="."]
+[node name="Contents" type="Control" parent="." unique_id=1154860542]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5

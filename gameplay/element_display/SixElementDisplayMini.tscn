@@ -1,59 +1,59 @@
-[gd_scene load_steps=8 format=3 uid="uid://b6daeiymon5ei"]
+[gd_scene format=3 uid="uid://b6daeiymon5ei"]
 
 [ext_resource type="Script" uid="uid://cetexen3btr21" path="res://gameplay/element_display/SixElementDisplay.gd" id="1_ll034"]
 [ext_resource type="PackedScene" uid="uid://b612mtbq43632" path="res://gameplay/element_display/ElementAmountMini.tscn" id="2_qeahf"]
-[ext_resource type="Texture2D" uid="uid://bdspfwag8r12p" path="res://art/leaf_icon.png" id="3_0npq0"]
-[ext_resource type="Texture2D" uid="uid://ditey3yqlc5gt" path="res://art/earth_icon.png" id="4_mltbq"]
-[ext_resource type="Texture2D" uid="uid://bluy71d4u8rvx" path="res://art/fire_icon.png" id="5_lidc0"]
-[ext_resource type="Texture2D" uid="uid://rfk4mvoewpbr" path="res://art/water_icon.png" id="6_fjg46"]
-[ext_resource type="Texture2D" uid="uid://rjuji8v0k00e" path="res://art/wind_icon.png" id="7_qpo84"]
+[ext_resource type="Texture2D" uid="uid://da0kduwb0fkij" path="res://art/leaf_icon.png" id="3_0npq0"]
+[ext_resource type="Texture2D" uid="uid://cs3bejjb0eumk" path="res://art/earth_icon.png" id="4_mltbq"]
+[ext_resource type="Texture2D" uid="uid://bocq6tqs1yjyi" path="res://art/fire_icon.png" id="5_lidc0"]
+[ext_resource type="Texture2D" uid="uid://dpgrdpqna2way" path="res://art/water_icon.png" id="6_fjg46"]
+[ext_resource type="Texture2D" uid="uid://bnpui8konrk8u" path="res://art/wind_icon.png" id="7_qpo84"]
 
-[node name="SixElementDisplayMini" type="VBoxContainer"]
+[node name="SixElementDisplayMini" type="VBoxContainer" unique_id=705546245]
 custom_minimum_size = Vector2(0, 100)
 offset_right = 106.0
 offset_bottom = 89.0
 script = ExtResource("1_ll034")
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="HBoxContainer" type="HBoxContainer" parent="." unique_id=530904661]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
 
-[node name="Nature" parent="HBoxContainer" instance=ExtResource("2_qeahf")]
+[node name="Nature" parent="HBoxContainer" unique_id=1132116211 instance=ExtResource("2_qeahf")]
 layout_mode = 2
 color_tint = Color(0.1, 1, 0, 1)
 element_icon = ExtResource("3_0npq0")
 
-[node name="Earth" parent="HBoxContainer" instance=ExtResource("2_qeahf")]
+[node name="Earth" parent="HBoxContainer" unique_id=1637060366 instance=ExtResource("2_qeahf")]
 layout_mode = 2
 color_tint = Color(1, 0.784314, 0, 1)
 element_icon = ExtResource("4_mltbq")
 
-[node name="HBoxContainer2" type="HBoxContainer" parent="."]
+[node name="HBoxContainer2" type="HBoxContainer" parent="." unique_id=272181437]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
 size_flags_stretch_ratio = 0.0
 
-[node name="Fire" parent="HBoxContainer2" instance=ExtResource("2_qeahf")]
+[node name="Fire" parent="HBoxContainer2" unique_id=1070562862 instance=ExtResource("2_qeahf")]
 layout_mode = 2
 color_tint = Color(1, 0, 0, 1)
 element_icon = ExtResource("5_lidc0")
 
-[node name="Water" parent="HBoxContainer2" instance=ExtResource("2_qeahf")]
+[node name="Water" parent="HBoxContainer2" unique_id=1380071398 instance=ExtResource("2_qeahf")]
 layout_mode = 2
 color_tint = Color(0, 0, 1, 1)
 element_icon = ExtResource("6_fjg46")
 
-[node name="HBoxContainer3" type="HBoxContainer" parent="."]
+[node name="HBoxContainer3" type="HBoxContainer" parent="." unique_id=1700286836]
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 3
 
-[node name="Air" parent="HBoxContainer3" instance=ExtResource("2_qeahf")]
+[node name="Air" parent="HBoxContainer3" unique_id=1120196136 instance=ExtResource("2_qeahf")]
 layout_mode = 2
 color_tint = Color(0, 1, 0.764706, 1)
 element_icon = ExtResource("7_qpo84")
 
-[node name="Wild" parent="HBoxContainer3" instance=ExtResource("2_qeahf")]
+[node name="Wild" parent="HBoxContainer3" unique_id=1269700815 instance=ExtResource("2_qeahf")]
 layout_mode = 2

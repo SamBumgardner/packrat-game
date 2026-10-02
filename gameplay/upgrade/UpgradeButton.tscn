@@ -1,15 +1,15 @@
-[gd_scene load_steps=3 format=3 uid="uid://boqd6oxg2m6qa"]
+[gd_scene format=3 uid="uid://boqd6oxg2m6qa"]
 
-[ext_resource type="Texture2D" uid="uid://dipixm83mjd04" path="res://art/silver_coin.png" id="2_6qx3n"]
+[ext_resource type="Texture2D" uid="uid://dk363jnrq1mig" path="res://art/silver_coin.png" id="2_6qx3n"]
 [ext_resource type="Script" uid="uid://bdvveedtnaamb" path="res://gameplay/upgrade/UpgradeButton.gd" id="2_s77sd"]
 
-[node name="UpgradeButton" type="Button" groups=["button"]]
+[node name="UpgradeButton" type="Button" unique_id=1871081242 groups=["button"]]
 custom_minimum_size = Vector2(200, 50)
 text = "Upgrade_Name: Cost"
 expand_icon = true
 script = ExtResource("2_s77sd")
 
-[node name="Control" type="Control" parent="."]
+[node name="Control" type="Control" parent="." unique_id=1194639473]
 visible = false
 layout_mode = 1
 anchors_preset = 8
@@ -20,7 +20,7 @@ anchor_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="DisabledReasonSprite" type="Sprite2D" parent="Control"]
+[node name="DisabledReasonSprite" type="Sprite2D" parent="Control" unique_id=1503179892]
 self_modulate = Color(1, 1, 1, 0.294118)
 z_index = 1
 scale = Vector2(0.8, 0.8)

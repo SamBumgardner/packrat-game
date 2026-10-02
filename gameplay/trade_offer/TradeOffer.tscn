@@ -1,45 +1,45 @@
-[gd_scene load_steps=3 format=3 uid="uid://lyah2pc5jcsu"]
+[gd_scene format=3 uid="uid://lyah2pc5jcsu"]
 
 [ext_resource type="Script" uid="uid://cg6b3wbg412b8" path="res://gameplay/trade_offer/TradeOffer.gd" id="1_084g1"]
-[ext_resource type="FontFile" uid="uid://djfyfk3oefcl6" path="res://fonts/Roboto/Roboto-Medium.ttf" id="1_t44va"]
+[ext_resource type="FontFile" uid="uid://ctdmebi1e5w7q" path="res://fonts/Roboto/Roboto-Medium.ttf" id="1_t44va"]
 
-[node name="TradeOffer" type="VBoxContainer"]
+[node name="TradeOffer" type="VBoxContainer" unique_id=1821905184]
 script = ExtResource("1_084g1")
 
-[node name="WantsHeader" type="Label" parent="."]
+[node name="WantsHeader" type="Label" parent="." unique_id=1670844906]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("1_t44va")
 text = "Wants:"
 
-[node name="WantsDescription" type="Label" parent="."]
+[node name="WantsDescription" type="Label" parent="." unique_id=877798848]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
 text = "Three Unique elements"
 autowrap_mode = 2
 
-[node name="BonusHeader" type="Label" parent="."]
+[node name="BonusHeader" type="Label" parent="." unique_id=401941751]
 visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_t44va")
 text = "Bonus:"
 
-[node name="BonusDescription" type="Label" parent="."]
+[node name="BonusDescription" type="Label" parent="." unique_id=1736197769]
 visible = false
 layout_mode = 2
 theme_override_fonts/font = ExtResource("1_t44va")
 text = "None"
 
-[node name="RewardHeader" type="Label" parent="."]
+[node name="RewardHeader" type="Label" parent="." unique_id=2046567752]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10
 theme_override_fonts/font = ExtResource("1_t44va")
 text = "Reward:"
 
-[node name="RewardDescription" type="Label" parent="."]
+[node name="RewardDescription" type="Label" parent="." unique_id=467547471]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 10

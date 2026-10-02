@@ -1,15 +1,15 @@
-[gd_scene load_steps=9 format=3 uid="uid://cly8rrgsjooew"]
+[gd_scene format=3 uid="uid://cly8rrgsjooew"]
 
-[ext_resource type="FontFile" uid="uid://cep0f8tjmrqh8" path="res://fonts/Roboto/Roboto-Bold.ttf" id="2_8ue0n"]
+[ext_resource type="FontFile" uid="uid://bieyrqfdxmaab" path="res://fonts/Roboto/Roboto-Bold.ttf" id="2_8ue0n"]
 [ext_resource type="PackedScene" uid="uid://e1hatl7xepnb" path="res://hud/DaysPassedTracker.tscn" id="3_edudb"]
 [ext_resource type="PackedScene" uid="uid://c25adoveil6xs" path="res://hud/CurrencySilverCoin.tscn" id="3_gv0k7"]
 [ext_resource type="PackedScene" uid="uid://dm07s06ryg2u" path="res://menus/BackToStartMenuButton.tscn" id="4_d0d6f"]
 [ext_resource type="Script" uid="uid://cad3dv0uuagpu" path="res://gameplay/game_finished/TradesMadeTracker.gd" id="4_pl6ob"]
-[ext_resource type="Texture2D" uid="uid://d2kl5dgyo8f7f" path="res://art/backgrounds/well_deserved_nap.jpg" id="6_2mm8t"]
-[ext_resource type="AudioStream" uid="uid://74paos8fe57r" path="res://sound/Anticipated-Arrival_v1b.ogg" id="7_q1xyy"]
+[ext_resource type="Texture2D" uid="uid://dshpg3b7awk02" path="res://art/backgrounds/well_deserved_nap.jpg" id="6_2mm8t"]
+[ext_resource type="AudioStream" uid="uid://37ppygge27p5" path="res://sound/Anticipated-Arrival_v1b.ogg" id="7_q1xyy"]
 [ext_resource type="Script" uid="uid://ew52s2ma8ak3" path="res://sound/LoopBGM.gd" id="8_81jn8"]
 
-[node name="GameFinished" type="Control"]
+[node name="GameFinished" type="Control" unique_id=1894051811]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -17,14 +17,14 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Background" type="TextureRect" parent="."]
+[node name="Background" type="TextureRect" parent="." unique_id=1678984987]
 layout_mode = 1
 offset_right = 3785.0
 offset_bottom = 2849.0
 scale = Vector2(0.34, 0.34)
 texture = ExtResource("6_2mm8t")
 
-[node name="TitleContentMarginContainer" type="MarginContainer" parent="."]
+[node name="TitleContentMarginContainer" type="MarginContainer" parent="." unique_id=442575629]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -34,10 +34,10 @@ offset_right = 268.0
 offset_bottom = 216.0
 grow_horizontal = 2
 
-[node name="VBoxContainer" type="VBoxContainer" parent="TitleContentMarginContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="TitleContentMarginContainer" unique_id=686283849]
 layout_mode = 2
 
-[node name="Victory" type="Label" parent="TitleContentMarginContainer/VBoxContainer"]
+[node name="Victory" type="Label" parent="TitleContentMarginContainer/VBoxContainer" unique_id=231766209]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 16
@@ -46,62 +46,62 @@ theme_override_font_sizes/font_size = 72
 text = "Congratulations!"
 horizontal_alignment = 1
 
-[node name="NarrowMarginContainer" type="MarginContainer" parent="TitleContentMarginContainer/VBoxContainer"]
+[node name="NarrowMarginContainer" type="MarginContainer" parent="TitleContentMarginContainer/VBoxContainer" unique_id=687914387]
 layout_mode = 2
 size_flags_horizontal = 4
 
-[node name="TransparentBackground" type="ColorRect" parent="TitleContentMarginContainer/VBoxContainer/NarrowMarginContainer"]
+[node name="TransparentBackground" type="ColorRect" parent="TitleContentMarginContainer/VBoxContainer/NarrowMarginContainer" unique_id=811993523]
 layout_mode = 2
 color = Color(1, 1, 1, 0.85098)
 
-[node name="Padding8px" type="MarginContainer" parent="TitleContentMarginContainer/VBoxContainer/NarrowMarginContainer"]
+[node name="Padding8px" type="MarginContainer" parent="TitleContentMarginContainer/VBoxContainer/NarrowMarginContainer" unique_id=1467790858]
 layout_mode = 2
 theme_override_constants/margin_left = 8
 theme_override_constants/margin_top = 8
 theme_override_constants/margin_right = 8
 theme_override_constants/margin_bottom = 8
 
-[node name="Statistics" type="VBoxContainer" parent="TitleContentMarginContainer/VBoxContainer/NarrowMarginContainer/Padding8px"]
+[node name="Statistics" type="VBoxContainer" parent="TitleContentMarginContainer/VBoxContainer/NarrowMarginContainer/Padding8px" unique_id=1507304034]
 layout_mode = 2
 alignment = 1
 
-[node name="CurrencySilverCoin" parent="TitleContentMarginContainer/VBoxContainer/NarrowMarginContainer/Padding8px/Statistics" instance=ExtResource("3_gv0k7")]
+[node name="CurrencySilverCoin" parent="TitleContentMarginContainer/VBoxContainer/NarrowMarginContainer/Padding8px/Statistics" unique_id=1688096256 instance=ExtResource("3_gv0k7")]
 layout_mode = 2
 alignment = 1
 
-[node name="DaysPassedTracker" parent="TitleContentMarginContainer/VBoxContainer/NarrowMarginContainer/Padding8px/Statistics" instance=ExtResource("3_edudb")]
+[node name="DaysPassedTracker" parent="TitleContentMarginContainer/VBoxContainer/NarrowMarginContainer/Padding8px/Statistics" unique_id=1991784791 instance=ExtResource("3_edudb")]
 layout_mode = 2
 alignment = 1
 
-[node name="TradesMadeTracker" type="HBoxContainer" parent="TitleContentMarginContainer/VBoxContainer/NarrowMarginContainer/Padding8px/Statistics"]
+[node name="TradesMadeTracker" type="HBoxContainer" parent="TitleContentMarginContainer/VBoxContainer/NarrowMarginContainer/Padding8px/Statistics" unique_id=1337488325]
 layout_mode = 2
 alignment = 1
 script = ExtResource("4_pl6ob")
 
-[node name="UnitTrades" type="Label" parent="TitleContentMarginContainer/VBoxContainer/NarrowMarginContainer/Padding8px/Statistics/TradesMadeTracker"]
+[node name="UnitTrades" type="Label" parent="TitleContentMarginContainer/VBoxContainer/NarrowMarginContainer/Padding8px/Statistics/TradesMadeTracker" unique_id=1720280345]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
 text = "Trades"
 horizontal_alignment = 1
 
-[node name="UnitTradesX" type="Label" parent="TitleContentMarginContainer/VBoxContainer/NarrowMarginContainer/Padding8px/Statistics/TradesMadeTracker"]
+[node name="UnitTradesX" type="Label" parent="TitleContentMarginContainer/VBoxContainer/NarrowMarginContainer/Padding8px/Statistics/TradesMadeTracker" unique_id=91241717]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
 text = "x"
 
-[node name="NumberOfTrades" type="Label" parent="TitleContentMarginContainer/VBoxContainer/NarrowMarginContainer/Padding8px/Statistics/TradesMadeTracker"]
+[node name="NumberOfTrades" type="Label" parent="TitleContentMarginContainer/VBoxContainer/NarrowMarginContainer/Padding8px/Statistics/TradesMadeTracker" unique_id=782110438]
 layout_mode = 2
 theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
 theme_override_constants/outline_size = 8
 text = "0"
 
-[node name="BackToStartMenuButton" parent="." instance=ExtResource("4_d0d6f")]
-layout_direction = 0
+[node name="BackToStartMenuButton" parent="." unique_id=1476468679 instance=ExtResource("4_d0d6f")]
 layout_mode = 1
+layout_direction = 0
 
-[node name="BGM" type="AudioStreamPlayer" parent="."]
+[node name="BGM" type="AudioStreamPlayer" parent="." unique_id=1663480539]
 stream = ExtResource("7_q1xyy")
 volume_db = -20.0
 autoplay = true
