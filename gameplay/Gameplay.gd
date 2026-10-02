@@ -80,6 +80,7 @@ func _init_backpack(backpack : Backpack) -> void:
 	backpacks.append(backpack)
 	backpack.backpack_entered.connect(_on_backpack_entered)
 	backpack.backpack_exited.connect(_on_backpack_exited)
+	print('DEBUG05 columns:', columns)
 	for column in columns:
 		if column.current_backpack == null:
 			column.set_backpack(backpack)
@@ -190,6 +191,7 @@ func _on_column_exited(column_index) -> void:
 		hovered_column_index = NO_COLUMN
 
 func _on_backpack_entered(backpack : Backpack) -> void:
+	print('DEBUG04')
 	hovered_backpack = backpack
 
 func _on_backpack_exited(backpack : Backpack) -> void:
