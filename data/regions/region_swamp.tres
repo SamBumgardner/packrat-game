@@ -1,6 +1,6 @@
-[gd_resource type="Resource" script_class="Region" load_steps=21 format=3 uid="uid://50qsg1o875hp"]
+[gd_resource type="Resource" script_class="Region" format=3 uid="uid://50qsg1o875hp"]
 
-[ext_resource type="Texture2D" uid="uid://bvmem8pucxy3m" path="res://art/swamp_c.png" id="1_tht3t"]
+[ext_resource type="Texture2D" uid="uid://f5e0cmxy6dym" path="res://art/swamp_c.png" id="1_tht3t"]
 [ext_resource type="Script" uid="uid://bba1tp7owq566" path="res://gameplay/item/Modifier.gd" id="2_7ejkw"]
 [ext_resource type="Resource" uid="uid://dspaadxda1jso" path="res://data/items/modifiers/modifier_cold.tres" id="2_dccs6"]
 [ext_resource type="Resource" uid="uid://ypmpwtankob1" path="res://data/items/rock.tres" id="2_f2u1y"]
