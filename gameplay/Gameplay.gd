@@ -79,9 +79,7 @@ func _init_backpack(backpack : Backpack) -> void:
 	$OriginOfNewBackpacks.add_child(backpack)
 	backpacks.append(backpack)
 	backpack.backpack_entered.connect(_on_backpack_entered)
-	backpack.mouse_entered.connect(_on_backpack_entered)
 	backpack.backpack_exited.connect(_on_backpack_exited)
-	backpack.mouse_exited.connect(_on_backpack_exited)
 	print('DEBUG05 columns:', columns)
 	for column in columns:
 		if column.current_backpack == null:
