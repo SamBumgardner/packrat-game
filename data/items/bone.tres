@@ -1,16 +1,12 @@
-[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://8wibdkfxtwl6"]
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://8wibdkfxtwl6"]
 
-[ext_resource type="Texture2D" uid="uid://d06f4spbjufxm" path="res://art/items/bone.png" id="1_wx53q"]
+[ext_resource type="Texture2D" uid="uid://4yqpd3a8lto7" path="res://art/items/bone.png" id="1_wx53q"]
 [ext_resource type="Script" uid="uid://drs07dlaiwl54" path="res://gameplay/item/Item.gd" id="2_jej0n"]
 
 [resource]
 script = ExtResource("2_jej0n")
 name = "Bone"
 graphic = ExtResource("1_wx53q")
-ele_nature = 0
 ele_earth = 1
 ele_fire = 2
-ele_water = 0
-ele_air = 0
-ele_wild = 0
 elements = Array[int]([0, 1, 2, 0, 0, 0])

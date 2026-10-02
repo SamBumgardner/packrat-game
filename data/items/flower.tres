@@ -1,14 +1,12 @@
 [gd_resource type="Resource" script_class="Item" format=3 uid="uid://dw3lwif85lvk6"]
 
 [ext_resource type="Script" uid="uid://drs07dlaiwl54" path="res://gameplay/item/Item.gd" id="1_cf6kt"]
-
-[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_mbtgs"]
-load_path = "res://.godot/imported/flower.png-e04befccfcc8aa10f65974a37bd8e112.ctex"
+[ext_resource type="Texture2D" uid="uid://cj1wqwqdpjig0" path="res://art/items/flower.png" id="1_dkky5"]
 
 [resource]
 script = ExtResource("1_cf6kt")
 name = "Flower"
-graphic = SubResource("CompressedTexture2D_mbtgs")
+graphic = ExtResource("1_dkky5")
 ele_nature = 2
 ele_air = 1
 elements = Array[int]([2, 0, 0, 0, 1, 0])

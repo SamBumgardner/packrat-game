@@ -1,16 +1,12 @@
-[gd_resource type="Resource" script_class="Item" load_steps=3 format=3 uid="uid://5qk4laiofa05"]
+[gd_resource type="Resource" script_class="Item" format=3 uid="uid://5qk4laiofa05"]
 
-[ext_resource type="Texture2D" uid="uid://kot5kugg2t5j" path="res://art/items/rainfall.png" id="1_rvdal"]
+[ext_resource type="Texture2D" uid="uid://bcgdigklady65" path="res://art/items/rainfall.png" id="1_rvdal"]
 [ext_resource type="Script" uid="uid://drs07dlaiwl54" path="res://gameplay/item/Item.gd" id="2_itpsu"]
 
 [resource]
 script = ExtResource("2_itpsu")
 name = "Rainfall"
 graphic = ExtResource("1_rvdal")
-ele_nature = 0
-ele_earth = 0
-ele_fire = 0
 ele_water = 1
 ele_air = 2
-ele_wild = 0
 elements = Array[int]([0, 0, 0, 1, 2, 0])
