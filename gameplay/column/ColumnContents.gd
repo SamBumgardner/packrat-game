@@ -1,12 +1,15 @@
-# Abstract to inherit from.
-#
-# Used by RegionContents and CustomerContents.
-# Descendents should emit `content_actions_complete` when `next_day` is called.
-# Otherwise day will never end.
+## Abstract to inherit from.
+##
+## Used by RegionContents and CustomerContents.
+## Descendents should emit `content_actions_complete` when `next_day` is called.
+## Otherwise day will never end.
 class_name ColumnContents
 
 extends VBoxContainer
 
+## Descendents should emit `content_actions_complete` when `next_day` is called.
+## Otherwise day will never end.
+@warning_ignore("unused_signal")
 signal content_actions_complete
 signal content_status_change
 
