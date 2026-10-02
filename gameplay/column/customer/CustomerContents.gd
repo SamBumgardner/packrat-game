@@ -182,7 +182,7 @@ func attempt_alternate_action(column_backpack : Backpack) -> void:
 		var new_status = GlobalConstants.ColumnStatus.CUSTOMER_TALK if _is_talking_to_customer else GlobalConstants.ColumnStatus.NONE
 		content_status_change.emit(new_status)
 
-func _on_column_backpack_set(new_column_backpack : Backpack) -> void:
+func _on_column_backpack_set(_new_column_backpack : Backpack) -> void:
 	if _is_talking_to_customer:
 		_is_talking_to_customer = false
 		content_status_change.emit(GlobalConstants.ColumnStatus.NONE)
