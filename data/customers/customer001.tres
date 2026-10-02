@@ -1,9 +1,10 @@
-[gd_resource type="Resource" script_class="Customer" format=3 uid="uid://clogl6hkg4kyg"]
+[gd_resource type="Resource" script_class="Customer" load_steps=3 format=3 uid="uid://clogl6hkg4kyg"]
 
-[ext_resource type="Texture2D" uid="uid://c1num6lmu7v4f" path="res://art/customers/customer001.png" id="1_toqlo"]
+[ext_resource type="Texture2D" uid="uid://7hsjqa6mmeha" path="res://art/customers/customer001.png" id="1_toqlo"]
 [ext_resource type="Script" uid="uid://c4i8yqdkl6qy6" path="res://gameplay/column/customer/Customer.gd" id="2_d84d2"]
 
 [resource]
 script = ExtResource("2_d84d2")
 graphic = ExtResource("1_toqlo")
 name = "Bailey"
+trade_formula = 0

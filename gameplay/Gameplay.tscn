@@ -10,7 +10,6 @@
 [ext_resource type="PackedScene" uid="uid://nea5kyjnasom" path="res://hud/ShopLevelTracker.tscn" id="4_ekkjw"]
 [ext_resource type="Script" uid="uid://c00r7w6ux1s34" path="res://gameplay/NextDayButton.gd" id="4_fxq41"]
 [ext_resource type="PackedScene" uid="uid://e1hatl7xepnb" path="res://hud/DaysPassedTracker.tscn" id="7_6ilhd"]
-[ext_resource type="PackedScene" uid="uid://24e0kif4kkdt" path="res://gameplay/backpack/Backpack.tscn" id="7_ln15o"]
 [ext_resource type="Texture2D" uid="uid://3cnofxg2t12i" path="res://art/right_arrow.png" id="9_oawgj"]
 [ext_resource type="Texture2D" uid="uid://j6jolcn0d6ms" path="res://art/level_up.png" id="11_ck6ys"]
 [ext_resource type="AudioStream" uid="uid://cubs1eb3i4376" path="res://sound/Bumping-Business_v9b.ogg" id="13_xye5j"]
@@ -96,8 +95,6 @@ offset_bottom = 605.0
 grow_horizontal = 2
 theme_override_constants/separation = 10
 alignment = 1
-
-[node name="Backpack" parent="Columns" unique_id=127065583 instance=ExtResource("7_ln15o")]
 
 [node name="MockExplanation" type="VBoxContainer" parent="." unique_id=780360226]
 layout_mode = 1

@@ -14,11 +14,9 @@ func process_input(gameplay : Gameplay, event : InputEvent) -> Gameplay.State:
 	# BACKPACK MOVEMENT
 	if event.is_action_pressed("gameplay_select"):
 		gameplay._handle_backpack_selection()
-		print('DEBUG02')
 	# RETAIN CUSTOMER
 	if event.is_action_pressed("gameplay_cancel"):
 		gameplay.attempt_alternate_action()
-		print('DEBUG03')
 	return next_state
 
 func handle_upgrade_selected(gameplay : Gameplay, upgrade_type : UpgradeManager.UpgradeType) -> Gameplay.State:

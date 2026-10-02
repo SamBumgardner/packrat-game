@@ -157,7 +157,6 @@ func _mouse_overlap_manual_check() -> void:
 		_on_mouse_entered()
 	
 func _on_mouse_entered() -> void:
-	print('DEBUG01')
 	backpack_entered.emit(self)
 
 func _on_mouse_exited() -> void:
