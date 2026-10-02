@@ -11,6 +11,10 @@ extends VBoxContainer
 ## Otherwise day will never end.
 @warning_ignore("unused_signal")
 signal content_actions_complete
+## Emitted by the customer contents of a containing column so that the
+##  column may change its status between the enum
+##  `GlobalConstants.ColumnStatus` options.
+@warning_ignore("unused_signal")
 signal content_status_change
 
 @onready var _header_graphic : Sprite2D = $Header/Control/Sprite2D
