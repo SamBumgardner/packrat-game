@@ -87,6 +87,7 @@ func _set_graphic(texture : Texture) -> void:
 func _process(delta):
 	_handle_movement(delta)
 	_check_coin_emission()
+	_mouse_overlap_manual_check()
 
 func _check_coin_emission() -> void:
 	if not _is_emitting_coins and coin_particles.emitting:
