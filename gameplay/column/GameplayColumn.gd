@@ -157,7 +157,9 @@ func _on_area_2d_mouse_exited() -> void:
 func _mouse_overlap_manual_check() -> void:
 	var manual_mouse_check_rect : Rect2 = Rect2(collision_shape.get_rect())
 	manual_mouse_check_rect.position += global_position
-	if manual_mouse_check_rect.has_point(get_viewport().get_mouse_position()):
+	var mouse_position = get_viewport().get_mouse_position()
+	var mouse_within_column = manual_mouse_check_rect.has_point(mouse_position)
+	if mouse_within_column:
 		_on_mouse_entered()
 	else:
 		_on_mouse_exited()
