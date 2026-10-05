@@ -163,11 +163,7 @@ func _mouse_overlap_manual_check() -> void:
 		_on_mouse_exited()
 
 func _on_mouse_entered() -> void:
-	column_index = 10
 	column_entered.emit(column_index)
 
 func _on_mouse_exited() -> void:
-	if column_index < 0:
-		return
-	column_index = -1
 	column_exited.emit(column_index)
