@@ -16,7 +16,6 @@
 [ext_resource type="Script" uid="uid://ew52s2ma8ak3" path="res://sound/LoopBGM.gd" id="14_5fn8r"]
 [ext_resource type="AudioStream" uid="uid://bkb1ocvsefe35" path="res://sound/select.wav" id="15_o0374"]
 [ext_resource type="AudioStream" uid="uid://cwpepvvwhqbt3" path="res://sound/Level-Up-Fanfare_v3b.wav" id="16_4kfkq"]
-[ext_resource type="PackedScene" uid="uid://24e0kif4kkdt" path="res://gameplay/backpack/Backpack.tscn" id="17_ln15o"]
 
 [sub_resource type="Gradient" id="Gradient_les6x"]
 offsets = PackedFloat32Array(0, 0.799544, 1)
@@ -45,7 +44,6 @@ theme = ExtResource("1_43exs")
 script = ExtResource("1_cv37s")
 
 [node name="Background" type="TextureRect" parent="." unique_id=1119280391]
-visible = false
 self_modulate = Color(0.431373, 0.431373, 0.431373, 1)
 layout_mode = 1
 offset_right = 40.0
@@ -218,8 +216,6 @@ bus = &"SFX"
 [node name="LevelUpFanfare" type="AudioStreamPlayer" parent="." unique_id=683865818]
 stream = ExtResource("16_4kfkq")
 bus = &"Fanfare"
-
-[node name="Backpack" parent="." unique_id=127065583 instance=ExtResource("17_ln15o")]
 
 [connection signal="sort_children" from="Columns" to="." method="_on_columns_sort_children"]
 [connection signal="timeout" from="MockExplanation/DelayHidingTitle" to="." method="_on_timer_timeout"]

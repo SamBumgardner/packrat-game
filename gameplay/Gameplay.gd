@@ -21,7 +21,7 @@ enum State {
 	GlobalConstants.ColumnContents.REGION,
 	GlobalConstants.ColumnContents.CUSTOMER
 ]
-@export var starting_backpack_count : int = 2
+@export var starting_backpack_count : int = 1
 
 @onready var database = get_node("/root/Database")
 
