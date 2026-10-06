@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://b612mtbq43632"]
 
 [ext_resource type="Script" uid="uid://dg2pfa6jo3fpg" path="res://gameplay/element_display/ElementAmount.gd" id="1_xfnpg"]
-[ext_resource type="Texture2D" uid="uid://dk363jnrq1mig" path="res://art/silver_coin.png" id="2_1pfua"]
+[ext_resource type="Texture2D" uid="uid://dipixm83mjd04" path="res://art/silver_coin.png" id="2_1pfua"]
 
 [node name="ElementAmount" type="HBoxContainer" unique_id=1866276407]
 offset_right = 66.0

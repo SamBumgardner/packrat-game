@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="Region" format=3 uid="uid://clb5kk8an0kx7"]
 
 [ext_resource type="Script" uid="uid://bvy2tec13jdtf" path="res://gameplay/column/region/Region.gd" id="1_hfvlj"]
-[ext_resource type="Texture2D" uid="uid://dlg7polsqufoy" path="res://art/forest_c.png" id="1_yjfay"]
+[ext_resource type="Texture2D" uid="uid://cb5yvojoa4cbo" path="res://art/forest_c.png" id="1_yjfay"]
 [ext_resource type="Resource" uid="uid://doega52i5wce7" path="res://data/items/modifiers/modifier_cool.tres" id="2_1drqv"]
 [ext_resource type="Script" uid="uid://bba1tp7owq566" path="res://gameplay/item/Modifier.gd" id="2_cvftk"]
 [ext_resource type="Resource" uid="uid://cv3fyt0n0gvjc" path="res://data/items/modifiers/modifier_dry.tres" id="3_m56iv"]

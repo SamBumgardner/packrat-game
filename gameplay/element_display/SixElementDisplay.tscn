@@ -2,11 +2,11 @@
 
 [ext_resource type="PackedScene" uid="uid://c8wte7nhlq43y" path="res://gameplay/element_display/ElementAmount.tscn" id="1_75klo"]
 [ext_resource type="Script" uid="uid://cetexen3btr21" path="res://gameplay/element_display/SixElementDisplay.gd" id="1_wp5ud"]
-[ext_resource type="Texture2D" uid="uid://da0kduwb0fkij" path="res://art/leaf_icon.png" id="3_stqgx"]
-[ext_resource type="Texture2D" uid="uid://cs3bejjb0eumk" path="res://art/earth_icon.png" id="4_yf8q4"]
-[ext_resource type="Texture2D" uid="uid://bocq6tqs1yjyi" path="res://art/fire_icon.png" id="5_27ibh"]
-[ext_resource type="Texture2D" uid="uid://dpgrdpqna2way" path="res://art/water_icon.png" id="6_8j1nm"]
-[ext_resource type="Texture2D" uid="uid://bnpui8konrk8u" path="res://art/wind_icon.png" id="7_ncred"]
+[ext_resource type="Texture2D" uid="uid://bdspfwag8r12p" path="res://art/leaf_icon.png" id="3_stqgx"]
+[ext_resource type="Texture2D" uid="uid://ditey3yqlc5gt" path="res://art/earth_icon.png" id="4_yf8q4"]
+[ext_resource type="Texture2D" uid="uid://bluy71d4u8rvx" path="res://art/fire_icon.png" id="5_27ibh"]
+[ext_resource type="Texture2D" uid="uid://rfk4mvoewpbr" path="res://art/water_icon.png" id="6_8j1nm"]
+[ext_resource type="Texture2D" uid="uid://rjuji8v0k00e" path="res://art/wind_icon.png" id="7_ncred"]
 
 [node name="SixElementDisplay" type="VBoxContainer" unique_id=384496155]
 script = ExtResource("1_wp5ud")

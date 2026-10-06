@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="Customer" format=3 uid="uid://brij4vykjlho4"]
 
-[ext_resource type="Texture2D" uid="uid://bcfefcdsk4ayj" path="res://art/customers/customer016.png" id="1_rvnb7"]
+[ext_resource type="Texture2D" uid="uid://bnscj4oovtub3" path="res://art/customers/customer016.png" id="1_rvnb7"]
 [ext_resource type="Script" uid="uid://c4i8yqdkl6qy6" path="res://gameplay/column/customer/Customer.gd" id="2_akeca"]
 
 [resource]

@@ -2,11 +2,11 @@
 
 [ext_resource type="Script" uid="uid://cetexen3btr21" path="res://gameplay/element_display/SixElementDisplay.gd" id="1_ll034"]
 [ext_resource type="PackedScene" uid="uid://b612mtbq43632" path="res://gameplay/element_display/ElementAmountMini.tscn" id="2_qeahf"]
-[ext_resource type="Texture2D" uid="uid://da0kduwb0fkij" path="res://art/leaf_icon.png" id="3_0npq0"]
-[ext_resource type="Texture2D" uid="uid://cs3bejjb0eumk" path="res://art/earth_icon.png" id="4_mltbq"]
-[ext_resource type="Texture2D" uid="uid://bocq6tqs1yjyi" path="res://art/fire_icon.png" id="5_lidc0"]
-[ext_resource type="Texture2D" uid="uid://dpgrdpqna2way" path="res://art/water_icon.png" id="6_fjg46"]
-[ext_resource type="Texture2D" uid="uid://bnpui8konrk8u" path="res://art/wind_icon.png" id="7_qpo84"]
+[ext_resource type="Texture2D" uid="uid://bdspfwag8r12p" path="res://art/leaf_icon.png" id="3_0npq0"]
+[ext_resource type="Texture2D" uid="uid://ditey3yqlc5gt" path="res://art/earth_icon.png" id="4_mltbq"]
+[ext_resource type="Texture2D" uid="uid://bluy71d4u8rvx" path="res://art/fire_icon.png" id="5_lidc0"]
+[ext_resource type="Texture2D" uid="uid://rfk4mvoewpbr" path="res://art/water_icon.png" id="6_fjg46"]
+[ext_resource type="Texture2D" uid="uid://rjuji8v0k00e" path="res://art/wind_icon.png" id="7_qpo84"]
 
 [node name="SixElementDisplayMini" type="VBoxContainer" unique_id=705546245]
 custom_minimum_size = Vector2(0, 100)
