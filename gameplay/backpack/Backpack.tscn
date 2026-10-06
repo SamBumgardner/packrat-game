@@ -12,7 +12,7 @@
 [ext_resource type="AudioStream" uid="uid://tr1ifl68v5dd" path="res://sound/pop.wav" id="10_6ej52"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_2k672"]
-size = Vector2(128, 128)
+size = Vector2(300, 128)
 
 [sub_resource type="Curve" id="Curve_1s5st"]
 _data = [Vector2(0.00363636, 1), 0.0, 0.0, 0, 0, Vector2(0.483636, 1), 0.0, 0.0, 0, 0, Vector2(0.763636, 0), 0.0, 0.0, 0, 0]
