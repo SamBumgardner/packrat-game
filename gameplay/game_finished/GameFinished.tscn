@@ -5,8 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://c25adoveil6xs" path="res://hud/CurrencySilverCoin.tscn" id="3_gv0k7"]
 [ext_resource type="PackedScene" uid="uid://dm07s06ryg2u" path="res://menus/BackToStartMenuButton.tscn" id="4_d0d6f"]
 [ext_resource type="Script" uid="uid://cad3dv0uuagpu" path="res://gameplay/game_finished/TradesMadeTracker.gd" id="4_pl6ob"]
-[ext_resource type="Texture2D" uid="uid://dshpg3b7awk02" path="res://art/backgrounds/well_deserved_nap.jpg" id="6_2mm8t"]
-[ext_resource type="AudioStream" uid="uid://37ppygge27p5" path="res://sound/Anticipated-Arrival_v1b.ogg" id="7_q1xyy"]
+[ext_resource type="Texture2D" uid="uid://d2kl5dgyo8f7f" path="res://art/backgrounds/well_deserved_nap.jpg" id="6_2mm8t"]
+[ext_resource type="AudioStream" uid="uid://74paos8fe57r" path="res://sound/Anticipated-Arrival_v1b.ogg" id="7_q1xyy"]
 [ext_resource type="Script" uid="uid://ew52s2ma8ak3" path="res://sound/LoopBGM.gd" id="8_81jn8"]
 
 [node name="GameFinished" type="Control" unique_id=1894051811]
