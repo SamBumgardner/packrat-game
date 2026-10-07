@@ -60,8 +60,7 @@ func get_anchor_point_position() -> Vector2:
 
 # Need during init to make collision check match the columns after auto-resize
 func _on_item_rect_changed() -> void:
-	print('DEBUG01 size:', size)
-	$CenterPoint/Area2D/CollisionShape2D.set_size(size)
+	$CenterPoint/Area2D/CollisionShape2D.shape.set_size(size)
 
 ################
 # CONSTRUCTION #
