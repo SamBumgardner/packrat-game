@@ -38,7 +38,6 @@ func _ready() -> void:
 	set_column_type(start_column_type)
 
 func _process(_delta):
-	_on_item_rect_changed()
 	_mouse_overlap_manual_check()
 
 func set_column_type(new_type : GlobalConstants.ColumnContents) -> void:
