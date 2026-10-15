@@ -84,9 +84,12 @@ func _set_graphic(texture : Texture) -> void:
 	pack.set_texture(texture)
 	shadow.set_texture(texture)
 
+## TODO: Enhance performance to not call `_mouse_overlap_manual_check` on every
+##  frame. Replace temporary fix for picking up a backpack (2026-10-15).
 func _process(delta):
 	_handle_movement(delta)
 	_check_coin_emission()
+	_mouse_overlap_manual_check()
 
 func _check_coin_emission() -> void:
 	if not _is_emitting_coins and coin_particles.emitting:
@@ -150,11 +153,15 @@ func stop_deselect_shrink_backpack() -> void:
 	_sfx_drop.play()
 	_mouse_overlap_manual_check()
 
+## TODO: Cut code snippet `... else: _on_mouse_exited()` that was added as a
+##  temporary fix for picking up a backpack (2026-10-15).
 func _mouse_overlap_manual_check() -> void:
 	var manual_mouse_check_rect : Rect2 = Rect2(collision_shape.get_rect())
 	manual_mouse_check_rect.position += global_position
 	if manual_mouse_check_rect.has_point(get_viewport().get_mouse_position()):
 		_on_mouse_entered()
+	else:
+		_on_mouse_exited()
 	
 func _on_mouse_entered() -> void:
 	backpack_entered.emit(self)

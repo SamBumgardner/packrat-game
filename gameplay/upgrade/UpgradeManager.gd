@@ -80,3 +80,23 @@ static func check_restricted(upgrade_type : UpgradeType) -> RestrictedReason:
 		return RestrictedReason.COST
 	
 	return RestrictedReason.NONE
+
+static func reset_values() -> void:
+	_costs = [
+		add_backpack_costs,
+		add_column_costs,
+		increase_capacity_costs,
+		change_column_region_costs,
+		change_column_customer_costs,
+		empty_column_costs,
+		remodel_costs
+	]
+	_count_times_bought = [
+		func () : return Database.backpacks_purchased,
+		func () : return Database.columns_purchased,
+		func () : return Database.capacity_increases_purchased,
+		func () : return Database.active_region_columns,
+		func () : return Database.active_customer_columns,
+		func () : return 0,
+		func () : return Database.shop_level,
+	]
