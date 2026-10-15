@@ -80,7 +80,7 @@ func set_region(new_region : Region) -> void:
 	header_name = _region.name
 
 func set_item(new_item : Item, new_modifier : Modifier) -> void:
-	_item = new_item.duplicate()
+	_item = new_item.duplicate(true)
 	_item.apply_modifier(new_modifier)
 
 func select_allowed_modifier() -> Modifier:

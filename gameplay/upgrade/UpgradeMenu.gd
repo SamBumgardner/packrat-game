@@ -45,3 +45,12 @@ func _on_show_hide_button_button_down():
 
 func _on_button_pressed(upgrade_type : UpgradeManager.UpgradeType) -> void:
 	upgrade_selected.emit(upgrade_type)
+
+func reset_values() -> void:
+	var upgrade_types = UpgradeManager.UpgradeType.values()
+	for i in _upgrade_buttons.size():
+		var upgrade_button = _upgrade_buttons[i]
+		var upgrade_type = upgrade_types[i]
+		upgrade_button.set_cost(UpgradeManager.get_cost(upgrade_type))
+	_on_money_or_level_changed(true)
+	

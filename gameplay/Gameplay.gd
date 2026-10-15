@@ -71,6 +71,9 @@ func _ready():
 		_init_backpack(backpack_scene.instantiate() as Backpack)
 	Database.active_region_columns = get_typed_column_count(GlobalConstants.ColumnContents.REGION)
 	Database.active_customer_columns = get_typed_column_count(GlobalConstants.ColumnContents.CUSTOMER)
+
+	UpgradeManager.reset_values()
+	$UpgradeMenu.reset_values()
 	
 	$LevelUpFanfare.finished.connect(trigger_end_game_transition)
 

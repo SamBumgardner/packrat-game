@@ -25,6 +25,7 @@ const UNDER_CONSTRUCTION_ALPHA : float = .5;
 @export var column_type : GlobalConstants.ColumnContents
 
 @onready var anchor_point : Control = $AnchorPoint
+@onready var collision_shape : Shape2D = $CenterPoint/Area2D/CollisionShape2D.shape
 @onready var content_status : Sprite2D = $AnchorPoint/StatusSprite
 @onready var backpack_display : BackpackDisplay = $CenterBottom/BackpackDisplay
 @onready var contents_root : Node = $Contents
@@ -35,6 +36,12 @@ var _constructing_column_type : GlobalConstants.ColumnContents
 
 func _ready() -> void:
 	set_column_type(start_column_type)
+
+func _input(event: InputEvent) -> void:
+	if event is InputEventMouseMotion:
+		## TODO: Enhance performance to not call `_mouse_overlap_manual_check`
+		##  every frame of mouse movement (2026-10-15).
+		_mouse_overlap_manual_check()
 
 func set_column_type(new_type : GlobalConstants.ColumnContents) -> void:
 	if column_type != new_type:
@@ -141,6 +148,18 @@ func _on_content_status_change(new_status : GlobalConstants.ColumnStatus) -> voi
 ##################
 # INPUT HANDLING #
 ##################
+## TODO: Remove method `_mouse_overlap_manual_check` if no longer needed as a
+##  temporary fix for dropping a backpack (2026-10-15).
+func _mouse_overlap_manual_check() -> void:
+	var manual_mouse_check_rect : Rect2 = Rect2(collision_shape.get_rect())
+	manual_mouse_check_rect.position += global_position
+	manual_mouse_check_rect.position.x += collision_shape.size.x / 2
+	manual_mouse_check_rect.position.y += collision_shape.size.y / 2
+	if manual_mouse_check_rect.has_point(get_viewport().get_mouse_position()):
+		_on_area_2d_mouse_entered()
+	else:
+		_on_area_2d_mouse_exited()
+
 func _on_area_2d_mouse_entered() -> void:
 	column_entered.emit(column_index)
 
